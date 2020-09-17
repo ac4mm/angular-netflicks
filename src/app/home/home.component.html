@@ -1,0 +1,155 @@
+<app-profile-gate *ngIf="!isValidUser"></app-profile-gate>
+<!-- <video autoplay="" muted="" loop="no">
+  <source src="" type="video/mp4" />
+</video> -->
+<div class="container-fluid" *ngIf="isValidUser">
+  <div class="content-text">
+    <h3>Welcome to Netflicks</h3>
+    <p>
+      This is a Netflix clone with the same behavior developed with Angular 9.
+    </p>
+  </div>
+
+  <swiper [config]="config" #usefulSwiper>
+    <p class="title-slide">
+      User1, keep watching :
+    </p>
+
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let slide of slideData" #swiperSlides>
+        <img class="card_img" src="../assets/img/bojack.png" />
+        <div class="card_details">
+          <div class="card_icons">
+            <!-- <img class="speaker-icon" src="../assets/icons/speaker-up.png" /> -->
+          </div>
+
+          <!--  <img class="play-icon" src="../assets/icons/play.png" />
+          <div class="card_title">
+            Bojack Horseman
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </swiper>
+
+  <swiper [config]="config" #usefulSwiper>
+    <p class="title-slide">
+      My List
+    </p>
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let slide of slideData" #swiperSlides>
+        <img class="card_img" src="../assets/img/Rick&Morty.jpg" />
+        <div class="card_details">
+          <!-- <img class="play-icon" src="../assets/icons/play.png" />
+          <div class="card_title">
+            Bojack Horseman
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </swiper>
+
+  <swiper [config]="config" #usefulSwiper>
+    <p class="title-slide">
+      Tv Shows
+    </p>
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let slide of slideData" #swiperSlides>
+        <img class="card_img" src="../assets/img/StrangerThings.jpg" />
+        <div class="card_details">
+          <!-- <img class="play-icon" src="../assets/icons/play.png" />
+          <div class="card_title">
+            Bojack Horseman
+          </div -->
+        </div>
+      </div>
+    </div>
+
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </swiper>
+  <swiper [config]="config" #usefulSwiper>
+    <p class="title-slide">
+      Tv Shows
+    </p>
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let slide of slideData" #swiperSlides>
+        <img class="card_img" src="../assets/img/bojack.png" />
+        <div class="card_details">
+          <!-- <img class="play-icon" src="../assets/icons/play.png" />
+          <div class="card_title">
+            Bojack Horseman
+          </div -->
+        </div>
+      </div>
+    </div>
+
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </swiper>
+  <swiper [config]="config" #usefulSwiper>
+    <p class="title-slide">
+      Tv Shows
+    </p>
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let slide of slideData" #swiperSlides>
+        <img class="card_img" src="../assets/img/bojack.png" />
+        <div class="card_details">
+          <!-- <img class="play-icon" src="../assets/icons/play.png" />
+          <div class="card_title">
+            Bojack Horseman
+          </div -->
+        </div>
+      </div>
+    </div>
+
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </swiper>
+  <swiper [config]="config" #usefulSwiper>
+    <p class="title-slide">
+      Tv Shows
+    </p>
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let slide of slideData" #swiperSlides>
+        <img class="card_img" src="../assets/img/bojack.png" />
+        <div class="card_details">
+          <!-- <img class="play-icon" src="../assets/icons/play.png" />
+          <div class="card_title">
+            Bojack Horseman
+          </div -->
+        </div>
+      </div>
+    </div>
+
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </swiper>
+  <swiper [config]="config" #usefulSwiper>
+    <p class="title-slide">
+      Tv Shows
+    </p>
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let slide of slideData" #swiperSlides>
+        <img class="card_img" src="../assets/img/bojack.png" />
+        <div class="card_details">
+          <!-- <img class="play-icon" src="../assets/icons/play.png" />
+          <div class="card_title">
+            Bojack Horseman
+          </div -->
+        </div>
+      </div>
+    </div>
+
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </swiper>
+</div>
+
+<br />
+<br />

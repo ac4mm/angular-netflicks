@@ -1,0 +1,89 @@
+<div class="login-wrapper-background">
+  <nav class="navbar navbar-expand-lg">
+    <div class="navbar-header">
+      <img class="navbar-brand" src="assets/img/netflicks.png" />
+    </div>
+  </nav>
+
+  <div class="container-form">
+    <div class="login-form-main">
+      <div class="alert alert-danger" *ngIf="error">
+        <span>{{ error }}</span>
+      </div>
+
+      <div *ngIf="isLoading">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+
+      <h2 class="login-form-text">
+        {{ isLoginMode ? "Login" : "Sign up" }}
+      </h2>
+      <form
+        #authForm="ngForm"
+        (ngSubmit)="onSubmit(authForm)"
+        *ngIf="!isLoading"
+      >
+        <div class="form-group">
+          <!-- <label for="email">Email</label> -->
+          <input
+            class="form-control"
+            type="email"
+            id="email"
+            ngModel
+            name="email"
+            required
+            email
+            placeholder=" "
+          />
+          <span class="placeholder-text pt-first">Email or phone number</span>
+        </div>
+
+        <div class="form-group">
+          <input
+            class="form-control"
+            type="{{ showPassword ? 'text' : 'password' }}"
+            id="password"
+            ngModel
+            name="password"
+            required
+            minlength="6"
+            placeholder=" "
+          />
+          <span class="placeholder-text">Password</span>
+          <span
+            class="show-password"
+            (click)="onShowPassword()"
+            type="button"
+            >{{ showPassword ? "HIDE" : "SHOW" }}</span
+          >
+        </div>
+
+        <button
+          class="btn btn-danger col-12"
+          type="submit"
+          [disabled]="!authForm.valid"
+        >
+          {{ isLoginMode ? "Login" : "Sign up" }}
+        </button>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" />
+          <label class="form-check-label">
+            <span class="check-text">Remember me</span>
+            <a class="help" type="button">
+              Need help?
+            </a>
+          </label>
+        </div>
+      </form>
+    </div>
+
+    <div class="login-form-other">
+      <p class="text-form-other">
+        New to Netflicks?
+        <a class="signup" (click)="onSwitchMode()" type="button">
+          Sign up now
+        </a>
+      </p>
+    </div>
+  </div>
+</div>

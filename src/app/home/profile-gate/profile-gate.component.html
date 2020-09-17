@@ -1,0 +1,90 @@
+<div *ngIf="isLoading">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="profile-gate-container" *ngIf="!isLoading">
+  <div class="centered-div list-profiles-container">
+    <div class="list-profiles">
+      <div class="profile-gate-label">Who's watching?</div>
+      <ul class="choose-profile">
+        <li class="profile">
+          <div>
+            <a class="profile-link" (click)="onChangeUser(0)">
+              <div class="avatar-wrapper">
+                <div
+                  class="profile-icon"
+                  #userId1
+                  [ngStyle]="{
+                    'background-image':
+                      'url(' + '../../assets/img/account0.png' + ')'
+                  }"
+                ></div>
+              </div>
+              <span class="profile-name">User0</span>
+            </a>
+          </div>
+        </li>
+        <li class="profile">
+          <div>
+            <a class="profile-link" (click)="onChangeUser(1)">
+              <div class="avatar-wrapper">
+                <div
+                  class="profile-icon"
+                  #user2
+                  [ngStyle]="{
+                    'background-image':
+                      'url(' + '../../assets/img/account1.png' + ')'
+                  }"
+                ></div>
+              </div>
+              <span class="profile-name">User1</span>
+            </a>
+          </div>
+        </li>
+        <li class="profile">
+          <div>
+            <a class="profile-link" (click)="onChangeUser(2)">
+              <div class="avatar-wrapper">
+                <div
+                  class="profile-icon"
+                  style="background-image: url(../../assets/img/account2.png);"
+                ></div>
+              </div>
+              <span class="profile-name">User2</span>
+            </a>
+          </div>
+        </li>
+        <li class="profile">
+          <div>
+            <a class="profile-link" (click)="onChangeUser(3)">
+              <div class="avatar-wrapper">
+                <div
+                  class="profile-icon"
+                  style="background-image: url(../../assets/img/account3.png);"
+                ></div>
+              </div>
+              <span class="profile-name">User3</span>
+            </a>
+          </div>
+        </li>
+        <li class="profile">
+          <div>
+            <a class="profile-link" (click)="onChangeUser(4)">
+              <div class="avatar-wrapper">
+                <div
+                  class="profile-icon"
+                  style="background-image: url(../../assets/img/account4.png);"
+                ></div>
+              </div>
+              <span class="profile-name">Kids</span>
+            </a>
+          </div>
+        </li>
+      </ul>
+      <span class="profile-button">
+        <a aria-label="Manage Profiles" routerLink="ManageProfiles">{{
+          "manage profiles" | uppercase
+        }}</a>
+      </span>
+    </div>
+  </div>
+</div>

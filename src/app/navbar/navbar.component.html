@@ -1,0 +1,232 @@
+<nav
+  class="navbar sticky-top navbar-expand navbar-dark"
+  *ngIf="isAuthenticated"
+>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <img class="navbar-brand" src="assets/img/netflicks.png" />
+    </div>
+
+    <!-- <button
+      *ngIf="isValidUser"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#collapsibleNavbar"
+      aria-controls="collapsibleNavbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <!-- Browse dropdown menu -->
+      <li class="nav-item dropdown dropdown-left" *ngIf="isValidUser">
+        <a
+          class="btn nav-link dropdown-toggle browse"
+          style="color: #fff;"
+          type="button"
+          data-toggle="dropdown"
+        >
+          Browse
+        </a>
+
+        <p class="browse-triangle-up"></p>
+
+        <div class="dropdown-menu text-center dropdown-menu-left">
+          <a class="dropdown-item" routerLink="/browse">Home</a>
+          <a class="dropdown-item" routerLink="tv-series">Tv Shows</a>
+          <a class="dropdown-item" routerLink="movies">Movies</a>
+          <a class="dropdown-item" routerLink="latest">Latest</a>
+          <a class="dropdown-item" routerLink="my-list">My List</a>
+        </div>
+      </li>
+
+      <!--navbar left-->
+      <ul class="navbar-nav" id="leftNavbar" *ngIf="isValidUser">
+        <li
+          class="nav-item"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a
+            class="nav-link"
+            routerLink="/browse"
+            routerLinkActive="active"
+            data-toggle="collapse"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="tv-shows">Tv Shows</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="movies">Movies</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="latest">Latest</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="my-list">My List</a>
+        </li>
+      </ul>
+
+      <!--navbar right-->
+      <ul class="navbar-nav ml-auto" id="rightNavbar" *ngIf="isValidUser">
+        <li class="nav-item search-box space-item">
+          <a class="nav-link">
+            <svg
+              class="bi bi-search search-box_icon"
+              width="1.4em"
+              height="1.4em"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+              (click)="activateSearch()"
+            >
+              <path
+                fill-rule="evenodd"
+                stroke-width="1"
+                d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
+              />
+            </svg>
+
+            <input class="search-box_input" placeholder="title, people, genre"
+          /></a>
+        </li>
+
+        <li class="nav-item space-item nav-kids" routerLinkActive="active">
+          <a class="nav-link" routerLink="Kids">{{ "kids" | uppercase }}</a>
+        </li>
+        <li class="nav-item space-item" routerLinkActive="active">
+          <a class="nav-link gift" routerLink="referfriends"
+            ><svg
+              class="bi bi-gift"
+              width="1.4em"
+              height="1.4em"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+              routerLink="referfriends"
+              cursor="pointer"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M2 6v8.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V6h1v8.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 14.5V6h1zm8-5a1.5 1.5 0 0 0-1.5 1.5c0 .098.033.16.12.227.103.081.272.15.49.2A3.44 3.44 0 0 0 9.96 3h.015L10 2.999l.025.002h.014A2.569 2.569 0 0 0 10.293 3c.17-.006.387-.026.598-.073.217-.048.386-.118.49-.199.086-.066.119-.13.119-.227A1.5 1.5 0 0 0 10 1zm0 3h-.006a3.535 3.535 0 0 1-.326 0 4.435 4.435 0 0 1-.777-.097c-.283-.063-.614-.175-.885-.385A1.255 1.255 0 0 1 7.5 2.5a2.5 2.5 0 0 1 5 0c0 .454-.217.793-.506 1.017-.27.21-.602.322-.885.385a4.434 4.434 0 0 1-1.104.099H10z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M6 1a1.5 1.5 0 0 0-1.5 1.5c0 .098.033.16.12.227.103.081.272.15.49.2A3.44 3.44 0 0 0 5.96 3h.015L6 2.999l.025.002h.014l.053.001a3.869 3.869 0 0 0 .799-.076c.217-.048.386-.118.49-.199.086-.066.119-.13.119-.227A1.5 1.5 0 0 0 6 1zm0 3h-.006a3.535 3.535 0 0 1-.326 0 4.435 4.435 0 0 1-.777-.097c-.283-.063-.614-.175-.885-.385A1.255 1.255 0 0 1 3.5 2.5a2.5 2.5 0 0 1 5 0c0 .454-.217.793-.506 1.017-.27.21-.602.322-.885.385a4.435 4.435 0 0 1-1.103.099H6zm1.5 12V6h1v10h-1z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M15 4H1v1h14V4zM1 3a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H1z"
+              />
+            </svg>
+          </a>
+        </li>
+
+        <li class="nav-item space-item tooltip-bell" routerLinkActive="active">
+          <a class="nav-link"
+            ><svg
+              class="bi bi-bell-fill"
+              width="1.4em"
+              height="1.4em"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+              cursor="pointer"
+            >
+              <path
+                d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"
+              /></svg
+          ></a>
+          <p class="triangle-up"></p>
+          <span class="tooltiptext-bell">No recent notices</span>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link btn dropdown-toggle account"
+            data-toggle="dropdown"
+            type="button"
+            ><img
+              class="dropdown-img"
+              src="{{ 'assets/img/' + 'account' + idUserMaster + '.png' }}"
+              alt="logo"
+            />
+          </a>
+          <p class="account-triangle-up"></p>
+
+          <ul class="dropdown-menu dropdown-menu-right">
+            <li *ngIf="idUserMaster !== 0" (click)="onChangeUser(0)">
+              <a class="dropdown-item" href="/browse "
+                ><img
+                  class="dropdown-img-item"
+                  src="{{ 'assets/img/' + 'account' + 0 + '.png' }}"
+                />User0</a
+              >
+            </li>
+            <li *ngIf="idUserMaster !== 1" (click)="onChangeUser(1)">
+              <a class="dropdown-item" href="/browse "
+                ><img
+                  class="dropdown-img-item"
+                  src="{{ 'assets/img/' + 'account' + 1 + '.png' }}"
+                />User1</a
+              >
+            </li>
+            <li *ngIf="idUserMaster !== 2" (click)="onChangeUser(2)">
+              <a class="dropdown-item" href="#">
+                <img
+                  class="dropdown-img-item"
+                  src="{{ 'assets/img/' + 'account' + 2 + '.png' }}"
+                />User2</a
+              >
+            </li>
+            <li *ngIf="idUserMaster !== 3" (click)="onChangeUser(3)">
+              <a class="dropdown-item" href="#"
+                ><img
+                  class="dropdown-img-item"
+                  src="{{ 'assets/img/' + 'account' + 3 + '.png' }}"
+                />User3</a
+              >
+            </li>
+            <li *ngIf="idUserMaster !== 4" (click)="onChangeUser(4)">
+              <a class="dropdown-item" href="#"
+                ><img
+                  class="dropdown-img-item"
+                  src="{{ 'assets/img/' + 'account' + 4 + '.png' }}"
+                />Kids</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Manage Profiles</a>
+            </li>
+            <div class="dropdown-divider"></div>
+            <li class="kids-item">
+              <a class="dropdown-item" href="Kids">Kids</a>
+              <div class="dropdown-divider"></div>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Account</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Help Center</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="login" (click)="onLogout()"
+                >Sign out of Netflix</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br />
