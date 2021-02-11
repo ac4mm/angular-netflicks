@@ -3,14 +3,15 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class SelectUserService {
-  private selectUser = new BehaviorSubject<boolean>(false);
+  selectUser = new BehaviorSubject<boolean>(false);
   private idUserSubject = new BehaviorSubject<number>(0);
+
   currentState = this.selectUser.asObservable();
   currentId = this.idUserSubject.asObservable();
 
   //userLink: string;
 
-  constructor() {}
+  constructor() { }
 
   changeState(state: boolean) {
     this.selectUser.next(state);

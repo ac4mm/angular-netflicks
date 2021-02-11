@@ -1,9 +1,12 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { SwiperOptions } from 'swiper';
 import { SelectUserService } from '../shared/select-user.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { MoviesService } from '../shared/movies.service';
+import { every, filter, flatMap, map, switchMap } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-home',
@@ -15,21 +18,73 @@ export class HomeComponent implements OnInit, OnDestroy {
   private authServiceSub: Subscription;
   private selectUserSub: Subscription;
 
+  movieDetails: any;
+  detailsEpisode: any;
+  imagesMovies: [];
+  coverImages: string[] = [];
+  tempImg: string;
+
+  season: string;
+  episode: string;
+  episodeImage: [];
+
   constructor(
     private authService: AuthService,
-    private selectUser: SelectUserService
-  ) {}
+    private selectUser: SelectUserService,
+    private movies: MoviesService
+  ) { }
 
   ngOnInit(): void {
     this.selectUserSub = this.selectUser.currentState.subscribe(
       (state) => (this.isValidUser = !!state)
     );
     console.log('HomeComp: ' + this.isValidUser);
+    this.getImageMovie(184);
+    this.getImageMovie(216);
+    this.getImageMovie(2993);
+    this.getImageMovie(17861);
   }
 
   ngOnDestroy() {
     this.selectUserSub.unsubscribe();
     this.selectUser.currState();
+  }
+
+  /* filter by type=== background */
+  getImageMovie(id: number) {
+    this.movies.searchImagesMovie(id).subscribe(images => {
+      this.tempImg = images[3].resolutions.original.url;
+      this.coverImages.push(this.tempImg);
+      console.log(images);
+    })
+    /* this.movies.searchImagesMovie(id).pipe(
+      every((images) => images === 'background'))
+      .subscribe(val => console.log(val));
+ */
+  }
+
+  getIdMovie(id: string) {
+    this.movies.getMovies(id).subscribe(movie => {
+      this.movieDetails = movie;
+      console.log(this.movieDetails);
+    })
+  }
+
+  searchMovie(query: string) {
+    this.movies.searchMovie(query).subscribe(movie => {
+      this.movieDetails = movie;
+      console.log(this.movieDetails);
+    })
+  }
+
+  getEpisode(season: string, numb: string) {
+    console.log('season:' + this.season + ', episode:' + this.episode);
+    return this.movies
+      .getEpisodeByNumber(this.movieDetails.id, season, numb)
+      .subscribe((episode) => {
+        this.detailsEpisode = episode
+        this.episodeImage = this.detailsEpisode.image.original
+      });
   }
 
   slideData = [
@@ -105,4 +160,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     loop: false,
   };
+
+
 }

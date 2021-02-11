@@ -4,6 +4,7 @@ import {
   HostListener,
   OnDestroy,
   ElementRef,
+  Input,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
@@ -29,13 +30,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private elRef: ElementRef,
     private authService: AuthService,
     private statusUser: SelectUserService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.userSub = this.authService.user.subscribe((user) => {
       this.isAuthenticated = !!user;
-      /* console.log(!user);
-      console.log(!!user); */
+      //console.log(!user);
+      console.log(!!user);
     });
     console.log('isAuthenticated:' + this.isAuthenticated);
 
@@ -58,10 +59,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   @HostListener('window:scroll', ['$event'])
   scrollNavBarEffect($event) {
     let navbarElement = document.querySelector('.navbar');
-    if (window.pageYOffset > navbarElement.clientHeight) {
-      navbarElement.classList.add('navbar-scrolled');
+    if (window.pageYOffset > navbarElement?.clientHeight) {
+      navbarElement?.classList.add('navbar-scrolled');
     } else {
-      navbarElement.classList.remove('navbar-scrolled');
+      navbarElement?.classList.remove('navbar-scrolled');
     }
   }
 

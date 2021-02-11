@@ -7,7 +7,6 @@ import { ReferfriendsComponent } from './referfriends/referfriends.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TvShowsComponent } from './tv-shows/tv-shows.component';
 import { MoviesComponent } from './movies/movies.component';
-import { AuthGuard } from './auth/auth.guard';
 import { ManageProfilesComponent } from './manage-profiles/manage-profiles.component';
 
 const routes: Routes = [
@@ -31,7 +30,6 @@ const routes: Routes = [
 
   {
     path: 'login',
-
     loadChildren: () =>
       import('./auth/auth.module').then((auth) => auth.AuthModule),
   },
@@ -49,4 +47,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

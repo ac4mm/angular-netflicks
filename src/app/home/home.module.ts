@@ -21,4 +21,4 @@ import { SelectUserService } from '../shared/select-user.service';
   exports: [],
   providers: [],
 })
-export class HomeModule {}
+export class HomeModule { }

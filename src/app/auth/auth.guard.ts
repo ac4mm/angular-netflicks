@@ -7,12 +7,13 @@ import {
 } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
-import { map, take } from 'rxjs/operators';
+import { map, take, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  isAuthenticated = false;
+  constructor(private authService: AuthService, private router: Router) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -22,7 +23,7 @@ export class AuthGuard implements CanActivate {
     | UrlTree
     | Promise<boolean | UrlTree>
     | Observable<boolean | UrlTree> {
-    return this.authService.user.pipe(
+    /* return this.authService.user.pipe(
       take(1),
       map((user) => {
         const isAuth = !!user;
@@ -30,16 +31,16 @@ export class AuthGuard implements CanActivate {
         if (isAuth) {
           return true;
         } else {
-          console.log('else case');
+          console.log('ISAUTH:' + isAuth);
         }
-        console.log('ISAUTH:' + isAuth);
         return this.router.createUrlTree(['/login']);
-      })
-      /* tap((isAuth) => {
-        if (!isAuth) {
-          this.router.navigate(['/login']);
-        }
-      }) */
-    );
+      }),
+    ); */
+    this.authService.user.subscribe((user) => {
+      this.isAuthenticated = !!user;
+      console.log("user:" + user);
+    });
+    console.log('isAuth guard:' + this.isAuthenticated);
+    return this.isAuthenticated;
   }
 }
