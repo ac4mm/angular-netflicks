@@ -10,7 +10,7 @@ import { MoviesComponent } from './movies/movies.component';
 import { ManageProfilesComponent } from './manage-profiles/manage-profiles.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/browse', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'ManageProfiles', component: ManageProfilesComponent },
   {
     path: 'browse',
@@ -35,7 +35,7 @@ const routes: Routes = [
   },
 
   { path: 'not-found', component: PageNotFoundComponent },
-  { path: '**', redirectTo: 'not-found' },
+  { path: '**', redirectTo: 'login' },
 ];
 
 @NgModule({
