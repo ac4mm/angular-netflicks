@@ -30,6 +30,7 @@
     "ngx-swiper-wrapper": "^9.0.1",
     "ngx-useful-swiper": "^9.0.3",
     "popper.js": "^1.16.1",
+    "rimraf": "^3.0.2",
     "rxjs": "~6.5.4",
     "swiper": "^5.4.1",
     "tslib": "^1.10.0",

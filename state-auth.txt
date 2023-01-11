@@ -1,6 +1,0 @@
-		login	browse(1)	browse(2)
-ISAUTH		F	T
-isAuthenticated	F	
-NavbarComp	F
-
-currentState				T
