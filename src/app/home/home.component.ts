@@ -36,10 +36,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.selectUserSub = this.selectUser.currentState.subscribe(
       (state) => (this.isValidUser = !!state)
     );
-    console.log('HomeComp: ' + this.isValidUser);
-    this.getImageMovie(184);
+    /* console.log('HomeComp: ' + this.isValidUser); */
     this.getImageMovie(216);
     this.getImageMovie(2993);
+    this.getImageMovie(169);
     this.getImageMovie(17861);
   }
 
@@ -73,7 +73,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getEpisode(season: string, numb: string) {
-    console.log('season:' + this.season + ', episode:' + this.episode);
+    /* console.log('season:' + this.season + ', episode:' + this.episode); */
     return this.movies
       .getEpisodeByNumber(this.movieDetails.id, season, numb)
       .subscribe((episode) => {

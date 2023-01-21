@@ -10,6 +10,7 @@
     </p>
   </div>
 
+  <!-- User N, keep watching -->
   <swiper [config]="config" #usefulSwiper>
     <p class="title-slide">User1, keep watching :</p>
 
@@ -32,6 +33,7 @@
     <div class="swiper-button-prev"></div>
   </swiper>
 
+  <!-- My List -->
   <swiper [config]="config" #usefulSwiper>
     <p class="title-slide">My List</p>
     <div class="swiper-wrapper">
@@ -50,23 +52,7 @@
     <div class="swiper-button-prev"></div>
   </swiper>
 
-  <swiper [config]="config" #usefulSwiper>
-    <p class="title-slide">Tv Shows</p>
-    <div class="swiper-wrapper">
-      <div class="swiper-slide" *ngFor="let slide of slideData" #swiperSlides>
-        <img class="card_img" [src]="coverImages[2]" />
-        <div class="card_details">
-          <!-- <img class="play-icon" src="../assets/icons/play.png" />
-          <div class="card_title">
-            Bojack Horseman
-          </div -->
-        </div>
-      </div>
-    </div>
-
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </swiper>
+  <!-- Drama -->
   <swiper [config]="config" #usefulSwiper>
     <p class="title-slide">Drama</p>
     <div class="swiper-wrapper">
@@ -84,15 +70,18 @@
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
   </swiper>
-  <!-- <swiper [config]="config" #usefulSwiper>
-    <p class="title-slide">
-      Tv Shows
-    </p>
+
+  <!-- Tv Shows -->
+  <swiper [config]="config" #usefulSwiper>
+    <p class="title-slide">Tv Shows</p>
     <div class="swiper-wrapper">
       <div class="swiper-slide" *ngFor="let slide of slideData" #swiperSlides>
-        <img class="card_img" src="../assets/img/bojack.png" />
+        <img class="card_img" [src]="coverImages[2]" />
         <div class="card_details">
-        
+          <!-- <img class="play-icon" src="../assets/icons/play.png" />
+          <div class="card_title">
+            Bojack Horseman
+          </div -->
         </div>
       </div>
     </div>
@@ -100,36 +89,5 @@
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
   </swiper>
-  <swiper [config]="config" #usefulSwiper>
-    <p class="title-slide">
-      Tv Shows
-    </p>
-    <div class="swiper-wrapper">
-      <div class="swiper-slide" *ngFor="let slide of slideData" #swiperSlides>
-        <img class="card_img" src="../assets/img/bojack.png" />
-        <div class="card_details">
-         
-        </div>
-      </div>
-    </div>
 
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </swiper>
-  <swiper [config]="config" #usefulSwiper>
-    <p class="title-slide">
-      Tv Shows
-    </p>
-    <div class="swiper-wrapper">
-      <div class="swiper-slide" *ngFor="let slide of slideData" #swiperSlides>
-        <img class="card_img" src="../assets/img/bojack.png" />
-        <div class="card_details">
-      
-        </div>
-      </div>
-    </div>
-
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </swiper> -->
 </div>
