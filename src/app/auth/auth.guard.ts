@@ -38,9 +38,7 @@ export class AuthGuard implements CanActivate {
     ); */
     this.authService.user.subscribe((user) => {
       this.isAuthenticated = !!user;
-      console.log("user:" + user);
     });
-    console.log('isAuth guard:' + this.isAuthenticated);
     return this.isAuthenticated;
   }
 }

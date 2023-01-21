@@ -41,7 +41,7 @@ export class SelectUserService {
   getStateUser() {
     let saveState = localStorage.getItem('saveState');
     this.selectUser.next(JSON.parse(saveState));
-    console.log('SUR saveState:' + JSON.parse(saveState));
+    
     let saveId = localStorage.getItem('idUser');
     this.idUserSubject.next(JSON.parse(saveId));
   }
@@ -63,6 +63,6 @@ export class SelectUserService {
 
   changeIdUser(idUser: number) {
     this.idUserSubject.next(idUser);
-    console.log('id changed to:' + idUser);
+    /* console.log('id changed to:' + idUser); */
   }
 }

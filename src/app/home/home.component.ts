@@ -5,8 +5,6 @@ import { SelectUserService } from '../shared/select-user.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { MoviesService } from '../shared/movies.service';
-import { every, filter, flatMap, map, switchMap } from 'rxjs/operators';
-
 
 @Component({
   selector: 'app-home',
@@ -55,25 +53,22 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.movies.searchImagesMovie(id).subscribe(images => {
       this.tempImg = images[3].resolutions.original.url;
       this.coverImages.push(this.tempImg);
-      console.log(images);
+      
+      for(let i=0; i<this.coverImages.length; i++){
+        console.log("coverImages:" + this.coverImages[i]);
+      }
     })
-    /* this.movies.searchImagesMovie(id).pipe(
-      every((images) => images === 'background'))
-      .subscribe(val => console.log(val));
- */
   }
 
   getIdMovie(id: string) {
     this.movies.getMovies(id).subscribe(movie => {
       this.movieDetails = movie;
-      console.log(this.movieDetails);
     })
   }
 
   searchMovie(query: string) {
     this.movies.searchMovie(query).subscribe(movie => {
       this.movieDetails = movie;
-      console.log(this.movieDetails);
     })
   }
 

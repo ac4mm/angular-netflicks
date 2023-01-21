@@ -18,10 +18,8 @@ export class DropdownDirective {
   clickEvent(event: Event) {
     if (this.elRef.nativeElement.contains(event.target)) {
       this.searchBox[0].classList.toggle('active');
-      console.log('clicked inside');
     } else {
       this.searchBox[0].classList.remove('active');
-      console.log('clicked outside');
     }
   }
 }

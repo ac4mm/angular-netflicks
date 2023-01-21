@@ -20,14 +20,9 @@ export class AuthComponent {
   typePassword: any = document.getElementsByClassName('form-control');
 
   constructor(private authService: AuthService, private router: Router) {
-    /* this.isLoginMode = true;
-    this.isLoading = false;
-    this.showPassword = false;
-    this.error = null; */
   }
 
   ngOnInit(): void {
-    //document.body.classList.add('background');
   }
 
   onShowPassword() {
@@ -56,12 +51,11 @@ export class AuthComponent {
 
     authObs.subscribe(
       (resData) => {
-        console.log(resData);
         this.isLoading = false;
         this.router.navigate(['/browse']);
       },
       (errorMessage) => {
-        console.log(errorMessage);
+        console.error(errorMessage);
         this.error = errorMessage;
         this.isLoading = false;
       }

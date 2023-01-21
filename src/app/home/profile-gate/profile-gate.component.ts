@@ -21,21 +21,18 @@ export class ProfileGateComponent implements OnInit, OnDestroy {
     this.statusUserSub = this.statusUser.currentState.subscribe(
       (state) => (this.isValidStatus = !!state)
     );
-    console.log('ProfileGateComp: ' + this.isValidStatus);
 
     this.idUserSub = this.statusUser.currentId.subscribe(
       (id) => (this.idUser = id)
     );
-    console.log('ProfileGate id:' + this.idUser);
   }
 
   onChangeUser(idUser: number) {
     this.isLoading = true;
     setTimeout(() => {
-      console.log('delay');
       this.statusUser.changeState(!this.isValidStatus);
       this.statusUser.currState();
-      //console.log(idUser);
+      
       this.statusUser.changeIdUser(idUser);
       this.statusUser.setStateUser();
     }, 1000);

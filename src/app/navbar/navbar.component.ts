@@ -35,25 +35,19 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.userSub = this.authService.user.subscribe((user) => {
       this.isAuthenticated = !!user;
-      //console.log(!user);
-      console.log(!!user);
     });
-    console.log('isAuthenticated:' + this.isAuthenticated);
 
     this.statusUserSub = this.statusUser.currentState.subscribe(
       (state) => (this.isValidUser = !!state)
     );
-    console.log('NavbarComp: ' + this.isValidUser);
 
     this.idUserSub = this.statusUser.currentId.subscribe(
       (id) => (this.idUserMaster = id)
     );
-    console.log('NavbarComp id:' + this.idUserMaster);
   }
 
   activateSearch() {
     this.searchBox[0].classList.toggle('active');
-    console.log('you touch me');
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -65,17 +59,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
       navbarElement?.classList.remove('navbar-scrolled');
     }
   }
-
-  /* @HostListener('document:click', ['$event'])
-  clickEvent(event: Event) {
-    if (this.elRef.nativeElement.contains(event.target)) {
-      this.searchBox[0].classList.toggle('active');
-      console.log('clicked inside');
-    } else {
-      this.searchBox[0].classList.remove('active');
-      console.log('clicked outside');
-    }
-  } */
 
   onLogout() {
     this.authService.logout();
@@ -92,6 +75,5 @@ export class NavbarComponent implements OnInit, OnDestroy {
   onChangeUser(idUser: number) {
     this.statusUser.changeIdUser(idUser);
     this.statusUser.setStateUser();
-    console.log('changed in profile gate to:' + idUser);
   }
 }

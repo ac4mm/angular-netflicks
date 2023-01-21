@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log("autologin...");
+    /* console.log("autologin..."); */
     this.authService.autoLogin();
     this.selectUser.getStateUser();
     this.selectUser.currState();
