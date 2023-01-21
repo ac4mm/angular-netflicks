@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
-  private basePath = 'http://api.tvmaze.com';
+  private basePath = 'https://api.tvmaze.com';
   constructor(private httpClient: HttpClient) { }
 
   getMovies(id: string) {
