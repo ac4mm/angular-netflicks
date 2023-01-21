@@ -12,7 +12,7 @@
 
   <!-- User N, keep watching -->
   <swiper [config]="config" #usefulSwiper>
-    <p class="title-slide">User1, keep watching :</p>
+    <p class="title-slide">User{{this.selectUser?.getIdUser()}}, keep watching :</p>
 
     <div class="swiper-wrapper">
       <div class="swiper-slide" *ngFor="let slide of slideData" #swiperSlides>

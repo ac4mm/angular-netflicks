@@ -53,10 +53,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.movies.searchImagesMovie(id).subscribe(images => {
       this.tempImg = images[3].resolutions.original.url;
       this.coverImages.push(this.tempImg);
-      
-      for(let i=0; i<this.coverImages.length; i++){
-        console.log("coverImages:" + this.coverImages[i]);
-      }
     })
   }
 

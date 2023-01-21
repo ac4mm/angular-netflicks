@@ -58,7 +58,7 @@ export class SelectUserService {
   } */
 
   getIdUser() {
-    console.log('current id:' + this.idUserSubject.getValue());
+    return this.idUserSubject.getValue();
   }
 
   changeIdUser(idUser: number) {
