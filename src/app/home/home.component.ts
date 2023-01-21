@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private selectUser: SelectUserService,
+    public selectUser: SelectUserService,
     private movies: MoviesService
   ) { }
 
