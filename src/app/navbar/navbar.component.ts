@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   constructor(
     private elRef: ElementRef,
     private authService: AuthService,
-    private statusUser: SelectUserService
+    private selectUser: SelectUserService,
   ) { }
 
   ngOnInit(): void {
@@ -37,11 +37,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.isAuthenticated = !!user;
     });
 
-    this.statusUserSub = this.statusUser.currentState.subscribe(
+    this.statusUserSub = this.selectUser.currentState.subscribe(
       (state) => (this.isValidUser = !!state)
     );
 
-    this.idUserSub = this.statusUser.currentId.subscribe(
+    this.idUserSub = this.selectUser.currentId.subscribe(
       (id) => (this.idUserMaster = id)
     );
   }
@@ -62,18 +62,18 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   onLogout() {
     this.authService.logout();
-    this.statusUser.logoutState();
+    this.selectUser.logoutState();
   }
 
   ngOnDestroy() {
     this.userSub.unsubscribe();
     this.statusUserSub.unsubscribe();
-    this.statusUser.currState();
+    this.selectUser.currState();
     this.idUserSub.unsubscribe();
   }
 
   onChangeUser(idUser: number) {
-    this.statusUser.changeIdUser(idUser);
-    this.statusUser.setStateUser();
+    this.selectUser.changeIdUser(idUser);
+    this.selectUser.setStateUser();
   }
 }

@@ -173,7 +173,7 @@
               >
             </li>
             <li *ngIf="idUserMaster !== 1" (click)="onChangeUser(1)">
-              <a class="dropdown-item" href="/browse "
+              <a class="dropdown-item" href="/browse"
                 ><img
                   class="dropdown-img-item"
                   src="{{ 'assets/img/' + 'account' + 1 + '.png' }}"
@@ -181,7 +181,7 @@
               >
             </li>
             <li *ngIf="idUserMaster !== 2" (click)="onChangeUser(2)">
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="/browse">
                 <img
                   class="dropdown-img-item"
                   src="{{ 'assets/img/' + 'account' + 2 + '.png' }}"
@@ -189,7 +189,7 @@
               >
             </li>
             <li *ngIf="idUserMaster !== 3" (click)="onChangeUser(3)">
-              <a class="dropdown-item" href="#"
+              <a class="dropdown-item" href="/browse"
                 ><img
                   class="dropdown-img-item"
                   src="{{ 'assets/img/' + 'account' + 3 + '.png' }}"
@@ -197,7 +197,7 @@
               >
             </li>
             <li *ngIf="idUserMaster !== 4" (click)="onChangeUser(4)">
-              <a class="dropdown-item" href="#"
+              <a class="dropdown-item" href="/Kids"
                 ><img
                   class="dropdown-img-item"
                   src="{{ 'assets/img/' + 'account' + 4 + '.png' }}"
@@ -205,18 +205,18 @@
               >
             </li>
             <li>
-              <a class="dropdown-item" href="#">Manage Profiles</a>
+              <a class="dropdown-item" href="/ManageProfiles">Manage Profiles</a>
             </li>
             <div class="dropdown-divider"></div>
             <li class="kids-item">
-              <a class="dropdown-item" href="Kids">Kids</a>
+              <a class="dropdown-item" href="/Kids">Kids</a>
               <div class="dropdown-divider"></div>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Account</a>
+              <a class="dropdown-item" href="/YourAccount">Account</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Help Center</a>
+              <a class="dropdown-item" href="https://help.netflix.com/">Help Center</a>
             </li>
             <li>
               <a class="dropdown-item" routerLink="login" (click)="onLogout()"
