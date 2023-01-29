@@ -209,4 +209,34 @@ img {
   opacity: 1;
 }
 
+.title-wrapper {
+    bottom: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    left: 4%;
+    position: absolute;
+    top: 0;
+    width: 36%;
+    z-index: 10;
+}
+
+.billboards-links {
+  display: flex;
+  line-height: 88%;
+  margin-top: 1.5vw;
+  white-space: nowrap;
+}
+
+.text-button {
+  display:inline;
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 2.4rem;
+}
+
+.icon-button {
+  display:inline;
+}
+
 /*************************/
