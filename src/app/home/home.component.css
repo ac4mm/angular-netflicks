@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'Aestetico-bold';
+  src: url('src/font/Aestetico-bold.otf');
+}
+
+h3, p {
+  font-family: 'Aestetico-bold';
+}
+
 video {
   /* display: block; */
   width: 100%;
@@ -12,6 +21,8 @@ video {
 
 .content-text {
   margin-left: 15px;
+  background-color: #2e2e2e !important;
+  position:relative;
 }
 
 /*Responsive*/
@@ -209,15 +220,26 @@ img {
   opacity: 1;
 }
 
+.info-meta-layer {
+  bottom: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  left: 4%;
+  position: absolute;
+  top: 0;
+  width: 36%;
+  z-index: 10;
+}
+
 .title-wrapper {
-    bottom: 35%;
+    bottom: 0;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     left: 4%;
     position: absolute;
     top: 0;
-    width: 36%;
     z-index: 10;
 }
 
@@ -230,13 +252,27 @@ img {
 
 .text-button {
   display:inline;
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   font-weight: 500;
   line-height: 2.4rem;
 }
 
 .icon-button {
   display:inline;
+}
+
+.custom-icon-btn {
+  transform: scale(2.0); margin: 8px 19px 8px 8px;margin-bottom: 13px;
+}
+
+.custom-btn {
+  width: 187px;
+  height: 55px;
+  margin-right: 13px;
+}
+
+.custom-btn:hover {
+  background-color: #c1c2c2;
 }
 
 /*************************/
