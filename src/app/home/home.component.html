@@ -4,7 +4,7 @@
 </video> -->
 <img
   src="https://static.tvmaze.com/uploads/images/original_untouched/219/547904.jpg"
-  style="width: 100%; margin-top: -95px; margin-bottom: -270px;"
+  class="main-cover-image"
 />
 
 <div class="info-meta-layer">
@@ -70,9 +70,9 @@
 
   <!-- User N, keep watching -->
   <swiper [config]="config" #usefulSwiper>
-    <p class="title-slide">
+    <a class="title-slide">
       User{{ this.selectUser?.getIdUser() }}, keep watching :
-    </p>
+    </a>
 
     <div class="swiper-wrapper">
       <div class="swiper-slide" *ngFor="let slide of slideData" #swiperSlides>

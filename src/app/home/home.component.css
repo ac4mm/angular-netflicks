@@ -65,10 +65,10 @@ img {
 }
 
 .swiper-wrapper {
-  -webkit-transition: 450ms -webkit-transform;
-  transition: 450ms -webkit-transform;
-  transition: 450ms transform;
-  transition: 450ms transform, 450ms -webkit-transform;
+  -webkit-transition: 350ms -webkit-transform;
+  transition: 350ms -webkit-transform;
+  transition: 350ms transform;
+  transition: 350ms transform, 350ms -webkit-transform;
   position: relative;
   display: flex;
   /* background-color: saddlebrown; */
@@ -77,8 +77,6 @@ img {
 .swiper-slide {
   margin-left: 1px;
   margin-right: 1px;
-  margin-bottom: 15px;
-  margin-top: 15px;
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -218,6 +216,12 @@ img {
 .swiper-button-prev:hover {
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 1;
+}
+
+.main-cover-image {
+  width: 100%; 
+  margin-top: -95px; 
+  margin-bottom: -220px;
 }
 
 .info-meta-layer {
