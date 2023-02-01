@@ -53,6 +53,27 @@ img {
   } */
 }
 
+
+@media screen and (max-width: 580px) {
+  .main-cover-image {
+    margin-top: -137px !important;
+  }
+  .title-wrapper-logo {
+    width:35%;
+  }
+
+  .billboards-links{
+    width:10%;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 840px) and (max-aspect-ratio: 4 / 3){
+  .custom-btn{
+    font-size: 1vw;
+}
+}
+
+
 /**Animation swiper ******************************/
 
 .title-slide {
@@ -233,7 +254,6 @@ img {
   position: absolute;
   top: 0;
   width: 36%;
-  z-index: 10;
 }
 
 .title-wrapper {
@@ -244,7 +264,6 @@ img {
     left: 4%;
     position: absolute;
     top: 0;
-    z-index: 10;
 }
 
 .billboards-links {
