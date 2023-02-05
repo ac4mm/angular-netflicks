@@ -15,7 +15,7 @@ video {
 }
 
 .container-fluid {
-  margin-top: -150px;
+  margin-top: -10%;
   padding-right: 0;
   padding-left: 0;
 }
@@ -77,7 +77,12 @@ img {
   font-weight: bold;
   margin-top: -5px;
   margin-left: 60px;
-  position: absolute;
+  position: relative;
+}
+
+.title-slide:hover {
+  cursor:pointer;
+  color: #fff;
 }
 
 .swiper-wrapper {
@@ -87,6 +92,7 @@ img {
   transition: 350ms transform, 350ms -webkit-transform;
   position: relative;
   display: flex;
+  padding: 0 0 42px 0px;
   /* background-color: saddlebrown; */
 }
 
@@ -101,7 +107,6 @@ img {
   transform-origin: center; */
   height: auto;
   width: auto;
-  padding: 42px 0px 42px 0px;
 
   -o-object-fit: cover;
   object-fit: cover;
@@ -289,7 +294,7 @@ img {
   justify-content: flex-end;
   left: 4%;
   position: relative;
-  top: 18rem;
+  margin-top:18%;
   width: 36%;
   z-index: 5;
 }
@@ -327,46 +332,40 @@ img {
   white-space: nowrap;
 }
 
-.text-button {
-  display:inline;
-  font-size: 1.3rem;
-  font-weight: 500;
-  line-height: 2.4rem;
+.icon-button {
+  display:inline-block;
 }
 
-.icon-button {
-  display:inline;
+.text-button {
+  display:inline-block;
+  font-size: 1.3vw;
+  font-weight: 500;
 }
 
 .custom-icon-btn {
-  transform: scale(2.4); 
-  margin: 1px 21px 8px 0;
+  margin-bottom: 6px;
 }
 
 .more-info-btn {
   background-color: rgba(109, 109, 110, 0.7);
   color: white;
+  border:none;
 }
 
 .more-info-btn:hover {
   background-color: rgba(109, 109, 110, 0.4);
+  border:none;
 }
 
 .custom-btn {
-  width: 33%;
-  height: 100%;
-  margin-right: 13px;
+  width: 10vw;
+  height: 3vw;
+  margin-right: 3%;
 }
 
 .custom-btn:hover {
   background-color: #c1c2c2;
 }
 
-/* Responsive body */
-/* @media screen and (min-width: 1281px) and (max-width: 1600px) and (orientation: landscape){
-  body, html {
-    font-size: .75vw;
-}
-} */
 
 /*************************/
