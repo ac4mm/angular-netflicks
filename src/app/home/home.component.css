@@ -28,7 +28,7 @@ video {
 
 .btn:active {
  border: 1px solid transparent !important;
- outline: 3px solid white !important;
+ outline: 1px solid white !important;
 
 }
 
@@ -47,12 +47,13 @@ img {
   }
 }
 
-@media screen and (max-width: 600px) {
-  .title-slide,
-  p,
-  h3 {
-    font-size: 15px;
+@media screen and (min-width: 500px) and (max-width: 600px) {
+  .text-button {
+    font-size: 1.1vw !important;
   }
+}
+
+
 
 @media screen and (min-width: 1281px) and (max-width: 1600px) and (orientation: landscape){
   body, html {
@@ -61,17 +62,10 @@ img {
 }
 
 
-  /* .swiper-button-next,
-  .swiper-button-prev {
-    font-size: xx-small !important;
-  } */
-}
-
-
 @media screen and (min-width: 481px) and (max-width: 840px) and (max-aspect-ratio: 4 / 3){
-  .custom-btn{
-    font-size: 1vw;
-}
+    .custom-btn{
+      font-size: 1vw;
+  }
 }
 
 
