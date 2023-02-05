@@ -26,6 +26,12 @@ video {
   position:relative;
 }
 
+.btn:active {
+ border: 1px solid transparent !important;
+ outline: 3px solid white !important;
+
+}
+
 /*Responsive*/
 img {
   max-width: 100%;
@@ -358,7 +364,7 @@ img {
 }
 
 .custom-btn {
-  width: 10vw;
+  width: 11vw;
   height: 3vw;
   margin-right: 3%;
 }
