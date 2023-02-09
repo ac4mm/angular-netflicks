@@ -13,7 +13,7 @@ import { TvShowsComponent } from './tv-shows/tv-shows.component';
 import { MoviesComponent } from './movies/movies.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { SelectUserService } from './shared/select-user.service';
+import { SelectUserService } from './shared/services/select-user.service';
 
 @NgModule({
   declarations: [

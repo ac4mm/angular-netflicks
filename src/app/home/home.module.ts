@@ -6,7 +6,7 @@ import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { ProfileGateComponent } from './profile-gate/profile-gate.component';
 
 import { ManageProfilesComponent } from '../manage-profiles/manage-profiles.component';
-import { SelectUserService } from '../shared/select-user.service';
+import { SelectUserService } from '../shared/services/select-user.service';
 
 @NgModule({
   declarations: [HomeComponent, ProfileGateComponent, ManageProfilesComponent],

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { AuthService, AuthResponseData } from './auth.service';
-import { SelectUserService } from '../shared/select-user.service';
+import { SelectUserService } from '../shared/services/select-user.service';
 
 @Component({
   selector: 'app-auth',

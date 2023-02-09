@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
-import { SelectUserService } from '../shared/select-user.service';
+import { SelectUserService } from '../shared/services/select-user.service';
 
 @Component({
   selector: 'app-navbar',
