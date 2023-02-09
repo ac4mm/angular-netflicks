@@ -104,8 +104,8 @@
     </p>
 
     <div class="swiper-wrapper">
-      <div class="swiper-slide" *ngFor="let slide of slideData" #swiperSlides>
-        <img class="card_img" [src]="coverImages[0]" />
+      <div class="swiper-slide" *ngFor="let slide of slideData; let i=index" #swiperSlides>
+        <img class="card_img" [src]="coverImgKeepWatching[i]" />
         <div class="card_details">
           <div class="card_icons">
             <!-- <img class="speaker-icon" src="../assets/icons/speaker-up.png" /> -->
@@ -126,8 +126,8 @@
   <swiper [config]="config" #usefulSwiper>
     <p class="title-slide">My List</p>
     <div class="swiper-wrapper">
-      <div class="swiper-slide" *ngFor="let slide of slideData" #swiperSlides>
-        <img class="card_img" [src]="coverImages[1]" />
+      <div class="swiper-slide" *ngFor="let slide of slideData; let i=index" #swiperSlides>
+        <img class="card_img" [src]="coverImgMyList[i]" />
         <div class="card_details">
           <!-- <img class="play-icon" src="../assets/icons/play.png" />
           <div class="card_title">
@@ -141,12 +141,12 @@
     <div class="swiper-button-prev"></div>
   </swiper>
 
-  <!-- Drama -->
+  <!-- Top rated Movies -->
   <swiper [config]="config" #usefulSwiper>
-    <p class="title-slide">Drama</p>
+    <p class="title-slide">Top rated Movies</p>
     <div class="swiper-wrapper">
-      <div class="swiper-slide" *ngFor="let slide of slideData" #swiperSlides>
-        <img class="card_img" [src]="coverImages[3]" />
+      <div class="swiper-slide" *ngFor="let slide of slideData; let i=index" #swiperSlides>
+        <img class="card_img" [src]="coverImgTopRatedMovies[i]" />
         <div class="card_details">
           <!-- <img class="play-icon" src="../assets/icons/play.png" />
           <div class="card_title">
