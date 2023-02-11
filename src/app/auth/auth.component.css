@@ -70,6 +70,13 @@
   padding-left: 20px;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px #333333 inset;
+  transition: background-color 5000s ease-in-out 0s;}
+
 .form-control:valid {
   border: none;
 }
