@@ -38,6 +38,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   /* Index of:The Queen's Gambit, The Big Bang Theory, Snowpiercer, The Last of Us, Our Planet, House of the Dragon, Manifest */
   coverIndexTopRatedMovies = [41428, 66, 23030, 46562,17868, 44778, 31365 ];
 
+  /* Index of:The Office, Peaky Blinders, Family Guy, Game of Thrones, The Simpsons, Chernobyl, Love, Death & Robots */
+  coverIndexTvShows = [526,269, 84, 82, 83, 30770, 40329];
 
   season: string;
   episode: string;
@@ -59,6 +61,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.getAllCoverFromIndexImages(this.coverIndexImgKeepWatching, this.coverImgKeepWatching)
     this.getAllCoverFromIndexImages(this.coverIndexImgMyList, this.coverImgMyList)
     this.getAllCoverFromIndexImages(this.coverIndexTopRatedMovies, this.coverImgTopRatedMovies)
+    this.getAllCoverFromIndexImages(this.coverIndexTvShows, this.coverImgTvShows)
   }
 
   ngOnDestroy() {

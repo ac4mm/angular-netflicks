@@ -164,8 +164,8 @@
   <swiper [config]="config" #usefulSwiper>
     <p class="title-slide">Tv Shows</p>
     <div class="swiper-wrapper">
-      <div class="swiper-slide" *ngFor="let slide of slideData" #swiperSlides>
-        <img class="card_img" [src]="coverImages[2]" />
+      <div class="swiper-slide" *ngFor="let slide of slideData; let i=index" #swiperSlides>
+        <img class="card_img" [src]="coverImgTvShows[i]" />
         <div class="card_details">
           <!-- <img class="play-icon" src="../assets/icons/play.png" />
           <div class="card_title">
