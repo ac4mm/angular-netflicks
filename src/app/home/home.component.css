@@ -20,12 +20,6 @@ video {
   padding-left: 0;
 }
 
-.content-text {
-  margin-left: 15px;
-  background-color: #2e2e2e !important;
-  position:relative;
-}
-
 .btn:active {
  border: 1px solid transparent !important;
  outline: 1px solid white !important;
@@ -35,7 +29,7 @@ video {
 /*Responsive*/
 img {
   max-width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 /**Responsive text*/
@@ -85,6 +79,11 @@ img {
   color: #fff;
 }
 
+:host ::ng-deep .swiper-container {
+  background-color: transparent !important;
+  background-image: linear-gradient(180deg,hsla(0,0%,8%,0) 0,hsla(0,0%,8%,.15) 15%,hsla(0,0%,8%,.35) 29%,hsla(0,0%,8%,.58) 44%,#141414 68%,#141414) !important;
+}
+
 .swiper-wrapper {
   -webkit-transition: 350ms -webkit-transform;
   transition: 350ms -webkit-transform;
@@ -92,8 +91,7 @@ img {
   transition: 350ms transform, 350ms -webkit-transform;
   position: relative;
   display: flex;
-  padding: 0 0 42px 0px;
-  /* background-color: saddlebrown; */
+  padding-bottom:30px;
 }
 
 .swiper-slide {
