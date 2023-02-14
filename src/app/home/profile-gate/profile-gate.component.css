@@ -10,11 +10,11 @@ a {
   bottom: 0;
   text-align: center;
   background: #141414;
-  z-index: 100;
+  z-index: 11;
 }
 
 .profile-gate-container .centered-div {
-  z-index: 100;
+  z-index: 12;
   position: absolute;
   top: 0;
   left: 0;
