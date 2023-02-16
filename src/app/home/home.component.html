@@ -90,15 +90,9 @@
 </div>
 
 <div class="container-fluid" *ngIf="isValidUser">
-  <!-- <div class="content-text" style="padding: 25px">
-    <h3>Welcome to Netflicks</h3>
-    <p>
-      This is a Netflix clone with the same behavior developed with Angular 9.
-    </p>
-  </div> -->
 
   <!-- User N, keep watching -->
-  <swiper [config]="config" #usefulSwiper>
+  <swiper [config]="config">
     <p class="title-slide">
       User{{ this.selectUser?.getIdUser() }}, keep watching :
     </p>
@@ -110,6 +104,7 @@
           <div class="card_icons">
             <!-- <img class="speaker-icon" src="../assets/icons/speaker-up.png" /> -->
           </div>
+          <div>Hello</div>
 
           <!--  <img class="play-icon" src="../assets/icons/play.png" />
           <div class="card_title">
@@ -123,7 +118,7 @@
   </swiper>
 
   <!-- My List -->
-  <swiper [config]="config" #usefulSwiper>
+  <swiper [config]="config">
     <p class="title-slide">My List</p>
     <div class="swiper-wrapper">
       <div class="swiper-slide" *ngFor="let slide of slideData; let i=index" #swiperSlides>
