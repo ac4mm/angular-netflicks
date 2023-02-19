@@ -26,8 +26,12 @@ import { SelectUserService } from './shared/services/select-user.service';
     PageNotFoundComponent,
     MoviesComponent,
   ],
-  imports: [BrowserModule.withServerTransition({ appId: 'serverApp' }), AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    AppRoutingModule,
+    HttpClientModule
+  ],
   bootstrap: [AppComponent],
   providers: [SelectUserService],
 })
-export class AppModule {}
+export class AppModule { }
