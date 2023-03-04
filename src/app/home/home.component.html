@@ -54,7 +54,7 @@
             </svg> -->
           </div>
 
-<!--           <div style="width: 1rem"></div>
+          <!--           <div style="width: 1rem"></div>
  -->
           <span class="text-button">Play</span>
         </button>
@@ -92,19 +92,23 @@
 <div class="container-fluid" *ngIf="isValidUser">
 
   <!-- User N, keep watching -->
-  <swiper [config]="config">
+  <swiper [config]="config" >
     <p class="title-slide">
       User{{ this.selectUser?.getIdUser() }}, keep watching :
     </p>
 
     <div class="swiper-wrapper">
-      <div class="swiper-slide" *ngFor="let slide of slideData; let i=index" #swiperSlides>
-        <img class="card_img" [src]="coverImgKeepWatching[i]" />
+      <div
+        class="swiper-slide"
+        *ngFor="let slide of slideData; let i = index"
+        #swiperSlides
+      >
+        <img class="card_img" [src]="coverImgKeepWatching[i]"/>
         <div class="card_details">
           <div class="card_icons">
             <!-- <img class="speaker-icon" src="../assets/icons/speaker-up.png" /> -->
           </div>
-          <div>Hello</div>
+          <div class="video-metadata-container">Hello</div>
 
           <!--  <img class="play-icon" src="../assets/icons/play.png" />
           <div class="card_title">
@@ -121,7 +125,11 @@
   <swiper [config]="config">
     <p class="title-slide">My List</p>
     <div class="swiper-wrapper">
-      <div class="swiper-slide" *ngFor="let slide of slideData; let i=index" #swiperSlides>
+      <div
+        class="swiper-slide"
+        *ngFor="let slide of slideData; let i = index"
+        #swiperSlides
+      >
         <img class="card_img" [src]="coverImgMyList[i]" />
         <div class="card_details">
           <!-- <img class="play-icon" src="../assets/icons/play.png" />
@@ -137,10 +145,15 @@
   </swiper>
 
   <!-- Top rated Movies -->
-  <swiper [config]="config" #usefulSwiper>
+  <swiper [config]="config"
+>
     <p class="title-slide">Top rated Movies</p>
     <div class="swiper-wrapper">
-      <div class="swiper-slide" *ngFor="let slide of slideData; let i=index" #swiperSlides>
+      <div
+        class="swiper-slide"
+        *ngFor="let slide of slideData; let i = index"
+        #swiperSlides
+      >
         <img class="card_img" [src]="coverImgTopRatedMovies[i]" />
         <div class="card_details">
           <!-- <img class="play-icon" src="../assets/icons/play.png" />
@@ -159,7 +172,11 @@
   <swiper [config]="config" #usefulSwiper>
     <p class="title-slide">Tv Shows</p>
     <div class="swiper-wrapper">
-      <div class="swiper-slide" *ngFor="let slide of slideData; let i=index" #swiperSlides>
+      <div
+        class="swiper-slide"
+        *ngFor="let slide of slideData; let i = index"
+        #swiperSlides
+      >
         <img class="card_img" [src]="coverImgTvShows[i]" />
         <div class="card_details">
           <!-- <img class="play-icon" src="../assets/icons/play.png" />

@@ -112,7 +112,6 @@ img {
   object-fit: cover;
   transition: opacity 1s;
   transition: ease-out 300ms;
-  /*  background-color: royalblue; */
 }
 
 .card-details {
@@ -231,15 +230,15 @@ img {
 .swiper-slide:hover > .card_details {
   display: block;
   width:100%;
-  height:100%;
+  height:70%;
   margin-top: -22px;
+  background-color:#181818;
 }
 
-
-:host ::ng-deep .swiper {
-  position: sticky;
-  width: 100%;
+.container-fluid:hover .swiper-wrapper:not(:hover) {
+  position: unset;
 }
+
 
 .swiper-button-next,
 .swiper-button-prev {
