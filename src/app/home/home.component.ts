@@ -3,7 +3,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SwiperOptions } from 'swiper';
 import { SelectUserService } from '../shared/services/select-user.service';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../auth/auth.service';
 import { MoviesService } from '../shared/services/movies.service';
 import { map } from 'rxjs/operators';
 
@@ -48,7 +47,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   episodeImage: [];
 
   constructor(
-    private authService: AuthService,
     public selectUser: SelectUserService,
     private movies: MoviesService
   ) { }
@@ -183,45 +181,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   //Configuration SwiperJs
-  slideData = [
-    {
-      id: 1,
-      name: 'Avon',
-    },
-    {
-      id: 2,
-      name: 'Infrastructures',
-    },
-    {
-      id: 3,
-      name: 'Users Cotton',
-    },
-    {
-      id: 4,
-      name: 'Haptic Oklahoma Jewelery',
-    },
-    {
-      id: 5,
-      name: 'Circles Integration Street',
-    },
-    {
-      id: 6,
-      name: 'uniform Communications Tuna',
-    },
-    {
-      id: 7,
-      name: 'North Carolina',
-    },
-    {
-      id: 8,
-      name: 'Eyeballs Rubber',
-    },
-    {
-      id: 9,
-      name: 'Nevada green unleash',
-    },
-  ];
-
   config: SwiperOptions = {
     pagination: { el: '.swiper-pagination', clickable: true },
 
@@ -256,6 +215,4 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     loop: false,
   };
-
-
 }

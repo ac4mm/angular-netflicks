@@ -99,10 +99,10 @@
     <div class="swiper-wrapper">
       <div
         class="swiper-slide"
-        *ngFor="let slide of slideData; let i = index"
+        *ngFor="let coverImage of coverImgKeepWatching; let i = index"
         #swiperSlides
       >
-        <img class="card-img" [src]="coverImgKeepWatching[i]" />
+        <img class="card-img" [src]="coverImage" />
         <!-- Detail Card -->
         <div class="card-details">
           <div class="card-icons">
@@ -154,15 +154,12 @@
     <div class="swiper-wrapper">
       <div
         class="swiper-slide"
-        *ngFor="let slide of slideData; let i = index"
+        *ngFor="let coverImage of coverImgMyList; let i = index"
         #swiperSlides
       >
-        <img class="card-img" [src]="coverImgMyList[i]" />
+        <img class="card-img" [src]="coverImage" />
         <div class="card-details">
-          <!-- <img class="play-icon" src="../assets/icons/play.png" />
-          <div class="card_title">
-            Bojack Horseman
-          </div> -->
+         
         </div>
       </div>
     </div>
@@ -177,15 +174,12 @@
     <div class="swiper-wrapper">
       <div
         class="swiper-slide"
-        *ngFor="let slide of slideData; let i = index"
+        *ngFor="let coverImage of coverImgTopRatedMovies; let i = index"
         #swiperSlides
       >
-        <img class="card-img" [src]="coverImgTopRatedMovies[i]" />
+        <img class="card-img" [src]="coverImage" />
         <div class="card-details">
-          <!-- <img class="play-icon" src="../assets/icons/play.png" />
-          <div class="card_title">
-            Bojack Horseman
-          </div -->
+        
         </div>
       </div>
     </div>
@@ -200,10 +194,10 @@
     <div class="swiper-wrapper">
       <div
         class="swiper-slide"
-        *ngFor="let slide of slideData; let i = index"
+        *ngFor="let coverImage of coverImgTvShows; let i = index"
         #swiperSlides
       >
-        <img class="card_img" [src]="coverImgTvShows[i]" />
+        <img class="card_img" [src]="coverImage" />
         <div class="card-details">
         </div>
       </div>
