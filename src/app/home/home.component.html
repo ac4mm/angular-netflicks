@@ -90,9 +90,8 @@
 </div>
 
 <div class="container-fluid" *ngIf="isValidUser">
-
   <!-- User N, keep watching -->
-  <swiper [config]="config" >
+  <swiper [config]="config">
     <p class="title-slide">
       User{{ this.selectUser?.getIdUser() }}, keep watching :
     </p>
@@ -103,12 +102,52 @@
         *ngFor="let slide of slideData; let i = index"
         #swiperSlides
       >
-        <img class="card_img" [src]="coverImgKeepWatching[i]"/>
+        <img class="card_img" [src]="coverImgKeepWatching[i]" />
         <div class="card_details">
           <div class="card_icons">
-            <!-- <img class="speaker-icon" src="../assets/icons/speaker-up.png" /> -->
+            <!--  <img class="speaker-icon" src="../assets/icons/speaker-up.png" /> -->
+            <img class="base-icon" src="../assets/icons/play.png" />
+            <img class="base-icon" src="../assets/icons/add.png" />
+            <img class="base-icon" src="../assets/icons/thumbup.png" />
+
+            <img
+              class="base-icon arrow-down"
+              src="../assets/icons/arrow-down.png"
+            />
           </div>
-          <div class="video-metadata-container">Hello</div>
+          <div class="video-metadata-container-info">
+            <div class="first-line-info">
+              <span class="match-score">98% Match</span>
+            </div>
+            <div class="second-line-info">
+              <div class="maturity-rating">
+                <span class="rating-number">16+</span>
+              </div>
+              <div class="duration">
+                <span>4 seasons</span>
+              </div>
+              <div class="player-feature-badge">
+                <span>HD</span>
+              </div>
+            </div>
+          </div>
+          <div class="video-metadata-container-tags">
+            <div class="evidence-tags">
+              <div class="evidence-list">
+                <div class="evidence-item">
+                  <span class="evidence-text">Slick</span>
+                </div>
+                <div class="evidence-item">
+                  <span class="evidence-separator"></span>
+                  <span class="evidence-text">Slick</span>
+                </div>
+                <div class="evidence-item">
+                  <span class="evidence-separator"></span>
+                  <span class="evidence-text">Slick</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <!--  <img class="play-icon" src="../assets/icons/play.png" />
           <div class="card_title">
@@ -145,8 +184,7 @@
   </swiper>
 
   <!-- Top rated Movies -->
-  <swiper [config]="config"
->
+  <swiper [config]="config">
     <p class="title-slide">Top rated Movies</p>
     <div class="swiper-wrapper">
       <div
