@@ -29,17 +29,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   coverImgTopRatedMovies: string[] = [];
   coverImgTvShows: string[] = [];
 
-  /*Index of: Rick and morty,Stranger Things,Dark, Lost, Casa de Papel, You, Squid Game */
-  coverIndexImgKeepWatching = [216, 2993, 17861, 123, 27436, 26856, 43687];
-  
-  /*Index of: Better Call Saul, Black Mirror,13 Reasons Why, 1899, BoJack Horseman,MINDHUNTER, How to Sell Drugs Online (Fast) */
-  coverIndexImgMyList = [618,305, 7194, 39749, 184,10822, 39319];
+  //Araay index images
+  coverIndexImgKeepWatching = [];
+  coverIndexImgMyList = [];
+  coverIndexTopRatedMovies = [];
+  coverIndexTvShows = [];
 
-  /* Index of:The Queen's Gambit, The Big Bang Theory, Snowpiercer, The Last of Us, Our Planet, House of the Dragon, Manifest */
-  coverIndexTopRatedMovies = [41428, 66, 23030, 46562,17868, 44778, 31365 ];
-
-  /* Index of:The Office, Peaky Blinders, Family Guy, Game of Thrones, The Simpsons, Chernobyl, Love, Death & Robots */
-  coverIndexTvShows = [526,269, 84, 82, 83, 30770, 40329];
+  randMathScore = [];
 
   season: string;
   episode: string;
@@ -52,9 +48,24 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    /*Index of: Rick and morty,Stranger Things,Dark, Lost, Casa de Papel, You, Squid Game */
+    this.coverIndexImgKeepWatching = [216, 2993, 17861, 123, 27436, 26856, 43687];
+
+    /*Index of: Better Call Saul, Black Mirror,13 Reasons Why, 1899, BoJack Horseman,MINDHUNTER, How to Sell Drugs Online (Fast) */
+    this.coverIndexImgMyList = [618, 305, 7194, 39749, 184, 10822, 39319];
+
+    /* Index of:The Queen's Gambit, The Big Bang Theory, Snowpiercer, The Last of Us, Our Planet, House of the Dragon, Manifest */
+    this.coverIndexTopRatedMovies = [41428, 66, 23030, 46562, 17868, 44778, 31365];
+
+    /* Index of:The Office, Peaky Blinders, Family Guy, Game of Thrones, The Simpsons, Chernobyl, Love, Death & Robots */
+    this.coverIndexTvShows = [526, 269, 84, 82, 83, 30770, 40329];
+
+    //Setting with random number, the math score
+    this.randMathScore = Array.from({ length: this.coverIndexImgKeepWatching.length }, () => this.getRandomIntBetweenRange(64, 100))
+
     this.selectUserSub = this.selectUser.currentState.subscribe(
       (state) => (this.isValidUser = !!state)
-    );  
+    );
 
 
     //Get all images from coverImages
@@ -75,8 +86,16 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  getRandomInt(max) {
+  //Getting a random integer
+  getRandomInt(max: number) {
     return Math.floor(Math.random() * max);
+  }
+
+  //Getting a random integer between two values, inclusive
+  getRandomIntBetweenRange(min = 0, max = 100) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
   getImageMovie(id: number) {
