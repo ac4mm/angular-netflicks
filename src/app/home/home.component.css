@@ -167,6 +167,12 @@ img {
   font-weight: 500;
 }
 
+.video-metadata-container-info .second-line-info .maturity-rating,
+.video-metadata-container-info .second-line-info .duration,
+.video-metadata-container-info .second-line-info .player-feature-badge {
+  margin-right: 4px;
+}
+
 .evidence-list .evidence-item {
   display: flex;
   padding-right: 0.5vw;
