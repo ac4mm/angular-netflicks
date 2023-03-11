@@ -102,9 +102,10 @@
         *ngFor="let slide of slideData; let i = index"
         #swiperSlides
       >
-        <img class="card_img" [src]="coverImgKeepWatching[i]" />
-        <div class="card_details">
-          <div class="card_icons">
+        <img class="card-img" [src]="coverImgKeepWatching[i]" />
+        <!-- Detail Card -->
+        <div class="card-details">
+          <div class="card-icons">
             <!--  <img class="speaker-icon" src="../assets/icons/speaker-up.png" /> -->
             <img class="base-icon" src="../assets/icons/play.png" />
             <img class="base-icon" src="../assets/icons/add.png" />
@@ -156,8 +157,8 @@
         *ngFor="let slide of slideData; let i = index"
         #swiperSlides
       >
-        <img class="card_img" [src]="coverImgMyList[i]" />
-        <div class="card_details">
+        <img class="card-img" [src]="coverImgMyList[i]" />
+        <div class="card-details">
           <!-- <img class="play-icon" src="../assets/icons/play.png" />
           <div class="card_title">
             Bojack Horseman
@@ -179,8 +180,8 @@
         *ngFor="let slide of slideData; let i = index"
         #swiperSlides
       >
-        <img class="card_img" [src]="coverImgTopRatedMovies[i]" />
-        <div class="card_details">
+        <img class="card-img" [src]="coverImgTopRatedMovies[i]" />
+        <div class="card-details">
           <!-- <img class="play-icon" src="../assets/icons/play.png" />
           <div class="card_title">
             Bojack Horseman
@@ -203,11 +204,7 @@
         #swiperSlides
       >
         <img class="card_img" [src]="coverImgTvShows[i]" />
-        <div class="card_details">
-          <!-- <img class="play-icon" src="../assets/icons/play.png" />
-          <div class="card_title">
-            Bojack Horseman
-          </div -->
+        <div class="card-details">
         </div>
       </div>
     </div>
