@@ -134,25 +134,12 @@
           <div class="video-metadata-container-tags">
             <div class="evidence-tags">
               <div class="evidence-list">
-                <div class="evidence-item">
-                  <span class="evidence-text">Slick</span>
-                </div>
-                <div class="evidence-item">
-                  <span class="evidence-separator"></span>
-                  <span class="evidence-text">Slick</span>
-                </div>
-                <div class="evidence-item">
-                  <span class="evidence-separator"></span>
-                  <span class="evidence-text">Slick</span>
+                <div class="evidence-item" *ngFor="let genre of genresCoverImages[i]; let n=index;">
+                  <span class="evidence-text">{{genre}}</span>
                 </div>
               </div>
             </div>
           </div>
-
-          <!--  <img class="play-icon" src="../assets/icons/play.png" />
-          <div class="card_title">
-            Bojack Horseman
-          </div> -->
         </div>
       </div>
     </div>

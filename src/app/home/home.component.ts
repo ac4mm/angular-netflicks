@@ -37,6 +37,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   randMathScore = [];
 
+  //7+ Kids, 13+ teenagers, 16+, 18+ adults
+  ratingNumber = [7, 13, 16, 18]
+
+  //Genres
+  genresCoverImages = [];
+
   season: string;
   episode: string;
   episodeImage: [];
@@ -48,6 +54,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.selectUserSub = this.selectUser.currentState.subscribe(
+      (state) => (this.isValidUser = !!state)
+    );
+
     /*Index of: Rick and morty,Stranger Things,Dark, Lost, Casa de Papel, You, Squid Game */
     this.coverIndexImgKeepWatching = [216, 2993, 17861, 123, 27436, 26856, 43687];
 
@@ -63,10 +73,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     //Setting with random number, the math score
     this.randMathScore = Array.from({ length: this.coverIndexImgKeepWatching.length }, () => this.getRandomIntBetweenRange(64, 100))
 
-    this.selectUserSub = this.selectUser.currentState.subscribe(
-      (state) => (this.isValidUser = !!state)
-    );
 
+    //Get all genres by id coverImages
+    this.getAllGenresFromIndex(this.coverIndexImgKeepWatching, this.genresCoverImages)
 
     //Get all images from coverImages
     this.getAllCoverFromIndexImages(this.coverIndexImgKeepWatching, this.coverImgKeepWatching)
@@ -86,6 +95,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
+  getAllGenresFromIndex(coverIndexArr: number[], genresCoverImages: any[]) {
+    for (let i = 0; i < coverIndexArr.length; i++) {
+      this.getGenresById(coverIndexArr[i], genresCoverImages);
+    }
+  }
+
+
+  /* UTILITIES */
   //Getting a random integer
   getRandomInt(max: number) {
     return Math.floor(Math.random() * max);
@@ -97,6 +114,23 @@ export class HomeComponent implements OnInit, OnDestroy {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
+
+  getRandomRatingNumberFromArray(arr: any[]) {
+    // get random index value
+    const randomIndex = Math.floor(Math.random() * arr.length);
+
+    // get random item
+    return arr[randomIndex];
+  }
+
+  getRandomNumberFromArray(arr: any[]) {
+    // Shuffle array
+    const shuffled = arr.sort(() => 0.5 - Math.random());
+
+    // Get sub-array of first n elements after shuffled
+    return shuffled.slice(0, arr.length);
+  }
+
 
   getImageMovie(id: number) {
     this.movies.searchImagesMovie(id).pipe(
@@ -127,6 +161,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   searchMovie(query: string) {
     this.movies.searchMovie(query).subscribe(movie => {
       this.movieDetails = movie;
+    })
+  }
+
+  getGenresById(id: number, arr: any[]) {
+    this.movies.searchMainInfoMovie(id).pipe(
+      map((items) => items.genres)
+    ).subscribe(genres => {
+      arr.push(genres);
     })
   }
 
