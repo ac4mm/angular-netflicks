@@ -165,7 +165,6 @@ img {
   display: inline-block;
   font-size: 0.6em;
   font-weight: 500;
-  margin-right:4px;
 }
 
 .evidence-list .evidence-item {
@@ -190,7 +189,7 @@ img {
   content: "\2022";
   display: inline-block;
   font-size: 0.8vw;
-  padding-right:0.1vw;
+  padding-right:0.2vw;
 }
 
 .evidence-separator::before {
