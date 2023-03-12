@@ -36,8 +36,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   randMathScore = [];
 
-  //7+ Kids, 13+ teenagers, 16+, 18+ adults
-  ratingNumber = [7, 13, 16, 18]
+  //7+ Kids (10%), 13+ teenagers (20%), 16+ (40%), 18+ adults (60%)
+  ratingNumberObject = { 7: 0.1, 13: 0.2, 16: 0.4, 18: 0.6 };
+  ratingNumberCover = [];
 
   //Genres
   genresCoverImages = [];
@@ -71,6 +72,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     //Setting with random number, the math score
     this.randMathScore = Array.from({ length: this.coverIndexImgKeepWatching.length }, () => this.getRandomIntBetweenRange(64, 100))
 
+
+    this.ratingNumberCover = this.getWeightedRandomNumberInArr(this.ratingNumberObject, 7);
 
     //Get all genres by id coverImages
     this.getAllGenresFromIndex(this.coverIndexImgKeepWatching, this.genresCoverImages)
@@ -127,6 +130,27 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     // Get sub-array of first n elements after shuffled
     return shuffled.slice(0, arr.length);
+  }
+
+  /* Pick a rand number in [0,1) and iterate over the weight specification summing the weights  
+    if the random number is less than the sum then return the associated value. 
+    */
+  getWeightedRandomNumber(objWithWeight: any) {
+    var i, sum = 0, r = Math.random();
+    for (i in objWithWeight) {
+      sum += objWithWeight[i];
+      if (r <= sum) return i;
+    }
+  }
+
+  //Use prevision random algorithm with size
+  getWeightedRandomNumberInArr(objWithWeight: any, size: number) {
+    let arrWeightedRand = [];
+    for (let i = 0; i < size; i++) {
+      arrWeightedRand.push(this.getWeightedRandomNumber(objWithWeight))
+    }
+
+    return arrWeightedRand;
   }
 
 
@@ -213,6 +237,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       prevEl: '.swiper-button-prev',
     },
 
-    loop: false,
+    loopedSlides: 7,
+    loop: false
   };
 }
