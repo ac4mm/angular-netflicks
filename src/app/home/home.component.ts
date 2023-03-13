@@ -43,6 +43,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   //Genres
   genresCoverImages = [];
 
+  //Seasons
+  numbersOfSeasons = [];
+
   season: string;
   episode: string;
   episodeImage: [];
@@ -72,11 +75,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     //Setting with random number, the math score
     this.randMathScore = Array.from({ length: this.coverIndexImgKeepWatching.length }, () => this.getRandomIntBetweenRange(64, 100))
 
-
+    //setting rating number cover with distribution weight
     this.ratingNumberCover = this.getWeightedRandomNumberInArr(this.ratingNumberObject, 7);
 
     //Get all genres by id coverImages
-    this.getAllGenresFromIndex(this.coverIndexImgKeepWatching, this.genresCoverImages)
+    this.getAllGenresFromIndex(this.coverIndexImgKeepWatching, this.genresCoverImages);
+
+    //Get all seasons by id coverImages
+    this.getAllNumbersOfSeasons(this.coverIndexImgKeepWatching, this.numbersOfSeasons);
 
     //Get all images from coverImages
     this.getAllCoverFromIndexImages(this.coverIndexImgKeepWatching, this.coverImgKeepWatching)
@@ -99,6 +105,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   getAllGenresFromIndex(coverIndexArr: number[], genresCoverImages: any[]) {
     for (let i = 0; i < coverIndexArr.length; i++) {
       this.getGenresById(coverIndexArr[i], genresCoverImages);
+    }
+  }
+
+  getAllNumbersOfSeasons(coverIndexArr: number[], numbersOfSeasons: any[]) {
+    for (let i = 0; i < coverIndexArr.length; i++) {
+      this.getSeasonsNumbers(coverIndexArr[i], numbersOfSeasons);
     }
   }
 
@@ -195,7 +207,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getEpisode(season: string, numb: string) {
-    /* console.log('season:' + this.season + ', episode:' + this.episode); */
     return this.movies
       .getEpisodeByNumber(this.movieDetails.id, season, numb)
       .subscribe((episode) => {
@@ -203,6 +214,13 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.episodeImage = this.detailsEpisode.image.original
       });
   }
+
+  getSeasonsNumbers(id: number, arr: any[]) {
+    return this.movies.searchNumberSeasonsById(id).subscribe((seasons) => {
+      arr.push(seasons.length);
+    })
+  }
+
 
   //Configuration SwiperJs
   config: SwiperOptions = {
