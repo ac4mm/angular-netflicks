@@ -87,6 +87,7 @@
       </div>
     </div>
   </div>
+
 </div>
 
 <!-- Main content cover card -->
@@ -119,7 +120,7 @@
           </div>
           <div class="video-metadata-container-info">
             <div class="first-line-info">
-              <span class="match-score">{{ randMathScore[i] }}% Match</span>
+              <span class="match-score">{{ randMatchScore[i] }}% Match</span>
             </div>
             <div class="second-line-info">
               <div class="maturity-rating">
@@ -138,7 +139,7 @@
               <div class="evidence-list">
                 <div
                   class="evidence-item"
-                  *ngFor="let genre of genresCoverImages[i]; let n = index"
+                  *ngFor="let genre of genresCoverImagesKeepWatching[i]; let n = index"
                 >
                   <span class="evidence-text">{{ genre }}</span>
                 </div>
@@ -177,7 +178,7 @@
           </div>
           <div class="video-metadata-container-info">
             <div class="first-line-info">
-              <span class="match-score">{{ randMathScore[i] }}% Match</span>
+              <span class="match-score">{{ randMatchScore[i] }}% Match</span>
             </div>
             <div class="second-line-info">
               <div class="maturity-rating">
@@ -196,7 +197,7 @@
               <div class="evidence-list">
                 <div
                   class="evidence-item"
-                  *ngFor="let genre of genresCoverImages[i]; let n = index"
+                  *ngFor="let genre of genresCoverImagesMyList[i]; let n = index"
                 >
                   <span class="evidence-text">{{ genre }}</span>
                 </div>
@@ -236,7 +237,7 @@
           </div>
           <div class="video-metadata-container-info">
             <div class="first-line-info">
-              <span class="match-score">{{ randMathScore[i] }}% Match</span>
+              <span class="match-score">{{ randMatchScore[i] }}% Match</span>
             </div>
             <div class="second-line-info">
               <div class="maturity-rating">
@@ -255,7 +256,7 @@
               <div class="evidence-list">
                 <div
                   class="evidence-item"
-                  *ngFor="let genre of genresCoverImages[i]; let n = index"
+                  *ngFor="let genre of genresCoverImagesTopRatedMovies[i]; let n = index"
                 >
                   <span class="evidence-text">{{ genre }}</span>
                 </div>
@@ -295,7 +296,7 @@
           </div>
           <div class="video-metadata-container-info">
             <div class="first-line-info">
-              <span class="match-score">{{ randMathScore[i] }}% Match</span>
+              <span class="match-score">{{ randMatchScore[i] }}% Match</span>
             </div>
             <div class="second-line-info">
               <div class="maturity-rating">
@@ -314,7 +315,7 @@
               <div class="evidence-list">
                 <div
                   class="evidence-item"
-                  *ngFor="let genre of genresCoverImages[i]; let n = index"
+                  *ngFor="let genre of genresCoverImagesTvShows[i]; let n = index"
                 >
                   <span class="evidence-text">{{ genre }}</span>
                 </div>
@@ -409,7 +410,9 @@
     <!-- Member footer links -->
     <ul class="member-footer-links">
       <li class="member-footer-link-wrapper">
-        <a class="member-footer-link" href="https://www.netflix.com/browse/audio-description"
+        <a
+          class="member-footer-link"
+          href="https://www.netflix.com/browse/audio-description"
           ><span class="member-footer-link-content">Audio Description</span></a
         >
       </li>
@@ -482,10 +485,14 @@
 
     <!-- Member footer services -->
     <div class="member-footer-service">
-      <button class="service-code" (click)="itemServiceCodeClicked()">{{servicesCode}}</button>
+      <button class="service-code" (click)="itemServiceCodeClicked()">
+        {{ servicesCode }}
+      </button>
     </div>
 
     <!-- Member footer copyright -->
-    <div class="member-footer-copyright"><span>© 1997-{{getCurrentYear()}} Netflix, Inc.‎</span></div>
+    <div class="member-footer-copyright">
+      <span>© 1997-{{ getCurrentYear() }} Netflix, Inc.‎</span>
+    </div>
   </div>
 </div>

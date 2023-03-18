@@ -34,14 +34,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   coverIndexTopRatedMovies = [];
   coverIndexTvShows = [];
 
-  randMathScore = [];
+  randMatchScore = [];
 
   //7+ Kids (10%), 13+ teenagers (20%), 16+ (40%), 18+ adults (60%)
   ratingNumberObject = { 7: 0.1, 13: 0.2, 16: 0.4, 18: 0.6 };
   ratingNumberCover = [];
 
   //Genres
-  genresCoverImages = [];
+  genresCoverImagesKeepWatching = [];
+  genresCoverImagesMyList = [];
+  genresCoverImagesTopRatedMovies = [];
+  genresCoverImagesTvShows = [];
 
   //Seasons
   numbersOfSeasonsKeepWatching = [];
@@ -77,26 +80,29 @@ export class HomeComponent implements OnInit, OnDestroy {
     /* Index of:The Office, Peaky Blinders, Family Guy, Game of Thrones, The Simpsons, Chernobyl, Love, Death & Robots */
     this.coverIndexTvShows = [526, 269, 84, 82, 83, 30770, 40329];
 
-    //Setting with random number, the math score
-    this.randMathScore = Array.from({ length: this.coverIndexImgKeepWatching.length }, () => this.getRandomIntBetweenRange(64, 100))
+    //Setting with random number, the match score
+    this.randMatchScore = Array.from({ length: this.coverIndexImgKeepWatching.length }, () => this.getRandomIntBetweenRange(64, 100))
 
     //setting rating number cover with distribution weight
     this.ratingNumberCover = this.getWeightedRandomNumberInArr(this.ratingNumberObject, 7);
 
+    //Get all cover images by id
+    this.getAllCoverImagesById(this.coverIndexImgKeepWatching, this.coverImgKeepWatching)
+    this.getAllCoverImagesById(this.coverIndexImgMyList, this.coverImgMyList)
+    this.getAllCoverImagesById(this.coverIndexTopRatedMovies, this.coverImgTopRatedMovies)
+    this.getAllCoverImagesById(this.coverIndexTvShows, this.coverImgTvShows)
+
     //Get all genres by id coverImages
-    this.getAllGenresFromIndex(this.coverIndexImgKeepWatching, this.genresCoverImages);
+    this.getAllGenresById(this.coverIndexImgKeepWatching, this.genresCoverImagesKeepWatching);
+    this.getAllGenresById(this.coverIndexImgMyList, this.genresCoverImagesMyList);
+    this.getAllGenresById(this.coverIndexTopRatedMovies, this.genresCoverImagesTopRatedMovies);
+    this.getAllGenresById(this.coverIndexTvShows, this.genresCoverImagesTvShows);
 
     //Get all seasons by id coverImages
-    this.getAllNumbersOfSeasons(this.coverIndexImgKeepWatching, this.numbersOfSeasonsKeepWatching);
-    this.getAllNumbersOfSeasons(this.coverIndexImgMyList, this.numbersOfSeasonsMyList);
-    this.getAllNumbersOfSeasons(this.coverIndexTopRatedMovies, this.numbersOfSeasonsTopRatedMovies);
-    this.getAllNumbersOfSeasons(this.coverIndexTvShows, this.numbersOfSeasonsTvShows);
-
-    //Get all images from coverImages
-    this.getAllCoverFromIndexImages(this.coverIndexImgKeepWatching, this.coverImgKeepWatching)
-    this.getAllCoverFromIndexImages(this.coverIndexImgMyList, this.coverImgMyList)
-    this.getAllCoverFromIndexImages(this.coverIndexTopRatedMovies, this.coverImgTopRatedMovies)
-    this.getAllCoverFromIndexImages(this.coverIndexTvShows, this.coverImgTvShows)
+    this.getAllNumbersOfSeasonsById(this.coverIndexImgKeepWatching, this.numbersOfSeasonsKeepWatching);
+    this.getAllNumbersOfSeasonsById(this.coverIndexImgMyList, this.numbersOfSeasonsMyList);
+    this.getAllNumbersOfSeasonsById(this.coverIndexTopRatedMovies, this.numbersOfSeasonsTopRatedMovies);
+    this.getAllNumbersOfSeasonsById(this.coverIndexTvShows, this.numbersOfSeasonsTvShows);
   }
 
   ngOnDestroy() {
@@ -104,24 +110,39 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.selectUser.currState();
   }
 
-  getAllCoverFromIndexImages(coverIndexArr: number[], coverBackgroundImages: string[]) {
+  getAllCoverImagesById(coverIndexArr: number[], coverBackgroundImages: string[]) {
     for (let i = 0; i < coverIndexArr.length; i++) {
-      this.getImageMovieById(coverIndexArr[i], coverBackgroundImages);
+      this.movies.searchImagesMovie(coverIndexArr[i]).pipe(
+        map((images) => images.filter((image) => image.type === 'background'))
+      ).subscribe(images => {
+        //defined rand number in the range of background images
+        const randNumbBackgroundImg = this.getRandomInt(images.length);
+        //Assign first background image to array
+        coverBackgroundImages.push(images[randNumbBackgroundImg].resolutions.original.url);
+      })
     }
   }
 
-  getAllGenresFromIndex(coverIndexArr: number[], genresCoverImages: any[]) {
+  getAllGenresById(coverIndexArr: number[], genresCoverImages: any[]) {
     for (let i = 0; i < coverIndexArr.length; i++) {
-      this.getGenresById(coverIndexArr[i], genresCoverImages);
+      this.movies.searchMainInfoMovie(coverIndexArr[i]).pipe(
+        map((items) => items.genres)
+      ).subscribe(genres => {
+        genresCoverImages.push(genres);
+      })
     }
   }
 
-  getAllNumbersOfSeasons(coverIndexArr: number[], seasonsArr: number[]) {
+  getAllNumbersOfSeasonsById(coverIndexArr: number[], seasonsArr: number[]) {
     for (let i = 0; i < coverIndexArr.length; i++) {
       this.movies.searchNumberSeasonsById(coverIndexArr[i]).subscribe((seasons) => {
         seasonsArr.push(seasons.length);
       })
     }
+  }
+
+  openDialogPreviewCoverImage(item: any) {
+
   }
 
 
@@ -185,17 +206,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     })
   }
 
-  getImageMovieById(id: number, arr: string[]) {
-    this.movies.searchImagesMovie(id).pipe(
-      map((images) => images.filter((image) => image.type === 'background'))
-    ).subscribe(images => {
-      //defined rand number in the range of background images
-      const randNumbBackgroundImg = this.getRandomInt(images.length);
-      //Assign first background image to array
-      arr.push(images[randNumbBackgroundImg].resolutions.original.url);
-    })
-  }
-
   getIdMovie(id: string) {
     this.movies.getMovies(id).subscribe(movie => {
       this.movieDetails = movie;
@@ -205,14 +215,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   searchMovie(query: string) {
     this.movies.searchMovie(query).subscribe(movie => {
       this.movieDetails = movie;
-    })
-  }
-
-  getGenresById(id: number, arr: any[]) {
-    this.movies.searchMainInfoMovie(id).pipe(
-      map((items) => items.genres)
-    ).subscribe(genres => {
-      arr.push(genres);
     })
   }
 
