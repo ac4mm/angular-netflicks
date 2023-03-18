@@ -44,11 +44,16 @@ export class HomeComponent implements OnInit, OnDestroy {
   genresCoverImages = [];
 
   //Seasons
-  numbersOfSeasons = [];
+  numbersOfSeasonsKeepWatching = [];
+  numbersOfSeasonsMyList = [];
+  numbersOfSeasonsTopRatedMovies = [];
+  numbersOfSeasonsTvShows = [];
 
   season: string;
   episode: string;
   episodeImage: [];
+
+  servicesCode: string = 'Service code';
 
   constructor(
     public selectUser: SelectUserService,
@@ -82,7 +87,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.getAllGenresFromIndex(this.coverIndexImgKeepWatching, this.genresCoverImages);
 
     //Get all seasons by id coverImages
-    this.getAllNumbersOfSeasons(this.coverIndexImgKeepWatching, this.numbersOfSeasons);
+    this.getAllNumbersOfSeasons(this.coverIndexImgKeepWatching, this.numbersOfSeasonsKeepWatching);
+    this.getAllNumbersOfSeasons(this.coverIndexImgMyList, this.numbersOfSeasonsMyList);
+    this.getAllNumbersOfSeasons(this.coverIndexTopRatedMovies, this.numbersOfSeasonsTopRatedMovies);
+    this.getAllNumbersOfSeasons(this.coverIndexTvShows, this.numbersOfSeasonsTvShows);
 
     //Get all images from coverImages
     this.getAllCoverFromIndexImages(this.coverIndexImgKeepWatching, this.coverImgKeepWatching)
@@ -108,9 +116,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  getAllNumbersOfSeasons(coverIndexArr: number[], numbersOfSeasons: any[]) {
+  getAllNumbersOfSeasons(coverIndexArr: number[], seasonsArr: number[]) {
     for (let i = 0; i < coverIndexArr.length; i++) {
-      this.getSeasonsNumbers(coverIndexArr[i], numbersOfSeasons);
+      this.movies.searchNumberSeasonsById(coverIndexArr[i]).subscribe((seasons) => {
+        seasonsArr.push(seasons.length);
+      })
     }
   }
 
@@ -215,10 +225,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
   }
 
-  getSeasonsNumbers(id: number, arr: any[]) {
-    return this.movies.searchNumberSeasonsById(id).subscribe((seasons) => {
-      arr.push(seasons.length);
-    })
+  //Services code
+  itemServiceCodeClicked() {
+    this.servicesCode = '079-255';
+  }
+
+  getCurrentYear() {
+    return (new Date()).getFullYear();
   }
 
 

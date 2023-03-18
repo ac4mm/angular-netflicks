@@ -482,10 +482,10 @@
 
     <!-- Member footer services -->
     <div class="member-footer-service">
-      <button class="service-code">Service Code</button>
+      <button class="service-code" (click)="itemServiceCodeClicked()">{{servicesCode}}</button>
     </div>
 
     <!-- Member footer copyright -->
-    <div class="member-footer-copyright"><span>© 1997-2023 Netflix, Inc.‎</span></div>
+    <div class="member-footer-copyright"><span>© 1997-{{getCurrentYear()}} Netflix, Inc.‎</span></div>
   </div>
 </div>
