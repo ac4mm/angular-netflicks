@@ -2,12 +2,10 @@
   background-image: linear-gradient(180deg,rgba(0,0,0,.7) 10%,transparent);
   transition: 0.3s;
   top: 0;
-  /* z-index: 9; */
 }
 
 .navbar-nav {
   height: 45px;
-  /* background-color: lightcoral; */
 }
 
 .navbar-brand {
@@ -41,19 +39,18 @@
 
 .space-item {
   margin-right: 15px;
-  /* background-color: yellowgreen; */
 }
-/**********************************/
 
+/**********************************/
 /* .nav-item {
   background-color: thistle;
 } */
 /*Search icon**********************/
+
 .search-box {
   position: relative;
   width: 35px;
   height: 45px;
-  /* background-color: limegreen; */
 }
 
 .search-box .search-box_input {
@@ -69,7 +66,6 @@
   float: right;
   transition: ease transform 0.1s;
   transition-delay: 500ms;
-  /* background-color: aqua; */
 }
 
 .search-box .search-box_icon {
@@ -81,7 +77,6 @@
   /* transition-delay: 50ms; */
   margin-top: 3px;
   margin-right: 3px;
-  /* background-color: brown; */
 }
 
 .search-box.active {
