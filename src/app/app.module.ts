@@ -14,6 +14,8 @@ import { MoviesComponent } from './movies/movies.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { SelectUserService } from './shared/services/select-user.service';
+import { MaterialModule } from 'src/app/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { SelectUserService } from './shared/services/select-user.service';
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [AppComponent],
   providers: [SelectUserService],
