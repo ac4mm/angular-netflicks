@@ -146,6 +146,63 @@ img {
   float:right;
 }
 
+/* Dialog PrimeNg */
+::ng-deep .p-dialog {
+  left: auto;
+  transform-origin: 50% 12.5%;
+  top: 2em;
+  width: 850px;
+  opacity: 1;
+  margin-bottom: 2em;
+  transform: translateX(0%) translateY(0px) scale(1) translateZ(0px);
+  min-width: 850px;
+  z-index: 2;
+}
+
+ ::ng-deep .p-dialog-header-icons .p-dialog-header-close-icon {
+  color:white;
+ }
+
+ ::ng-deep .p-dialog .p-dialog-content,
+ ::ng-deep .p-dialog .p-dialog-header, 
+ ::ng-deep .p-dialog .p-dialog-footer {
+  background-color: #181818;
+ }
+
+ ::ng-deep .p-dialog .p-dialog-content {
+  padding: 0;
+ }
+
+ /* hide scrollbar in dialog content, but allow scrolling */
+ ::ng-deep .p-dialog .p-dialog-content {
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll; 
+}
+
+::ng-deep .p-dialog .p-dialog-content::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
+
+ .previewModal-player-container {
+  /* border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  overflow: hidden; */
+  background: linear-gradient(0deg,#181818,transparent 50%);
+ }
+
+ ::ng-deep .p-dialog .p-dialog-content .previewModal-player-image .previewModal-cover-image {
+  /* border-radius: 60px; */
+ }
+
+ ::ng-deep .p-dialog .previewModal-player-container .previewModal-cover-image {
+  background: linear-gradient(0deg,#181818,transparent 50%);
+ }
+
+ ::ng-deep .p-dialog .p-dialog-content .detail-modal-container {
+  padding: 0 3em;
+ }
+
 .first-line-info, .second-line-info, .evidence-list {
   width: fit-content;
   block-size: fit-content;

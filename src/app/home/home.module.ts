@@ -10,6 +10,8 @@ import { SelectUserService } from '../shared/services/select-user.service';
 import { PreviewCardDialog } from 'src/app/home/preview-card-dialog/preview-card-dialog.component';
 import { MaterialModule } from 'src/app/material.module';
 
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 @NgModule({
   declarations: [HomeComponent, ProfileGateComponent, ManageProfilesComponent, PreviewCardDialog],
   imports: [
@@ -19,7 +21,9 @@ import { MaterialModule } from 'src/app/material.module';
       { path: '**', redirectTo: '/not-found' },
     ]),
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    DialogModule,
+    ButtonModule
   ],
   exports: [HomeComponent, ProfileGateComponent, ManageProfilesComponent, PreviewCardDialog],
   providers: [],

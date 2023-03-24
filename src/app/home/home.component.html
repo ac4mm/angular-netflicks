@@ -87,8 +87,74 @@
       </div>
     </div>
   </div>
-
 </div>
+
+<p-dialog
+  [(visible)]="displayModal"
+  [modal]="true"
+  [baseZIndex]="10000"
+  [draggable]="false"
+  [resizable]="false"
+  [dismissableMask]="true"
+  [showHeader]="false"
+>
+  <div class="previewModal-player-container">
+    <div class="previewModal-player-image">
+      <img [src]="coverImagePreviewModal" class="previewModal-cover-image" />
+    </div>
+
+    <div class="detail-modal-container">
+      <p class="m-0">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+        qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit
+        amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+        qui officia deserunt mollit anim id est laborum.
+      </p>
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <!-- <p-button
+      icon="pi pi-check"
+      (click)="displayModal = false"
+      label="Yes"
+      class="p-button-text"
+    ></p-button>
+    <p-button
+      icon="pi pi-times"
+      (click)="displayModal = false"
+      label="No"
+    ></p-button> -->
+  </ng-template>
+</p-dialog>
 
 <!-- Main content cover card -->
 <div class="container-fluid" *ngIf="isValidUser">
@@ -116,6 +182,7 @@
             <img
               class="base-icon arrow-down"
               src="../assets/icons/arrow-down.png"
+              (click)="showModalDialog(coverImage)"
             />
           </div>
           <div class="video-metadata-container-info">
@@ -139,7 +206,7 @@
               <div class="evidence-list">
                 <div
                   class="evidence-item"
-                  *ngFor="let genre of genresCoverImagesKeepWatching[i]; let n = index"
+                  *ngFor="let genre of genresCoverImagesKeepWatching[i]"
                 >
                   <span class="evidence-text">{{ genre }}</span>
                 </div>
@@ -197,7 +264,7 @@
               <div class="evidence-list">
                 <div
                   class="evidence-item"
-                  *ngFor="let genre of genresCoverImagesMyList[i]; let n = index"
+                  *ngFor="let genre of genresCoverImagesMyList[i];"
                 >
                   <span class="evidence-text">{{ genre }}</span>
                 </div>
@@ -256,7 +323,7 @@
               <div class="evidence-list">
                 <div
                   class="evidence-item"
-                  *ngFor="let genre of genresCoverImagesTopRatedMovies[i]; let n = index"
+                  *ngFor="let genre of genresCoverImagesTopRatedMovies[i];"
                 >
                   <span class="evidence-text">{{ genre }}</span>
                 </div>
@@ -315,7 +382,7 @@
               <div class="evidence-list">
                 <div
                   class="evidence-item"
-                  *ngFor="let genre of genresCoverImagesTvShows[i]; let n = index"
+                  *ngFor="let genre of genresCoverImagesTvShows[i];"
                 >
                   <span class="evidence-text">{{ genre }}</span>
                 </div>

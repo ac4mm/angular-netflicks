@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   coverImages: string[] = [];
   tempImg: string;
 
+  coverImagePreviewModal: string;
+
   //Cover image for every rows
   coverImgKeepWatching: string[] = [];
   coverImgMyList: string[] = [];
@@ -58,10 +60,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   servicesCode: string = 'Service code';
 
+  displayModal: boolean;
+
   constructor(
     public selectUser: SelectUserService,
-    private movies: MoviesService
-  ) { }
+    private movies: MoviesService  
+    ) { }
 
   ngOnInit(): void {
     this.selectUserSub = this.selectUser.currentState.subscribe(
@@ -141,8 +145,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  openDialogPreviewCoverImage(item: any) {
-
+  showModalDialog(coverImage: any) {
+    console.log(coverImage);
+    this.coverImagePreviewModal = coverImage;
+    this.displayModal = true;
   }
 
 
