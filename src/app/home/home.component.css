@@ -237,6 +237,18 @@ img {
   z-index: 2;
 }
 
+.btn-circle {
+  background-color: rgba(42,42,42,.6);
+  border-radius: 24px;
+  padding: 8px;
+  margin: 0.25em;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+.btn-circle:hover {
+  border-color: white;
+}
+
 ::ng-deep .p-dialog .previewModal-player-container  .preview-audio-toggle {
   display: block;
   margin-left:46rem !important;
