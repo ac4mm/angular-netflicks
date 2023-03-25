@@ -99,8 +99,56 @@
   [showHeader]="false"
 >
   <div class="previewModal-player-container">
+    <!-- Cover image dialog -->
     <div class="previewModal-player-image">
       <img [src]="coverImagePreviewModal" class="previewModal-cover-image" />
+    </div>
+
+    <!-- Wrapper cover image dialog -->
+    <div class="previewModal-player-wrapper">
+      <div class="wrapper-logo"></div>
+
+      <div class="buttons-controls-container">
+        <!-- Play -->
+        <button
+          class="btn btn-light btn-sm font-weight-bold btn-block custom-btn btn-wrapper-dialog"
+        >
+          <div class="icon-button">
+            <svg
+              width="2.5vw"
+              height="2.5vw"
+              fill="currentColor"
+              class="bi bi-play-fill custom-icon-btn"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"
+              ></path>
+            </svg>
+          </div>
+          <span class="text-button">Play</span>
+        </button>
+
+        <a href="">
+          <img class="base-icon icon-wrapper-dialog" src="../assets/icons/add.png" />
+        </a>
+        <a href="">
+          <img class="base-icon icon-wrapper-dialog" src="../assets/icons/thumbup.png" />
+        </a>
+      </div>
+
+      <div class="buttons-controls-messagging"></div>
+    </div>
+
+    <!-- Audio preview dialog -->
+    <div class="previewModal-player-wrapper preview-audio-toggle" (click)="onClickSpeakerIcon()">
+        <a href="" *ngIf="speakerUpIconShow">
+          <img class="base-icon icon-wrapper-dialog" src="../assets/icons/speakerup.png" />
+        </a>
+
+        <a href="" *ngIf="!speakerUpIconShow">
+          <img class="base-icon icon-wrapper-dialog" src="../assets/icons/speakerdown.png" />
+        </a>
     </div>
 
     <div class="detail-modal-container">
@@ -264,7 +312,7 @@
               <div class="evidence-list">
                 <div
                   class="evidence-item"
-                  *ngFor="let genre of genresCoverImagesMyList[i];"
+                  *ngFor="let genre of genresCoverImagesMyList[i]"
                 >
                   <span class="evidence-text">{{ genre }}</span>
                 </div>
@@ -323,7 +371,7 @@
               <div class="evidence-list">
                 <div
                   class="evidence-item"
-                  *ngFor="let genre of genresCoverImagesTopRatedMovies[i];"
+                  *ngFor="let genre of genresCoverImagesTopRatedMovies[i]"
                 >
                   <span class="evidence-text">{{ genre }}</span>
                 </div>
@@ -382,7 +430,7 @@
               <div class="evidence-list">
                 <div
                   class="evidence-item"
-                  *ngFor="let genre of genresCoverImagesTvShows[i];"
+                  *ngFor="let genre of genresCoverImagesTvShows[i]"
                 >
                   <span class="evidence-text">{{ genre }}</span>
                 </div>

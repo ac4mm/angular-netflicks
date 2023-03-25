@@ -61,6 +61,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   servicesCode: string = 'Service code';
 
   displayModal: boolean;
+  speakerUpIconShow: boolean = true;
 
   constructor(
     public selectUser: SelectUserService,
@@ -242,6 +243,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     return (new Date()).getFullYear();
   }
 
+
+  onClickSpeakerIcon(){
+    this.speakerUpIconShow = !this.speakerUpIconShow;
+  }
 
   //Configuration SwiperJs
   config: SwiperOptions = {
