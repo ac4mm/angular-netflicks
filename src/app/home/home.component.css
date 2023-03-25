@@ -272,6 +272,14 @@ img {
   margin-left: 46rem !important;
 }
 
+::ng-deep .p-dialog .previewModal-close {
+  cursor: pointer;
+  margin: 1em;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
 
 .first-line-info,
 .second-line-info,

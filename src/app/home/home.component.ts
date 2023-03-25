@@ -147,7 +147,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   showModalDialog(coverImage: any) {
-    console.log(coverImage);
     this.coverImagePreviewModal = coverImage;
     this.displayModal = true;
   }
