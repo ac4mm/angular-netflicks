@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-profile-gate',
   templateUrl: './profile-gate.component.html',
-  styleUrls: ['./profile-gate.component.css'],
+  styleUrls: ['./profile-gate.component.scss'],
 })
 export class ProfileGateComponent implements OnInit, OnDestroy {
   idUser: number;

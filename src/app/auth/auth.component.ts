@@ -9,7 +9,7 @@ import { SelectUserService } from '../shared/services/select-user.service';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css'],
+  styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent {
   isLoginMode: boolean = true;
