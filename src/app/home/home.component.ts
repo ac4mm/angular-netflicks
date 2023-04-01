@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   coverImages: string[] = [];
   tempImg: string;
 
+  indexSelectedItem: number;
   coverImagePreviewModal: string;
 
   //Cover image for every rows
@@ -30,7 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   coverImgTopRatedMovies: string[] = [];
   coverImgTvShows: string[] = [];
 
-  //Araay index images
+  //Array index images
   coverIndexImgKeepWatching = [];
   coverIndexImgMyList = [];
   coverIndexTopRatedMovies = [];
@@ -62,6 +63,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   displayModal: boolean;
   speakerUpIconShow: boolean = true;
+
+  //Dropdown
+  seasonSelector: any;
+  seasonSelector1: any;
 
   constructor(
     public selectUser: SelectUserService,
@@ -146,7 +151,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  showModalDialog(coverImage: any) {
+  showModalDialog(coverImage: any, index: number) {
+    this.indexSelectedItem = index;
     this.coverImagePreviewModal = coverImage;
     this.displayModal = true;
   }

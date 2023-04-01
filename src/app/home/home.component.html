@@ -237,6 +237,72 @@
 
     <!-- Container Dialog -->
     <div class="detail-modal-container">
+      <div class="detail-modal">
+        <div class="previewModal-left">
+          <div class="first-line-info">
+            <span class="match-score"
+              >{{ randMatchScore[indexSelectedItem] }}% Match</span
+            >
+            <span class="year">2022</span>
+            <span class="seasons"
+              >{{
+                numbersOfSeasonsKeepWatching[indexSelectedItem]
+              }}
+              seasons</span
+            >
+            <div class="player-feature-badge">
+              <span>HD</span>
+            </div>
+            <div class="maturity-rating">
+              <span class="rating-number"
+                >{{ ratingNumberCover[indexSelectedItem] }}+</span
+              >
+            </div>
+          </div>
+
+          <div class="preview-modal-synopsis">
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint
+            </div>
+          </div>
+        </div>
+
+        <div class="previewModal-right">
+          <div>
+            <span>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="episode-selector">
+        <div class="episode-selector-header">
+          <div class="title-selector">
+            <h3>Episodi</h3>
+          </div>
+
+          <div class="dropdown-selector">
+            <p-dropdown
+              [options]="seasonSelector"
+              placeholder="Season 1"
+              optionLabel="name"
+              [showClear]="true"
+            ></p-dropdown>
+          </div>
+        </div>
+
+        <div class="episode-selector-container"></div>
+      </div>
+
       <p class="m-0">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -362,7 +428,7 @@
             <!-- Arrow down -->
             <button
               class="btn-circle btn-icon-cover arrow-down"
-              (click)="showModalDialog(coverImage)"
+              (click)="showModalDialog(coverImage, i)"
             >
               <svg
                 width="24"
@@ -483,7 +549,7 @@
             <!-- Arrow down -->
             <button
               class="btn-circle btn-icon-cover arrow-down"
-              (click)="showModalDialog(coverImage)"
+              (click)="showModalDialog(coverImage, i)"
             >
               <svg
                 width="24"
@@ -605,7 +671,7 @@
             <!-- Arrow down -->
             <button
               class="btn-circle btn-icon-cover arrow-down"
-              (click)="showModalDialog(coverImage)"
+              (click)="showModalDialog(coverImage, i)"
             >
               <svg
                 width="24"
@@ -727,7 +793,7 @@
             <!-- Arrow down -->
             <button
               class="btn-circle btn-icon-cover arrow-down"
-              (click)="showModalDialog(coverImage)"
+              (click)="showModalDialog(coverImage, i)"
             >
               <svg
                 width="24"
