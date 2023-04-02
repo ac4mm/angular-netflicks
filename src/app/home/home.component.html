@@ -284,58 +284,91 @@
         </div>
       </div>
 
+
+      <!-- Episode list -->
       <div class="episode-selector">
         <div class="episode-selector-header">
           <div class="title-selector">
-            <h3>Episodi</h3>
+            <h3>Episodes</h3>
+
+            <div class="title-selector-more-info">
+              {{ seasonSelected.name }}
+            </div>
           </div>
 
           <div class="dropdown-selector">
             <p-dropdown
               [options]="seasonSelector"
+              [(ngModel)]="seasonSelected"
               placeholder="Season 1"
               optionLabel="name"
-              [showClear]="true"
+              [showClear]="false"
+              dropdownIcon="pi pi-caret-down"
             ></p-dropdown>
           </div>
         </div>
 
-        <div class="episode-selector-container"></div>
+        <div class="episode-selector-container">
+          <!-- Row 1 -->
+          <div class="titleCardList-container">
+            <div class="titleCard-title-index">1</div>
+
+            <div class="titleCard-image-wrapper"></div>
+
+            <div class="titleCardList-metadataWrapper">
+              <div class="titleCardList-title">
+                <span class="titleCardList-title-text">Title</span>
+                <span class="duration">44m</span>
+              </div>
+
+              <div class="titleCardList-synopsis">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="titleCardList-container">
+            <div class="titleCard-title-index">2</div>
+
+            <div class="titleCard-image-wrapper"></div>
+
+            <div class="titleCardList-metadataWrapper">
+              <div class="titleCardList-title">
+                <span class="titleCardList-title-text">Title</span>
+                <span class="duration">45m</span>
+              </div>
+
+              <div class="titleCardList-synopsis">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
+      <!-- About Film -->
+      <div class="about-wrapper">
+        
+        <div class="about-header">
+          <h3 class="previewModal-section-header">About</h3>
+        </div>
+
+        <div class="about-container"></div>
+      </div>
+
+      <!-- MOCK DATA -->
       <p class="m-0">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur
-        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-        qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit
-        amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur
-        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-        qui officia deserunt mollit anim id est laborum.
+        commodo consequat.
       </p>
     </div>
   </div>

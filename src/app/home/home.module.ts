@@ -3,6 +3,7 @@ import { HomeComponent } from './home.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
+import { FormsModule } from '@angular/forms';
 import { ProfileGateComponent } from './profile-gate/profile-gate.component';
 
 import { ManageProfilesComponent } from '../manage-profiles/manage-profiles.component';
@@ -12,7 +13,7 @@ import { MaterialModule } from 'src/app/material.module';
 
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
-import {DropdownModule} from 'primeng/dropdown';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [HomeComponent, ProfileGateComponent, ManageProfilesComponent, PreviewCardDialog],
@@ -22,6 +23,7 @@ import {DropdownModule} from 'primeng/dropdown';
       { path: '', component: HomeComponent },
       { path: '**', redirectTo: '/not-found' },
     ]),
+    FormsModule,
     SharedModule,
     MaterialModule,
     DialogModule,

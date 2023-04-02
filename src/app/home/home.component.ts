@@ -66,7 +66,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   //Dropdown
   seasonSelector: any;
-  seasonSelector1: any;
+  seasonSelected: any;
+
+  customCarretDownIcon = 'pi pi-caret-down';
 
   constructor(
     public selectUser: SelectUserService,
@@ -113,6 +115,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.getAllNumbersOfSeasonsById(this.coverIndexImgMyList, this.numbersOfSeasonsMyList);
     this.getAllNumbersOfSeasonsById(this.coverIndexTopRatedMovies, this.numbersOfSeasonsTopRatedMovies);
     this.getAllNumbersOfSeasonsById(this.coverIndexTvShows, this.numbersOfSeasonsTvShows);
+
+    this.seasonSelector = [
+      {name: 'Season 1', code: 'S1'},
+      {name: 'Season 2', code: 'S2'}
+    ];
+
+    //Select first item dropdown
+    this.seasonSelected = this.seasonSelector[0];
   }
 
   ngOnDestroy() {
