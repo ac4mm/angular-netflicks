@@ -294,6 +294,14 @@
             <div class="title-selector-more-info">
               {{ seasonSelected.name }}
             </div>
+
+            <p-dropdown
+              [options]="seasonSelector"
+              [(ngModel)]="seasonSelected"
+              placeholder="Season 1"
+              optionLabel="name"
+              [showClear]="false"
+            ></p-dropdown>
           </div>
 
           <div class="dropdown-selector">
@@ -303,7 +311,6 @@
               placeholder="Season 1"
               optionLabel="name"
               [showClear]="false"
-              dropdownIcon="pi pi-caret-down"
             ></p-dropdown>
           </div>
         </div>
@@ -390,6 +397,7 @@
 
 <!-- Main content cover card -->
 <div class="container-fluid" *ngIf="isValidUser">
+
   <!-- User N, keep watching -->
   <swiper [config]="config">
     <p class="title-slide">
@@ -409,8 +417,8 @@
             <!-- Play button -->
             <button class="btn-circle-white btn-icon-cover">
               <svg
-                width="24"
-                height="24"
+                width="55%"
+                height="28"
                 viewBox="0 0 24 24"
                 fill="#000"
                 xmlns="http://www.w3.org/2000/svg"
@@ -425,8 +433,8 @@
             <!-- Add button  -->
             <button class="btn-circle btn-icon-cover">
               <svg
-                width="24"
-                height="24"
+                width="45%"
+                height="28"
                 viewBox="0 0 24 24"
                 fill="#fff"
                 xmlns="http://www.w3.org/2000/svg"
@@ -442,10 +450,11 @@
 
             <!-- Thumb up -->
             <button class="btn-circle btn-icon-cover">
+              
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
+                width="45%"
+                height="28"
                 fill="#fff"
                 class="bi bi-hand-thumbs-up"
                 viewBox="0 0 16 16"
@@ -464,8 +473,8 @@
               (click)="showModalDialog(coverImage, i)"
             >
               <svg
-                width="24"
-                height="24"
+                width="55%"
+                height="28"
                 viewBox="0 0 24 24"
                 fill="#fff"
                 xmlns="http://www.w3.org/2000/svg"
@@ -530,8 +539,8 @@
             <!-- Play button -->
             <button class="btn-circle-white btn-icon-cover">
               <svg
-                width="24"
-                height="24"
+                width="55%"
+                height="28"
                 viewBox="0 0 24 24"
                 fill="#000"
                 xmlns="http://www.w3.org/2000/svg"
@@ -546,8 +555,8 @@
             <!-- Add button  -->
             <button class="btn-circle btn-icon-cover">
               <svg
-                width="24"
-                height="24"
+                width="45%"
+                height="28"
                 viewBox="0 0 24 24"
                 fill="#fff"
                 xmlns="http://www.w3.org/2000/svg"
@@ -565,8 +574,8 @@
             <button class="btn-circle btn-icon-cover">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
+                width="45%"
+                height="28"
                 fill="#fff"
                 class="bi bi-hand-thumbs-up"
                 viewBox="0 0 16 16"
@@ -585,8 +594,8 @@
               (click)="showModalDialog(coverImage, i)"
             >
               <svg
-                width="24"
-                height="24"
+                width="55%"
+                height="28"
                 viewBox="0 0 24 24"
                 fill="#fff"
                 xmlns="http://www.w3.org/2000/svg"
@@ -652,8 +661,8 @@
             <!-- Play button -->
             <button class="btn-circle-white btn-icon-cover">
               <svg
-                width="24"
-                height="24"
+                width="55%"
+                height="28"
                 viewBox="0 0 24 24"
                 fill="#000"
                 xmlns="http://www.w3.org/2000/svg"
@@ -668,8 +677,8 @@
             <!-- Add button  -->
             <button class="btn-circle btn-icon-cover">
               <svg
-                width="24"
-                height="24"
+                width="45%"
+                height="28"
                 viewBox="0 0 24 24"
                 fill="#fff"
                 xmlns="http://www.w3.org/2000/svg"
@@ -687,8 +696,8 @@
             <button class="btn-circle btn-icon-cover">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
+                width="45%"
+                height="28"
                 fill="#fff"
                 class="bi bi-hand-thumbs-up"
                 viewBox="0 0 16 16"
@@ -707,8 +716,8 @@
               (click)="showModalDialog(coverImage, i)"
             >
               <svg
-                width="24"
-                height="24"
+                width="55%"
+                height="28"
                 viewBox="0 0 24 24"
                 fill="#fff"
                 xmlns="http://www.w3.org/2000/svg"
@@ -774,8 +783,8 @@
             <!-- Play button -->
             <button class="btn-circle-white btn-icon-cover">
               <svg
-                width="24"
-                height="24"
+                width="55%"
+                height="28"
                 viewBox="0 0 24 24"
                 fill="#000"
                 xmlns="http://www.w3.org/2000/svg"
@@ -790,8 +799,8 @@
             <!-- Add button  -->
             <button class="btn-circle btn-icon-cover">
               <svg
-                width="24"
-                height="24"
+                width="45%"
+                height="28"
                 viewBox="0 0 24 24"
                 fill="#fff"
                 xmlns="http://www.w3.org/2000/svg"
@@ -809,8 +818,8 @@
             <button class="btn-circle btn-icon-cover">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
+                width="45%"
+                height="28"
                 fill="#fff"
                 class="bi bi-hand-thumbs-up"
                 viewBox="0 0 16 16"
@@ -829,8 +838,8 @@
               (click)="showModalDialog(coverImage, i)"
             >
               <svg
-                width="24"
-                height="24"
+                width="55%"
+                height="28"
                 viewBox="0 0 24 24"
                 fill="#fff"
                 xmlns="http://www.w3.org/2000/svg"
