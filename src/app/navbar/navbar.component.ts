@@ -46,8 +46,15 @@ export class NavbarComponent implements OnInit, OnDestroy {
     );
   }
 
-  activateSearch() {
+  activateSearchbar() {
     this.searchBox[0].classList.toggle('active');
+  }
+
+  @HostListener('document:click', ['$event'])
+  clickoutSearchbar(event) {
+    if (!this.elRef.nativeElement.contains(event.target) && this.searchBox[0]?.classList?.value.includes('active')) {
+      this.activateSearchbar();
+    }
   }
 
   @HostListener('window:scroll', ['$event'])

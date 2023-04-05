@@ -75,6 +75,7 @@
       <!--navbar right-->
       <ul class="navbar-nav ml-auto" id="rightNavbar" *ngIf="isValidUser">
         <li class="nav-item search-box space-item">
+          <!-- Searchbar -->
           <a class="nav-link">
             <svg
               class="bi bi-search search-box_icon"
@@ -83,7 +84,7 @@
               viewBox="0 0 16 16"
               fill="currentColor"
               xmlns="http://www.w3.org/2000/svg"
-              (click)="activateSearch()"
+              (click)="activateSearchbar()"
             >
               <path
                 fill-rule="evenodd"
