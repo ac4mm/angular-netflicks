@@ -63,7 +63,12 @@
         <button
           type="button"
           class="btn btn-secondary btn-sm font-weight-bold custom-btn more-info-btn"
-          (click)="showModalDialog('https://static.tvmaze.com/uploads/images/original_untouched/219/547904.jpg', 0)"
+          (click)="
+            openDialogCoverImage(
+              'https://static.tvmaze.com/uploads/images/original_untouched/219/547904.jpg',
+              0
+            )
+          "
         >
           <div class="icon-button">
             <svg
@@ -154,23 +159,43 @@
           <span class="text-button">Play</span>
         </button>
 
-        <!-- Add button  -->
-        <button class="btn-circle">
-          <svg
-            width="65%"
-            height="28"
-            viewBox="0 0 24 24"
-            fill="#fff"
-            xmlns="http://www.w3.org/2000/svg"
-            stroke="white"
-            stroke-width="0.3"
-          >
-            <path
-              d="M11 2V11H2V13H11V22H13V13H22V11H13V2H11Z"
+        <div (click)="onClickCheckIcon()">
+          <!-- Add button  -->
+          <button class="btn-circle" *ngIf="checkIconShow">
+            <svg
+              width="65%"
+              height="28"
+              viewBox="0 0 24 24"
               fill="#fff"
-            ></path>
-          </svg>
-        </button>
+              xmlns="http://www.w3.org/2000/svg"
+              stroke="white"
+              stroke-width="0.3"
+            >
+              <path
+                d="M11 2V11H2V13H11V22H13V13H22V11H13V2H11Z"
+                fill="#fff"
+              ></path>
+            </svg>
+          </button>
+
+          <!-- Check -->
+          <button class="btn-circle" *ngIf="!checkIconShow">
+            <svg
+              width="65%"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="#fff"
+              xmlns="http://www.w3.org/2000/svg"
+              stroke="white"
+              stroke-width="0.3"
+            >
+              <path
+                d="M8.68239 19.7312L23.6824 5.73115L22.3178 4.26904L8.02404 17.6098L2.70718 12.293L1.29297 13.7072L7.29297 19.7072C7.67401 20.0882 8.28845 20.0988 8.68239 19.7312Z"
+                fill="#fff"
+              ></path>
+            </svg>
+          </button>
+        </div>
 
         <!-- Thumb up -->
         <button class="btn-circle">
@@ -285,7 +310,6 @@
         </div>
       </div>
 
-
       <!-- Episode list -->
       <div class="episode-selector">
         <div class="episode-selector-header">
@@ -295,14 +319,6 @@
             <div class="title-selector-more-info">
               {{ seasonSelected.name }}
             </div>
-
-            <p-dropdown
-              [options]="seasonSelector"
-              [(ngModel)]="seasonSelected"
-              placeholder="Season 1"
-              optionLabel="name"
-              [showClear]="false"
-            ></p-dropdown>
           </div>
 
           <div class="dropdown-selector">
@@ -312,11 +328,36 @@
               placeholder="Season 1"
               optionLabel="name"
               [showClear]="false"
+              appendTo="body"
             ></p-dropdown>
           </div>
         </div>
 
+        <!-- Container Episode selector -->
         <div class="episode-selector-container">
+          <div
+            class="titleCardList-container"
+            *ngFor="let i of [1, 2, 3, 4, 5]"
+          >
+            <div class="titleCard-title-index">{{ i }}</div>
+
+            <div class="titleCard-image-wrapper"></div>
+
+            <div class="titleCardList-metadataWrapper">
+              <div class="titleCardList-title">
+                <span class="titleCardList-title-text">Title</span>
+                <span class="duration">44m</span>
+              </div>
+
+              <div class="titleCardList-synopsis">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </div>
+            </div>
+          </div>
+
           <!-- Row 1 -->
           <div class="titleCardList-container">
             <div class="titleCard-title-index">1</div>
@@ -363,7 +404,6 @@
 
       <!-- About Film -->
       <div class="about-wrapper">
-        
         <div class="about-header">
           <h3 class="previewModal-section-header">About</h3>
         </div>
@@ -398,7 +438,6 @@
 
 <!-- Main content cover card -->
 <div class="container-fluid" *ngIf="isValidUser">
-
   <!-- User N, keep watching -->
   <swiper [config]="config">
     <p class="title-slide">
@@ -451,7 +490,6 @@
 
             <!-- Thumb up -->
             <button class="btn-circle btn-icon-cover">
-              
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="45%"
@@ -471,7 +509,7 @@
             <!-- Arrow down -->
             <button
               class="btn-circle btn-icon-cover arrow-down"
-              (click)="showModalDialog(coverImage, i)"
+              (click)="openDialogCoverImage(coverImage, i)"
             >
               <svg
                 width="55%"
@@ -592,7 +630,7 @@
             <!-- Arrow down -->
             <button
               class="btn-circle btn-icon-cover arrow-down"
-              (click)="showModalDialog(coverImage, i)"
+              (click)="openDialogCoverImage(coverImage, i)"
             >
               <svg
                 width="55%"
@@ -714,7 +752,7 @@
             <!-- Arrow down -->
             <button
               class="btn-circle btn-icon-cover arrow-down"
-              (click)="showModalDialog(coverImage, i)"
+              (click)="openDialogCoverImage(coverImage, i)"
             >
               <svg
                 width="55%"
@@ -836,7 +874,7 @@
             <!-- Arrow down -->
             <button
               class="btn-circle btn-icon-cover arrow-down"
-              (click)="showModalDialog(coverImage, i)"
+              (click)="openDialogCoverImage(coverImage, i)"
             >
               <svg
                 width="55%"

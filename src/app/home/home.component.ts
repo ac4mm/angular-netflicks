@@ -5,11 +5,14 @@ import { SelectUserService } from '../shared/services/select-user.service';
 import { Subscription } from 'rxjs';
 import { MoviesService } from '../shared/services/movies.service';
 import { map } from 'rxjs/operators';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { PreviewModalContainerCover } from 'src/app/home/preview-modal-container-cover/preview-modal-container-cover.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  providers: [DialogService]
 })
 export class HomeComponent implements OnInit, OnDestroy {
   public isValidUser: boolean = false;
@@ -62,6 +65,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   servicesCode: string = 'Service code';
 
   displayModal: boolean;
+  checkIconShow: boolean = true;
   speakerUpIconShow: boolean = true;
 
   //Dropdown
@@ -72,8 +76,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     public selectUser: SelectUserService,
-    private movies: MoviesService  
-    ) { }
+    private movies: MoviesService,
+    public dialogService: DialogService
+  ) { }
 
   ngOnInit(): void {
     this.selectUserSub = this.selectUser.currentState.subscribe(
@@ -117,8 +122,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.getAllNumbersOfSeasonsById(this.coverIndexTvShows, this.numbersOfSeasonsTvShows);
 
     this.seasonSelector = [
-      {name: 'Season 1', code: 'S1'},
-      {name: 'Season 2', code: 'S2'}
+      { name: 'Season 1', code: 'S1' },
+      { name: 'Season 2', code: 'S2' }
     ];
 
     //Select first item dropdown
@@ -165,6 +170,32 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.indexSelectedItem = index;
     this.coverImagePreviewModal = coverImage;
     this.displayModal = true;
+  }
+
+  openDialogCoverImage(coverImage: any, index: number) {
+    this.indexSelectedItem = index;
+    this.coverImagePreviewModal = coverImage;
+
+    const dialog: DynamicDialogRef = this.dialogService.open(PreviewModalContainerCover, {
+      baseZIndex: 10000,
+      maximizable: true,
+      modal: true,
+      draggable: false,
+      dismissableMask: true,
+      showHeader: false,
+      closeOnEscape: true,
+      data: {
+        randMatchScore: this.randMatchScore,
+        coverImagePreviewModal: this.coverImagePreviewModal,
+        indexSelectedItem: this.indexSelectedItem
+      }
+    })
+
+    dialog.onClose.subscribe((close: any) => {
+      if (close) {
+        /* this.messageService.add({ severity: 'info', summary: 'Product Selected', detail: product.name }); */
+      }
+    });
   }
 
 
@@ -258,8 +289,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     return (new Date()).getFullYear();
   }
 
+  onClickCheckIcon() {
+    this.checkIconShow = !this.checkIconShow;
+  }
 
-  onClickSpeakerIcon(){
+
+  onClickSpeakerIcon() {
     this.speakerUpIconShow = !this.speakerUpIconShow;
   }
 

@@ -8,15 +8,16 @@ import { ProfileGateComponent } from './profile-gate/profile-gate.component';
 
 import { ManageProfilesComponent } from '../manage-profiles/manage-profiles.component';
 import { SelectUserService } from '../shared/services/select-user.service';
-import { PreviewCardDialog } from 'src/app/home/preview-card-dialog/preview-card-dialog.component';
 import { MaterialModule } from 'src/app/material.module';
+import { PreviewModalContainerCover } from './preview-modal-container-cover/preview-modal-container-cover.component'
 
 import { DialogModule } from 'primeng/dialog';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
-  declarations: [HomeComponent, ProfileGateComponent, ManageProfilesComponent, PreviewCardDialog],
+  declarations: [HomeComponent, ProfileGateComponent, ManageProfilesComponent, PreviewModalContainerCover],
   imports: [
     NgxUsefulSwiperModule,
     RouterModule.forChild([
@@ -27,10 +28,11 @@ import { DropdownModule } from 'primeng/dropdown';
     SharedModule,
     MaterialModule,
     DialogModule,
+    DynamicDialogModule,
     ButtonModule,
     DropdownModule
   ],
-  exports: [HomeComponent, ProfileGateComponent, ManageProfilesComponent, PreviewCardDialog],
+  exports: [HomeComponent, ProfileGateComponent, ManageProfilesComponent, PreviewModalContainerCover],
   providers: [],
 })
 export class HomeModule { }
