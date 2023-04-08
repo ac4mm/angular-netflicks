@@ -178,7 +178,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     const dialog: DynamicDialogRef = this.dialogService.open(PreviewModalContainerCover, {
       baseZIndex: 10000,
-      maximizable: true,
       modal: true,
       draggable: false,
       dismissableMask: true,
@@ -190,12 +189,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         indexSelectedItem: this.indexSelectedItem
       }
     })
-
-    dialog.onClose.subscribe((close: any) => {
-      if (close) {
-        /* this.messageService.add({ severity: 'info', summary: 'Product Selected', detail: product.name }); */
-      }
-    });
   }
 
 
