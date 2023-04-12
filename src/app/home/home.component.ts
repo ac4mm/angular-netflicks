@@ -2,12 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { SwiperOptions } from 'swiper';
 import { SelectUserService } from '../shared/services/select-user.service';
-import { Subscription } from 'rxjs';
+import { Subscription, concatMap, from, map, of, shareReplay, switchMap, take, toArray } from 'rxjs';
 import { MoviesService } from '../shared/services/movies.service';
-import { map } from 'rxjs/operators';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PreviewModalContainerCover } from 'src/app/home/preview-modal-container-cover/preview-modal-container-cover.component';
-
+import { Observable } from "rxjs";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -28,17 +27,23 @@ export class HomeComponent implements OnInit, OnDestroy {
   indexSelectedItem: number;
   coverImagePreviewModal: string;
 
-  //Cover image for every rows
-  coverImgKeepWatching: string[] = [];
-  coverImgMyList: string[] = [];
-  coverImgTopRatedMovies: string[] = [];
-  coverImgTvShows: string[] = [];
+  coverImgKeepWatching$: Observable<string[]>;
+  coverImgMyList$: Observable<string[]>;
+  coverImgTopRatedMovies$: Observable<string[]>;
+  coverImgTvShows$: Observable<string[]>;
 
-  //Array index images
-  coverIndexImgKeepWatching = [];
-  coverIndexImgMyList = [];
-  coverIndexTopRatedMovies = [];
-  coverIndexTvShows = [];
+  /*Array index images TV Maze  */
+  /*Index of: Rick and morty,Stranger Things,Dark, Lost, Casa de Papel, You, Squid Game */
+  coverIndexImgKeepWatching: number[] = [216, 2993, 17861, 123, 27436, 26856, 43687];
+
+  /*Index of: Better Call Saul, Black Mirror,13 Reasons Why, 1899, BoJack Horseman,MINDHUNTER, How to Sell Drugs Online (Fast) */
+  coverIndexImgMyList: number[] = [618, 305, 7194, 39749, 184, 10822, 39319];
+
+  /* Index of:The Queen's Gambit, The Big Bang Theory, Snowpiercer, The Last of Us, Our Planet, House of the Dragon, Manifest */
+  coverIndexTopRatedMovies: number[] = [41428, 66, 23030, 46562, 17868, 44778, 31365];
+
+  /* Index of:The Office, Peaky Blinders, Family Guy, Game of Thrones, The Simpsons, Chernobyl, Love, Death & Robots */
+  coverIndexTvShows: number[] = [526, 269, 84, 82, 83, 30770, 40329];
 
   randMatchScore = [];
 
@@ -47,10 +52,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   ratingNumberCover = [];
 
   //Genres
-  genresCoverImagesKeepWatching = [];
-  genresCoverImagesMyList = [];
-  genresCoverImagesTopRatedMovies = [];
-  genresCoverImagesTvShows = [];
+  genresCoverImagesKeepWatching$: Observable<string[]>;
+  genresCoverImagesMyList$: Observable<string[]>;
+  genresCoverImagesTopRatedMovies$: Observable<string[]>;
+  genresCoverImagesTvShows$: Observable<string[]>;
 
   //Seasons
   numbersOfSeasonsKeepWatching = [];
@@ -85,18 +90,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       (state) => (this.isValidUser = !!state)
     );
 
-    /*Index of: Rick and morty,Stranger Things,Dark, Lost, Casa de Papel, You, Squid Game */
-    this.coverIndexImgKeepWatching = [216, 2993, 17861, 123, 27436, 26856, 43687];
-
-    /*Index of: Better Call Saul, Black Mirror,13 Reasons Why, 1899, BoJack Horseman,MINDHUNTER, How to Sell Drugs Online (Fast) */
-    this.coverIndexImgMyList = [618, 305, 7194, 39749, 184, 10822, 39319];
-
-    /* Index of:The Queen's Gambit, The Big Bang Theory, Snowpiercer, The Last of Us, Our Planet, House of the Dragon, Manifest */
-    this.coverIndexTopRatedMovies = [41428, 66, 23030, 46562, 17868, 44778, 31365];
-
-    /* Index of:The Office, Peaky Blinders, Family Guy, Game of Thrones, The Simpsons, Chernobyl, Love, Death & Robots */
-    this.coverIndexTvShows = [526, 269, 84, 82, 83, 30770, 40329];
-
     //Setting with random number, the match score
     this.randMatchScore = Array.from({ length: this.coverIndexImgKeepWatching.length }, () => this.getRandomIntBetweenRange(64, 100))
 
@@ -104,16 +97,16 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.ratingNumberCover = this.getWeightedRandomNumberInArr(this.ratingNumberObject, 7);
 
     //Get all cover images by id
-    this.getAllCoverImagesById(this.coverIndexImgKeepWatching, this.coverImgKeepWatching)
-    this.getAllCoverImagesById(this.coverIndexImgMyList, this.coverImgMyList)
-    this.getAllCoverImagesById(this.coverIndexTopRatedMovies, this.coverImgTopRatedMovies)
-    this.getAllCoverImagesById(this.coverIndexTvShows, this.coverImgTvShows)
+    this.coverImgKeepWatching$ = this.getAllCoverImagesById$(this.coverIndexImgKeepWatching);
+    this.coverImgMyList$ = this.getAllCoverImagesById$(this.coverIndexImgMyList);
+    this.coverImgTopRatedMovies$ = this.getAllCoverImagesById$(this.coverIndexTopRatedMovies);
+    this.coverImgTvShows$ = this.getAllCoverImagesById$(this.coverIndexTvShows);
 
-    //Get all genres by id coverImages
-    this.getAllGenresById(this.coverIndexImgKeepWatching, this.genresCoverImagesKeepWatching);
-    this.getAllGenresById(this.coverIndexImgMyList, this.genresCoverImagesMyList);
-    this.getAllGenresById(this.coverIndexTopRatedMovies, this.genresCoverImagesTopRatedMovies);
-    this.getAllGenresById(this.coverIndexTvShows, this.genresCoverImagesTvShows);
+    //Gel all genre by images id
+    this.genresCoverImagesKeepWatching$ = this.getAllGenresById$(this.coverIndexImgKeepWatching);
+    this.genresCoverImagesMyList$ = this.getAllGenresById$(this.coverIndexImgMyList);
+    this.genresCoverImagesTopRatedMovies$ = this.getAllGenresById$(this.coverIndexTopRatedMovies);
+    this.genresCoverImagesTvShows$ = this.getAllGenresById$(this.coverIndexTvShows);
 
     //Get all seasons by id coverImages
     this.getAllNumbersOfSeasonsById(this.coverIndexImgKeepWatching, this.numbersOfSeasonsKeepWatching);
@@ -135,27 +128,34 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.selectUser.currState();
   }
 
-  getAllCoverImagesById(coverIndexArr: number[], coverBackgroundImages: string[]) {
-    for (let i = 0; i < coverIndexArr.length; i++) {
-      this.movies.searchImagesMovie(coverIndexArr[i]).pipe(
-        map((images) => images.filter((image) => image.type === 'background'))
-      ).subscribe(images => {
+  getAllCoverImagesById$(coverIndexImg: number[]): Observable<any[]> {
+    let finalCoverImages = [];
+
+    return from(coverIndexImg).pipe(
+      concatMap((item) => this.movies.searchImagesMovie(item)),
+      map((images) => images.filter((image) => image.type === 'background')),
+      switchMap((images) => {
         //defined rand number in the range of background images
         const randNumbBackgroundImg = this.getRandomInt(images.length);
+
         //Assign first background image to array
-        coverBackgroundImages.push(images[randNumbBackgroundImg].resolutions.original.url);
+        finalCoverImages.push(images[randNumbBackgroundImg].resolutions.original.url);
+        return of(finalCoverImages);
       })
-    }
+    )
   }
 
-  getAllGenresById(coverIndexArr: number[], genresCoverImages: any[]) {
-    for (let i = 0; i < coverIndexArr.length; i++) {
-      this.movies.searchMainInfoMovie(coverIndexArr[i]).pipe(
-        map((items) => items.genres)
-      ).subscribe(genres => {
-        genresCoverImages.push(genres);
-      })
-    }
+  getAllGenresById$(coverIndexImg: number[]): Observable<any[]> {
+    let finalGenreSeasons = [];
+
+
+    return from(coverIndexImg).pipe(
+      concatMap((item) => this.movies.searchMainInfoMovie(item).pipe(map((items) => {
+        finalGenreSeasons.push(items.genres);
+        return finalGenreSeasons;
+      }))),
+      shareReplay(1)
+    )
   }
 
   getAllNumbersOfSeasonsById(coverIndexArr: number[], seasonsArr: number[]) {
@@ -172,7 +172,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.displayModal = true;
   }
 
-  openDialogCoverImage(coverImage: any, index: number) {
+  openDialogCoverImage(coverImage: any, index: number, indexTvMazeSeries: number) {
     this.indexSelectedItem = index;
     this.coverImagePreviewModal = coverImage;
 
@@ -186,7 +186,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       data: {
         randMatchScore: this.randMatchScore,
         coverImagePreviewModal: this.coverImagePreviewModal,
-        indexSelectedItem: this.indexSelectedItem
+        indexSelectedItem: this.indexSelectedItem,
+        indexTvMazeSeries: indexTvMazeSeries
       }
     })
   }
