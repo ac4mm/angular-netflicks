@@ -58,10 +58,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   genresCoverImagesTvShows$: Observable<string[]>;
 
   //Seasons
-  numbersOfSeasonsKeepWatching = [];
-  numbersOfSeasonsMyList = [];
-  numbersOfSeasonsTopRatedMovies = [];
-  numbersOfSeasonsTvShows = [];
+  numbersOfSeasonsKeepWatching$: Observable<string[]>;
+  numbersOfSeasonsMyList$: Observable<string[]>;;
+  numbersOfSeasonsTopRatedMovies$: Observable<string[]>;;
+  numbersOfSeasonsTvShows$: Observable<string[]>;;
 
   season: string;
   episode: string;
@@ -72,10 +72,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   displayModal: boolean;
   checkIconShow: boolean = true;
   speakerUpIconShow: boolean = true;
-
-  //Dropdown
-  seasonSelector: any;
-  seasonSelected: any;
 
   customCarretDownIcon = 'pi pi-caret-down';
 
@@ -108,19 +104,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.genresCoverImagesTopRatedMovies$ = this.getAllGenresById$(this.coverIndexTopRatedMovies);
     this.genresCoverImagesTvShows$ = this.getAllGenresById$(this.coverIndexTvShows);
 
-    //Get all seasons by id coverImages
-    this.getAllNumbersOfSeasonsById(this.coverIndexImgKeepWatching, this.numbersOfSeasonsKeepWatching);
-    this.getAllNumbersOfSeasonsById(this.coverIndexImgMyList, this.numbersOfSeasonsMyList);
-    this.getAllNumbersOfSeasonsById(this.coverIndexTopRatedMovies, this.numbersOfSeasonsTopRatedMovies);
-    this.getAllNumbersOfSeasonsById(this.coverIndexTvShows, this.numbersOfSeasonsTvShows);
-
-    this.seasonSelector = [
-      { name: 'Season 1', code: 'S1' },
-      { name: 'Season 2', code: 'S2' }
-    ];
-
-    //Select first item dropdown
-    this.seasonSelected = this.seasonSelector[0];
+    //Number of seasons by id
+    this.numbersOfSeasonsKeepWatching$ = this.getAllNumbersOfSeasonsById$(this.coverIndexImgKeepWatching);
+    this.numbersOfSeasonsMyList$ = this.getAllNumbersOfSeasonsById$(this.coverIndexImgMyList);
+    this.numbersOfSeasonsTopRatedMovies$ = this.getAllNumbersOfSeasonsById$(this.coverIndexTopRatedMovies);
+    this.numbersOfSeasonsTvShows$ = this.getAllNumbersOfSeasonsById$(this.coverIndexTvShows);
   }
 
   ngOnDestroy() {
@@ -150,21 +138,26 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
     return from(coverIndexImg).pipe(
-      concatMap((item) => this.movies.searchMainInfoMovie(item).pipe(map((items) => {
-        finalGenreSeasons.push(items.genres);
+      concatMap((indexImg) => this.movies.searchMainInfoMovie(indexImg).pipe(map((item) => {
+        finalGenreSeasons.push(item.genres);
         return finalGenreSeasons;
       }))),
       shareReplay(1)
     )
   }
 
-  getAllNumbersOfSeasonsById(coverIndexArr: number[], seasonsArr: number[]) {
-    for (let i = 0; i < coverIndexArr.length; i++) {
-      this.movies.searchNumberSeasonsById(coverIndexArr[i]).subscribe((seasons) => {
-        seasonsArr.push(seasons.length);
-      })
-    }
+  getAllNumbersOfSeasonsById$(coverIndexImg: number[]): Observable<any[]> {
+    let finalNumberSeasons = [];
+
+    return from(coverIndexImg).pipe(
+      concatMap((indexImg) => this.movies.searchNumberSeasonsById(indexImg).pipe(map((seasons) => {
+        finalNumberSeasons.push([seasons.length]);
+        return finalNumberSeasons;
+      }))),
+      shareReplay(1)
+    )
   }
+
 
   showModalDialog(coverImage: any, index: number) {
     this.indexSelectedItem = index;

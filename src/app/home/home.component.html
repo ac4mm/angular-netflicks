@@ -195,8 +195,8 @@
               <div class="maturity-rating">
                 <span class="rating-number">{{ ratingNumberCover[i] }}+</span>
               </div>
-              <div class="duration">
-                <span>{{ numbersOfSeasonsKeepWatching[i] }} seasons</span>
+              <div class="duration" *ngFor="let season of (numbersOfSeasonsKeepWatching$ | async)?.[i]">
+                <span>{{ season }} seasons</span>
               </div>
               <div class="player-feature-badge">
                 <span>HD</span>
@@ -316,8 +316,8 @@
               <div class="maturity-rating">
                 <span class="rating-number">{{ ratingNumberCover[i] }}+</span>
               </div>
-              <div class="duration">
-                <span>{{ numbersOfSeasonsMyList[i] }} seasons</span>
+              <div class="duration" *ngFor="let season of (numbersOfSeasonsMyList$ | async)?.[i]">
+                <span>{{ season }} seasons</span>
               </div>
               <div class="player-feature-badge">
                 <span>HD</span>
@@ -438,8 +438,8 @@
               <div class="maturity-rating">
                 <span class="rating-number">{{ ratingNumberCover[i] }}+</span>
               </div>
-              <div class="duration">
-                <span>{{ numbersOfSeasonsTopRatedMovies[i] }} seasons</span>
+              <div class="duration" *ngFor="let season of (numbersOfSeasonsTopRatedMovies$ | async)?.[i]">
+                <span>{{ season }} seasons</span>
               </div>
               <div class="player-feature-badge">
                 <span>HD</span>
@@ -560,8 +560,8 @@
               <div class="maturity-rating">
                 <span class="rating-number">{{ ratingNumberCover[i] }}+</span>
               </div>
-              <div class="duration">
-                <span>{{ numbersOfSeasonsTvShows[i] }} seasons</span>
+              <div class="duration" *ngFor="let season of (numbersOfSeasonsTvShows$ | async)?.[i]">
+                <span>{{ season }} seasons</span>
               </div>
               <div class="player-feature-badge">
                 <span>HD</span>
