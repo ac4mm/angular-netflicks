@@ -196,18 +196,10 @@
   min-width: 4em;
   position: relative;
   font-size: 1.5em;
-  background-color: rgb(36, 36, 36);
   padding: 0.1em 1.1em;
-  color: white;
   cursor: pointer;
   border: 0.1em solid rgb(77, 77, 77);
   border-radius: 0.2em;
-
-  .p-dropdown-panel .p-dropdown-items .p-dropdown-item,
-  .p-dropdown-panel .p-dropdown-items .p-dropdown-empty-message {
-    background-color: rgb(36, 36, 36);
-    color: white !important;
-  }
 
   .p-dropdown-panel .p-dropdown-items .p-dropdown-item:hover {
     background-color: #424242 !important;
@@ -224,6 +216,15 @@
     font-size: 20px;
     font-weight: 600;
   }
+}
+
+::ng-deep .p-dropdown,
+::ng-deep .p-dropdown-items-wrapper,
+::ng-deep .p-dropdown-item,
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item,
+.p-dropdown-panel .p-dropdown-items .p-dropdown-empty-message {
+  background-color: rgb(36, 36, 36);
+  color: white !important;
 }
 
 ::ng-deep
@@ -325,7 +326,6 @@
   position: absolute;
   z-index: 2;
 }
-
 
 .previewModal-player-wrapper {
   .btn-circle {

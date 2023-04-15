@@ -6,7 +6,7 @@ import {
   ElementRef,
   Input,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription, takeUntil } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { SelectUserService } from '../shared/services/select-user.service';
 
@@ -24,6 +24,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private statusUserSub: Subscription;
   private idUserSub: Subscription;
 
+  private destroy$ = new Subject<void>();
+
   searchBox: any = document.getElementsByClassName('search-box');
 
   constructor(
@@ -33,15 +35,15 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.userSub = this.authService.user.subscribe((user) => {
+    this.userSub = this.authService.user$.pipe(takeUntil(this.destroy$)).subscribe((user) => {
       this.isAuthenticated = !!user;
     });
 
-    this.statusUserSub = this.selectUser.currentState.subscribe(
+    this.statusUserSub = this.selectUser.currentState$.pipe(takeUntil(this.destroy$)).subscribe(
       (state) => (this.isValidUser = !!state)
     );
 
-    this.idUserSub = this.selectUser.currentId.subscribe(
+    this.idUserSub = this.selectUser.currentId$.pipe(takeUntil(this.destroy$)).subscribe(
       (id) => (this.idUserMaster = id)
     );
   }
@@ -77,6 +79,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.statusUserSub.unsubscribe();
     this.selectUser.currState();
     this.idUserSub.unsubscribe();
+
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   onChangeUser(idUser: number) {

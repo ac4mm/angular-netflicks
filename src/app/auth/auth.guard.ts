@@ -7,12 +7,14 @@ import {
 } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
-import { map, take, tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { map, take, takeUntil, tap } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
   isAuthenticated = false;
+  private destroy$ = new Subject<void>();
+  
   constructor(private authService: AuthService, private router: Router) { }
 
   canActivate(
@@ -36,7 +38,7 @@ export class AuthGuard implements CanActivate {
         return this.router.createUrlTree(['/login']);
       }),
     ); */
-    this.authService.user.subscribe((user) => {
+    this.authService.user$.pipe(takeUntil(this.destroy$)).subscribe((user) => {
       this.isAuthenticated = !!user;
     });
     return this.isAuthenticated;

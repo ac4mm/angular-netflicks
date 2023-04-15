@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SelectUserService } from 'src/app/shared/services/select-user.service';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-profile-gate',
@@ -15,14 +15,16 @@ export class ProfileGateComponent implements OnInit, OnDestroy {
   private statusUserSub: Subscription;
   private idUserSub: Subscription;
 
+  private destroy$ = new Subject<void>();
+
   constructor(private statusUser: SelectUserService) {}
 
   ngOnInit(): void {
-    this.statusUserSub = this.statusUser.currentState.subscribe(
+    this.statusUserSub = this.statusUser.currentState$.pipe(takeUntil(this.destroy$)).subscribe(
       (state) => (this.isValidStatus = !!state)
     );
 
-    this.idUserSub = this.statusUser.currentId.subscribe(
+    this.idUserSub = this.statusUser.currentId$.pipe(takeUntil(this.destroy$)).subscribe(
       (id) => (this.idUser = id)
     );
   }

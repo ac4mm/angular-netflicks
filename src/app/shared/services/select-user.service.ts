@@ -6,8 +6,8 @@ export class SelectUserService {
   selectUser = new BehaviorSubject<boolean>(false);
   private idUserSubject = new BehaviorSubject<number>(0);
 
-  currentState = this.selectUser.asObservable();
-  currentId = this.idUserSubject.asObservable();
+  currentState$ = this.selectUser.asObservable();
+  currentId$ = this.idUserSubject.asObservable();
 
   //userLink: string;
 

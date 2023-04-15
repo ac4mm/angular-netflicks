@@ -2,11 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { SwiperOptions } from 'swiper';
 import { SelectUserService } from '../shared/services/select-user.service';
-import { Subscription, concatMap, from, map, of, shareReplay, switchMap, take, toArray } from 'rxjs';
+import { Subject, Subscription, concatMap, from, map, of, shareReplay, switchMap, take, toArray } from 'rxjs';
 import { MoviesService } from '../shared/services/movies.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PreviewModalContainerCover } from 'src/app/home/preview-modal-container-cover/preview-modal-container-cover.component';
-import { Observable } from "rxjs";
+import { Observable, takeUntil } from "rxjs";
 import { UtilitiesService } from 'src/app/shared/services/utilities.service';
 @Component({
   selector: 'app-home',
@@ -76,6 +76,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   customCarretDownIcon = 'pi pi-caret-down';
 
+  private destroy$ = new Subject<void>();
+
   constructor(
     public selectUser: SelectUserService,
     private movies: MoviesService,
@@ -84,7 +86,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.selectUserSub = this.selectUser.currentState.subscribe(
+    this.selectUserSub = this.selectUser.currentState$.pipe(takeUntil(this.destroy$)).subscribe(
       (state) => (this.isValidUser = !!state)
     );
 
@@ -116,6 +118,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.selectUserSub.unsubscribe();
     this.selectUser.currState();
+
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   getAllCoverImagesById$(coverIndexImg: number[]): Observable<any[]> {
@@ -201,20 +206,20 @@ export class HomeComponent implements OnInit, OnDestroy {
   getImageMovie(id: number) {
     this.movies.searchImagesMovie(id).pipe(
       map((images) => images.filter((image) => image.type === 'background'))
-    ).subscribe(images => {
+    ).pipe(takeUntil(this.destroy$)).subscribe(images => {
       this.tempImg = images[0].resolutions.original.url;
       this.coverImages.push(this.tempImg);
     })
   }
 
   getIdMovie(id: string) {
-    this.movies.getMovies(id).subscribe(movie => {
+    this.movies.getMovies(id).pipe(takeUntil(this.destroy$)).subscribe(movie => {
       this.movieDetails = movie;
     })
   }
 
   searchMovie(query: string) {
-    this.movies.searchMovie(query).subscribe(movie => {
+    this.movies.searchMovie(query).pipe(takeUntil(this.destroy$)).subscribe(movie => {
       this.movieDetails = movie;
     })
   }
@@ -222,6 +227,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   getEpisode(season: string, numb: string) {
     return this.movies
       .getEpisodeByNumber(this.movieDetails.id, season, numb)
+      .pipe(takeUntil(this.destroy$))
       .subscribe((episode) => {
         this.detailsEpisode = episode
         this.episodeImage = this.detailsEpisode.image.original

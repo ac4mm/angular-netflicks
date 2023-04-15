@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { BehaviorSubject, Observable, Subject, concatMap, filter, map, of, switchMap } from "rxjs";
+import { BehaviorSubject, Observable, Subject, concatMap, of, takeUntil } from "rxjs";
 import { MoviesService } from "src/app/shared/services/movies.service";
 import { UtilitiesService } from "src/app/shared/services/utilities.service";
 
@@ -15,7 +15,7 @@ import { UtilitiesService } from "src/app/shared/services/utilities.service";
   providers: [UtilitiesService]
 })
 export class PreviewModalContainerCover {
-  @Input() seasonSelected;
+  @Input() seasonSelected:any;
   @Input() seasonSelector: any = [];
   @Input() indexSelectedItem: any;
   @Input() ratingNumberCover: any;
@@ -28,6 +28,8 @@ export class PreviewModalContainerCover {
 
   seriesTvInfo$: Observable<any>;
   numberSeasonsTvShow$ = new BehaviorSubject<number>(0);
+
+  private destroy$ = new Subject<void>();
 
   constructor(
     public config: DynamicDialogConfig,
@@ -46,12 +48,17 @@ export class PreviewModalContainerCover {
   }
 
   ngAfterViewInit() {
-    this.numberSeasonsTvShow$.subscribe((item) => {
+    this.numberSeasonsTvShow$.pipe(takeUntil(this.destroy$)).subscribe((item) => {
       this.seasonSelector = this.definedDropdownSeasons(item);
       
       //Select first item dropdown
-      this.seasonSelected = this.seasonSelector[0];;;;
+      this.seasonSelected = this.seasonSelector[0];
     })
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   onClickClose() {
@@ -89,5 +96,9 @@ export class PreviewModalContainerCover {
       seasonSelector.push({ name: `Season ${i}`, code: `S${i}` },)
     }
     return seasonSelector;
+  }
+
+  onChangeSeason(item: any){
+    console.log(item.value);
   }
 }
