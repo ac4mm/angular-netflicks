@@ -225,7 +225,7 @@
 
       <!-- Container Episode selector -->
       <div class="episode-selector-container">
-        <div class="titleCardList-container" *ngFor="let series of (seriesTvInfo$ | async)?.[0]?.value;">
+        <div class="titleCardList-container" *ngFor="let series of (seriesTvInfo$ | async)?.[(seriesSelectedDropdown$ | async )]?.value;">
           <div class="titleCard-title-index">{{ series.number }}</div>
 
           <div class="titleCard-image-wrapper">

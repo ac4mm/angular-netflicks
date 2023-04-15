@@ -15,7 +15,7 @@ import { UtilitiesService } from "src/app/shared/services/utilities.service";
   providers: [UtilitiesService]
 })
 export class PreviewModalContainerCover {
-  @Input() seasonSelected:any;
+  @Input() seasonSelected: any;
   @Input() seasonSelector: any = [];
   @Input() indexSelectedItem: any;
   @Input() ratingNumberCover: any;
@@ -28,6 +28,7 @@ export class PreviewModalContainerCover {
 
   seriesTvInfo$: Observable<any>;
   numberSeasonsTvShow$ = new BehaviorSubject<number>(0);
+  seriesSelectedDropdown$ = new BehaviorSubject<number>(0);
 
   private destroy$ = new Subject<void>();
 
@@ -50,7 +51,7 @@ export class PreviewModalContainerCover {
   ngAfterViewInit() {
     this.numberSeasonsTvShow$.pipe(takeUntil(this.destroy$)).subscribe((item) => {
       this.seasonSelector = this.definedDropdownSeasons(item);
-      
+
       //Select first item dropdown
       this.seasonSelected = this.seasonSelector[0];
     })
@@ -98,7 +99,9 @@ export class PreviewModalContainerCover {
     return seasonSelector;
   }
 
-  onChangeSeason(item: any){
-    console.log(item.value);
+  onChangeSeason(item: any) {
+    const selectedSeries = item.value.code.substring(1, 2);
+    //Index start from 0
+    this.seriesSelectedDropdown$.next(selectedSeries - 1);
   }
 }
