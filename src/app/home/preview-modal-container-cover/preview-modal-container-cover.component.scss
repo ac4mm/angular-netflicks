@@ -142,6 +142,20 @@
           position: relative;
         }
 
+        .titleCard-image-wrapper svg {
+          position: absolute;
+          top: 25%;
+          left: 40%;
+        }
+
+        .titleCard-image-wrapper .play-icon-img {
+          visibility: hidden;
+        }
+
+        .titleCard-image-wrapper:hover .play-icon-img {
+          visibility:visible;
+        }
+
         .titleCardList-metadataWrapper {
           flex: 0 0 70%;
           font-size: 1em;
