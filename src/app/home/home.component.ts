@@ -7,11 +7,12 @@ import { MoviesService } from '../shared/services/movies.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PreviewModalContainerCover } from 'src/app/home/preview-modal-container-cover/preview-modal-container-cover.component';
 import { Observable } from "rxjs";
+import { UtilitiesService } from 'src/app/shared/services/utilities.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  providers: [DialogService]
+  providers: [DialogService, UtilitiesService]
 })
 export class HomeComponent implements OnInit, OnDestroy {
   public isValidUser: boolean = false;
@@ -78,7 +79,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     public selectUser: SelectUserService,
     private movies: MoviesService,
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    private utilitiesService: UtilitiesService
   ) { }
 
   ngOnInit(): void {
@@ -87,7 +89,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
 
     //Setting with random number, the match score
-    this.randMatchScore = Array.from({ length: this.coverIndexImgKeepWatching.length }, () => this.getRandomIntBetweenRange(64, 100))
+    this.randMatchScore = Array.from({ length: this.coverIndexImgKeepWatching.length }, () => this.utilitiesService.getRandomIntBetweenRange(64, 100))
 
     //setting rating number cover with distribution weight
     this.ratingNumberCover = this.getWeightedRandomNumberInArr(this.ratingNumberObject, 7);
@@ -124,7 +126,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       map((images) => images.filter((image) => image.type === 'background')),
       switchMap((images) => {
         //defined rand number in the range of background images
-        const randNumbBackgroundImg = this.getRandomInt(images.length);
+        const randNumbBackgroundImg = this.utilitiesService.getRandomInt(images.length);
 
         //Assign first background image to array
         finalCoverImages.push(images[randNumbBackgroundImg].resolutions.original.url);
@@ -185,52 +187,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     })
   }
 
-
-  /* UTILITIES */
-  //Getting a random integer
-  getRandomInt(max: number) {
-    return Math.floor(Math.random() * max);
-  }
-
-  //Getting a random integer between two values, inclusive
-  getRandomIntBetweenRange(min = 0, max = 100) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  }
-
-  getRandomRatingNumberFromArray(arr: any[]) {
-    // get random index value
-    const randomIndex = Math.floor(Math.random() * arr.length);
-
-    // get random item
-    return arr[randomIndex];
-  }
-
-  getRandomNumberFromArray(arr: any[]) {
-    // Shuffle array
-    const shuffled = arr.sort(() => 0.5 - Math.random());
-
-    // Get sub-array of first n elements after shuffled
-    return shuffled.slice(0, arr.length);
-  }
-
-  /* Pick a rand number in [0,1) and iterate over the weight specification summing the weights  
-    if the random number is less than the sum then return the associated value. 
-    */
-  getWeightedRandomNumber(objWithWeight: any) {
-    var i, sum = 0, r = Math.random();
-    for (i in objWithWeight) {
-      sum += objWithWeight[i];
-      if (r <= sum) return i;
-    }
-  }
-
   //Use prevision random algorithm with size
   getWeightedRandomNumberInArr(objWithWeight: any, size: number) {
     let arrWeightedRand = [];
     for (let i = 0; i < size; i++) {
-      arrWeightedRand.push(this.getWeightedRandomNumber(objWithWeight))
+      arrWeightedRand.push(this.utilitiesService.getWeightedRandomNumber(objWithWeight))
     }
 
     return arrWeightedRand;
