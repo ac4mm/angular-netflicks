@@ -38,7 +38,7 @@ img {
   .title-slide,
   p,
   h3 {
-    font-size: 22px;
+    font-size: 1.4vw;
   }
 }
 
@@ -64,7 +64,7 @@ img {
 /**Animation swiper ******************************/
 
 .title-slide {
-  font-size: 22px;
+  font-size: 1.4vw;
   margin-left: 1px;
   font-weight: bold;
   margin-top: -5px;
@@ -186,8 +186,8 @@ img {
   align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
-  height: 1.8rem;
-  width: 1.8rem;
+  width: 1.7vw;
+  height: 1.7vw;
 }
 
 .btn-circle:hover {
@@ -564,6 +564,10 @@ img {
   margin-bottom: 0.5vw;
 }
 
+.play-btn {
+  width: 8vw;
+}
+
 .more-info-btn {
   background-color: rgba(109, 109, 110, 0.7);
   color: white;
@@ -576,13 +580,22 @@ img {
 }
 
 .custom-btn {
-  width: 11vw;
+  width: 10vw;
   height: 3vw;
   margin-right: 3%;
 }
 
 .custom-btn:hover {
-  background-color: #c1c2c2;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.custom-btn:active,
+.custom-btn:focus {
+  border: 0.1em solid #000;
+}
+
+.more-info-btn:hover {
+  background-color: rgba(109, 109, 110, 0.4);
 }
 
 /***************Footer    ***********/

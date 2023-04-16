@@ -17,11 +17,13 @@
 }
 
 .navbar-brand {
-  width: 140px;
-  height: 55px;
+  height: 56px;
+  width: auto;
   cursor: pointer;
   margin-left: 20px;
+  margin-left: 20px;
 }
+
 
 .navbar-scrolled {
   background-color: #141414;
@@ -221,13 +223,19 @@
 }
 
 .dropdown-img {
-  width: 30px;
   margin-top: -3px;
 }
 
 .dropdown-img-item {
   width: 35px;
   margin-right: 15px;
+}
+
+.dropdown-img,
+.dropdown-img-item {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
 }
 
 .account-triangle-up {
@@ -307,10 +315,10 @@
 }
 
 @media screen and (max-width: 950px) {
-  .navbar-brand {
+  /* .navbar-brand {
     width: 110px;
     height: 45px;
-  }
+  } */
 }
 /**************************************/
 /* 
