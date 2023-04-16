@@ -27,6 +27,7 @@ export class PreviewModalContainerCover {
   @Input() displayModal: any;
 
   seriesTvInfo$: Observable<any>;
+  seriesTvMainInfoDetail$: Observable<any>;
   numberSeasonsTvShow$ = new BehaviorSubject<number>(0);
   seriesSelectedDropdown$ = new BehaviorSubject<number>(0);
 
@@ -46,6 +47,7 @@ export class PreviewModalContainerCover {
     console.log(this.config.data.indexTvMazeSeries);
 
     this.seriesTvInfo$ = this.getAllSeriesTvInfo$(this.config.data.indexTvMazeSeries);
+    this.seriesTvMainInfoDetail$ = this.movies.searchMainInfoMovie(this.config.data.indexTvMazeSeries);
   }
 
   ngAfterViewInit() {

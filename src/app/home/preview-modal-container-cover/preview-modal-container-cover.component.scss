@@ -1,3 +1,10 @@
+@font-face {
+  font-family: Aestetico-thin;
+  src: url("/assets/font/Aestetico-thin.otf");
+  font-family: Aestetico-light;
+  src: url("/assets/font/Aestetico-light.otf");
+}
+
 /* Dialog PrimeNg */
 ::ng-deep .p-dialog {
   left: auto;
@@ -186,7 +193,8 @@
 
   .about-wrapper {
     background-color: #181818;
-    padding: 2em 0 2em 0;
+    padding: 2em 0;
+    padding-bottom: 4em;
 
     .about-header {
       .previewModal-section-header {
@@ -195,9 +203,29 @@
         margin-bottom: 20px;
         margin-top: 48px;
       }
+
+      .previewModal-section-about {
+        font-family: "Aestetico-light";
+      }
     }
 
     .about-container {
+      font-family: "Aestetico-light";
+      
+      .previewModal-tags {
+        font-size: 14px;
+        line-height: 20px;
+        margin: 0.5em 0.5em 0.5em 0;
+        word-break: break-word;
+
+        .previewModal-tags-label {
+          color: #777;
+        }
+
+        .tag-item {
+          margin-left: 0.3em;
+        }
+      }
     }
   }
 }

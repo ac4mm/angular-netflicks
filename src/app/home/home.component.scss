@@ -151,7 +151,7 @@ img {
 }
 
 .arrow-down {
-  float: right;
+  margin-left: auto !important;
 }
 
 .icon-wrapper-dialog {
@@ -168,18 +168,26 @@ img {
 
 .btn-circle {
   background-color: rgba(42, 42, 42, 0.6);
-  border-radius: 24px;
-  padding: 8px;
-  margin: 0.25em;
-  border: 2px solid rgba(255, 255, 255, 0.7);
 }
 
 .btn-circle-white {
   background-color: white;
+}
+
+.btn-circle,
+.btn-circle-white {
   border-radius: 24px;
   padding: 8px;
   margin: 0.25em;
   border: 2px solid rgba(255, 255, 255, 0.7);
+
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  height: 1.8rem;
+  width: 1.8rem;
 }
 
 .btn-circle:hover {
@@ -344,7 +352,6 @@ img {
   display: block;
 }
 
-
 /***************SwiperJs container */
 .swiper-slide:hover .card-img {
   border: 1px solid black;
@@ -427,6 +434,11 @@ img {
 .card-img,
 .card-details {
   border-radius: 4px;
+}
+
+.card-icons {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .container-fluid:hover .swiper-wrapper:not(:hover) {

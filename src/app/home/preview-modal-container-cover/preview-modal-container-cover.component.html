@@ -1,10 +1,10 @@
 <!-- Close dialog -->
 <div class="previewModal-container-close">
-  <div class="previewModal-close">
+  <div class="previewModal-player-wrapper previewModal-close">
     <button class="btn-circle" (click)="onClickClose()">
       <svg
-        width="65%"
-        height="28"
+        width="16"
+        height="16"
         viewBox="0 0 24 24"
         fill="#fff"
         xmlns="http://www.w3.org/2000/svg"
@@ -269,19 +269,25 @@
     <!-- About Film -->
     <div class="about-wrapper">
       <div class="about-header">
-        <h3 class="previewModal-section-header">About</h3>
+        <h3 class="previewModal-section-header"><span class="previewModal-section-about">About</span> {{(this.seriesTvMainInfoDetail$ | async)?.name}}</h3>
       </div>
 
-      <div class="about-container"></div>
+      <div class="about-container">
+        <div class="previewModal-tags">
+          <span class="previewModal-tags-label">Creators:</span><a class="tag-item">{{(this.seriesTvMainInfoDetail$ | async)?.network?.name}}</a>
+        </div>
+        <div class="previewModal-tags">
+          <span class="previewModal-tags-label">Cast:</span><a class="tag-item">Test</a>
+        </div>
+        <div class="previewModal-tags">
+          <span class="previewModal-tags-label">Genres:</span><a class="tag-item">{{(this.seriesTvMainInfoDetail$ | async)?.genres}}</a>
+        </div>
+        <div class="previewModal-tags">
+          <span class="previewModal-tags-label">Maturity Rating:</span><a class="tag-item">Test</a>
+        </div>
+      </div>
     </div>
 
-    <!-- MOCK DATA -->
-    <p class="m-0">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.
-    </p>
   </div>
 </div>
 
