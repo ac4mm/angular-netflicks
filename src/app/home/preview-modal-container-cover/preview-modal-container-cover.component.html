@@ -186,7 +186,17 @@
         <div class="about-container">
           <div class="previewModal-tags">
             <span class="previewModal-tags-label">Cast:</span
-            ><a class="tag-item">Test</a>
+            ><a
+              class="tag-item"
+              *ngFor="
+                let personCast of peopleCastSeries$ | async;
+                let i = index
+              "
+              >{{ personCast }}
+              {{
+                i === (peopleCastSeries$ | async)?.length - 1 ? "" : ",&nbsp;"
+              }}</a
+            >
           </div>
 
           <div class="previewModal-tags">
@@ -241,12 +251,17 @@
               <a
                 class="dropdown-item"
                 *ngFor="
-                  let item of this.definedArrayDropdownSeasons(
+                  let index of this.definedArrayDropdownSeasons(
                     (this.finalArrayTvInfo$ | async)?.length
                   )
                 "
-                (click)="onSelect(item)"
-                >Seasons {{ item }} <span class="episodes-dd">( {{(this.finalArrayTvInfo$ |async)?.[item - 1]?.value?.length}} Episodes)</span>
+                (click)="onSelectSeason(index)"
+                >Seasons {{ index }}
+                <span class="episodes-dd"
+                  >(
+                  {{(this.finalArrayTvInfo$ |async)?.[index - 1]?.value?.length}}
+                  Episodes)</span
+                >
               </a>
             </div>
           </div>

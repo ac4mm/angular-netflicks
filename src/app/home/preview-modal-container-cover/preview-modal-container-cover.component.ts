@@ -30,6 +30,7 @@ export class PreviewModalContainerCover {
   seriesTvMainInfoDetail$: Observable<any>;
   finalArrayTvInfo$ = new BehaviorSubject<any>([]);
   seriesSelectedDropdown$ = new BehaviorSubject<number>(0);
+  peopleCastSeries$: Observable<string[]>;
 
   private destroy$ = new Subject<void>();
 
@@ -44,14 +45,12 @@ export class PreviewModalContainerCover {
     this.coverImagePreviewModal = this.config.data.coverImagePreviewModal;
     this.indexSelectedItem = this.config.data.indexSelectedItem;
     this.randMatchScore = this.config.data.randMatchScore;
-    /* console.log(this.config.data.indexTvMazeSeries); */
+    /* console.log("Selected show index:", this.config.data.indexTvMazeSeries); */
 
     this.seriesTvInfo$ = this.getAllSeriesTvInfo$(this.config.data.indexTvMazeSeries);
     this.seriesTvMainInfoDetail$ = this.movies.searchMainInfoMovie(this.config.data.indexTvMazeSeries);
 
-   /*  this.getAllPeopleCastById$(this.config.data.indexTvMazeSeries).subscribe((item) => {
-      console.log(item);
-    }) */
+    this.peopleCastSeries$ = this.getAllPeopleCastById$(this.config.data.indexTvMazeSeries);
   }
 
   ngAfterViewInit() {
@@ -91,7 +90,7 @@ export class PreviewModalContainerCover {
     );
   }
 
-  definedArrayDropdownSeasons(size: number){
+  definedArrayDropdownSeasons(size: number) {
     let seasonSelector = [];
     for (let i = 1; i <= size; i++) {
       seasonSelector.push(i)
@@ -105,20 +104,20 @@ export class PreviewModalContainerCover {
     this.seriesSelectedDropdown$.next(selectedSeries - 1);
   }
 
-  getAllPeopleCastById$(coverIndexImg: number){
-    let finalPeopleCast = [];
+  getAllPeopleCastById$(coverIndexImg: number) {
 
-   /*  return this.movies.searchCastById(coverIndexImg).pipe(
-      filter((items) => items.name)
-    ) */
-
-    return this.movies.searchCastById(coverIndexImg);
+    return this.movies.searchCastById(coverIndexImg).pipe(
+      concatMap((items) => {
+        //Used Set to remove duplicate
+        return of([...new Set(items.map((item) => item.person.name))] as string[]);
+      })
+    );
   }
 
-  onSelect(item: any){
-    console.log(item);
-    this.seasonSelected = item;
+  onSelectSeason(index: number) {
+    this.seasonSelected = index;
+
     //Index start from 0
-    this.seriesSelectedDropdown$.next(item - 1);
+    this.seriesSelectedDropdown$.next(index - 1);
   }
 }
