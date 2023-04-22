@@ -186,17 +186,7 @@
         <div class="about-container">
           <div class="previewModal-tags">
             <span class="previewModal-tags-label">Cast:</span
-            ><a
-              class="tag-item"
-              *ngFor="
-                let personCast of peopleCastSeries$ | async;
-                let i = index
-              "
-              >{{ personCast }}
-              {{
-                i === (peopleCastSeries$ | async)?.length - 1 ? "" : ",&nbsp;"
-              }}</a
-            >
+            ><a class="tag-item" *ngFor="let personCast of (peopleCastSeries$ |async);let i = index">{{personCast}}{{i === (peopleCastSeries$ |async)?.length - 1 ? '' : ',&nbsp;' }}</a>
           </div>
 
           <div class="previewModal-tags">
@@ -329,7 +319,7 @@
         </div>
         <div class="previewModal-tags">
           <span class="previewModal-tags-label">Cast:</span
-          ><a class="tag-item">Test</a>
+          ><a class="tag-item" *ngFor="let personCast of (peopleCastSeries$ |async);let i = index">{{personCast}}{{i === (peopleCastSeries$ |async)?.length - 1 ? '' : ',&nbsp;' }}</a>
         </div>
         <div class="previewModal-tags">
           <span class="previewModal-tags-label">Genres:</span
