@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { BehaviorSubject, Observable, Subject, concatMap, of, takeUntil } from "rxjs";
+import { BehaviorSubject, Observable, Subject, concatMap, filter, of, takeUntil } from "rxjs";
 import { MoviesService } from "src/app/shared/services/movies.service";
 import { UtilitiesService } from "src/app/shared/services/utilities.service";
 
@@ -15,7 +15,7 @@ import { UtilitiesService } from "src/app/shared/services/utilities.service";
   providers: [UtilitiesService]
 })
 export class PreviewModalContainerCover {
-  @Input() seasonSelected: any;
+  @Input() seasonSelected: number = 1;
   @Input() seasonSelector: any = [];
   @Input() indexSelectedItem: any;
   @Input() ratingNumberCover: any;
@@ -48,14 +48,21 @@ export class PreviewModalContainerCover {
 
     this.seriesTvInfo$ = this.getAllSeriesTvInfo$(this.config.data.indexTvMazeSeries);
     this.seriesTvMainInfoDetail$ = this.movies.searchMainInfoMovie(this.config.data.indexTvMazeSeries);
+
+    this.getAllPeopleCastById$(this.config.data.indexTvMazeSeries).subscribe((item) => {
+      console.log(item);
+    })
   }
 
   ngAfterViewInit() {
     this.numberSeasonsTvShow$.pipe(takeUntil(this.destroy$)).subscribe((item) => {
       this.seasonSelector = this.definedDropdownSeasons(item);
+      /* this.seasonSelected = item; */
+
+      console.log(this.definedArrayDropdownSeasons(item))
 
       //Select first item dropdown
-      this.seasonSelected = this.seasonSelector[0];
+     /*  this.seasonSelected = this.seasonSelector[0]; */
     })
   }
 
@@ -101,9 +108,34 @@ export class PreviewModalContainerCover {
     return seasonSelector;
   }
 
+  definedArrayDropdownSeasons(size: number){
+    let seasonSelector = [];
+    for (let i = 1; i <= size; i++) {
+      seasonSelector.push(i)
+    }
+    return seasonSelector;
+  }
+
   onChangeSeason(item: any) {
     const selectedSeries = item.value.code.substring(1, 2);
     //Index start from 0
     this.seriesSelectedDropdown$.next(selectedSeries - 1);
+  }
+
+  getAllPeopleCastById$(coverIndexImg: number){
+    let finalPeopleCast = [];
+
+   /*  return this.movies.searchCastById(coverIndexImg).pipe(
+      filter((items) => items.name)
+    ) */
+
+    return this.movies.searchCastById(coverIndexImg);
+  }
+
+  onSelect(item: any){
+    console.log(item);
+    this.seasonSelected = item;
+    //Index start from 0
+    this.seriesSelectedDropdown$.next(item - 1);
   }
 }

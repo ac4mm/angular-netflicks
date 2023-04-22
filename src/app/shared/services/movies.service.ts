@@ -38,4 +38,8 @@ export class MoviesService {
   searchEpisodesById(id: number) {
     return this.httpClient.get<any>(`${this.basePath}/shows/${id}/episodes`);
   }
+
+  searchCastById(id: number) {
+    return this.httpClient.get<any>(`${this.basePath}/shows/${id}/cast`);
+  }
 }
