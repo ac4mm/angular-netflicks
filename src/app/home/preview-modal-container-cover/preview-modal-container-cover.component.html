@@ -176,25 +176,30 @@
         </div>
 
         <div class="preview-modal-synopsis">
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint
+          <div [innerHTML]="(this.seriesTvMainInfoDetail$ | async)?.summary">
+            {{ (this.seriesTvMainInfoDetail$ | async)?.summary }}
           </div>
         </div>
       </div>
 
       <div class="previewModal-right">
-        <div>
-          <span>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </span>
+        <div class="about-container">
+          <div class="previewModal-tags">
+            <span class="previewModal-tags-label">Cast:</span
+            ><a class="tag-item">Test</a>
+          </div>
+          
+          <div class="previewModal-tags">
+            <span class="previewModal-tags-label">Genres:</span
+            ><a class="tag-item">{{
+              (this.seriesTvMainInfoDetail$ | async)?.genres
+            }}</a>
+          </div>
+          
+          <div class="previewModal-tags">
+            <span class="previewModal-tags-label">This show is:</span
+            ><a class="tag-item">Test</a>
+          </div>
         </div>
       </div>
     </div>
@@ -223,76 +228,86 @@
         </div>
       </div>
 
-      <!-- Container Episode selector -->
-      <div class="episode-selector-container">
-        <div
-          class="titleCardList-container"
-          *ngFor="let series of (seriesTvInfo$ | async)?.[(seriesSelectedDropdown$ | async )]?.value;"
-        >
-          <div class="titleCard-title-index">{{ series.number }}</div>
+        <!-- Container Episode selector -->
+        <div class="episode-selector-container">
+          <div
+            class="titleCardList-container"
+            *ngFor="let series of (seriesTvInfo$ | async)?.[(seriesSelectedDropdown$ | async )]?.value;"
+          >
+            <div class="titleCard-title-index">{{ series.number }}</div>
 
-          <div class="titleCard-image-wrapper">
-            <img [src]="series.image?.medium" />
-            <div class="play-icon-img">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                stroke="white"
-                stroke-width="0.3"
-              >
-                <path
-                  d="M4 2.69127C4 1.93067 4.81547 1.44851 5.48192 1.81506L22.4069 11.1238C23.0977 11.5037 23.0977 12.4963 22.4069 12.8762L5.48192 22.1849C4.81546 22.5515 4 22.0693 4 21.3087V2.69127Z"
-                  fill="#fff"
-                ></path>
-              </svg>
+            <div class="titleCard-image-wrapper">
+              <img [src]="series.image?.medium" />
+              <div class="play-icon-img">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  stroke="white"
+                  stroke-width="0.3"
+                >
+                  <path
+                    d="M4 2.69127C4 1.93067 4.81547 1.44851 5.48192 1.81506L22.4069 11.1238C23.0977 11.5037 23.0977 12.4963 22.4069 12.8762L5.48192 22.1849C4.81546 22.5515 4 22.0693 4 21.3087V2.69127Z"
+                    fill="#fff"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+
+            <div class="titleCardList-metadataWrapper">
+              <div class="titleCardList-title">
+                <span class="titleCardList-title-text">{{ series.name }}</span>
+                <span class="duration">{{ series.runtime }}m</span>
+              </div>
+
+              <div
+                class="titleCardList-synopsis"
+                [innerHTML]="series.summary"
+              ></div>
             </div>
           </div>
+        </div>
+      </div>
 
-          <div class="titleCardList-metadataWrapper">
-            <div class="titleCardList-title">
-              <span class="titleCardList-title-text">{{ series.name }}</span>
-              <span class="duration">{{ series.runtime }}m</span>
-            </div>
+      <!-- About Film -->
+      <div class="about-wrapper">
+        <div class="about-header">
+          <h3 class="previewModal-section-header">
+            <span class="previewModal-section-about">About</span>
+            {{ (this.seriesTvMainInfoDetail$ | async)?.name }}
+          </h3>
+        </div>
 
-            <div
-              class="titleCardList-synopsis"
-              [innerHTML]="series.summary"
-            ></div>
+        <div class="about-container">
+          <div class="previewModal-tags">
+            <span class="previewModal-tags-label">Creators:</span
+            ><a class="tag-item">{{
+              (this.seriesTvMainInfoDetail$ | async)?.network?.name
+            }}</a>
+          </div>
+          <div class="previewModal-tags">
+            <span class="previewModal-tags-label">Cast:</span
+            ><a class="tag-item">Test</a>
+          </div>
+          <div class="previewModal-tags">
+            <span class="previewModal-tags-label">Genres:</span
+            ><a class="tag-item">{{
+              (this.seriesTvMainInfoDetail$ | async)?.genres
+            }}</a>
+          </div>
+          <div class="previewModal-tags">
+            <span class="previewModal-tags-label">Maturity Rating:</span
+            ><a class="tag-item">Test</a>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- About Film -->
-    <div class="about-wrapper">
-      <div class="about-header">
-        <h3 class="previewModal-section-header"><span class="previewModal-section-about">About</span> {{(this.seriesTvMainInfoDetail$ | async)?.name}}</h3>
-      </div>
-
-      <div class="about-container">
-        <div class="previewModal-tags">
-          <span class="previewModal-tags-label">Creators:</span><a class="tag-item">{{(this.seriesTvMainInfoDetail$ | async)?.network?.name}}</a>
-        </div>
-        <div class="previewModal-tags">
-          <span class="previewModal-tags-label">Cast:</span><a class="tag-item">Test</a>
-        </div>
-        <div class="previewModal-tags">
-          <span class="previewModal-tags-label">Genres:</span><a class="tag-item">{{(this.seriesTvMainInfoDetail$ | async)?.genres}}</a>
-        </div>
-        <div class="previewModal-tags">
-          <span class="previewModal-tags-label">Maturity Rating:</span><a class="tag-item">Test</a>
-        </div>
-      </div>
-    </div>
-
   </div>
-</div>
 
-<ng-template pTemplate="footer">
-  <!-- <p-button
+  <ng-template pTemplate="footer">
+    <!-- <p-button
     icon="pi pi-check"
     (click)="displayModal = false"
     label="Yes"
@@ -303,4 +318,4 @@
     (click)="displayModal = false"
     label="No"
   ></p-button> -->
-</ng-template>
+  </ng-template>
