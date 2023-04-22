@@ -211,22 +211,22 @@
 
     .about-container {
       font-family: "Aestetico-light";
-
-      .previewModal-tags {
-        font-size: 14px;
-        line-height: 20px;
-        margin: 0.5em 0.5em 0.5em 0;
-        word-break: break-word;
-
-        .previewModal-tags-label {
-          color: #777;
-        }
-
-        .tag-item {
-          margin-left: 0.3em;
-        }
-      }
     }
+  }
+}
+
+.previewModal-tags {
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0.5em 0.5em 0.5em 0;
+  word-break: break-word;
+
+  .previewModal-tags-label {
+    color: #777;
+  }
+
+  .tag-item {
+    margin-left: 0.3em;
   }
 }
 
@@ -283,6 +283,7 @@
   min-width: 4em;
   position: relative;
   font-size: 1.5em;
+  font-weight: 600;
   background-color: rgb(36, 36, 36);
   padding: 0.5em 1em;
   color: white;
@@ -290,8 +291,18 @@
   border-radius: 0.2em;
 }
 
+.dropdown-item {
+  font-size: 1em;
+  font-weight: 600;
+}
+
 .dropdown-toggle::after {
   margin-left: 1.5em !important;
+}
+
+.episodes-dd {
+  font-size: 14px;
+  font-weight: 400;
 }
 
 ::ng-deep

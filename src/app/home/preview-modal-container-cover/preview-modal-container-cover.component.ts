@@ -28,7 +28,7 @@ export class PreviewModalContainerCover {
 
   seriesTvInfo$: Observable<any>;
   seriesTvMainInfoDetail$: Observable<any>;
-  numberSeasonsTvShow$ = new BehaviorSubject<number>(0);
+  finalArrayTvInfo$ = new BehaviorSubject<any>([]);
   seriesSelectedDropdown$ = new BehaviorSubject<number>(0);
 
   private destroy$ = new Subject<void>();
@@ -44,26 +44,17 @@ export class PreviewModalContainerCover {
     this.coverImagePreviewModal = this.config.data.coverImagePreviewModal;
     this.indexSelectedItem = this.config.data.indexSelectedItem;
     this.randMatchScore = this.config.data.randMatchScore;
-    console.log(this.config.data.indexTvMazeSeries);
+    /* console.log(this.config.data.indexTvMazeSeries); */
 
     this.seriesTvInfo$ = this.getAllSeriesTvInfo$(this.config.data.indexTvMazeSeries);
     this.seriesTvMainInfoDetail$ = this.movies.searchMainInfoMovie(this.config.data.indexTvMazeSeries);
 
-    this.getAllPeopleCastById$(this.config.data.indexTvMazeSeries).subscribe((item) => {
+   /*  this.getAllPeopleCastById$(this.config.data.indexTvMazeSeries).subscribe((item) => {
       console.log(item);
-    })
+    }) */
   }
 
   ngAfterViewInit() {
-    this.numberSeasonsTvShow$.pipe(takeUntil(this.destroy$)).subscribe((item) => {
-      this.seasonSelector = this.definedDropdownSeasons(item);
-      /* this.seasonSelected = item; */
-
-      console.log(this.definedArrayDropdownSeasons(item))
-
-      //Select first item dropdown
-     /*  this.seasonSelected = this.seasonSelector[0]; */
-    })
   }
 
   ngOnDestroy() {
@@ -93,19 +84,11 @@ export class PreviewModalContainerCover {
 
         let finalArrayTvInfo = Array.from(finalSeriesTvInfo[0], ([key, value]) => ({ key, value }));
 
-        this.numberSeasonsTvShow$.next(finalArrayTvInfo.length);
+        this.finalArrayTvInfo$.next(finalArrayTvInfo);
 
         return of(finalArrayTvInfo);
       })
     );
-  }
-
-  definedDropdownSeasons(size: number) {
-    let seasonSelector = [];
-    for (let i = 1; i <= size; i++) {
-      seasonSelector.push({ name: `Season ${i}`, code: `S${i}` },)
-    }
-    return seasonSelector;
   }
 
   definedArrayDropdownSeasons(size: number){
