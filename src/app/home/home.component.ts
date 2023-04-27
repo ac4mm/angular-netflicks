@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 
 import { SwiperOptions } from 'swiper';
 import { SelectUserService } from '../shared/services/select-user.service';
@@ -8,6 +8,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PreviewModalContainerCover } from 'src/app/home/preview-modal-container-cover/preview-modal-container-cover.component';
 import { Observable, takeUntil } from "rxjs";
 import { UtilitiesService } from 'src/app/shared/services/utilities.service';
+import { YoutubeService } from 'src/app/shared/services/youtube.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -27,6 +28,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   indexSelectedItem: number;
   coverImagePreviewModal: string;
+
+  selectedIdMainTvMaze: number;
+
+  coverMainImageAndTypography$: Observable<string[]>;
 
   coverImgKeepWatching$: Observable<string[]>;
   coverImgMyList$: Observable<string[]>;
@@ -78,9 +83,20 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<void>();
 
+  @ViewChild('videoPlayer') videoPlayer: ElementRef;
+  videos = [];
+  videoClicked = false;
+  playerSettings: any;
+  public YT: any;
+  public video: any;
+  public player: any;
+
+  showVideoPreview: boolean = false;
+
   constructor(
     public selectUser: SelectUserService,
     private movies: MoviesService,
+    private youtubeService: YoutubeService,
     public dialogService: DialogService,
     private utilitiesService: UtilitiesService
   ) { }
@@ -90,11 +106,18 @@ export class HomeComponent implements OnInit, OnDestroy {
       (state) => (this.isValidUser = !!state)
     );
 
+    //Index Stranger Things
+    this.selectedIdMainTvMaze = 2993;
+
     //Setting with random number, the match score
     this.randMatchScore = Array.from({ length: this.coverIndexImgKeepWatching.length }, () => this.utilitiesService.getRandomIntBetweenRange(64, 100))
 
     //setting rating number cover with distribution weight
     this.ratingNumberCover = this.getWeightedRandomNumberInArr(this.ratingNumberObject, 7);
+
+    this.coverMainImageAndTypography$ = this.getCoverImageAndTypographyById$(this.selectedIdMainTvMaze, 10);
+
+    /* this.autoplayVideo(); */
 
     //Get all cover images by id
     this.coverImgKeepWatching$ = this.getAllCoverImagesById$(this.coverIndexImgKeepWatching);
@@ -113,6 +136,52 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.numbersOfSeasonsMyList$ = this.getAllNumbersOfSeasonsById$(this.coverIndexImgMyList);
     this.numbersOfSeasonsTopRatedMovies$ = this.getAllNumbersOfSeasonsById$(this.coverIndexTopRatedMovies);
     this.numbersOfSeasonsTvShows$ = this.getAllNumbersOfSeasonsById$(this.coverIndexTvShows);
+
+    /*  this.youtubeService.getVideosForChanel('UCuAXFkgsw1L7xaCfnd5JJOw', 1).subscribe((list) => {
+       console.log(list);
+       for(let el of list?.["items"]){
+         this.videos.push(el);
+       }
+     }) */
+
+    /* this.youtubeService.getVideosBySearchQuery('Rick Astley - Never Gonna Give You Up').subscribe((list) => {
+      console.log(list);
+      console.log(list?.["items"][0]);
+      this.videos.push(list?.["items"][0]);
+    }) */
+
+    /*  this.youtubeService.getVideoById('b9EkMc79ZSU').subscribe((list) => {
+       console.log(list);
+       console.log(list?.["items"][0]);
+       this.videos.push(list?.["items"][0]);
+     })
+ 
+     const tag = document.createElement('script');
+ 
+     tag.src = 'https://www.youtube.com/iframe_api';
+     document.body.appendChild(tag); */
+
+    /*   this.playerSettings = { 'showinfo': 0,'controls': 0, 'autohide': 1};
+      this.playerSettings = new window.YT.Player('player', {
+        height: '360',
+        width: '640',
+        playerVars: {
+          autohide: 1,
+          controls: 0,
+          showinfo: 0
+        }
+      }); */
+  }
+
+  autoplayVideo() {
+    setTimeout(() => {
+      this.showVideoPreview = true;
+    }, 2000)
+  }
+
+  startVideo(): void {
+    this.videoClicked = true;
+    this.videoPlayer.nativeElement.play();
   }
 
   ngOnDestroy() {
@@ -121,6 +190,23 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  getCoverImageAndTypographyById$(coverId: number, indexBackground: number = 0, indexTypography: number = 0): Observable<any[]> {
+    let finalCoverTypoImage = [];
+
+    return this.movies.searchImagesMovie(coverId).pipe(
+      map((images) => {
+        let arr = [];
+        arr.push(images.filter((image) => image.type === 'background'));
+        arr.push(images.filter((image) => image.type === 'typography'));
+
+        finalCoverTypoImage.push(arr[0][indexBackground]);
+        finalCoverTypoImage.push(arr[1][indexTypography]);
+
+        return finalCoverTypoImage;
+      }),
+    )
   }
 
   getAllCoverImagesById$(coverIndexImg: number[]): Observable<any[]> {
@@ -246,7 +332,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   onClickCheckIcon() {
     this.checkIconShow = !this.checkIconShow;
   }
-
 
   onClickSpeakerIcon() {
     this.speakerUpIconShow = !this.speakerUpIconShow;
