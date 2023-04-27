@@ -4,7 +4,6 @@ import { BehaviorSubject, Observable, Subject, concatMap, filter, of, takeUntil 
 import { MoviesService } from "src/app/shared/services/movies.service";
 import { UtilitiesService } from "src/app/shared/services/utilities.service";
 
-
 @Component({
   selector: 'app-preview-modal-container-cover',
   templateUrl: './preview-modal-container-cover.component.html',
@@ -31,6 +30,7 @@ export class PreviewModalContainerCover {
   finalArrayTvInfo$ = new BehaviorSubject<any>([]);
   seriesSelectedDropdown$ = new BehaviorSubject<number>(0);
   peopleCastSeries$: Observable<string[]>;
+  
 
   private destroy$ = new Subject<void>();
 
