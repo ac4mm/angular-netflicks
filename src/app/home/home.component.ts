@@ -9,6 +9,8 @@ import { PreviewModalContainerCover } from 'src/app/home/preview-modal-container
 import { Observable, takeUntil } from "rxjs";
 import { UtilitiesService } from 'src/app/shared/services/utilities.service';
 import { YoutubeService } from 'src/app/shared/services/youtube.service';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -83,22 +85,25 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<void>();
 
-  @ViewChild('videoPlayer') videoPlayer: ElementRef;
-  videos = [];
+  showVideoPreview: boolean = false;
+
+  srcURLStaticCover: SafeResourceUrl;
+
+  //TESTING
+  showVideo = true;
   videoClicked = false;
   playerSettings: any;
   public YT: any;
-  public video: any;
+  public video: any = 'b9EkMc79ZSU';
   public player: any;
-
-  showVideoPreview: boolean = false;
 
   constructor(
     public selectUser: SelectUserService,
     private movies: MoviesService,
     private youtubeService: YoutubeService,
     public dialogService: DialogService,
-    private utilitiesService: UtilitiesService
+    private utilitiesService: UtilitiesService,
+    public sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
@@ -117,7 +122,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.coverMainImageAndTypography$ = this.getCoverImageAndTypographyById$(this.selectedIdMainTvMaze, 10);
 
-    /* this.autoplayVideo(); */
+    this.autoplayVideo();
 
     //Get all cover images by id
     this.coverImgKeepWatching$ = this.getAllCoverImagesById$(this.coverIndexImgKeepWatching);
@@ -137,51 +142,73 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.numbersOfSeasonsTopRatedMovies$ = this.getAllNumbersOfSeasonsById$(this.coverIndexTopRatedMovies);
     this.numbersOfSeasonsTvShows$ = this.getAllNumbersOfSeasonsById$(this.coverIndexTvShows);
 
-    /*  this.youtubeService.getVideosForChanel('UCuAXFkgsw1L7xaCfnd5JJOw', 1).subscribe((list) => {
-       console.log(list);
-       for(let el of list?.["items"]){
-         this.videos.push(el);
-       }
-     }) */
-
-    /* this.youtubeService.getVideosBySearchQuery('Rick Astley - Never Gonna Give You Up').subscribe((list) => {
-      console.log(list);
-      console.log(list?.["items"][0]);
-      this.videos.push(list?.["items"][0]);
-    }) */
-
-    /*  this.youtubeService.getVideoById('b9EkMc79ZSU').subscribe((list) => {
-       console.log(list);
-       console.log(list?.["items"][0]);
-       this.videos.push(list?.["items"][0]);
-     })
- 
-     const tag = document.createElement('script');
- 
-     tag.src = 'https://www.youtube.com/iframe_api';
-     document.body.appendChild(tag); */
-
-    /*   this.playerSettings = { 'showinfo': 0,'controls': 0, 'autohide': 1};
-      this.playerSettings = new window.YT.Player('player', {
-        height: '360',
-        width: '640',
-        playerVars: {
-          autohide: 1,
-          controls: 0,
-          showinfo: 0
-        }
-      }); */
+    this.initScriptIFrame();
   }
+
+  initScriptIFrame() {
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.body.appendChild(tag);
+    window['onYouTubeIframeAPIReady'] = () => this.startVideo();
+  }
+
+  startVideo() {
+    this.player = new window['YT'].Player('player', {
+      videoId: this.video,
+      height: '100%',
+      width: '100%',
+      playerVars: {
+        autohide: 1,
+        controls: 0,
+        showinfo: 0,
+        autoplay: 1,
+        modestbranding: 1,
+        disablekb: 1,
+        rel: 0,
+        fs: 1,
+        playsinline: 1,
+        loop: 0
+      },
+      events: {
+        'onStateChange': this.onPlayerStateChange.bind(this),
+        'onReady': this.onPlayerReady.bind(this),
+      }
+    });
+
+  }
+
+  onPlayerReady(event) {
+    event.target.playVideo();
+    event.target.setPlaybackQuality('hd720');
+    console.log(event.target.getPlaybackQuality())
+  }
+
+  onPlayerStateChange(event) {
+    if (event.data == new window['YT'].PlayerState.BUFFERING) {
+      event.target.setPlaybackQuality('hd720');
+    }
+  }
+
 
   autoplayVideo() {
     setTimeout(() => {
       this.showVideoPreview = true;
+      /*  this.srcURLStaticCover = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/b9EkMc79ZSU?start=15&autoplay=1&mute=' + +this.speakerUpIconShow + '&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&vq=hd720');
+       console.log(this.srcURLStaticCover); */
     }, 2000)
   }
 
-  startVideo(): void {
-    this.videoClicked = true;
-    this.videoPlayer.nativeElement.play();
+
+  onClickSpeakerIcon() {
+    this.speakerUpIconShow = !this.speakerUpIconShow;
+    /*  if(this.srcURLStaticCover){
+       this.srcURLStaticCover = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/b9EkMc79ZSU?start=15&autoplay=1&mute=' + +this.speakerUpIconShow + '&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&vq=hd720');  
+     } */
+    if (this.player.isMuted()) {
+      this.player.unMute();
+    } else {
+      this.player.mute();
+    }
   }
 
   ngOnDestroy() {
@@ -331,10 +358,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onClickCheckIcon() {
     this.checkIconShow = !this.checkIconShow;
-  }
-
-  onClickSpeakerIcon() {
-    this.speakerUpIconShow = !this.speakerUpIconShow;
   }
 
   //Configuration SwiperJs

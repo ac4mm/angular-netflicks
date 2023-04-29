@@ -1,5 +1,9 @@
 <app-profile-gate *ngIf="!isValidUser"></app-profile-gate>
 
+<!-- <div *ngIf="showVideo" class="youtube-container">
+  <div id="player"></div>
+</div> -->
+
 <!-- Static Cover Image -->
 <div class="cover-image-wrapper">
   <img
@@ -7,17 +11,16 @@
     class="static-image image-layer"
     [src]="(this.coverMainImageAndTypography$ | async)?.[0]?.resolutions?.original?.url"
   />
-  <!--  <youtube-player width="100%" height="1200px" videoId="dQw4w9WgXcQ" [playerVars]="playerSettings"></youtube-player> -->
-
-  <!-- <div class="youtube-container" *ngIf="showVideoPreview">
-    <iframe
-      src="https://www.youtube.com/embed/b9EkMc79ZSU?start=15&autoplay=1&mute=0&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&vq=hd720"
+  <div class="youtube-container" *ngIf="showVideo">
+   <!--  <iframe
+      [src]="srcURLStaticCover"
       title="YouTube video player"
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen
-    ></iframe>
-  </div> -->
+    ></iframe> -->
+    <div id="player"></div>
+  </div>
 </div>
 
 <!-- cover Info Image -->
