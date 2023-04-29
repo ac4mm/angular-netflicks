@@ -78,8 +78,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   servicesCode: string = 'Service code';
 
   displayModal: boolean;
-  checkIconShow: boolean = true;
-  speakerUpIconShow: boolean = true;
+  showCheckIcon: boolean = true;
+  showSpeakerUpIcon: boolean = true;
+  showRefreshIcon: boolean = false;
 
   customCarretDownIcon = 'pi pi-caret-down';
 
@@ -94,7 +95,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   videoClicked = false;
   playerSettings: any;
   public YT: any;
-  public video: any = 'b9EkMc79ZSU';
+  public videoId: any;
   public player: any;
 
   constructor(
@@ -146,15 +147,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   initScriptIFrame() {
+    // 2. This code loads the IFrame Player API code asynchronously.
     const tag = document.createElement('script');
+
     tag.src = 'https://www.youtube.com/iframe_api';
     document.body.appendChild(tag);
-    window['onYouTubeIframeAPIReady'] = () => this.startVideo();
+    window['onYouTubeIframeAPIReady'] = () => this.onYouTubeIframeAPIReady('b9EkMc79ZSU');
   }
 
-  startVideo() {
+  // 3. This function creates an <iframe> (and YouTube player)
+  //    after the API code downloads.
+  onYouTubeIframeAPIReady(videoId: string) {
     this.player = new window['YT'].Player('player', {
-      videoId: this.video,
+      videoId: videoId,
       height: '100%',
       width: '100%',
       playerVars: {
@@ -165,45 +170,50 @@ export class HomeComponent implements OnInit, OnDestroy {
         modestbranding: 1,
         disablekb: 1,
         rel: 0,
-        fs: 1,
+        fs: 0,
         playsinline: 1,
-        loop: 0
+        loop: 0,
+        end: 5
       },
       events: {
-        'onStateChange': this.onPlayerStateChange.bind(this),
         'onReady': this.onPlayerReady.bind(this),
+        'onStateChange': this.onPlayerStateChange.bind(this)
       }
     });
-
   }
 
+  // 4. The API will call this function when the video player is ready.
   onPlayerReady(event) {
+    /* this.showVideoPreview = true; */
     event.target.playVideo();
-    event.target.setPlaybackQuality('hd720');
-    console.log(event.target.getPlaybackQuality())
   }
 
+  // 5. The API calls this function when the player's state changes.
   onPlayerStateChange(event) {
-    if (event.data == new window['YT'].PlayerState.BUFFERING) {
-      event.target.setPlaybackQuality('hd720');
+    if (event.target.getPlayerState() === 0) {
+      this.showRefreshIcon = true;
+      this.onClickSpeakerIcon();
+      console.log("video completed");
     }
+  }
+
+  onReplayVideo() {
+    this.showRefreshIcon = false;
+    this.player.seekTo(0);
+    this.player.playVideo();
   }
 
 
   autoplayVideo() {
     setTimeout(() => {
       this.showVideoPreview = true;
-      /*  this.srcURLStaticCover = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/b9EkMc79ZSU?start=15&autoplay=1&mute=' + +this.speakerUpIconShow + '&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&vq=hd720');
-       console.log(this.srcURLStaticCover); */
     }, 2000)
   }
 
 
   onClickSpeakerIcon() {
-    this.speakerUpIconShow = !this.speakerUpIconShow;
-    /*  if(this.srcURLStaticCover){
-       this.srcURLStaticCover = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/b9EkMc79ZSU?start=15&autoplay=1&mute=' + +this.speakerUpIconShow + '&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&vq=hd720');  
-     } */
+    this.showSpeakerUpIcon = !this.showSpeakerUpIcon;
+
     if (this.player.isMuted()) {
       this.player.unMute();
     } else {
@@ -357,7 +367,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   onClickCheckIcon() {
-    this.checkIconShow = !this.checkIconShow;
+    this.showCheckIcon = !this.showCheckIcon;
   }
 
   //Configuration SwiperJs
