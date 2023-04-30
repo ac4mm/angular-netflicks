@@ -30,7 +30,7 @@ export class PreviewModalContainerCover {
   finalArrayTvInfo$ = new BehaviorSubject<any>([]);
   seriesSelectedDropdown$ = new BehaviorSubject<number>(0);
   peopleCastSeries$: Observable<string[]>;
-  
+
 
   private destroy$ = new Subject<void>();
 
@@ -112,6 +112,21 @@ export class PreviewModalContainerCover {
         return of([...new Set(items.map((item) => item.person.name))] as string[]);
       })
     );
+  }
+
+  getMoreCastPeople(peopleCast: string, index: number) {
+    if (index > 2) {
+      return;
+    }
+    return peopleCast + ",";
+  }
+
+  onClickScrollToMore() {
+    document.getElementById("more").scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest"
+    });
   }
 
   onSelectSeason(index: number) {

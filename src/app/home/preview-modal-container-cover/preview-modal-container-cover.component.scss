@@ -227,6 +227,18 @@
 
   .tag-item {
     margin-left: 0.3em;
+    font-family: "Aestetico-light";
+  }
+
+  .tag-item:hover,
+  .tag-item:focus,
+  .tag-more:hover,
+  .tag-more:focus {
+    text-decoration: underline;
+  }
+
+  .tag-more {
+    font-style: italic;
   }
 }
 

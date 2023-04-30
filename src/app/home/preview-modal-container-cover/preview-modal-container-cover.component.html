@@ -22,7 +22,6 @@
 </div>
 
 <div class="previewModal-player-container">
-
   <!-- Cover image dialog -->
   <div class="previewModal-player-image">
     <img [src]="coverImagePreviewModal" class="previewModal-cover-image" />
@@ -193,18 +192,20 @@
                 let personCast of peopleCastSeries$ | async;
                 let i = index
               "
-              >{{ personCast
-              }}{{
-                i === (peopleCastSeries$ | async)?.length - 1 ? "" : ",&nbsp;"
-              }}</a
+              >{{ getMoreCastPeople(personCast, i) }}</a
             >
+            <a class="tag-more" (click)="onClickScrollToMore()"> more </a>
           </div>
 
           <div class="previewModal-tags">
             <span class="previewModal-tags-label">Genres:</span
-            ><a class="tag-item">{{
-              (this.seriesTvMainInfoDetail$ | async)?.genres
-            }}</a>
+            ><a
+              class="tag-item"
+              *ngFor="
+                let genre of (this.seriesTvMainInfoDetail$ | async)?.genres
+              "
+              >{{ genre }}</a
+            >
           </div>
 
           <div class="previewModal-tags">
@@ -329,7 +330,7 @@
           }}</a>
         </div>
         <div class="previewModal-tags">
-          <span class="previewModal-tags-label">Cast:</span
+          <span class="previewModal-tags-label" id="more">Cast:</span
           ><a
             class="tag-item"
             *ngFor="let personCast of peopleCastSeries$ | async; let i = index"
