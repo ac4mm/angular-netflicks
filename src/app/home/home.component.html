@@ -22,7 +22,7 @@
         <div class="billboard-title">
           <img
             class="title-logo"
-            [src]="(this.coverMainImageAndTypography$ | async)?.[1]?.resolutions?.original?.url"
+            [src]="'https://image.tmdb.org/t/p/w500' +(this.logoImagesKeepWatching$ | async)?.[1]"
           />
         </div>
       </div>
