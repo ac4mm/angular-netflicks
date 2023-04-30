@@ -307,7 +307,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     return from(coverIndexImg).pipe(
       concatMap((item) => this.themoviedbService.getImagesById(item, 'tv').pipe(
         map((images) => {
-          finalLogos.push(images?.["logos"][0]?.file_path);
+          let filterByLangEn = images?.["logos"].filter((logo) => logo.iso_639_1 === 'en');
+          finalLogos.push(filterByLangEn[0]?.file_path);
           return finalLogos;
         }),
       )),

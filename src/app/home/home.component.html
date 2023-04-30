@@ -21,8 +21,9 @@
       <div class="titleWrapper">
         <div class="billboard-title">
           <img
+            *ngIf="(this.logoImagesKeepWatching$ | async)?.[1]"
             class="title-logo"
-            [src]="'https://image.tmdb.org/t/p/w500' +(this.logoImagesKeepWatching$ | async)?.[1]"
+            [src]="'https://image.tmdb.org/t/p/w500' +(this.logoImagesKeepWatching$ | async)[1]"
           />
         </div>
       </div>
@@ -178,7 +179,11 @@
         #swiperSlides
       >
         <img class="card-img" [src]="coverImage" />
-        <img class="logo-img" *ngIf="(this.logoImagesKeepWatching$ | async)?.[i] as logo" [src]="'https://image.tmdb.org/t/p/w500' + logo"/>
+        <img
+          class="logo-img"
+          *ngIf="(this.logoImagesKeepWatching$ | async)?.[i] as logo"
+          [src]="'https://image.tmdb.org/t/p/w500' + logo"
+        />
 
         <!-- Detail Card -->
         <div class="card-details">
@@ -310,7 +315,11 @@
         #swiperSlides
       >
         <img class="card-img" [src]="coverImage" />
-        <img class="logo-img" *ngIf="(this.logoImagesMyList$ | async)?.[i] as logo" [src]="'https://image.tmdb.org/t/p/w500' + logo"/>
+        <img
+          class="logo-img"
+          *ngIf="(this.logoImagesMyList$ | async)?.[i] as logo"
+          [src]="'https://image.tmdb.org/t/p/w500' + logo"
+        />
         <!-- Detail Card -->
         <div class="card-details">
           <div class="card-icons">
@@ -441,7 +450,11 @@
         #swiperSlides
       >
         <img class="card-img" [src]="coverImage" />
-        <img class="logo-img" *ngIf="(this.logoImagesTopRatedMovies$ | async)?.[i] as logo" [src]="'https://image.tmdb.org/t/p/w500' + logo"/>
+        <img
+          class="logo-img"
+          *ngIf="(this.logoImagesTopRatedMovies$ | async)?.[i] as logo"
+          [src]="'https://image.tmdb.org/t/p/w500' + logo"
+        />
         <!-- Detail Card -->
         <div class="card-details">
           <div class="card-icons">
@@ -569,7 +582,11 @@
         #swiperSlides
       >
         <img class="card-img" [src]="coverImage" />
-        <img class="logo-img" *ngIf="(this.logoImagesTvShows$ | async)?.[i] as logo" [src]="'https://image.tmdb.org/t/p/w500' + logo"/>
+        <img
+          class="logo-img"
+          *ngIf="(this.logoImagesTvShows$ | async)?.[i] as logo"
+          [src]="'https://image.tmdb.org/t/p/w500' + logo"
+        />
         <!-- Detail Card -->
         <div class="card-details">
           <div class="card-icons">
