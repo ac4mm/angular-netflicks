@@ -9,7 +9,6 @@ import { PreviewModalContainerCover } from 'src/app/home/preview-modal-container
 import { Observable, takeUntil } from "rxjs";
 import { UtilitiesService } from 'src/app/shared/services/utilities.service';
 import { YoutubeService } from 'src/app/shared/services/youtube.service';
-import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -88,9 +87,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   showVideoPreview: boolean = false;
 
-  srcURLStaticCover: SafeResourceUrl;
-
-  //TESTING
   showVideo = true;
   videoClicked = false;
   playerSettings: any;
@@ -103,8 +99,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private movies: MoviesService,
     private youtubeService: YoutubeService,
     public dialogService: DialogService,
-    private utilitiesService: UtilitiesService,
-    public sanitizer: DomSanitizer
+    private utilitiesService: UtilitiesService
   ) { }
 
   ngOnInit(): void {
@@ -172,8 +167,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         rel: 0,
         fs: 0,
         playsinline: 1,
-        loop: 0,
-        end: 5
+        loop: 1,
+        end: 5,
+        origin: 'http://localhost:4200'
       },
       events: {
         'onReady': this.onPlayerReady.bind(this),
