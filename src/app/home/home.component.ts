@@ -9,6 +9,9 @@ import { PreviewModalContainerCover } from 'src/app/home/preview-modal-container
 import { Observable, takeUntil } from "rxjs";
 import { UtilitiesService } from 'src/app/shared/services/utilities.service';
 import { YoutubeService } from 'src/app/shared/services/youtube.service';
+import { TheMovieDBService } from 'src/app/shared/services/themoviedb.service';
+import * as Tesseract from 'tesseract.js';
+import { createWorker } from 'tesseract.js';
 
 @Component({
   selector: 'app-home',
@@ -42,21 +45,38 @@ export class HomeComponent implements OnInit, OnDestroy {
   /*Array index images TV Maze  */
   /*Index of: Rick and morty,Stranger Things,Dark, Lost, Casa de Papel, You, Squid Game */
   coverIndexImgKeepWatching: number[] = [216, 2993, 17861, 123, 27436, 26856, 43687];
+  /*Array index images ThemovieDb  */
+  coverIndexImgKeepWatchingTMDB: number[] = [60625, 66732, 70523, 4607, 71446, 78191, 93405];
+
 
   /*Index of: Better Call Saul, Black Mirror,13 Reasons Why, 1899, BoJack Horseman,MINDHUNTER, How to Sell Drugs Online (Fast) */
   coverIndexImgMyList: number[] = [618, 305, 7194, 39749, 184, 10822, 39319];
+  /*Array index images ThemovieDb  */
+  coverIndexImgMyListTMDB: number[] = [60059, 42009, 66788, 90669, 61222, 67744, 88236];
+
 
   /* Index of:The Queen's Gambit, The Big Bang Theory, Snowpiercer, The Last of Us, Our Planet, House of the Dragon, Manifest */
   coverIndexTopRatedMovies: number[] = [41428, 66, 23030, 46562, 17868, 44778, 31365];
+  /*Array index images ThemovieDb  */
+  coverIndexTopRatedMoviesTMDB: number[] = [87739, 1418, 79680, 100088, 83880, 94997, 79696];
 
   /* Index of:The Office, Peaky Blinders, Family Guy, Game of Thrones, The Simpsons, Chernobyl, Love, Death & Robots */
   coverIndexTvShows: number[] = [526, 269, 84, 82, 83, 30770, 40329];
+  /*Array index images ThemovieDb  */
+  coverIndexTvShowsTMDB: number[] = [2316, 60574, 1434, 1399, 456, 87108, 86831];
 
   randMatchScore = [];
 
   //7+ Kids (10%), 13+ teenagers (20%), 16+ (40%), 18+ adults (60%)
   ratingNumberObject = { 7: 0.1, 13: 0.2, 16: 0.4, 18: 0.6 };
   ratingNumberCover = [];
+
+  //Logos
+  logoImagesKeepWatching$: Observable<string[]>;
+  logoImagesMyList$: Observable<string[]>;
+  logoImagesTopRatedMovies$: Observable<string[]>;
+  logoImagesTvShows$: Observable<string[]>;
+  filePathLogo: string;
 
   //Genres
   genresCoverImagesKeepWatching$: Observable<string[]>;
@@ -99,7 +119,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     private movies: MoviesService,
     private youtubeService: YoutubeService,
     public dialogService: DialogService,
-    private utilitiesService: UtilitiesService
+    private utilitiesService: UtilitiesService,
+    public themoviedbService: TheMovieDBService
   ) { }
 
   ngOnInit(): void {
@@ -120,11 +141,17 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.autoplayVideo();
 
-    //Get all cover images by id
+    //Get all cover images by id (TvMaze)
     this.coverImgKeepWatching$ = this.getAllCoverImagesById$(this.coverIndexImgKeepWatching);
     this.coverImgMyList$ = this.getAllCoverImagesById$(this.coverIndexImgMyList);
     this.coverImgTopRatedMovies$ = this.getAllCoverImagesById$(this.coverIndexTopRatedMovies);
     this.coverImgTvShows$ = this.getAllCoverImagesById$(this.coverIndexTvShows);
+
+    //Get all logo in images by id (themoviedb)
+    this.logoImagesKeepWatching$ = this.getLogoImagesById$(this.coverIndexImgKeepWatchingTMDB);
+    this.logoImagesMyList$ = this.getLogoImagesById$(this.coverIndexImgMyListTMDB);
+    this.logoImagesTopRatedMovies$ = this.getLogoImagesById$(this.coverIndexTopRatedMoviesTMDB);
+    this.logoImagesTvShows$ = this.getLogoImagesById$(this.coverIndexTvShowsTMDB);
 
     //Gel all genre by images id
     this.genresCoverImagesKeepWatching$ = this.getAllGenresById$(this.coverIndexImgKeepWatching);
@@ -140,6 +167,19 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.initScriptIFrame();
   }
+
+  //TESTING
+  recognizeTextInImage() {
+    Tesseract.recognize(
+      /* 'https://tesseract.projectnaptha.com/img/eng_bw.png', */
+      'https://static.tvmaze.com/uploads/images/original_untouched/430/1076972.jpg',
+      'eng',
+      { /* logger: m => console.log(m) */ }
+    ).then(({ data: { text } }) => {
+      console.log(text);
+    })
+  }
+
 
   initScriptIFrame() {
     // 2. This code loads the IFrame Player API code asynchronously.
@@ -203,7 +243,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   playVideo() {
     this.onReplayVideo();
 
-    if(this.player.getPlayerState() === 0){
+    if (this.player.getPlayerState() === 0) {
       this.onClickSpeakerIcon();
     }
   }
@@ -257,6 +297,21 @@ export class HomeComponent implements OnInit, OnDestroy {
 
         return finalCoverTypoImage;
       }),
+    )
+  }
+
+
+  getLogoImagesById$(coverIndexImg: number[]): Observable<any[]> {
+    let finalLogos = [];
+
+    return from(coverIndexImg).pipe(
+      concatMap((item) => this.themoviedbService.getImagesById(item, 'tv').pipe(
+        map((images) => {
+          finalLogos.push(images?.["logos"][0]?.file_path);
+          return finalLogos;
+        }),
+      )),
+      shareReplay(1),
     )
   }
 

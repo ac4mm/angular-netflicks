@@ -178,6 +178,8 @@
         #swiperSlides
       >
         <img class="card-img" [src]="coverImage" />
+        <img class="logo-img" *ngIf="(this.logoImagesKeepWatching$ | async)?.[i] as logo" [src]="'https://image.tmdb.org/t/p/w500' + logo"/>
+
         <!-- Detail Card -->
         <div class="card-details">
           <div class="card-icons">
@@ -308,6 +310,7 @@
         #swiperSlides
       >
         <img class="card-img" [src]="coverImage" />
+        <img class="logo-img" *ngIf="(this.logoImagesMyList$ | async)?.[i] as logo" [src]="'https://image.tmdb.org/t/p/w500' + logo"/>
         <!-- Detail Card -->
         <div class="card-details">
           <div class="card-icons">
@@ -438,6 +441,7 @@
         #swiperSlides
       >
         <img class="card-img" [src]="coverImage" />
+        <img class="logo-img" *ngIf="(this.logoImagesTopRatedMovies$ | async)?.[i] as logo" [src]="'https://image.tmdb.org/t/p/w500' + logo"/>
         <!-- Detail Card -->
         <div class="card-details">
           <div class="card-icons">
@@ -564,7 +568,8 @@
         *ngFor="let coverImage of coverImgTvShows$ | async; let i = index"
         #swiperSlides
       >
-        <img class="card_img" [src]="coverImage" />
+        <img class="card-img" [src]="coverImage" />
+        <img class="logo-img" *ngIf="(this.logoImagesTvShows$ | async)?.[i] as logo" [src]="'https://image.tmdb.org/t/p/w500' + logo"/>
         <!-- Detail Card -->
         <div class="card-details">
           <div class="card-icons">

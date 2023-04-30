@@ -442,6 +442,15 @@ img {
   border-radius: 4px;
 }
 
+.logo-img {
+  position: absolute;
+  right: 125px;
+  max-width: 60%;
+  max-height: 30%;
+  bottom: 5px;
+  transform: scale(0.6);
+}
+
 .card-icons {
   display: flex;
   flex-wrap: wrap;
