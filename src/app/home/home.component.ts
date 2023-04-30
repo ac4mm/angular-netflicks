@@ -169,7 +169,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         playsinline: 1,
         loop: 1,
         end: 5,
-        origin: 'http://localhost:4200'
+        origin: 'https://www.youtube.com',
+        enablejsapi: 1
       },
       events: {
         'onReady': this.onPlayerReady.bind(this),
@@ -199,6 +200,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.player.playVideo();
   }
 
+  playVideo() {
+    this.onReplayVideo();
+
+    if(this.player.getPlayerState() === 0){
+      this.onClickSpeakerIcon();
+    }
+  }
+
 
   autoplayVideo() {
     setTimeout(() => {
@@ -210,6 +219,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   onClickSpeakerIcon() {
     this.showSpeakerUpIcon = !this.showSpeakerUpIcon;
 
+    this.changeMuteState();
+  }
+
+  changeMuteState() {
     if (this.player.isMuted()) {
       this.player.unMute();
     } else {
@@ -234,8 +247,13 @@ export class HomeComponent implements OnInit, OnDestroy {
         arr.push(images.filter((image) => image.type === 'background'));
         arr.push(images.filter((image) => image.type === 'typography'));
 
-        finalCoverTypoImage.push(arr[0][indexBackground]);
-        finalCoverTypoImage.push(arr[1][indexTypography]);
+        if (arr[0][indexBackground]) {
+          finalCoverTypoImage.push(arr[0][indexBackground]);
+        }
+
+        if (arr[1][indexTypography]) {
+          finalCoverTypoImage.push(arr[1][indexTypography]);
+        }
 
         return finalCoverTypoImage;
       }),
