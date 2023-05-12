@@ -442,13 +442,15 @@ img {
   border-radius: 4px;
 }
 
-.logo-img {
+.container-logo-img {
   position: absolute;
-  right: 125px;
-  max-width: 60%;
-  max-height: 30%;
-  bottom: 5px;
-  transform: scale(0.6);
+}
+
+.logo-img {
+  position: relative;
+  bottom: 2.5em;
+  max-width: 44%;
+  left: 1em;
 }
 
 .card-icons {

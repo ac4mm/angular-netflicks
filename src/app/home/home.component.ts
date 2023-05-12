@@ -10,8 +10,6 @@ import { Observable, takeUntil } from "rxjs";
 import { UtilitiesService } from 'src/app/shared/services/utilities.service';
 import { YoutubeService } from 'src/app/shared/services/youtube.service';
 import { TheMovieDBService } from 'src/app/shared/services/themoviedb.service';
-import * as Tesseract from 'tesseract.js';
-import { createWorker } from 'tesseract.js';
 
 @Component({
   selector: 'app-home',
@@ -168,18 +166,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.initScriptIFrame();
   }
 
-  //TESTING
-  recognizeTextInImage() {
-    Tesseract.recognize(
-      /* 'https://tesseract.projectnaptha.com/img/eng_bw.png', */
-      'https://static.tvmaze.com/uploads/images/original_untouched/430/1076972.jpg',
-      'eng',
-      { /* logger: m => console.log(m) */ }
-    ).then(({ data: { text } }) => {
-      console.log(text);
-    })
-  }
-
 
   initScriptIFrame() {
     // 2. This code loads the IFrame Player API code asynchronously.
@@ -209,7 +195,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         playsinline: 1,
         loop: 1,
         end: 5,
-        origin: 'https://www.youtube.com',
+        origin: window.location.href,
         enablejsapi: 1
       },
       events: {
@@ -365,7 +351,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.displayModal = true;
   }
 
-  openDialogCoverImage(coverImage: any, index: number, indexTvMazeSeries: number) {
+  openDialogCoverImage(coverImage: any, index: number, indexTvMazeSeries: number, logoImageURL?: string) {
     this.indexSelectedItem = index;
     this.coverImagePreviewModal = coverImage;
 
@@ -380,7 +366,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         randMatchScore: this.randMatchScore,
         coverImagePreviewModal: this.coverImagePreviewModal,
         indexSelectedItem: this.indexSelectedItem,
-        indexTvMazeSeries: indexTvMazeSeries
+        indexTvMazeSeries: indexTvMazeSeries,
+        logoImageURL: logoImageURL
       }
     })
   }

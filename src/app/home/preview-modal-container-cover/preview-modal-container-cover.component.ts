@@ -31,6 +31,8 @@ export class PreviewModalContainerCover {
   seriesSelectedDropdown$ = new BehaviorSubject<number>(0);
   peopleCastSeries$: Observable<string[]>;
 
+  logoImageURL: string = null;
+
 
   private destroy$ = new Subject<void>();
 
@@ -43,6 +45,7 @@ export class PreviewModalContainerCover {
 
   ngOnInit() {
     this.coverImagePreviewModal = this.config.data.coverImagePreviewModal;
+    this.logoImageURL = this.config.data.logoImageURL;
     this.indexSelectedItem = this.config.data.indexSelectedItem;
     this.randMatchScore = this.config.data.randMatchScore;
     /* console.log("Selected show index:", this.config.data.indexTvMazeSeries); */

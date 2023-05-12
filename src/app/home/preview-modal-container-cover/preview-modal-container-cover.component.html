@@ -29,7 +29,12 @@
 
   <!-- Wrapper cover image dialog -->
   <div class="previewModal-player-wrapper">
-    <div class="wrapper-logo"></div>
+    <div class="wrapper-logo-img">
+      <img
+        *ngIf="logoImageURL !== null"
+        [src]="'https://image.tmdb.org/t/p/w500' + logoImageURL"
+      />
+    </div>
 
     <div class="buttons-controls-container">
       <!-- Play -->

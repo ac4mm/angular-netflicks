@@ -329,6 +329,10 @@
   margin-left: 3rem;
 }
 
+::ng-deep .p-dialog .wrapper-logo-img {
+  margin-bottom: 1.5em;
+}
+
 ::ng-deep
   .p-dialog
   .previewModal-player-container
