@@ -444,13 +444,15 @@ img {
 
 .container-logo-img {
   position: absolute;
+  max-width: 100%;
+  bottom: 0;
+  padding: 0 0 1rem 1rem;
 }
 
 .logo-img {
   position: relative;
-  bottom: 2.5em;
-  max-width: 44%;
-  left: 1em;
+  max-width: 100%;
+  width: 44%;
 }
 
 .card-icons {
