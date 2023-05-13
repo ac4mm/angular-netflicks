@@ -17,6 +17,18 @@ export class UtilitiesService {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
+  //Get random word from dictionary
+  getRandomWord(arr: any[]) {
+    return arr[Math.floor(Math.random() * arr.length)];;
+  }
+
+
+  getMultipleRandItem(arr: any[], num: number) {
+    const shuffled = [...arr].sort(() => 0.5 - Math.random());
+  
+    return shuffled.slice(0, num);
+  }
+
   getRandomRatingNumberFromArray(arr: any[]) {
     // get random index value
     const randomIndex = Math.floor(Math.random() * arr.length);

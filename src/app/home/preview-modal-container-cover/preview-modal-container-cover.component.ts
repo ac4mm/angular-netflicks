@@ -33,6 +33,8 @@ export class PreviewModalContainerCover {
 
   logoImageURL: string = null;
 
+  showWords = ['Absurd', 'Quirky', 'Irreverent', 'Ominous', 'Scary', 'Mind-Bending', 'Chilling', 'Suspenseful', 'Exciting', 'Dark', 'Offbeat', 'Gritty', 'Emotional', 'Deadpan', 'Witty'];
+  selectedRandWords: string[];
 
   private destroy$ = new Subject<void>();
 
@@ -40,7 +42,7 @@ export class PreviewModalContainerCover {
     public config: DynamicDialogConfig,
     public ref: DynamicDialogRef,
     private movies: MoviesService,
-    private utilitiesService: UtilitiesService
+    public utilitiesService: UtilitiesService
   ) { }
 
   ngOnInit() {
@@ -50,7 +52,8 @@ export class PreviewModalContainerCover {
     this.randMatchScore = this.config.data.randMatchScore;
     this.ratingNumberCover = this.config.data.ratingNumberCover;
     this.numbersOfSeasonsKeepWatching$ = this.config.data.numbersOfSeasonsKeepWatching$;
-    /* console.log("Selected show index:", this.config.data.indexTvMazeSeries); */
+
+    this.selectedRandWords = this.utilitiesService.getMultipleRandItem(this.showWords, this.utilitiesService.getRandomIntBetweenRange(2, 3));
 
     this.seriesTvInfo$ = this.getAllSeriesTvInfo$(this.config.data.indexTvMazeSeries);
     this.seriesTvMainInfoDetail$ = this.movies.searchMainInfoMovie(this.config.data.indexTvMazeSeries);

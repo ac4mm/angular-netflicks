@@ -215,15 +215,17 @@
             ><a
               class="tag-item"
               *ngFor="
-                let genre of (this.seriesTvMainInfoDetail$ | async)?.genres
+                let genre of (this.seriesTvMainInfoDetail$ | async)?.genres; let i=index
               "
-              >{{ genre }}</a
+              >{{ genre }}{{i === (this.seriesTvMainInfoDetail$ | async)?.genres.length -1 ? '' : ',' }}</a
             >
           </div>
 
           <div class="previewModal-tags">
             <span class="previewModal-tags-label">This show is:</span
-            ><a class="tag-item">Test</a>
+            ><a class="tag-item" *ngFor="let randWord of selectedRandWords; let i=index">
+              {{randWord}}{{i === selectedRandWords.length -1 ? '' : ',' }}
+            </a>
           </div>
         </div>
       </div>
@@ -363,8 +365,8 @@
           <span class="previewModal-tags-label">Maturity Rating:</span
           ><a class="tag-item maturity-rating"
             ><span class="rating-number" *ngIf="this.ratingNumberCover"
-            >{{ ratingNumberCover[indexSelectedItem] }}+</span
-          ></a
+              >{{ ratingNumberCover[indexSelectedItem] }}+</span
+            ></a
           >
         </div>
       </div>

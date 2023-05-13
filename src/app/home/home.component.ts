@@ -344,7 +344,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     )
   }
 
-
   showModalDialog(coverImage: any, index: number) {
     this.indexSelectedItem = index;
     this.coverImagePreviewModal = coverImage;
