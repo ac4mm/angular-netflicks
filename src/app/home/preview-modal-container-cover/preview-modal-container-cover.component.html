@@ -167,12 +167,20 @@
             >{{ randMatchScore[indexSelectedItem] }}% Match</span
           >
           <span class="year">2022</span>
-          <span class="seasons" *ngIf="this.numbersOfSeasonsKeepWatching"
-            >{{ numbersOfSeasonsKeepWatching[indexSelectedItem] }} seasons</span
+          <span
+            class="seasons"
+            *ngIf="this.numbersOfSeasonsKeepWatching$ | async"
+            >{{
+              (numbersOfSeasonsKeepWatching$ | async)[indexSelectedItem]
+            }}
+            seasons</span
           >
           <div class="player-feature-badge">
             <span>HD</span>
           </div>
+        </div>
+
+        <div class="second-line-info">
           <div class="maturity-rating">
             <span class="rating-number" *ngIf="this.ratingNumberCover"
               >{{ ratingNumberCover[indexSelectedItem] }}+</span
@@ -353,7 +361,11 @@
         </div>
         <div class="previewModal-tags">
           <span class="previewModal-tags-label">Maturity Rating:</span
-          ><a class="tag-item">Test</a>
+          ><a class="tag-item maturity-rating"
+            ><span class="rating-number" *ngIf="this.ratingNumberCover"
+            >{{ ratingNumberCover[indexSelectedItem] }}+</span
+          ></a
+          >
         </div>
       </div>
     </div>

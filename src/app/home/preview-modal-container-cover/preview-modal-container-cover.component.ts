@@ -17,9 +17,9 @@ export class PreviewModalContainerCover {
   @Input() seasonSelected: number = 1;
   @Input() seasonSelector: any = [];
   @Input() indexSelectedItem: any;
-  @Input() ratingNumberCover: any;
-  @Input() numbersOfSeasonsKeepWatching: any;
+  @Input() numbersOfSeasonsKeepWatching$: Observable<string[]>;
   @Input() randMatchScore: any;
+  @Input() ratingNumberCover: any;
   @Input() speakerUpIconShow: any;
   @Input() checkIconShow: any;
   @Input() coverImagePreviewModal: any;
@@ -48,15 +48,14 @@ export class PreviewModalContainerCover {
     this.logoImageURL = this.config.data.logoImageURL;
     this.indexSelectedItem = this.config.data.indexSelectedItem;
     this.randMatchScore = this.config.data.randMatchScore;
+    this.ratingNumberCover = this.config.data.ratingNumberCover;
+    this.numbersOfSeasonsKeepWatching$ = this.config.data.numbersOfSeasonsKeepWatching$;
     /* console.log("Selected show index:", this.config.data.indexTvMazeSeries); */
 
     this.seriesTvInfo$ = this.getAllSeriesTvInfo$(this.config.data.indexTvMazeSeries);
     this.seriesTvMainInfoDetail$ = this.movies.searchMainInfoMovie(this.config.data.indexTvMazeSeries);
 
     this.peopleCastSeries$ = this.getAllPeopleCastById$(this.config.data.indexTvMazeSeries);
-  }
-
-  ngAfterViewInit() {
   }
 
   ngOnDestroy() {

@@ -364,6 +364,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       closeOnEscape: true,
       data: {
         randMatchScore: this.randMatchScore,
+        ratingNumberCover: this.ratingNumberCover,
+        numbersOfSeasonsKeepWatching$: this.numbersOfSeasonsKeepWatching$,
         coverImagePreviewModal: this.coverImagePreviewModal,
         indexSelectedItem: this.indexSelectedItem,
         indexTvMazeSeries: indexTvMazeSeries,

@@ -219,11 +219,17 @@ img {
   font-weight: 500;
 }
 
-.detail-modal-container .first-line-info {
-  margin: 0.8em 0;
+.detail-modal-container {
+  .first-line-info {
+    margin-top: 0.8em;
 
-  .match-score {
-    font-size: 1.1em;
+    .match-score {
+      font-size: 1.1em;
+    }
+  }
+
+  .second-line-info {
+    margin-bottom: 0.8em;
   }
 }
 
@@ -299,10 +305,7 @@ img {
   font-size: 1.2em;
 }
 
-.video-metadata-container-info
-  .second-line-info
-  .maturity-rating
-  .rating-number {
+.maturity-rating .rating-number {
   border: 1px solid hsla(0, 0%, 100%, 0.4);
   overflow: hidden;
   padding: 0 0.4em;
