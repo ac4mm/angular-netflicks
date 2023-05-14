@@ -424,7 +424,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     return (new Date()).getFullYear();
   }
 
-  onClickCheckIcon() {
+  onClickShowCheckIcon() {
     this.showCheckIcon = !this.showCheckIcon;
   }
 

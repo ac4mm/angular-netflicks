@@ -21,7 +21,7 @@ export class PreviewModalContainerCover {
   @Input() randMatchScore: any;
   @Input() ratingNumberCover: any;
   @Input() speakerUpIconShow: any;
-  @Input() checkIconShow: boolean = true;
+  @Input() showCheckIcon: boolean = true;
   @Input() coverImagePreviewModal: any;
   @Input() displayModal: any;
 
@@ -74,8 +74,8 @@ export class PreviewModalContainerCover {
     this.speakerUpIconShow = !this.speakerUpIconShow;
   }
 
-  onClickCheckIcon() {
-    this.checkIconShow = !this.checkIconShow;
+  onClickShowCheckIcon() {
+    this.showCheckIcon = !this.showCheckIcon;
   }
 
   getAllSeriesTvInfo$(coverIndexImg: number) {

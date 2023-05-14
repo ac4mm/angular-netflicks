@@ -57,9 +57,9 @@
         <span class="text-button">Play</span>
       </button>
 
-      <div (click)="onClickCheckIcon()">
+      <div (click)="onClickShowCheckIcon()">
         <!-- Add button  -->
-        <button class="btn-circle btn-add" *ngIf="checkIconShow">
+        <button class="btn-circle btn-add" *ngIf="showCheckIcon">
           <svg
             width="20"
             height="20"
@@ -76,16 +76,19 @@
           </svg>
         </button>
 
-        <h5 class="hover-text-add-btn">Add to My List</h5>
+        <!-- Hover text add button -->
+        <div class="container-hover-btn">
+          <h5 class="hover-text-add-btn">Add to My List</h5>
 
-        <div class="container-triangle">
-          <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
-            <polygon points="0 0, 100 0, 50 50" />
-          </svg>
+          <div class="container-triangle">
+            <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
+              <polygon points="0 0, 100 0, 50 50" />
+            </svg>
+          </div>
         </div>
 
         <!-- Check -->
-        <button class="btn-circle" *ngIf="!checkIconShow">
+        <button class="btn-circle btn-check" *ngIf="!showCheckIcon">
           <svg
             width="20"
             height="20"
@@ -101,6 +104,19 @@
             ></path>
           </svg>
         </button>
+
+        <!-- Hover text check button -->
+        <div class="container-hover-btn">
+          <h5 class="hover-text-check-btn">Remove from My List</h5>
+
+          <div class="container-triangle">
+            <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
+              <polygon points="0 0, 100 0, 50 50" />
+            </svg>
+          </div>
+        </div>
+
+
       </div>
 
       <!-- Thumb up -->

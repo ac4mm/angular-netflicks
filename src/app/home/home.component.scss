@@ -199,11 +199,16 @@ img {
   border-color: rgba(205, 205, 205, 0.6);
 }
 
-.hover-text-add-btn {
+.container-hover-btn {
+  position: relative;
+}
+
+.hover-text-add-btn,
+.hover-text-check-btn {
   display: none;
   position: absolute;
-  left: 6.3em;
-  bottom: 2.7em;
+  left: -3em;
+  bottom: 3em;
   font-weight: bold;
   padding: 0.4em;
   padding-left: 1em;
@@ -213,18 +218,42 @@ img {
   border-radius: 7px;
 }
 
-.btn-add:hover ~ .hover-text-add-btn,
-.btn-add:hover ~ .container-triangle {
-  display: block;
+//Hover text in home page
+.card-details .container-triangle {
+  left: 0.6em;
+  bottom: 2.4em;
+}
+
+.hover-text-check-btn {
+  width: 11.5em;
+  left: -4.5em;
+}
+
+.card-details .hover-text-add-btn,
+.card-details .hover-text-check-btn {
+  font-size: 13px;
+  bottom: 4em;
+  padding-left: 0.7em;
+}
+
+.card-details .hover-text-check-btn {
+  left: -4.2em;
 }
 
 .container-triangle {
   display: none;
   position: absolute;
   width: 1.5em;
-  bottom: 2.4em;
-  color:#e6e6e6;
-  right: 4em;
+  bottom: 2.8em;
+  color: #e6e6e6;
+  left: 0.8em;
+}
+
+.btn-add:hover ~ .container-hover-btn .hover-text-add-btn,
+.btn-add:hover ~ .container-hover-btn .container-triangle,
+.btn-check:hover ~ .container-hover-btn .hover-text-check-btn,
+.btn-check:hover ~ .container-hover-btn .container-triangle {
+  display: block;
 }
 
 .other-actions {
