@@ -199,6 +199,34 @@ img {
   border-color: rgba(205, 205, 205, 0.6);
 }
 
+.hover-text-add-btn {
+  display: none;
+  position: absolute;
+  left: 6.3em;
+  bottom: 2.7em;
+  font-weight: bold;
+  padding: 0.4em;
+  padding-left: 1em;
+  width: 8.5em;
+  color: black;
+  background-color: #e6e6e6;
+  border-radius: 7px;
+}
+
+.btn-add:hover ~ .hover-text-add-btn,
+.btn-add:hover ~ .container-triangle {
+  display: block;
+}
+
+.container-triangle {
+  display: none;
+  position: absolute;
+  width: 1.5em;
+  bottom: 2.4em;
+  color:#e6e6e6;
+  right: 4em;
+}
+
 .other-actions {
   width: 2.5vw;
   height: 2.5vw;

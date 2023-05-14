@@ -57,42 +57,51 @@
         <span class="text-button">Play</span>
       </button>
 
-      <!-- Add button  -->
-      <button
-        class="btn-circle"
-        *ngIf="checkIconShow"
-        (click)="onClickCheckIcon()"
-      >
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="#fff"
-          xmlns="http://www.w3.org/2000/svg"
-          stroke="white"
-          stroke-width="0.3"
-        >
-          <path d="M11 2V11H2V13H11V22H13V13H22V11H13V2H11Z" fill="#fff"></path>
-        </svg>
-      </button>
-
-      <!-- Check -->
-      <button class="btn-circle" *ngIf="!checkIconShow">
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="#fff"
-          xmlns="http://www.w3.org/2000/svg"
-          stroke="white"
-          stroke-width="0.3"
-        >
-          <path
-            d="M8.68239 19.7312L23.6824 5.73115L22.3178 4.26904L8.02404 17.6098L2.70718 12.293L1.29297 13.7072L7.29297 19.7072C7.67401 20.0882 8.28845 20.0988 8.68239 19.7312Z"
+      <div (click)="onClickCheckIcon()">
+        <!-- Add button  -->
+        <button class="btn-circle btn-add" *ngIf="checkIconShow">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
             fill="#fff"
-          ></path>
-        </svg>
-      </button>
+            xmlns="http://www.w3.org/2000/svg"
+            stroke="white"
+            stroke-width="0.3"
+          >
+            <path
+              d="M11 2V11H2V13H11V22H13V13H22V11H13V2H11Z"
+              fill="#fff"
+            ></path>
+          </svg>
+        </button>
+
+        <h5 class="hover-text-add-btn">Add to My List</h5>
+
+        <div class="container-triangle">
+          <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
+            <polygon points="0 0, 100 0, 50 50" />
+          </svg>
+        </div>
+
+        <!-- Check -->
+        <button class="btn-circle" *ngIf="!checkIconShow">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="#fff"
+            xmlns="http://www.w3.org/2000/svg"
+            stroke="white"
+            stroke-width="0.3"
+          >
+            <path
+              d="M8.68239 19.7312L23.6824 5.73115L22.3178 4.26904L8.02404 17.6098L2.70718 12.293L1.29297 13.7072L7.29297 19.7072C7.67401 20.0882 8.28845 20.0988 8.68239 19.7312Z"
+              fill="#fff"
+            ></path>
+          </svg>
+        </button>
+      </div>
 
       <!-- Thumb up -->
       <button class="btn-circle">
@@ -215,16 +224,25 @@
             ><a
               class="tag-item"
               *ngFor="
-                let genre of (this.seriesTvMainInfoDetail$ | async)?.genres; let i=index
+                let genre of (this.seriesTvMainInfoDetail$ | async)?.genres;
+                let i = index
               "
-              >{{ genre }}{{i === (this.seriesTvMainInfoDetail$ | async)?.genres.length -1 ? '' : ',' }}</a
+              >{{ genre
+              }}{{
+                i === (this.seriesTvMainInfoDetail$ | async)?.genres.length - 1
+                  ? ""
+                  : ","
+              }}</a
             >
           </div>
 
           <div class="previewModal-tags">
             <span class="previewModal-tags-label">This show is:</span
-            ><a class="tag-item" *ngFor="let randWord of selectedRandWords; let i=index">
-              {{randWord}}{{i === selectedRandWords.length -1 ? '' : ',' }}
+            ><a
+              class="tag-item"
+              *ngFor="let randWord of selectedRandWords; let i = index"
+            >
+              {{ randWord }}{{ i === selectedRandWords.length - 1 ? "" : "," }}
             </a>
           </div>
         </div>

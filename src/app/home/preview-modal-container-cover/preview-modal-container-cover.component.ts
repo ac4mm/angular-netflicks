@@ -21,7 +21,7 @@ export class PreviewModalContainerCover {
   @Input() randMatchScore: any;
   @Input() ratingNumberCover: any;
   @Input() speakerUpIconShow: any;
-  @Input() checkIconShow: any;
+  @Input() checkIconShow: boolean = true;
   @Input() coverImagePreviewModal: any;
   @Input() displayModal: any;
 
