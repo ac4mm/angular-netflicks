@@ -307,13 +307,32 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     return from(coverIndexImg).pipe(
       concatMap((item) => this.movies.searchImagesMovie(item)),
-      map((images) => images.filter((image) => image.type === 'background')),
       switchMap((images) => {
-        //defined rand number in the range of background images
-        const randNumbBackgroundImg = this.utilitiesService.getRandomInt(images.length);
+        const backgroundImages = images.filter((image) => image.type === 'background');
+        const bannerImages = images.filter((image) => image.type === 'banner');
+        const posterImages = images.filter((image) => image.type === 'poster');
 
-        //Assign first background image to array
-        finalCoverImages.push(images[randNumbBackgroundImg].resolutions.original.url);
+        //defined rand number in the range of background images
+        let randNumbBackgroundImg;
+        if (backgroundImages.length > 0) {
+          randNumbBackgroundImg = this.utilitiesService.getRandomInt(backgroundImages.length);
+          //Assign first background image to array
+          finalCoverImages.push(backgroundImages[randNumbBackgroundImg]?.resolutions?.original?.url);
+        }
+
+        if (finalCoverImages.length == 0 && bannerImages.length > 0) {
+          randNumbBackgroundImg = this.utilitiesService.getRandomInt(bannerImages.length);
+          //Assign first background image to array
+          finalCoverImages.push(bannerImages[randNumbBackgroundImg]?.resolutions?.original?.url);
+        }
+
+        if (finalCoverImages.length == 0 && posterImages.length > 0) {
+          randNumbBackgroundImg = this.utilitiesService.getRandomInt(posterImages.length);
+          //Assign first background image to array
+          finalCoverImages.push(posterImages[randNumbBackgroundImg]?.resolutions?.original?.url);
+        }
+
+
         return of(finalCoverImages);
       })
     )

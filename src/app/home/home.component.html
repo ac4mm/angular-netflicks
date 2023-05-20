@@ -69,12 +69,13 @@
         </button>
 
         <!-- More info -->
-        <button
+        <ng-container *ngIf="(this.coverMainImageAndTypography$ | async)?.[0]?.resolutions?.original?.url as URLMainImage">
+          <button
           type="button"
           class="btn btn-secondary btn-sm font-weight-bold custom-btn more-info-btn"
-          *ngIf="(this.coverMainImageAndTypography$ | async)?.[0]?.resolutions?.original?.url as URLMainImage"
+          *ngIf="(this.logoImagesKeepWatching$ | async)?.[1] as logo"
           (click)="
-            openDialogCoverImage(URLMainImage, 0, this.selectedIdMainTvMaze)
+            openDialogCoverImage(URLMainImage, 0, this.selectedIdMainTvMaze,logo)
           "
         >
           <div class="icon-button">
@@ -97,6 +98,8 @@
 
           <span class="text-button">More info</span>
         </button>
+        </ng-container>
+        
       </div>
     </div>
   </div>
@@ -780,6 +783,7 @@
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
   </swiper>
+
 
   <!-- Footer -->
   <div class="member-footer">

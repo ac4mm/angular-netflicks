@@ -1,6 +1,6 @@
 export interface ImagesMovie {
   id: string;
-  type: 'poster' | 'background' | 'typography';
+  type: 'poster' | 'banner' | 'background' | 'typography';
   main: boolean;
   resolutions: any;
 }
