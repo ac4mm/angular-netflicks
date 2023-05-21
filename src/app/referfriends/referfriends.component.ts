@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-referfriends',
+  selector: 'nf-referfriends',
   templateUrl: './referfriends.component.html',
   styleUrls: ['./referfriends.component.scss']
 })

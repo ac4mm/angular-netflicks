@@ -7,7 +7,7 @@ import { AuthService, AuthResponseData } from './auth.service';
 import { SelectUserService } from '../shared/services/select-user.service';
 
 @Component({
-  selector: 'app-auth',
+  selector: 'nf-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
 })

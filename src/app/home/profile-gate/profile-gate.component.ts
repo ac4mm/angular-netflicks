@@ -3,7 +3,7 @@ import { SelectUserService } from 'src/app/shared/services/select-user.service';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 
 @Component({
-  selector: 'app-profile-gate',
+  selector: 'nf-profile-gate',
   templateUrl: './profile-gate.component.html',
   styleUrls: ['./profile-gate.component.scss'],
 })

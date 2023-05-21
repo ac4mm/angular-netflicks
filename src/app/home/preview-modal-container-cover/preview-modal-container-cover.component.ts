@@ -5,7 +5,7 @@ import { MoviesService } from "src/app/shared/services/movies.service";
 import { UtilitiesService } from "src/app/shared/services/utilities.service";
 
 @Component({
-  selector: 'app-preview-modal-container-cover',
+  selector: 'nf-preview-modal-container-cover',
   templateUrl: './preview-modal-container-cover.component.html',
   styleUrls: [
     './preview-modal-container-cover.component.scss',

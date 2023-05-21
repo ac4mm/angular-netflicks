@@ -11,7 +11,7 @@ import { AuthService } from '../auth/auth.service';
 import { SelectUserService } from '../shared/services/select-user.service';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'nf-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })

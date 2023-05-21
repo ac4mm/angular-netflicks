@@ -4,7 +4,7 @@ import { SelectUserService } from './shared/services/select-user.service';
 // import function to register Swiper custom elements
 import { register } from 'swiper/element/bundle';
 @Component({
-  selector: 'app-root',
+  selector: 'nf-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

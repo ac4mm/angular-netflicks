@@ -12,7 +12,7 @@ import { YoutubeService } from 'src/app/shared/services/youtube.service';
 import { TheMovieDBService } from 'src/app/shared/services/themoviedb.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'nf-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   providers: [DialogService, UtilitiesService]

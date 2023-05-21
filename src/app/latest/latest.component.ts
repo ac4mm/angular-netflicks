@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-latest',
+  selector: 'nf-latest',
   templateUrl: './latest.component.html',
   styleUrls: ['./latest.component.scss']
 })

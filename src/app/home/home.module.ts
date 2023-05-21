@@ -15,6 +15,7 @@ import { DialogModule } from 'primeng/dialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @NgModule({
   declarations: [HomeComponent, ProfileGateComponent, ManageProfilesComponent, PreviewModalContainerCover],
@@ -30,7 +31,8 @@ import { DropdownModule } from 'primeng/dropdown';
     DialogModule,
     DynamicDialogModule,
     ButtonModule,
-    DropdownModule
+    DropdownModule,
+    SkeletonModule
   ],
   exports: [HomeComponent, ProfileGateComponent, ManageProfilesComponent, PreviewModalContainerCover],
   providers: [],

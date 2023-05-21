@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SelectUserService } from './shared/services/select-user.service';
 import { MaterialModule } from 'src/app/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from '../app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule
   ],
   bootstrap: [AppComponent],
   providers: [SelectUserService],
