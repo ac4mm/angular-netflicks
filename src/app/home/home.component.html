@@ -69,37 +69,43 @@
         </button>
 
         <!-- More info -->
-        <ng-container *ngIf="(this.coverMainImageAndTypography$ | async)?.[0]?.resolutions?.original?.url as URLMainImage">
-          <button
-          type="button"
-          class="btn btn-secondary btn-sm font-weight-bold custom-btn more-info-btn"
-          *ngIf="(this.logoImagesKeepWatching$ | async)?.[1] as logo"
-          (click)="
-            openDialogCoverImage(URLMainImage, 0, this.selectedIdMainTvMaze,logo)
-          "
+        <ng-container
+          *ngIf="(this.coverMainImageAndTypography$ | async)?.[0]?.resolutions?.original?.url as URLMainImage"
         >
-          <div class="icon-button">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="2.5vw"
-              height="1.5vw"
-              fill="currentColor"
-              class="bi bi-info-circle custom-icon-btn"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
-              />
-              <path
-                d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
-              />
-            </svg>
-          </div>
+          <button
+            type="button"
+            class="btn btn-secondary btn-sm font-weight-bold custom-btn more-info-btn"
+            *ngIf="(this.logoImagesKeepWatching$ | async)?.[1] as logo"
+            (click)="
+              openDialogCoverImage(
+                URLMainImage,
+                0,
+                this.selectedIdMainTvMaze,
+                logo
+              )
+            "
+          >
+            <div class="icon-button">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="2.5vw"
+                height="1.5vw"
+                fill="currentColor"
+                class="bi bi-info-circle custom-icon-btn"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                />
+                <path
+                  d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+                />
+              </svg>
+            </div>
 
-          <span class="text-button">More info</span>
-        </button>
+            <span class="text-button">More info</span>
+          </button>
         </ng-container>
-        
       </div>
     </div>
   </div>
@@ -243,7 +249,10 @@
               </div>
 
               <!-- Check -->
-              <button class="btn-circle btn-check btn-icon-cover" *ngIf="!showCheckIcon">
+              <button
+                class="btn-circle btn-check btn-icon-cover"
+                *ngIf="!showCheckIcon"
+              >
                 <svg
                   width="16"
                   height="16"
@@ -395,30 +404,78 @@
               </svg>
             </button>
 
-            <!-- Add button  -->
-            <button class="btn-circle btn-icon-cover">
-              <svg
-                width="45%"
-                height="28"
-                viewBox="0 0 24 24"
-                fill="#fff"
-                xmlns="http://www.w3.org/2000/svg"
-                stroke="white"
-                stroke-width="0.3"
+            <div (click)="onClickShowCheckIcon()">
+              <!-- Add button  -->
+              <button
+                class="btn-circle btn-add btn-icon-cover"
+                *ngIf="showCheckIcon"
               >
-                <path
-                  d="M11 2V11H2V13H11V22H13V13H22V11H13V2H11Z"
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
                   fill="#fff"
-                ></path>
-              </svg>
-            </button>
+                  xmlns="http://www.w3.org/2000/svg"
+                  stroke="white"
+                  stroke-width="0.3"
+                >
+                  <path
+                    d="M11 2V11H2V13H11V22H13V13H22V11H13V2H11Z"
+                    fill="#fff"
+                  ></path>
+                </svg>
+              </button>
+
+              <!-- Hover text add button -->
+              <div class="container-hover-btn">
+                <h6 class="hover-text-add-btn">Add to My List</h6>
+
+                <div class="container-triangle">
+                  <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
+                    <polygon points="0 0, 100 0, 50 50" />
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Check -->
+              <button
+                class="btn-circle btn-check btn-icon-cover"
+                *ngIf="!showCheckIcon"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="#fff"
+                  xmlns="http://www.w3.org/2000/svg"
+                  stroke="white"
+                  stroke-width="0.3"
+                >
+                  <path
+                    d="M8.68239 19.7312L23.6824 5.73115L22.3178 4.26904L8.02404 17.6098L2.70718 12.293L1.29297 13.7072L7.29297 19.7072C7.67401 20.0882 8.28845 20.0988 8.68239 19.7312Z"
+                    fill="#fff"
+                  ></path>
+                </svg>
+              </button>
+
+              <!-- Hover text check button -->
+              <div class="container-hover-btn">
+                <h6 class="hover-text-check-btn">Remove from My List</h6>
+
+                <div class="container-triangle">
+                  <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
+                    <polygon points="0 0, 100 0, 50 50" />
+                  </svg>
+                </div>
+              </div>
+            </div>
 
             <!-- Thumb up -->
             <button class="btn-circle btn-icon-cover">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="45%"
-                height="28"
+                width="16"
+                height="16"
                 fill="#fff"
                 class="bi bi-hand-thumbs-up"
                 viewBox="0 0 16 16"
@@ -539,30 +596,78 @@
               </svg>
             </button>
 
-            <!-- Add button  -->
-            <button class="btn-circle btn-icon-cover">
-              <svg
-                width="45%"
-                height="28"
-                viewBox="0 0 24 24"
-                fill="#fff"
-                xmlns="http://www.w3.org/2000/svg"
-                stroke="white"
-                stroke-width="0.3"
+            <div (click)="onClickShowCheckIcon()">
+              <!-- Add button  -->
+              <button
+                class="btn-circle btn-add btn-icon-cover"
+                *ngIf="showCheckIcon"
               >
-                <path
-                  d="M11 2V11H2V13H11V22H13V13H22V11H13V2H11Z"
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
                   fill="#fff"
-                ></path>
-              </svg>
-            </button>
+                  xmlns="http://www.w3.org/2000/svg"
+                  stroke="white"
+                  stroke-width="0.3"
+                >
+                  <path
+                    d="M11 2V11H2V13H11V22H13V13H22V11H13V2H11Z"
+                    fill="#fff"
+                  ></path>
+                </svg>
+              </button>
+
+              <!-- Hover text add button -->
+              <div class="container-hover-btn">
+                <h6 class="hover-text-add-btn">Add to My List</h6>
+
+                <div class="container-triangle">
+                  <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
+                    <polygon points="0 0, 100 0, 50 50" />
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Check -->
+              <button
+                class="btn-circle btn-check btn-icon-cover"
+                *ngIf="!showCheckIcon"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="#fff"
+                  xmlns="http://www.w3.org/2000/svg"
+                  stroke="white"
+                  stroke-width="0.3"
+                >
+                  <path
+                    d="M8.68239 19.7312L23.6824 5.73115L22.3178 4.26904L8.02404 17.6098L2.70718 12.293L1.29297 13.7072L7.29297 19.7072C7.67401 20.0882 8.28845 20.0988 8.68239 19.7312Z"
+                    fill="#fff"
+                  ></path>
+                </svg>
+              </button>
+
+              <!-- Hover text check button -->
+              <div class="container-hover-btn">
+                <h6 class="hover-text-check-btn">Remove from My List</h6>
+
+                <div class="container-triangle">
+                  <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
+                    <polygon points="0 0, 100 0, 50 50" />
+                  </svg>
+                </div>
+              </div>
+            </div>
 
             <!-- Thumb up -->
             <button class="btn-circle btn-icon-cover">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="45%"
-                height="28"
+                width="16"
+                height="16"
                 fill="#fff"
                 class="bi bi-hand-thumbs-up"
                 viewBox="0 0 16 16"
@@ -680,30 +785,78 @@
               </svg>
             </button>
 
-            <!-- Add button  -->
-            <button class="btn-circle btn-icon-cover">
-              <svg
-                width="45%"
-                height="28"
-                viewBox="0 0 24 24"
-                fill="#fff"
-                xmlns="http://www.w3.org/2000/svg"
-                stroke="white"
-                stroke-width="0.3"
+            <div (click)="onClickShowCheckIcon()">
+              <!-- Add button  -->
+              <button
+                class="btn-circle btn-add btn-icon-cover"
+                *ngIf="showCheckIcon"
               >
-                <path
-                  d="M11 2V11H2V13H11V22H13V13H22V11H13V2H11Z"
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
                   fill="#fff"
-                ></path>
-              </svg>
-            </button>
+                  xmlns="http://www.w3.org/2000/svg"
+                  stroke="white"
+                  stroke-width="0.3"
+                >
+                  <path
+                    d="M11 2V11H2V13H11V22H13V13H22V11H13V2H11Z"
+                    fill="#fff"
+                  ></path>
+                </svg>
+              </button>
+
+              <!-- Hover text add button -->
+              <div class="container-hover-btn">
+                <h6 class="hover-text-add-btn">Add to My List</h6>
+
+                <div class="container-triangle">
+                  <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
+                    <polygon points="0 0, 100 0, 50 50" />
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Check -->
+              <button
+                class="btn-circle btn-check btn-icon-cover"
+                *ngIf="!showCheckIcon"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="#fff"
+                  xmlns="http://www.w3.org/2000/svg"
+                  stroke="white"
+                  stroke-width="0.3"
+                >
+                  <path
+                    d="M8.68239 19.7312L23.6824 5.73115L22.3178 4.26904L8.02404 17.6098L2.70718 12.293L1.29297 13.7072L7.29297 19.7072C7.67401 20.0882 8.28845 20.0988 8.68239 19.7312Z"
+                    fill="#fff"
+                  ></path>
+                </svg>
+              </button>
+
+              <!-- Hover text check button -->
+              <div class="container-hover-btn">
+                <h6 class="hover-text-check-btn">Remove from My List</h6>
+
+                <div class="container-triangle">
+                  <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
+                    <polygon points="0 0, 100 0, 50 50" />
+                  </svg>
+                </div>
+              </div>
+            </div>
 
             <!-- Thumb up -->
             <button class="btn-circle btn-icon-cover">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="45%"
-                height="28"
+                width="16"
+                height="16"
                 fill="#fff"
                 class="bi bi-hand-thumbs-up"
                 viewBox="0 0 16 16"
@@ -783,7 +936,6 @@
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
   </swiper>
-
 
   <!-- Footer -->
   <div class="member-footer">

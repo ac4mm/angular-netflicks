@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { SwiperOptions } from 'swiper';
 import { SelectUserService } from '../shared/services/select-user.service';
-import { Subject, Subscription, concatMap, from, map, of, shareReplay, switchMap, take, toArray } from 'rxjs';
+import { Subject, Subscription, concatMap, from, map, of, shareReplay, switchMap } from 'rxjs';
 import { MoviesService } from '../shared/services/movies.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PreviewModalContainerCover } from 'src/app/home/preview-modal-container-cover/preview-modal-container-cover.component';
@@ -166,7 +166,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.initScriptIFrame();
   }
 
-
   initScriptIFrame() {
     // 2. This code loads the IFrame Player API code asynchronously.
     const tag = document.createElement('script');
@@ -195,7 +194,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         playsinline: 1,
         loop: 1,
         end: 5,
-        origin: window.location.href,
+        origin: 'http://localhost:4200',
         enablejsapi: 1
       },
       events: {
