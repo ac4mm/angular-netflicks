@@ -11,6 +11,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 import { TvShowsComponent } from './tv-shows/tv-shows.component';
 import { MoviesComponent } from './movies/movies.component';
+import { ReferfriendsComponent } from 'src/app/referfriends/referfriends.component';
+import { KidsComponent } from 'src/app/kids/kids.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { SelectUserService } from './shared/services/select-user.service';
@@ -28,6 +30,8 @@ import { SharedModule } from '../app/shared/shared.module';
     MyListComponent,
     PageNotFoundComponent,
     MoviesComponent,
+    ReferfriendsComponent,
+    KidsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
