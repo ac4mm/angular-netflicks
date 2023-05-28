@@ -1,8 +1,9 @@
 import { Component, Input } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { BehaviorSubject, Observable, Subject, concatMap, filter, of, takeUntil } from "rxjs";
-import { MoviesService } from "src/app/shared/services/movies.service";
-import { UtilitiesService } from "src/app/shared/services/utilities.service";
+import { BehaviorSubject, Observable, Subject, concatMap, of } from "rxjs";
+
+import { MoviesService } from "@shared/services/movies.service";
+import { UtilitiesService } from "@shared/services/utilities.service";
 
 @Component({
   selector: 'nf-preview-modal-container-cover',

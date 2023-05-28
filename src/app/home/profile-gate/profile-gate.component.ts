@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { SelectUserService } from 'src/app/shared/services/select-user.service';
+import { SelectUserService } from '@shared/services/select-user.service';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 
 @Component({

@@ -1,15 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-
+import { Subject, Subscription, concatMap, from, map, of, shareReplay, switchMap, Observable, takeUntil } from 'rxjs';
 import { SwiperOptions } from 'swiper';
-import { SelectUserService } from '../shared/services/select-user.service';
-import { Subject, Subscription, concatMap, from, map, of, shareReplay, switchMap } from 'rxjs';
-import { MoviesService } from '../shared/services/movies.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { PreviewModalContainerCover } from 'src/app/home/preview-modal-container-cover/preview-modal-container-cover.component';
-import { Observable, takeUntil } from "rxjs";
-import { UtilitiesService } from 'src/app/shared/services/utilities.service';
-import { YoutubeService } from 'src/app/shared/services/youtube.service';
-import { TheMovieDBService } from 'src/app/shared/services/themoviedb.service';
+
+import { PreviewModalContainerCover } from '@home/preview-modal-container-cover/preview-modal-container-cover.component';
+
+import { SelectUserService } from '@shared/services/select-user.service';
+import { MoviesService } from '@shared/services/movies.service';
+import { UtilitiesService } from '@shared/services/utilities.service';
+import { TheMovieDBService } from '@shared/services/themoviedb.service';
+import { YoutubeService } from '@shared/services/youtube.service';
 
 @Component({
   selector: 'nf-home',
@@ -119,7 +119,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     public dialogService: DialogService,
     private utilitiesService: UtilitiesService,
     public themoviedbService: TheMovieDBService
-  ) { }
+  ) {
+    this.initScriptIFrame();
+  }
 
   ngOnInit(): void {
     this.selectUserSub = this.selectUser.currentState$.pipe(takeUntil(this.destroy$)).subscribe(
@@ -162,8 +164,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.numbersOfSeasonsMyList$ = this.getAllNumbersOfSeasonsById$(this.coverIndexImgMyList);
     this.numbersOfSeasonsTopRatedMovies$ = this.getAllNumbersOfSeasonsById$(this.coverIndexTopRatedMovies);
     this.numbersOfSeasonsTvShows$ = this.getAllNumbersOfSeasonsById$(this.coverIndexTvShows);
-
-    this.initScriptIFrame();
   }
 
   initScriptIFrame() {

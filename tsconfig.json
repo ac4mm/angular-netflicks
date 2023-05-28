@@ -15,7 +15,19 @@
       "es2018",
       "dom"
     ],
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "paths":{
+      "@home/*": ["src/app/home/*"],
+      "@kids/*": ["src/app/kids/*"],
+      "@latest/*": ["src/app/latest/*"],
+      "@movies/*": ["src/app/movies/*"],
+      "@my-list/*": ["src/app/my-list/*"],
+      "@page-not-found/*": ["src/app/page-not-found/*"],
+      "@tv-shows/*": ["src/app/tv-shows/*"],
+      "@referfriends/*": ["src/app/referfriends/*"],
+      "@shared/*": ["src/app/shared/*"],
+      "@material/module": ["src/app/material.module"]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
