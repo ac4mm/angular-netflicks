@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject, Subscription, concatMap, from, map, of, shareReplay, switchMap, Observable, takeUntil } from 'rxjs';
 import { SwiperOptions } from 'swiper';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PreviewModalContainerCover } from '@home/preview-modal-container-cover/preview-modal-container-cover.component';
 
 import { SelectUserService } from '@shared/services/select-user.service';
