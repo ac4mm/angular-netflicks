@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Renderer2 } from '@angular/core';
 import { SelectUserService } from '@shared/services/select-user.service';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 
@@ -8,6 +8,9 @@ import { Subject, Subscription, takeUntil } from 'rxjs';
   styleUrls: ['./profile-gate.component.scss'],
 })
 export class ProfileGateComponent implements OnInit, OnDestroy {
+  @Input() mainTitle: string = "Who's watching?";
+  @Input() showManageProfile: boolean = false;
+  
   idUser: number;
   isValidStatus: boolean = false;
   isLoading: boolean = false;
@@ -17,7 +20,7 @@ export class ProfileGateComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<void>();
 
-  constructor(private statusUser: SelectUserService) {}
+  constructor(private statusUser: SelectUserService, private renderer: Renderer2) {}
 
   ngOnInit(): void {
     this.statusUserSub = this.statusUser.currentState$.pipe(takeUntil(this.destroy$)).subscribe(
@@ -27,6 +30,8 @@ export class ProfileGateComponent implements OnInit, OnDestroy {
     this.idUserSub = this.statusUser.currentId$.pipe(takeUntil(this.destroy$)).subscribe(
       (id) => (this.idUser = id)
     );
+
+    this.renderer.setStyle(document.body, 'overflow-y', 'hidden');
   }
 
   onChangeUser(idUser: number) {
@@ -37,6 +42,8 @@ export class ProfileGateComponent implements OnInit, OnDestroy {
       
       this.statusUser.changeIdUser(idUser);
       this.statusUser.setStateUser();
+
+      this.renderer.removeStyle(document.body, 'overflow-y');
     }, 1000);
   }
 

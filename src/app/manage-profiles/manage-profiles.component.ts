@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageProfilesComponent implements OnInit {
 
+  mainTitle = 'Manage Profiles:';
+
   constructor() { }
 
   ngOnInit(): void {

@@ -85,8 +85,8 @@ a {
   min-width: 84px;
   box-sizing: border-box;
   position: relative;
-  /* text-decoration: none; */
   border: 0.08em solid #1f1f1f;
+  border-radius: 4px;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -137,9 +137,17 @@ a {
 }
 
 .profile-button {
-  display: button;
-  margin: 2em 0 1em 0;
-  font-size: 1.3vw;
+  cursor: pointer;
+  font-size: 1.2vw;
+  letter-spacing: 2px;
+  padding: 0.5em 1.5em;
+  border-radius: 0;
+}
+
+.profile-button-done .profile-button:hover {
+  background-color:#cc0000;
+  border-color: #cc0000;
+  color: white;
 }
 
 .profile-button a,
@@ -150,11 +158,36 @@ a {
   padding: 0.5em 1.5em;
   letter-spacing: 2px;
   cursor: pointer;
-  font-size: 0.9em;
 }
 
 .profile-button:hover a,
 .profile-button:hover span {
   color: #eaeaea;
   border: 1px solid #eaeaea;
+}
+
+.manage-profiles {
+  font-size: 1.3vw;
+}
+
+.svg-edit-overlay {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.svg-icon-edit {
+  height: 2rem;
+  max-height: 70px;
+  max-width: 70px;
+  width: 2rem;
+}
+
+.profile-edit-mode {
+  opacity: 0.5;
 }
