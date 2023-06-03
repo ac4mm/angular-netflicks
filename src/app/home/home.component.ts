@@ -105,7 +105,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   showVideoPreview: boolean = false;
 
-  showVideo = true;
   videoClicked = false;
   playerSettings: any;
   public YT: any;
@@ -119,9 +118,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     public dialogService: DialogService,
     private utilitiesService: UtilitiesService,
     public themoviedbService: TheMovieDBService
-  ) {
-    this.initScriptIFrame();
-  }
+  ) {}
 
   ngOnInit(): void {
     this.selectUserSub = this.selectUser.currentState$.pipe(takeUntil(this.destroy$)).subscribe(
@@ -212,6 +209,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // 5. The API calls this function when the player's state changes.
   onPlayerStateChange(event) {
+    if(event.target.getPlayerState() === 1){
+      console.log("Video starts")
+    }
+
     if (event.target.getPlayerState() === 0) {
       this.showRefreshIcon = true;
       this.onClickSpeakerIcon();
@@ -237,7 +238,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   autoplayVideo() {
     setTimeout(() => {
       this.showVideoPreview = true;
-    }, 2000)
+      this.initScriptIFrame();
+    }, 3000)
   }
 
 

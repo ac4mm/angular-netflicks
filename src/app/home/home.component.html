@@ -7,7 +7,7 @@
     class="static-image image-layer"
     [src]="(this.coverMainImageAndTypography$ | async)?.[0]?.resolutions?.original?.url"
   />
-  <div class="youtube-container" *ngIf="showVideo">
+  <div class="youtube-container" *ngIf="showVideoPreview">
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
     <div id="player"></div>
   </div>
