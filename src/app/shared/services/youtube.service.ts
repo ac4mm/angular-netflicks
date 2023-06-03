@@ -1,19 +1,24 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { environmentProd } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class YoutubeService {
 
-  APIKEY: string = 'AIzaSyBe4OamkgHdFcTeBNu0t8h_LhxSDmG-q5M';
+  API_KEY_YOUTUBE: string;
+  BASEPATH: string = 'https://www.googleapis.com/youtube/v3/';
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient) {
+    this.API_KEY_YOUTUBE = !isDevMode() ? environmentProd.API_KEY_THEMOVIEDB :  environment.API_KEY_THEMOVIEDB;
+   }
 
   getVideosForChanel(channel, maxResults): Observable<Object> {
-    let URL = 'https://www.googleapis.com/youtube/v3/search?key=' + this.APIKEY + '&channelId=' + channel + '&order=date&part=snippet &type=video,id&maxResults=' + maxResults
+    let URL = this.BASEPATH + 'search?key=' + this.API_KEY_YOUTUBE + '&channelId=' + channel + '&order=date&part=snippet &type=video,id&maxResults=' + maxResults
     return this.http.get(URL)
       .pipe(map((res) => {
         return res;
@@ -21,7 +26,7 @@ export class YoutubeService {
   }
 
   getVideosBySearchQuery(query: string) {
-    let URL = 'https://www.googleapis.com/youtube/v3/search?key=' + this.APIKEY + '&q=' + query + '&part=snippet &type=video'
+    let URL = this.BASEPATH + 'search?key=' + this.API_KEY_YOUTUBE + '&q=' + query + '&part=snippet &type=video'
     return this.http.get(URL)
       .pipe(map((res) => {
         return res;
@@ -29,7 +34,7 @@ export class YoutubeService {
   }
 
   getVideoById(idVideo: string) {
-    const URL = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' + idVideo + '&key=' + this.APIKEY;
+    const URL = this.BASEPATH + 'videos?part=snippet&id=' + idVideo + '&key=' + this.API_KEY_YOUTUBE;
 
     return this.http.get(URL).pipe(map((res) => {
       return res;
