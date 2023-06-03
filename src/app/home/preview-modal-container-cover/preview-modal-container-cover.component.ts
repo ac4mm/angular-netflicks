@@ -17,13 +17,8 @@ import { UtilitiesService } from "@shared/services/utilities.service";
 export class PreviewModalContainerCover {
   @Input() seasonSelected: number = 1;
   @Input() seasonSelector: any = [];
-  @Input() indexSelectedItem: any;
-  @Input() numbersOfSeasonsKeepWatching$: Observable<string[]>;
-  @Input() randMatchScore: any;
-  @Input() ratingNumberCover: any;
   @Input() speakerUpIconShow: any;
   @Input() showCheckIcon: boolean = true;
-  @Input() coverImagePreviewModal: any;
   @Input() displayModal: any;
 
   seriesTvInfo$: Observable<any>;
@@ -31,8 +26,6 @@ export class PreviewModalContainerCover {
   finalArrayTvInfo$ = new BehaviorSubject<any>([]);
   seriesSelectedDropdown$ = new BehaviorSubject<number>(0);
   peopleCastSeries$: Observable<string[]>;
-
-  logoImageURL: string = null;
 
   showWords = ['Absurd', 'Quirky', 'Irreverent', 'Ominous', 'Scary', 'Mind-Bending', 'Chilling', 'Suspenseful', 'Exciting', 'Dark', 'Offbeat', 'Gritty', 'Emotional', 'Deadpan', 'Witty'];
   selectedRandWords: string[];
@@ -47,13 +40,6 @@ export class PreviewModalContainerCover {
   ) { }
 
   ngOnInit() {
-    this.coverImagePreviewModal = this.config.data.coverImagePreviewModal;
-    this.logoImageURL = this.config.data.logoImageURL;
-    this.indexSelectedItem = this.config.data.indexSelectedItem;
-    this.randMatchScore = this.config.data.randMatchScore;
-    this.ratingNumberCover = this.config.data.ratingNumberCover;
-    this.numbersOfSeasonsKeepWatching$ = this.config.data.numbersOfSeasonsKeepWatching$;
-
     this.selectedRandWords = this.utilitiesService.getMultipleRandItem(this.showWords, this.utilitiesService.getRandomIntBetweenRange(2, 3));
 
     this.seriesTvInfo$ = this.getAllSeriesTvInfo$(this.config.data.indexTvMazeSeries);
