@@ -308,6 +308,7 @@
                   coverImage,
                   i,
                   coverIndexImgKeepWatching[i],
+                  coverIndexImgKeepWatchingTMDB[i],
                   logo
                 )
               "
@@ -490,14 +491,15 @@
 
             <!-- Arrow down -->
             <button
-              *ngIf="(this.logoImagesMyList$ | async)?.[i] as logoURL"
+              *ngIf="(this.logoImagesMyList$ | async)?.[i] as logo"
               class="btn-circle btn-icon-cover arrow-down"
               (click)="
                 openDialogCoverImage(
                   coverImage,
                   i,
                   coverIndexImgMyList[i],
-                  logoURL
+                  coverIndexImgMyListTMDB[i],
+                  logo
                 )
               "
             >
@@ -682,14 +684,15 @@
 
             <!-- Arrow down -->
             <button
-              *ngIf="(this.logoImagesTopRatedMovies$ | async)?.[i] as logoURL"
+              *ngIf="(this.logoImagesTopRatedMovies$ | async)?.[i] as logo"
               class="btn-circle btn-icon-cover arrow-down"
               (click)="
                 openDialogCoverImage(
                   coverImage,
                   i,
                   coverIndexTopRatedMovies[i],
-                  logoURL
+                  coverIndexTopRatedMoviesTMDB[i],
+                  logo
                 )
               "
             >
@@ -871,14 +874,15 @@
 
             <!-- Arrow down -->
             <button
-              *ngIf="(this.logoImagesTvShows$ | async)?.[i] as logoURL"
+              *ngIf="(this.logoImagesTvShows$ | async)?.[i] as logo"
               class="btn-circle btn-icon-cover arrow-down"
               (click)="
                 openDialogCoverImage(
                   coverImage,
                   i,
                   coverIndexTvShows[i],
-                  logoURL
+                  coverIndexTvShowsTMDB[i],
+                  logo
                 )
               "
             >

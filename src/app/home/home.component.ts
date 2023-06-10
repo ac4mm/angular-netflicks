@@ -6,7 +6,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PreviewModalContainerCover } from '@home/preview-modal-container-cover/preview-modal-container-cover.component';
 
 import { SelectUserService } from '@shared/services/select-user.service';
-import { MoviesService } from '@shared/services/movies.service';
+import { TvMazeService } from '@shared/services/tvmaze.service';
 import { UtilitiesService } from '@shared/services/utilities.service';
 import { TheMovieDBService } from '@shared/services/themoviedb.service';
 import { YoutubeService } from '@shared/services/youtube.service';
@@ -110,10 +110,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   public YT: any;
   public videoId: any;
   public player: any;
+  public playerCover: any;
 
   constructor(
     public selectUser: SelectUserService,
-    private movies: MoviesService,
+    private tvmazeService: TvMazeService,
     private youtubeService: YoutubeService,
     public dialogService: DialogService,
     private utilitiesService: UtilitiesService,
@@ -199,6 +200,31 @@ export class HomeComponent implements OnInit, OnDestroy {
         'onStateChange': this.onPlayerStateChange.bind(this)
       }
     });
+
+    this.playerCover = new window['YT'].Player('playerCover', {
+      videoId: 'LEgYxWi5F84',
+      height: '100%',
+      width: '100%',
+      playerVars: {
+        autohide: 1,
+        controls: 0,
+        showinfo: 0,
+        autoplay: 1,
+        modestbranding: 1,
+        disablekb: 1,
+        rel: 0,
+        fs: 0,
+        playsinline: 1,
+        loop: 1,
+        end: 5,
+        origin: 'http://localhost:4200',
+        enablejsapi: 1
+      },
+      events: {
+        'onReady': this.onPlayerReady.bind(this),
+        'onStateChange': this.onPlayerStateChange.bind(this)
+      }
+    });
   }
 
   // 4. The API will call this function when the video player is ready.
@@ -238,7 +264,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   autoplayVideo() {
     setTimeout(() => {
       this.showVideoPreview = true;
-      this.initScriptIFrame();
+      /* this.initScriptIFrame(); */
     }, 3000)
   }
 
@@ -268,7 +294,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   getCoverImageAndTypographyById$(coverId: number, indexBackground: number = 0, indexTypography: number = 0): Observable<any[]> {
     let finalCoverTypoImage = [];
 
-    return this.movies.searchImagesMovie(coverId).pipe(
+    return this.tvmazeService.searchImagesMovie(coverId).pipe(
       map((images) => {
         let arr = [];
         arr.push(images.filter((image) => image.type === 'background'));
@@ -307,7 +333,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     let finalCoverImages = [];
 
     return from(coverIndexImg).pipe(
-      concatMap((item) => this.movies.searchImagesMovie(item)),
+      concatMap((item) => this.tvmazeService.searchImagesMovie(item)),
       switchMap((images) => {
         const backgroundImages = images.filter((image) => image.type === 'background');
         const bannerImages = images.filter((image) => image.type === 'banner');
@@ -344,7 +370,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
     return from(coverIndexImg).pipe(
-      concatMap((indexImg) => this.movies.searchMainInfoMovie(indexImg).pipe(map((item) => {
+      concatMap((indexImg) => this.tvmazeService.searchMainInfoMovie(indexImg).pipe(map((item) => {
         finalGenreSeasons.push(item.genres);
         return finalGenreSeasons;
       }))),
@@ -356,7 +382,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     let finalNumberSeasons = [];
 
     return from(coverIndexImg).pipe(
-      concatMap((indexImg) => this.movies.searchNumberSeasonsById(indexImg).pipe(map((seasons) => {
+      concatMap((indexImg) => this.tvmazeService.searchNumberSeasonsById(indexImg).pipe(map((seasons) => {
         finalNumberSeasons.push([seasons.length]);
         return finalNumberSeasons;
       }))),
@@ -370,7 +396,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.displayModal = true;
   }
 
-  openDialogCoverImage(coverImage: any, index: number, indexTvMazeSeries: number, logoImageURL?: string) {
+  openDialogCoverImage(coverImage: any, index: number, indexTvMazeSeries: number, indexTheMovieDb?: number, logoImageURL?: string) {
     this.indexSelectedItem = index;
     this.coverImagePreviewModal = coverImage;
 
@@ -388,7 +414,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         coverImagePreviewModal: this.coverImagePreviewModal,
         indexSelectedItem: this.indexSelectedItem,
         indexTvMazeSeries: indexTvMazeSeries,
-        logoImageURL: logoImageURL
+        indexTheMovieDb: indexTheMovieDb,
+        logoImageURL: logoImageURL,
+        playerCover: this.playerCover
       }
     })
   }
@@ -405,7 +433,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
   getImageMovie(id: number) {
-    this.movies.searchImagesMovie(id).pipe(
+    this.tvmazeService.searchImagesMovie(id).pipe(
       map((images) => images.filter((image) => image.type === 'background'))
     ).pipe(takeUntil(this.destroy$)).subscribe(images => {
       this.tempImg = images[0].resolutions.original.url;
@@ -414,19 +442,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getIdMovie(id: string) {
-    this.movies.getMovies(id).pipe(takeUntil(this.destroy$)).subscribe(movie => {
+    this.tvmazeService.getMovies(id).pipe(takeUntil(this.destroy$)).subscribe(movie => {
       this.movieDetails = movie;
     })
   }
 
   searchMovie(query: string) {
-    this.movies.searchMovie(query).pipe(takeUntil(this.destroy$)).subscribe(movie => {
+    this.tvmazeService.searchMovie(query).pipe(takeUntil(this.destroy$)).subscribe(movie => {
       this.movieDetails = movie;
     })
   }
 
   getEpisode(season: string, numb: string) {
-    return this.movies
+    return this.tvmazeService
       .getEpisodeByNumber(this.movieDetails.id, season, numb)
       .pipe(takeUntil(this.destroy$))
       .subscribe((episode) => {
