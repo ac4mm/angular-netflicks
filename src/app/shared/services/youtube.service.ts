@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { environmentProd } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,7 @@ export class YoutubeService {
   BASEPATH: string = 'https://www.googleapis.com/youtube/v3/';
 
   constructor(public http: HttpClient) {
-    this.API_KEY_YOUTUBE = !isDevMode() ? environmentProd.API_KEY_THEMOVIEDB :  environment.API_KEY_THEMOVIEDB;
+    this.API_KEY_YOUTUBE = environment.API_KEY_THEMOVIEDB;
    }
 
   getVideosForChanel(channel, maxResults): Observable<Object> {
