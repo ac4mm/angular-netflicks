@@ -11,6 +11,8 @@ A case study of Netflix Clone, using Angular 15 framework, RxJS library for mana
 
 ![](meta-assets/manage-profiles.png)
 
+![](meta-assets/preview-modal.png)
+
 ![](meta-assets/mobile.png)
 
 ## Demo Preview
@@ -19,13 +21,18 @@ A case study of Netflix Clone, using Angular 15 framework, RxJS library for mana
 
 <br />
 
+## Live Preview
+[Netflicks](https://netflicks-6c8b7.web.app)
+
 ## Table of Content
-- [Live Demo](https://netflicks-6c8b7.web.app)
-- [Getting Started](#getting-started)
-- [Goals](#goals)
-- [Features](#features)
-- [Stack](#stack)
-- [Acknowledgments](#acknowledgments)
+- [Angular 15, RxJS and Bootstrap](#angular-15-rxjs-and-bootstrap)
+  - [Demo Preview](#demo-preview)
+  - [Live Preview](#live-preview)
+  - [Table of Content](#table-of-content)
+  - [Getting Started](#getting-started)
+  - [Goals](#goals)
+  - [Features](#features)
+  - [Stack](#stack)
 
 
 ## Getting Started
@@ -33,8 +40,8 @@ A case study of Netflix Clone, using Angular 15 framework, RxJS library for mana
 ```bash
 git clone https://github.com/ac4mm/netflicks.git new-project
 cd new-project
-npm install
-npm start
+yarn install
+yarn start
 ```
 
 ## Goals
@@ -48,12 +55,18 @@ Tha main goal of this simple repository is to learn how to use reactive programm
 
 
 ## Stack
+FE
 - [Angular](https://angular.io/)
 - [RxJS](https://rxjs.dev/)
 - [Bootstrap](https://getbootstrap.com/)
 - [Swiper](https://swiperjs.com/)
+
+API
 - [Tv Maze API](https://www.tvmaze.com/api)
 - [The movie DB (TMDB)](https://www.themoviedb.org/)
+
+Hosting
+- [Firebase](https://firebase.google.com/)
 
 
 
