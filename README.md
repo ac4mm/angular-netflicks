@@ -1,5 +1,7 @@
-# Angular 9, RxJS and BootStrap
-A case study of Netflix Clone with using Angular 9, RxJS, Bootstrap and Swipe.js for animation carousel.
+# Angular 15, RxJS and Bootstrap
+A case study of Netflix Clone, using Angular 15 framework, RxJS library for manage state with Observable, Bootstrap for style and Swipe.js for animation carousel.
+
+<br />
 
 ![](meta-assets/home.png)
 
@@ -7,8 +9,15 @@ A case study of Netflix Clone with using Angular 9, RxJS, Bootstrap and Swipe.js
 
 ![](meta-assets/template-users.png)
 
+![](meta-assets/manage-profiles.png)
 
 ![](meta-assets/mobile.png)
+
+## Demo Preview
+
+![](meta-assets/demo-preview.gif)
+
+<br />
 
 ## Table of Content
 - [Live Demo](https://netflicks-6c8b7.web.app)
@@ -29,7 +38,7 @@ npm start
 ```
 
 ## Goals
-Tha main goal of this simple repository is to learn how to use reactive programming (with RxJS) and Angular 9 with routing, lazy loading and the main feature of framework.
+Tha main goal of this simple repository is to learn how to use reactive programming (with RxJS) and Angular 15 with routing, lazy loading and the main feature of framework.
 
 ## Features
 - Lazy loading
@@ -39,10 +48,12 @@ Tha main goal of this simple repository is to learn how to use reactive programm
 
 
 ## Stack
-- Angular
-- RxJS
-- Bootstrap
-- Swiper
+- [Angular](https://angular.io/)
+- [RxJS](https://rxjs.dev/)
+- [Bootstrap](https://getbootstrap.com/)
+- [Swiper](https://swiperjs.com/)
+- [Tv Maze API](https://www.tvmaze.com/api)
+- [The movie DB (TMDB)](https://www.themoviedb.org/)
 
 
 
