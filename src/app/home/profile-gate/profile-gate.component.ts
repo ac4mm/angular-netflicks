@@ -18,6 +18,8 @@ export class ProfileGateComponent implements OnInit, OnDestroy {
   private statusUserSub: Subscription;
   private idUserSub: Subscription;
 
+  currentStyles: {};
+
   private destroy$ = new Subject<void>();
 
   constructor(private statusUser: SelectUserService, private renderer: Renderer2) {}
@@ -51,7 +53,7 @@ export class ProfileGateComponent implements OnInit, OnDestroy {
     this.statusUserSub.unsubscribe();
     this.idUserSub.unsubscribe();
   }
-  currentStyles: {};
+
   setPropertyLoadingSpinner() {
     this.currentStyles = {
       width: '150px',

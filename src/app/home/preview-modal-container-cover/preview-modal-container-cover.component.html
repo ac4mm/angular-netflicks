@@ -1,4 +1,4 @@
-  <!-- Close dialog -->
+<!-- Close dialog -->
 <div class="previewModal-container-close">
   <div class="previewModal-player-wrapper previewModal-close">
     <button class="btn-circle" (click)="onClickClose()">
@@ -24,7 +24,35 @@
 <div class="previewModal-player-container">
   <!-- Cover image dialog -->
   <div class="previewModal-player-image">
-    <img [src]="this.config.data.coverImagePreviewModal" class="previewModal-cover-image" />
+    <img
+      *ngIf="!showVideoPreview"
+      [src]="this.config.data.coverImagePreviewModal"
+      class="previewModal-cover-image"
+    />
+
+    <div class="youtube-container-dialog" *ngIf="showVideoPreview">
+      <!--       <iframe id="player" frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" title="Stranger Things | Official Final Trailer | Netflix" width="100%" height="100%" src="https://www.youtube.com/embed/b9EkMc79ZSU?autohide=1&amp;controls=0&amp;showinfo=0&amp;autoplay=1&amp;modestbranding=1&amp;disablekb=1&amp;rel=0&amp;fs=0&amp;playsinline=1&amp;loop=1&amp;end=5&amp;origin=http%3A%2F%2Flocalhost%3A4200&amp;enablejsapi=1&amp;widgetid=1"></iframe>
+ -->
+      <!-- <iframe
+        id="player-dialog"
+        frameborder="0"
+        allowfullscreen="1"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        width="100%"
+        height="100%"
+        [src]="this.URLPlayerDialog"
+      ></iframe> -->
+      <iframe
+        *ngIf="this.config.data.indexSelectedItem"
+        id="{{'player' + this.config.data.indexSelectedItem}}"
+        frameborder="0"
+        allowfullscreen="1"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        width="100%"
+        height="100%"
+        [src]="this.URLPlayerDialog"
+      ></iframe>
+    </div>
   </div>
 
   <!-- Wrapper cover image dialog -->
@@ -32,7 +60,9 @@
     <div class="wrapper-logo-img">
       <img
         *ngIf="this.config.data.logoImageURL !== null"
-        [src]="'https://image.tmdb.org/t/p/w500' + this.config.data.logoImageURL"
+        [src]="
+          'https://image.tmdb.org/t/p/w500' + this.config.data.logoImageURL
+        "
       />
     </div>
 
@@ -115,8 +145,6 @@
             </svg>
           </div>
         </div>
-
-
       </div>
 
       <!-- Thumb up -->
@@ -189,14 +217,20 @@
       <div class="previewModal-left">
         <div class="first-line-info">
           <span class="match-score" *ngIf="this.config.data.randMatchScore"
-            >{{ this.config.data.randMatchScore[this.config.data.indexSelectedItem] }}% Match</span
+            >{{
+              this.config.data.randMatchScore[
+                this.config.data.indexSelectedItem
+              ]
+            }}% Match</span
           >
           <span class="year">2022</span>
           <span
             class="seasons"
             *ngIf="this.config.data.numbersOfSeasonsKeepWatching$$ | async"
             >{{
-              (this.config.data.numbersOfSeasonsKeepWatching$ | async)[this.config.data.indexSelectedItem]
+              (this.config.data.numbersOfSeasonsKeepWatching$ | async)[
+                this.config.data.indexSelectedItem
+              ]
             }}
             seasons</span
           >
@@ -207,8 +241,14 @@
 
         <div class="second-line-info">
           <div class="maturity-rating">
-            <span class="rating-number" *ngIf="this.config.data.ratingNumberCover"
-              >{{ this.config.data.ratingNumberCover[this.config.data.indexSelectedItem] }}+</span
+            <span
+              class="rating-number"
+              *ngIf="this.config.data.ratingNumberCover"
+              >{{
+                this.config.data.ratingNumberCover[
+                  this.config.data.indexSelectedItem
+                ]
+              }}+</span
             >
           </div>
         </div>
@@ -398,8 +438,14 @@
         <div class="previewModal-tags">
           <span class="previewModal-tags-label">Maturity Rating:</span
           ><a class="tag-item maturity-rating"
-            ><span class="rating-number" *ngIf="this.config.data.ratingNumberCover"
-              >{{ this.config.data.ratingNumberCover[this.config.data.indexSelectedItem] }}+</span
+            ><span
+              class="rating-number"
+              *ngIf="this.config.data.ratingNumberCover"
+              >{{
+                this.config.data.ratingNumberCover[
+                  this.config.data.indexSelectedItem
+                ]
+              }}+</span
             ></a
           >
         </div>

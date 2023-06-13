@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   coverImagePreviewModal: string;
 
   selectedIdMainTvMaze: number;
+  selectedIdMainTMDB: number;
 
   coverMainImageAndTypography$: Observable<string[]>;
 
@@ -110,7 +111,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   public YT: any;
   public videoId: any;
   public player: any;
-  public playerCover: any;
+  public playerDialogList: any[];
+  public players: any[] = [];
 
   constructor(
     public selectUser: SelectUserService,
@@ -123,11 +125,15 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.selectUserSub = this.selectUser.currentState$.pipe(takeUntil(this.destroy$)).subscribe(
-      (state) => (this.isValidUser = !!state)
+      (state) => {
+        this.isValidUser = !!state;
+        if(this.isValidUser) this.autoplayVideo();
+      }
     );
 
     //Index Stranger Things
     this.selectedIdMainTvMaze = 2993;
+    this.selectedIdMainTMDB = 66732;
 
     //Setting with random number, the match score
     this.randMatchScore = Array.from({ length: this.coverIndexImgKeepWatching.length }, () => this.utilitiesService.getRandomIntBetweenRange(64, 100))
@@ -136,8 +142,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.ratingNumberCover = this.getWeightedRandomNumberInArr(this.ratingNumberObject, 7);
 
     this.coverMainImageAndTypography$ = this.getCoverImageAndTypographyById$(this.selectedIdMainTvMaze, 10);
-
-    this.autoplayVideo();
 
     //Get all cover images by id (TvMaze)
     this.coverImgKeepWatching$ = this.getAllCoverImagesById$(this.coverIndexImgKeepWatching);
@@ -191,7 +195,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         fs: 0,
         playsinline: 1,
         loop: 1,
-        end: 5,
+        end: 15,
         origin: 'http://localhost:4200',
         enablejsapi: 1
       },
@@ -201,29 +205,68 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.playerCover = new window['YT'].Player('playerCover', {
-      videoId: 'LEgYxWi5F84',
-      height: '100%',
-      width: '100%',
-      playerVars: {
-        autohide: 1,
-        controls: 0,
-        showinfo: 0,
-        autoplay: 1,
-        modestbranding: 1,
-        disablekb: 1,
-        rel: 0,
-        fs: 0,
-        playsinline: 1,
-        loop: 1,
-        end: 5,
-        origin: 'http://localhost:4200',
-        enablejsapi: 1
+    /* Testing */
+    this.playerDialogList = [
+      {
+        id: 'player0', height: '100%', width: '100%', videoId: 'fUiifh_aCLU', playerVars: {
+          autohide: 1,
+          controls: 0,
+          showinfo: 0,
+          autoplay: 1,
+          modestbranding: 1,
+          disablekb: 1,
+          rel: 0,
+          fs: 0,
+          playsinline: 1,
+          loop: 1,
+          end: 5,
+          origin: 'http://localhost:4200',
+          enablejsapi: 1
+        },
+        events: {
+          'onReady': this.onPlayerReady.bind(this),
+          'onStateChange': this.onPlayerStateChange.bind(this)
+        }
       },
-      events: {
-        'onReady': this.onPlayerReady.bind(this),
-        'onStateChange': this.onPlayerStateChange.bind(this)
+      {
+        id: 'player1', height: '100%', width: '100%', videoId: 'mnd7sFt5c3A', playerVars: {
+          autohide: 1,
+          controls: 0,
+          showinfo: 0,
+          autoplay: 1,
+          modestbranding: 1,
+          disablekb: 1,
+          rel: 0,
+          fs: 0,
+          playsinline: 1,
+          loop: 1,
+          end: 5,
+          origin: 'http://localhost:4200',
+          enablejsapi: 1
+        },
+        events: {
+          'onReady': this.onPlayerReady.bind(this),
+          'onStateChange': this.onPlayerStateChange.bind(this)
+        }
       }
+    ];;
+
+    if (typeof this.playerDialogList === 'undefined')
+      return;
+
+    for (var i = 0; i < this.playerDialogList.length; i++) {
+      var curplayer = this.createPlayer(this.playerDialogList[i]);
+      this.players[i] = curplayer;
+    }
+  }
+
+  createPlayer(playerInfo) {
+    return new window['YT'].Player(playerInfo.id, {
+      videoId: playerInfo.videoId,
+      height: playerInfo.height,
+      width: playerInfo.width,
+      playerVars: playerInfo.playerVars,
+      events: playerInfo.events
     });
   }
 
@@ -235,7 +278,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // 5. The API calls this function when the player's state changes.
   onPlayerStateChange(event) {
-    if(event.target.getPlayerState() === 1){
+    if (event.target.getPlayerState() === 1) {
       console.log("Video starts")
     }
 
@@ -264,7 +307,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   autoplayVideo() {
     setTimeout(() => {
       this.showVideoPreview = true;
-      /* this.initScriptIFrame(); */
+      this.initScriptIFrame();
     }, 3000)
   }
 
@@ -416,8 +459,12 @@ export class HomeComponent implements OnInit, OnDestroy {
         indexTvMazeSeries: indexTvMazeSeries,
         indexTheMovieDb: indexTheMovieDb,
         logoImageURL: logoImageURL,
-        playerCover: this.playerCover
+        players: this.players
       }
+    })
+
+    dialog.onClose.subscribe((item) => {
+      console.log("is closed", item);
     })
   }
 
