@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { AuthService, AuthResponseData } from './auth.service';
@@ -18,6 +18,9 @@ export class AuthComponent {
   error: string = null;
 
   typePassword: any = document.getElementsByClassName('form-control');
+
+  authObs: Observable<AuthResponseData>;
+  private destroy$ = new Subject<void>();
 
   constructor(private authService: AuthService, private router: Router) {
   }
@@ -40,16 +43,14 @@ export class AuthComponent {
     const email = form.value.email;
     const password = form.value.password;
 
-    let authObs: Observable<AuthResponseData>;
-
     this.isLoading = true;
     if (this.isLoginMode) {
-      authObs = this.authService.login(email, password);
+      this.authObs = this.authService.login(email, password);
     } else {
-      authObs = this.authService.signup(email, password);
+      this.authObs = this.authService.signup(email, password);
     }
 
-    authObs.subscribe(
+    this.authObs.subscribe(
       (resData) => {
         this.isLoading = false;
         this.router.navigate(['/browse']);
@@ -65,6 +66,7 @@ export class AuthComponent {
 
   ngOnDestroy() {
     document.body.classList.remove('background');
+    this.destroy$.unsubscribe();
   }
 
   onHandleError() {

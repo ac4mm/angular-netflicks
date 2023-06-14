@@ -98,4 +98,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+#Cache
+.firebase/*
 >>>>>>> 7572465... initial commit
