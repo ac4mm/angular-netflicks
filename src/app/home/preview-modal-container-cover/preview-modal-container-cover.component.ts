@@ -17,13 +17,13 @@ import { DomSanitizer } from "@angular/platform-browser";
   providers: [UtilitiesService]
 })
 export class PreviewModalContainerCover {
+  @ViewChild('player') player: any;
+  
   @Input() seasonSelected: number = 1;
   @Input() seasonSelector: any = [];
   @Input() speakerUpIconShow: boolean = true;
   @Input() showCheckIcon: boolean = true;
   @Input() displayModal: any;
-
-  @ViewChild('player') player: any;
 
   seriesTvInfo$: Observable<any>;
   seriesTvMainInfoDetail$: Observable<any>;
@@ -49,7 +49,7 @@ export class PreviewModalContainerCover {
     fs: 0,
     playsinline: 1,
     loop: 0,
-    end: 5,
+    end: 15,
     mute: 0,
     autoplay: 1,
     allowfullscreen: 1,
@@ -78,12 +78,10 @@ export class PreviewModalContainerCover {
 
 
     this.themovieDbService.getVideosById(this.config.data.indexTheMovieDb, 'tv').subscribe((item) => {
-      console.log(item);
-      console.log(item?.["results"][0].key);
       this.keyYTVideo = item?.["results"][0].key;
+
       setTimeout(() => {
         this.showVideoPreview = true;
-        console.log(this.config.data.indexSelectedItem);
         this.initScriptIFrame();
       }, 3000);
     })
@@ -92,8 +90,6 @@ export class PreviewModalContainerCover {
   initScriptIFrame() {
     const tag = document.createElement('script');
       tag.src = "https://www.youtube.com/iframe_api";
-      tag.id = 'iframe-api';
-      console.log(document.body);
       document.body.appendChild(tag);
   }
 
