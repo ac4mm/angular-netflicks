@@ -31,27 +31,14 @@
     />
 
     <div class="youtube-container-dialog" *ngIf="showVideoPreview">
-      <!--       <iframe id="player" frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" title="Stranger Things | Official Final Trailer | Netflix" width="100%" height="100%" src="https://www.youtube.com/embed/b9EkMc79ZSU?autohide=1&amp;controls=0&amp;showinfo=0&amp;autoplay=1&amp;modestbranding=1&amp;disablekb=1&amp;rel=0&amp;fs=0&amp;playsinline=1&amp;loop=1&amp;end=5&amp;origin=http%3A%2F%2Flocalhost%3A4200&amp;enablejsapi=1&amp;widgetid=1"></iframe>
- -->
-      <!-- <iframe
-        id="player-dialog"
-        frameborder="0"
-        allowfullscreen="1"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        width="100%"
-        height="100%"
-        [src]="this.URLPlayerDialog"
-      ></iframe> -->
-      <iframe
-        *ngIf="this.config.data.indexSelectedItem"
-        id="{{'player' + this.config.data.indexSelectedItem}}"
-        frameborder="0"
-        allowfullscreen="1"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        width="100%"
-        height="100%"
-        [src]="this.URLPlayerDialog"
-      ></iframe>
+      <youtube-player 
+      *ngIf="this.config.data.indexSelectedItem" 
+      #player
+      [videoId]="this.keyYTVideo"
+      [width]="'100%'"
+      [height]="'100%'"
+      [playerVars]="playerConfig"
+      ></youtube-player>
     </div>
   </div>
 

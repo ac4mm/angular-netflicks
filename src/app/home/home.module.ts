@@ -16,6 +16,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { SkeletonModule } from 'primeng/skeleton';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 @NgModule({
   declarations: [HomeComponent, ProfileGateComponent, ManageProfilesComponent, PreviewModalContainerCover],
@@ -32,7 +33,8 @@ import { SkeletonModule } from 'primeng/skeleton';
     DynamicDialogModule,
     ButtonModule,
     DropdownModule,
-    SkeletonModule
+    SkeletonModule,
+    YouTubePlayerModule 
   ],
   exports: [HomeComponent, ProfileGateComponent, ManageProfilesComponent, PreviewModalContainerCover],
   providers: [],
