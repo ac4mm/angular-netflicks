@@ -17,7 +17,7 @@ A case study of Netflix Clone, using Angular 15 framework, RxJS library for mana
 
 ## Demo Preview
 
-![](meta-assets/demo-preview.gif?raw=true)
+![](meta-assets/demo-preview.gif)
 
 <br />
 
