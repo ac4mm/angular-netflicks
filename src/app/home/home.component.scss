@@ -45,7 +45,7 @@ img {
 
 @media screen and (min-width: 500px) and (max-width: 600px) {
   .text-button {
-    font-size: 1.1vw !important;
+    font-size: 0.8vw !important;
   }
 }
 
@@ -61,6 +61,36 @@ img {
     font-size: 1vw;
   }
 }
+
+/*  */
+@media only screen and (max-width: 1100px) {
+  .container-fluid {
+    margin-top: -3em;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .container-fluid {
+    margin-top: -2em;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .container-fluid {
+    margin-top: -2em;
+  }
+
+  .info-meta-layer {
+    margin-top:13% !important;
+    width: 31% !important;
+  }
+
+  .other-actions {
+    width: 5vw !important;
+    height: 5vw !important;
+  }
+}
+
 
 /**Animation swiper ******************************/
 

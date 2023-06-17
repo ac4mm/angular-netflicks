@@ -49,7 +49,7 @@ export class PreviewModalContainerCover {
     fs: 0,
     playsinline: 1,
     loop: 0,
-    end: 15,
+    end: 35,
     mute: 0,
     autoplay: 1,
     allowfullscreen: 1,

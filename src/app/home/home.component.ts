@@ -195,7 +195,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         fs: 0,
         playsinline: 1,
         loop: 1,
-        end: 15,
+        end: 35,
         origin: 'http://localhost:4200',
         enablejsapi: 1
       },
@@ -461,10 +461,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         logoImageURL: logoImageURL,
         players: this.players
       }
-    })
-
-    dialog.onClose.subscribe((item) => {
-      console.log("is closed", item);
     })
   }
 
