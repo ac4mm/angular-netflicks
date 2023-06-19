@@ -12,7 +12,8 @@ import { DomSanitizer } from "@angular/platform-browser";
   templateUrl: './preview-modal-container-cover.component.html',
   styleUrls: [
     './preview-modal-container-cover.component.scss',
-    '../home.component.scss'
+    '../home.component.scss',
+    '../footer/footer.component.scss'
   ],
   providers: [UtilitiesService]
 })
