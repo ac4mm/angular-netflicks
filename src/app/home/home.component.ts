@@ -93,8 +93,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   episode: string;
   episodeImage: [];
 
-  servicesCode: string = 'Service code';
-
   displayModal: boolean;
   showCheckIcon: boolean = true;
   showSpeakerUpIcon: boolean = true;
@@ -506,15 +504,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
   }
 
-  //Services code
-  itemServiceCodeClicked() {
-    this.servicesCode = '079-255';
-  }
-
-  getCurrentYear() {
-    return (new Date()).getFullYear();
-  }
-
   onClickShowCheckIcon() {
     this.showCheckIcon = !this.showCheckIcon;
   }
@@ -543,6 +532,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       },
       300: {
         slidesPerView: 4,
+        spaceBetween: 5,
+      },
+      200: {
+        slidesPerView: 3,
         spaceBetween: 5,
       },
     },

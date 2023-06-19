@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
-import { HomeComponent } from './home.component';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { YouTubePlayerModule } from '@angular/youtube-player';
+
+import { HomeComponent } from './home.component';
+import { FooterComponent } from './footer/footer.component';
 import { SharedModule } from '../shared/shared.module';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
-import { FormsModule } from '@angular/forms';
 import { ProfileGateComponent } from './profile-gate/profile-gate.component';
 
 import { ManageProfilesComponent } from '../manage-profiles/manage-profiles.component';
@@ -16,10 +19,9 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { SkeletonModule } from 'primeng/skeleton';
-import { YouTubePlayerModule } from '@angular/youtube-player';
 
 @NgModule({
-  declarations: [HomeComponent, ProfileGateComponent, ManageProfilesComponent, PreviewModalContainerCover],
+  declarations: [HomeComponent, FooterComponent, ProfileGateComponent, ManageProfilesComponent, PreviewModalContainerCover],
   imports: [
     NgxUsefulSwiperModule,
     RouterModule.forChild([
@@ -34,9 +36,9 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     ButtonModule,
     DropdownModule,
     SkeletonModule,
-    YouTubePlayerModule 
+    YouTubePlayerModule
   ],
-  exports: [HomeComponent, ProfileGateComponent, ManageProfilesComponent, PreviewModalContainerCover],
+  exports: [HomeComponent, FooterComponent, ProfileGateComponent, ManageProfilesComponent, PreviewModalContainerCover],
   providers: [],
 })
 export class HomeModule { }
