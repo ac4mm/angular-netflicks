@@ -38,10 +38,21 @@
   display: block;
 }
 
+.card-details .hover-text-add-btn,
+.card-details .hover-text-check-btn {
+  font-size: 13px;
+  bottom: 2.5em;
+  padding-left: 0.7em;
+}
+
 .btn-icon-cover {
   padding: 0 !important;
 }
 
 .arrow-down {
   margin-left: auto !important;
+}
+
+.container-hover-btn {
+  position: relative;
 }
