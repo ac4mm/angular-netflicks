@@ -9,7 +9,6 @@ import { SelectUserService } from '@shared/services/select-user.service';
 import { TvMazeService } from '@shared/services/tvmaze.service';
 import { UtilitiesService } from '@shared/services/utilities.service';
 import { TheMovieDBService } from '@shared/services/themoviedb.service';
-import { YoutubeService } from '@shared/services/youtube.service';
 
 @Component({
   selector: 'nf-home',
@@ -115,7 +114,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     public selectUser: SelectUserService,
     private tvmazeService: TvMazeService,
-    private youtubeService: YoutubeService,
     public dialogService: DialogService,
     private utilitiesService: UtilitiesService,
     public themoviedbService: TheMovieDBService
