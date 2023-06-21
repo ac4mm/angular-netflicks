@@ -4,6 +4,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 
 import { NfPlayButton } from '@shared/components/buttons/nf-play-button.component';
 import { NfAddButton } from '@shared/components/buttons/nf-add-button.component';
+import { NfCheckButton } from '@shared/components/buttons/nf-check-button.component';
 import { NfThumbUpButton } from '@shared/components/buttons/nf-thumb-up-button.component';
 import { NfExpandButton } from '@shared/components/buttons/nf-expand-button.component';
 import { SkeletonCardComponent } from '@shared/components/skeleton-card/skeleton-card.component';
@@ -11,9 +12,9 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { DropdownDirective } from './directive/dropdown.directive';
 
 @NgModule({
-  declarations: [NfPlayButton, NfAddButton, NfThumbUpButton, NfExpandButton, LoadingSpinnerComponent, DropdownDirective, SkeletonCardComponent],
+  declarations: [NfPlayButton, NfAddButton, NfCheckButton, NfThumbUpButton, NfExpandButton, LoadingSpinnerComponent, DropdownDirective, SkeletonCardComponent],
   imports: [CommonModule, SkeletonModule],
-  exports: [NfPlayButton, NfAddButton, NfThumbUpButton, NfExpandButton, LoadingSpinnerComponent, DropdownDirective, CommonModule, SkeletonCardComponent],
+  exports: [NfPlayButton, NfAddButton, NfCheckButton, NfThumbUpButton, NfExpandButton, LoadingSpinnerComponent, DropdownDirective, CommonModule, SkeletonCardComponent],
   providers: [],
 })
 export class SharedModule { }

@@ -280,10 +280,10 @@ img {
   left: 0.8em;
 }
 
-.btn-add:hover ~ .container-hover-btn .hover-text-add-btn,
-.btn-add:hover ~ .container-hover-btn .container-triangle,
-.btn-check:hover ~ .container-hover-btn .hover-text-check-btn,
-.btn-check:hover ~ .container-hover-btn .container-triangle {
+nf-add-button:hover ~ .container-hover-btn .hover-text-add-btn,
+nf-add-button:hover ~ .container-hover-btn .container-triangle,
+nf-check-button:hover ~ .container-hover-btn .hover-text-check-btn,
+nf-check-button:hover ~ .container-hover-btn .container-triangle {
   display: block;
 }
 
