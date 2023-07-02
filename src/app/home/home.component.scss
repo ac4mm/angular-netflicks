@@ -20,7 +20,6 @@ video {
   padding-left: 0;
   margin-top: -145px;
   position: absolute;
-  
 }
 
 .btn:active {
@@ -69,9 +68,21 @@ img {
   }
 }
 
+@media only screen and (max-width: 700px) {
+  .svg-container {
+    width: 30px !important;
+    height: 30px !important;
+  }
+}
+
 @media only screen and (max-width: 650px) {
   .container-fluid {
     margin-top: -2em;
+  }
+
+  .svg-container {
+    width: 30px !important;
+    height: 30px !important;
   }
 }
 
@@ -81,16 +92,15 @@ img {
   }
 
   .info-meta-layer {
-    margin-top:13% !important;
+    margin-top: 13% !important;
     width: 31% !important;
   }
 
-  .other-actions {
-    width: 5vw !important;
-    height: 5vw !important;
+  .svg-container {
+    width: 30px !important;
+    height: 30px !important;
   }
 }
-
 
 /**Animation swiper ******************************/
 
@@ -287,10 +297,10 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
   display: block;
 }
 
-.other-actions {
-  width: 2.5vw;
-  height: 2.5vw;
-  margin: 3px;
+.svg-container {
+  width: 40px;
+  height: 40px;
+  overflow: auto;
 }
 
 .first-line-info,
@@ -649,14 +659,15 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
 .info-meta-layer-other-actions {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  left: 89%;
+  justify-content: flex-end;
   position: relative;
   bottom: 45px;
 }
 
 .preview-audio-toggle {
   margin-right: 30px;
+  height: 2.4vw;
+  width: 2.4vw;
 }
 
 .maturity-rating-home {
@@ -666,8 +677,6 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
   border-left-style: solid;
   box-sizing: border-box;
   display: flex;
-  font-size: 1.1vw;
-  height: 2.8vw;
   padding: 0.5vw 3.5vw 0.5vw 0.8vw;
   color: white;
 }
