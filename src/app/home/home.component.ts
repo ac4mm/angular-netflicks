@@ -512,28 +512,36 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     allowTouchMove: true,
     updateOnWindowResize: true,
-    slidesOffsetBefore: 60,
+    slidesOffsetBefore: 40,
     slidesOffsetAfter: 130,
 
     breakpoints: {
-      1024: {
+      1201: {
         slidesPerView: 7,
         spaceBetween: 5,
       },
-      500: {
+      1200: {
         slidesPerView: 6,
         spaceBetween: 5,
       },
-      400: {
+      1024: {
         slidesPerView: 5,
         spaceBetween: 5,
       },
-      300: {
+      500: {
         slidesPerView: 4,
         spaceBetween: 5,
       },
-      200: {
+      400: {
         slidesPerView: 3,
+        spaceBetween: 5,
+      },
+      300: {
+        slidesPerView: 2,
+        spaceBetween: 5,
+      },
+      200: {
+        slidesPerView: 2,
         spaceBetween: 5,
       },
     },
