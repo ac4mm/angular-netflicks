@@ -33,75 +33,6 @@ img {
   height: 100%;
 }
 
-/**Responsive text*/
-@media screen and (min-width: 601px) {
-  .title-slide,
-  p,
-  h3 {
-    font-size: 1.4vw;
-  }
-}
-
-@media screen and (min-width: 500px) and (max-width: 600px) {
-  .text-button {
-    font-size: 0.8vw !important;
-  }
-}
-
-@media screen and (min-width: 1281px) and (max-width: 1600px) and (orientation: landscape) {
-  body,
-  html {
-    font-size: 0.75vw;
-  }
-}
-
-@media screen and (min-width: 481px) and (max-width: 840px) and (max-aspect-ratio: 4 / 3) {
-  .custom-btn {
-    font-size: 1vw;
-  }
-}
-
-/*  */
-@media only screen and (max-width: 1100px) {
-  .container-fluid {
-    margin-top: -3em;
-  }
-}
-
-@media only screen and (max-width: 700px) {
-  .svg-container {
-    width: 30px !important;
-    height: 30px !important;
-  }
-}
-
-@media only screen and (max-width: 650px) {
-  .container-fluid {
-    margin-top: -2em;
-  }
-
-  .svg-container {
-    width: 30px !important;
-    height: 30px !important;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  .container-fluid {
-    margin-top: -2em;
-  }
-
-  .info-meta-layer {
-    margin-top: 13% !important;
-    width: 31% !important;
-  }
-
-  .svg-container {
-    width: 30px !important;
-    height: 30px !important;
-  }
-}
-
 /**Animation swiper ******************************/
 
 .title-slide {
@@ -561,6 +492,11 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
   flex-wrap: wrap;
 }
 
+.card-row {
+  flex: 25%;
+  max-width: 25%;
+}
+
 .container-fluid:hover .swiper-wrapper:not(:hover) {
   position: unset;
 }
@@ -661,24 +597,26 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
   flex-direction: row;
   justify-content: flex-end;
   position: relative;
-  bottom: 45px;
+  bottom: 50px;
 }
 
 .preview-audio-toggle {
-  margin-right: 30px;
-  height: 2.4vw;
-  width: 2.4vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
 }
 
 .maturity-rating-home {
   align-items: center;
   background-color: rgba(51, 51, 51, 0.6);
+  color: white;
   border: 3px #dcdcdc;
   border-left-style: solid;
   box-sizing: border-box;
   display: flex;
   padding: 0.5vw 3.5vw 0.5vw 0.8vw;
-  color: white;
+  margin: 9px 0;
 }
 
 .logo-and-text {
@@ -714,18 +652,15 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
   white-space: nowrap;
 }
 
-.icon-button {
+.icon-button,
+.text-button {
+  vertical-align: middle;
   display: inline-block;
 }
 
 .text-button {
-  display: inline-block;
   font-size: 1.3vw;
   font-weight: 500;
-}
-
-.custom-icon-btn {
-  margin-bottom: 0.5vw;
 }
 
 .play-btn {
@@ -760,4 +695,112 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
 
 .more-info-btn:hover {
   background-color: rgba(109, 109, 110, 0.4);
+}
+
+/* Media query */
+/**Responsive text*/
+@media screen and (min-width: 601px) {
+  .title-slide,
+  p,
+  h3 {
+    font-size: 1.4vw;
+  }
+}
+
+@media screen and (min-width: 500px) and (max-width: 600px) {
+  .text-button {
+    font-size: 0.8vw !important;
+  }
+}
+
+@media screen and (min-width: 1281px) and (max-width: 1600px) and (orientation: landscape) {
+  body,
+  html {
+    font-size: 0.75vw;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 840px) and (max-aspect-ratio: 4 / 3) {
+  .custom-btn {
+    font-size: 1vw;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .container-fluid {
+    margin-top: -3em;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .svg-container {
+    width: 30px;
+    height: 30px;
+  }
+
+  .btn-circle-white {
+    width: 16px;
+    height: 16px;
+  }
+
+  .btn-icon-cover {
+    width: 16px;
+    height: 16px;
+  }
+
+  .preview-audio-toggle {
+    margin-right: 10px;
+  }
+
+  .info-meta-layer-other-actions {
+    bottom: 30px;
+  }
+
+  .video-metadata-container-info .second-line-info .maturity-rating,
+  .video-metadata-container-info .second-line-info .duration,
+  .video-metadata-container-info .second-line-info .player-feature-badge,
+  .video-metadata-container-tags .evidence-tags .evidence-list .evidence-item {
+    font-size: 0.5em;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .container-fluid {
+    margin-top: -2em;
+  }
+
+  .svg-container {
+    width: 30px;
+    height: 30px;
+  }
+
+  .btn-circle-white {
+    width: 16px;
+    height: 16px;
+  }
+
+  .btn-icon-cover {
+    width: 16px;
+    height: 16px;
+  }
+
+  .preview-audio-toggle {
+    margin-right: 10px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .container-fluid {
+    margin-top: -2em;
+  }
+
+  .info-meta-layer {
+    margin-top: 13%;
+    width: 31%;
+  }
+
+  .svg-container {
+    width: 30px;
+    height: 30px;
+  }
 }
