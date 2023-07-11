@@ -9,6 +9,7 @@ import { SelectUserService } from '@shared/services/select-user.service';
 import { TvMazeService } from '@shared/services/tvmaze.service';
 import { UtilitiesService } from '@shared/services/utilities.service';
 import { TheMovieDBService } from '@shared/services/themoviedb.service';
+import { NfFullscreenPlayerComponent } from '@shared/components/fullscreen-player/nf-fullscreen-player.component';
 
 @Component({
   selector: 'nf-home',
@@ -292,11 +293,30 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   playVideo() {
-    this.onReplayVideo();
+    /* this.onReplayVideo();
 
     if (this.player.getPlayerState() === 0) {
       this.onClickSpeakerIcon();
-    }
+    } */
+
+    const dialog: DynamicDialogRef = this.dialogService.open(NfFullscreenPlayerComponent, {
+      baseZIndex: 10000,
+      modal: true,
+      draggable: false,
+      dismissableMask: true,
+      showHeader: false,
+      closeOnEscape: true,
+      width:'100%', 
+      height:'100%',
+      data: {
+        randMatchScore: this.randMatchScore,
+        ratingNumberCover: this.ratingNumberCover,
+        numbersOfSeasonsKeepWatching$: this.numbersOfSeasonsKeepWatching$,
+        coverImagePreviewModal: this.coverImagePreviewModal,
+        indexSelectedItem: this.indexSelectedItem,
+        players: this.players
+      }
+    })
   }
 
 
