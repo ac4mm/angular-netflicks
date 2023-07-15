@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'nf-fullscreen-player',
@@ -25,11 +25,32 @@ export class NfFullscreenPlayerComponent {
     frameBorder: 0
   };
 
+  elem: any;
+
   constructor(
     public ref: DynamicDialogRef,
   ){}
 
+  ngOnInit(){
+    this.elem = document.documentElement;
+  }
+
   onClickClose() {
     this.ref.close();
+  }
+
+  maximizeFullscreen(){
+    if (this.elem.requestFullscreen) {
+      this.elem.requestFullscreen();
+    } else if (this.elem.mozRequestFullScreen) {
+      /* Firefox */
+      this.elem.mozRequestFullScreen();
+    } else if (this.elem.webkitRequestFullscreen) {
+      /* Chrome, Safari and Opera */
+      this.elem.webkitRequestFullscreen();
+    } else if (this.elem.msRequestFullscreen) {
+      /* IE/Edge */
+      this.elem.msRequestFullscreen();
+    }
   }
 }

@@ -2,13 +2,37 @@
   max-height: 100% !important;
 }
 
+::ng-deep .p-dialog .p-dialog-content {
+  padding: 0 !important;
+  background-color: #000 !important;
+}
+
+.youtube-container-dialog {
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 16/9;
+  pointer-events: none;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 .svg-size {
-  width:2.2rem;
-  height:2.2rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.svg-size:hover,
+.top-player-bar .svg-size:not(:hover) {
+  -webkit-transform: scale(1.3);
+  transform: scale(1.3);
 }
 
 .top-player-bar {
-  background-color:beige;
+  /* background-color:beige; */
   position: fixed;
   width: 100%;
   height: 100px;
@@ -20,7 +44,7 @@
 }
 
 .bottom-player-bar {
-  background-color:blanchedalmond;
+  /* background-color:blanchedalmond; */
   position: fixed;
   width: 100%;
   height: 100px;
@@ -39,6 +63,7 @@
 }
 
 .title-player {
+  color: #fff;
   margin: 36px;
   display: flex;
   align-items: center;
@@ -48,7 +73,8 @@
 }
 
 .title-player {
-  h4, span {
+  h4,
+  span {
     display: inline-block;
     margin: 5px;
   }
