@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { DOCUMENT } from "@angular/common";
+import { Component, Inject } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
@@ -26,9 +27,11 @@ export class NfFullscreenPlayerComponent {
   };
 
   elem: any;
+  isMaximixe: boolean = false;
 
   constructor(
     public ref: DynamicDialogRef,
+    @Inject(DOCUMENT) private document: any
   ){}
 
   ngOnInit(){
@@ -52,5 +55,22 @@ export class NfFullscreenPlayerComponent {
       /* IE/Edge */
       this.elem.msRequestFullscreen();
     }
+    this.isMaximixe = !this.isMaximixe;
+  }
+
+  minimizeFullscreen() {
+    if (this.document.exitFullscreen) {
+      this.document.exitFullscreen();
+    } else if (this.document.mozCancelFullScreen) {
+      /* Firefox */
+      this.document.mozCancelFullScreen();
+    } else if (this.document.webkitExitFullscreen) {
+      /* Chrome, Safari and Opera */
+      this.document.webkitExitFullscreen();
+    } else if (this.document.msExitFullscreen) {
+      /* IE/Edge */
+      this.document.msExitFullscreen();
+    }
+    this.isMaximixe = !this.isMaximixe;
   }
 }

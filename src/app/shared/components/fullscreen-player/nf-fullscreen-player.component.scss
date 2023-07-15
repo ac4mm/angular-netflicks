@@ -50,7 +50,6 @@
 }
 
 .top-player-bar {
-  /* background-color:beige; */
   position: fixed;
   width: 100%;
   height: 100px;
@@ -59,10 +58,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding-right: 15px;
 }
 
 .bottom-player-bar {
-  /* background-color:blanchedalmond; */
   position: fixed;
   width: 100%;
   height: 100px;
@@ -72,6 +71,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  padding-right: 15px;
 }
 
 .bottom-player-bar > .custom-btn,
