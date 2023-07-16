@@ -28,6 +28,7 @@ export class NfFullscreenPlayerComponent {
 
   elem: any;
   isMaximixe: boolean = false;
+  isSpeakerDown: boolean = false;
 
   constructor(
     public ref: DynamicDialogRef,
@@ -40,6 +41,10 @@ export class NfFullscreenPlayerComponent {
 
   onClickClose() {
     this.ref.close();
+  }
+
+  changeStatusSpeaker(){
+    this.isSpeakerDown =!this.isSpeakerDown;
   }
 
   maximizeFullscreen(){

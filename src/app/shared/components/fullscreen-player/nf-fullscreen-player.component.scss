@@ -4,6 +4,7 @@
 }
 
 ::ng-deep .p-dialog .p-dialog-content {
+  overflow: hidden;
   padding: 0 !important;
   background-color: #000 !important;
 }
@@ -58,7 +59,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-right: 15px;
+  padding-right: 10px;
 }
 
 .bottom-player-bar {
@@ -71,7 +72,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  padding-right: 15px;
+  padding-right: 10px;
 }
 
 .bottom-player-bar > .custom-btn,
@@ -90,10 +91,9 @@
   width: 100%;
 }
 
-.title-player {
-  h4,
+/* .title-player {
+  h4,h5,
   span {
     display: inline-block;
-    margin: 5px;
   }
-}
+} */
