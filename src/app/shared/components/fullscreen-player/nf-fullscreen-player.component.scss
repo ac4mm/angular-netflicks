@@ -38,10 +38,14 @@
   }
 }
 
-.svg-size {
+.icon-button {
   width: 2.2rem;
   height: 2.2rem;
-  transition: all 0.2s ease-in-out;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
 }
 
 .svg-size:hover,
@@ -50,29 +54,24 @@
   transform: scale(1.3);
 }
 
-.top-player-bar {
-  position: fixed;
-  width: 100%;
-  height: 100px;
-  left: 0;
-  right: 0;
-  display: flex;
-  flex-direction: row;
+.top-player-bar, .bottom-player-bar {
   justify-content: space-between;
-  padding-right: 10px;
 }
 
+.bottom-player-bar {
+  bottom: 0;
+}
+
+.top-player-bar,
 .bottom-player-bar {
   position: fixed;
   width: 100%;
   height: 100px;
-  bottom: 0;
+  padding: 0px 1rem;
   left: 0;
   right: 0;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  padding-right: 10px;
 }
 
 .bottom-player-bar > .custom-btn,
@@ -81,19 +80,94 @@
   width: fit-content;
 }
 
-.title-player {
-  color: #fff;
-  margin: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  width: 100%;
+.player-button {
+  height: 5.2rem;
+  width: 5.2rem;
+  position: relative;
+  will-change: opacity;
 }
 
-/* .title-player {
-  h4,h5,
-  span {
-    display: inline-block;
+.title-player {
+  color: #fff;
+  width: 100%;
+  min-height: 0px;
+  min-width: 0px;
+  direction: ltr;
+  font-size: 3rem;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+}
+
+.title-player h4,
+.title-player span {
+  font-size: 1.5vw;
+}
+
+.title-player > * + * {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.title-player h4 {
+  margin-block-start: 1.22em;
+  margin-block-end: 1.22em;
+}
+
+.title-player > * {
+  display: inline;
+}
+
+/* Smarthphone */
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .icon-button {
+    width: 1.25rem;
+    height: 1.25rem;
   }
-} */
+}
+
+@media screen and (max-width: 540px) {
+  .icon-button {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .bottom-player-bar > .custom-btn {
+    margin: 2px !important;
+  }
+}
+
+/* Ipad, table */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .icon-button {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+
+  .bottom-player-bar {
+    padding: 0 !important;
+  }
+}
+/* Laptop */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .icon-button {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+}
+/* Desktop */
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .icon-button {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+}
+@media screen and (min-width: 1025px) {
+  .icon-button {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+}
+
