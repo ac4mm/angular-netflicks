@@ -1,5 +1,5 @@
 import { DOCUMENT } from "@angular/common";
-import { Component, Inject } from "@angular/core";
+import { Component, Inject, ViewChild } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
@@ -8,6 +8,8 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
   styleUrls: ['nf-fullscreen-player.component.scss']
 })
 export class NfFullscreenPlayerComponent {
+  @ViewChild('player') player: any;
+
   playerConfig = {
     autoHide: 1,
     controls: 0,
@@ -23,31 +25,82 @@ export class NfFullscreenPlayerComponent {
     mute: 0,
     autoplay: 1,
     allowfullscreen: 1,
-    frameBorder: 0
+    frameBorder: 0,
+    cc_load_policy:3
   };
 
   elem: any;
   isMaximixe: boolean = false;
-  isSpeakerDown: boolean = false;
+  speakerUpIconShow: boolean = true;
+  playIconShow: boolean = true;
 
   constructor(
     public ref: DynamicDialogRef,
     @Inject(DOCUMENT) private document: any
-  ){}
+  ) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.elem = document.documentElement;
+
+    setTimeout(() => {
+      /* this.showVideoPreview = true; */
+      this.initScriptIFrame();
+    }, 3000);
+  }
+
+  initScriptIFrame() {
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.body.appendChild(tag);
+  }
+
+  onClickSpeakerIcon() {
+    this.speakerUpIconShow = !this.speakerUpIconShow;
+
+    if (this.player.isMuted()) {
+      this.player.unMute();
+    } else {
+      this.player.mute();
+    }
+  }
+
+  onReadyPlayer(item: any) {
+    this.playIconShow = !this.playIconShow;
   }
 
   onClickClose() {
     this.ref.close();
   }
 
-  changeStatusSpeaker(){
-    this.isSpeakerDown =!this.isSpeakerDown;
+  changeStatusSpeaker() {
+    this.speakerUpIconShow = !this.speakerUpIconShow;
+
+    if (this.player.isMuted()) {
+      this.player.unMute();
+    } else {
+      this.player.mute();
+    }
   }
 
-  maximizeFullscreen(){
+  //https://developers.google.com/youtube/iframe_api_reference#getPlayerState
+  changeStatusPlay() {
+    if (this.player.getPlayerState() === 1) {
+      this.player.pauseVideo();
+    } else if(this.player.getPlayerState() === 2) {
+      this.player.playVideo();
+    }
+    this.playIconShow = !this.playIconShow;
+  }
+
+  goAhead10sNext(){
+    this.player.seekTo(this.player.getCurrentTime()+10)
+  }
+
+  comeBack10sPrev(){
+    this.player.seekTo(this.player.getCurrentTime()-10);
+  }
+
+  maximizeFullscreen() {
     if (this.elem.requestFullscreen) {
       this.elem.requestFullscreen();
     } else if (this.elem.mozRequestFullScreen) {
