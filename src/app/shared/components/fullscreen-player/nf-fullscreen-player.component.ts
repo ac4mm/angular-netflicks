@@ -28,7 +28,7 @@ export class NfFullscreenPlayerComponent {
     cc_load_policy: 3
   };
 
-  elem: any;
+  rootElem: HTMLElement | any;
   isMaximixe: boolean = false;
   speakerUpIconShow: boolean = true;
   playIconShow: boolean = true;
@@ -41,7 +41,7 @@ export class NfFullscreenPlayerComponent {
   ) { }
 
   ngOnInit() {
-    this.elem = document.documentElement;
+    this.rootElem = document.documentElement;
 
     setTimeout(() => {
       /* this.showVideoPreview = true; */
@@ -71,25 +71,17 @@ export class NfFullscreenPlayerComponent {
 
   onApiChange() {
     // Update the controls on load
-    this.updateTimerDisplay();
     this.updateProgressBar();
 
     this.maxValueRange = this.player.getDuration();
-    console.log("maxValueRange:",this.maxValueRange);
 
     setInterval(() => {
-      this.updateTimerDisplay();
       this.updateProgressBar();
     }, 1000)
   }
 
-  updateTimerDisplay() {
-    /* this.valuePlayerBar = this.player.getCurrentTime(); */
-  }
-
   updateProgressBar() {
     this.valuePlayerBar = (this.player.getCurrentTime() / this.player.getDuration()) * 100;
-    console.log("valuePlayerBar:",this.valuePlayerBar);
   }
 
   formatTime(time) {
@@ -104,8 +96,6 @@ export class NfFullscreenPlayerComponent {
   }
 
   onChangeThumb(event: any): void {  
-    console.log(event.target.value);
-
      // Calculate the new time for the video.
     // new time in seconds = total duration in seconds * ( value of range input / 100 )
     var newTime = this.player.getDuration() * (event.target.value / 100);
@@ -147,17 +137,17 @@ export class NfFullscreenPlayerComponent {
   }
 
   maximizeFullscreen() {
-    if (this.elem.requestFullscreen) {
-      this.elem.requestFullscreen();
-    } else if (this.elem.mozRequestFullScreen) {
+    if (this.rootElem.requestFullscreen) {
+      this.rootElem.requestFullscreen();
+    } else if (this.rootElem.mozRequestFullScreen) {
       /* Firefox */
-      this.elem.mozRequestFullScreen();
-    } else if (this.elem.webkitRequestFullscreen) {
+      this.rootElem.mozRequestFullScreen();
+    } else if (this.rootElem.webkitRequestFullscreen) {
       /* Chrome, Safari and Opera */
-      this.elem.webkitRequestFullscreen();
-    } else if (this.elem.msRequestFullscreen) {
+      this.rootElem.webkitRequestFullscreen();
+    } else if (this.rootElem.msRequestFullscreen) {
       /* IE/Edge */
-      this.elem.msRequestFullscreen();
+      this.rootElem.msRequestFullscreen();
     }
     this.isMaximixe = !this.isMaximixe;
   }
