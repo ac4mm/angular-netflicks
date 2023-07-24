@@ -21,18 +21,19 @@ export class NfFullscreenPlayerComponent {
     fs: 0,
     playsinline: 1,
     loop: 0,
-    end: 35,
     mute: 0,
     autoplay: 1,
     allowfullscreen: 1,
     frameBorder: 0,
-    cc_load_policy:3
+    cc_load_policy: 3
   };
 
   elem: any;
   isMaximixe: boolean = false;
   speakerUpIconShow: boolean = true;
   playIconShow: boolean = true;
+  valuePlayerBar = 0;
+  maxValueRange;
 
   constructor(
     public ref: DynamicDialogRef,
@@ -64,8 +65,53 @@ export class NfFullscreenPlayerComponent {
     }
   }
 
-  onReadyPlayer(item: any) {
+  onReadyPlayer() {
     this.playIconShow = !this.playIconShow;
+  }
+
+  onApiChange() {
+    // Update the controls on load
+    this.updateTimerDisplay();
+    this.updateProgressBar();
+
+    this.maxValueRange = this.player.getDuration();
+    console.log("maxValueRange:",this.maxValueRange);
+
+    setInterval(() => {
+      this.updateTimerDisplay();
+      this.updateProgressBar();
+    }, 1000)
+  }
+
+  updateTimerDisplay() {
+    /* this.valuePlayerBar = this.player.getCurrentTime(); */
+  }
+
+  updateProgressBar() {
+    this.valuePlayerBar = (this.player.getCurrentTime() / this.player.getDuration()) * 100;
+    console.log("valuePlayerBar:",this.valuePlayerBar);
+  }
+
+  formatTime(time) {
+    time = Math.round(time);
+
+    let minutes = Math.floor(time / 60),
+    seconds = time - minutes * 60;
+
+    seconds = seconds < 10 ? Number('0' + seconds) : seconds;
+
+    return minutes + ":" + seconds;
+  }
+
+  onChangeThumb(event: any): void {  
+    console.log(event.target.value);
+
+     // Calculate the new time for the video.
+    // new time in seconds = total duration in seconds * ( value of range input / 100 )
+    var newTime = this.player.getDuration() * (event.target.value / 100);
+
+    // Skip video to new time.
+    this.player.seekTo(newTime);
   }
 
   onClickClose() {
@@ -86,18 +132,18 @@ export class NfFullscreenPlayerComponent {
   changeStatusPlay() {
     if (this.player.getPlayerState() === 1) {
       this.player.pauseVideo();
-    } else if(this.player.getPlayerState() === 2) {
+    } else if (this.player.getPlayerState() === 2) {
       this.player.playVideo();
     }
     this.playIconShow = !this.playIconShow;
   }
 
-  goAhead10sNext(){
-    this.player.seekTo(this.player.getCurrentTime()+10)
+  goAhead10sNext() {
+    this.player.seekTo(this.player.getCurrentTime() + 10)
   }
 
-  comeBack10sPrev(){
-    this.player.seekTo(this.player.getCurrentTime()-10);
+  comeBack10sPrev() {
+    this.player.seekTo(this.player.getCurrentTime() - 10);
   }
 
   maximizeFullscreen() {

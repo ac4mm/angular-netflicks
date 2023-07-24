@@ -1,3 +1,12 @@
+@font-face {
+  font-family: Aestetico-bold;
+  src: url("/assets/font/Aestetico-bold.otf");
+  font-family: Aestetico-thin;
+  src: url("/assets/font/Aestetico-thin.otf");
+  font-family: Aestetico-light;
+  src: url("/assets/font/Aestetico-light.otf");
+}
+
 ::ng-deep .p-dialog {
   max-height: 100% !important;
   top: 0 !important;
@@ -12,7 +21,7 @@
 .youtube-container-dialog {
   overflow: hidden;
   width: 100%;
-  height: 90%;
+  height: 85%;
   aspect-ratio: 16/9;
   pointer-events: none;
 
@@ -55,7 +64,8 @@ svg {
   transform: scale(1.3);
 }
 
-.top-player-bar, .bottom-player-bar {
+.top-player-bar,
+.bottom-player-bar {
   justify-content: space-between;
 }
 
@@ -63,16 +73,87 @@ svg {
   bottom: 0;
 }
 
+.player-bar {
+  box-sizing: border-box;
+  display: flex;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  align-items: normal;
+  justify-content: normal;
+  padding: 0px 1.8rem;
+}
+
+.player-progress-bar {
+  width: 100%;
+}
+
+.progress-range-bar {
+  box-sizing: border-box;
+  display: flex;
+  min-height: 0px;
+  min-width: 0px;
+  position: relative;
+  width: 100%;
+}
+
+#progress-bar {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  cursor: pointer;
+}
+
+input[type="range"] {
+  accent-color: red;
+}
+
+.duration {
+  box-sizing: border-box;
+  display: flex;
+  min-height: 0px;
+  min-width: 0px;
+  max-height:1.2rem;
+  position: relative;
+  padding-left: 1rem;
+  width: 3rem;
+  justify-content: center;
+}
+
+.duration-number {
+  font-weight: 400;
+  font-family: "Aestetico-light";
+  -webkit-font-smoothing: antialiased;
+  color: rgb(255, 255, 255);
+  font-size: 1rem;
+  line-height: 1.2rem;
+}
+
 .top-player-bar,
-.bottom-player-bar {
+.bottom-player-bar,
+.player-controller {
   position: fixed;
   width: 100%;
-  height: 100px;
-  padding: 0px 1rem;
+  height: 85px;
   left: 0;
   right: 0;
   display: flex;
   flex-direction: row;
+}
+
+.top-player-bar,
+.player-controller {
+  padding: 0px 1rem;
+}
+
+.space-between {
+  height: 3rem;
+  min-height: 3rem;
+  min-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  position: relative;
 }
 
 .bottom-player-bar > .custom-btn,
@@ -99,7 +180,6 @@ svg {
   text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
-
 }
 
 .title-player h4,
@@ -171,4 +251,3 @@ svg {
     height: 2.2rem;
   }
 }
-
