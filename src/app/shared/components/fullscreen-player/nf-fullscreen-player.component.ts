@@ -1,7 +1,8 @@
 import { DOCUMENT } from "@angular/common";
 import { Component, Inject, ViewChild } from "@angular/core";
+import { TheMovieDBService } from "@shared/services/themoviedb.service";
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-
+import { Observable, map } from 'rxjs';
 @Component({
   selector: 'nf-fullscreen-player',
   templateUrl: 'nf-fullscreen-player.component.html',
@@ -28,6 +29,8 @@ export class NfFullscreenPlayerComponent {
     cc_load_policy: 3
   };
 
+  episodeTitle: string = "Official Trailer";
+
   rootElem: HTMLElement | any;
   isMaximixe: boolean = false;
   speakerUpIconShow: boolean = true;
@@ -35,13 +38,21 @@ export class NfFullscreenPlayerComponent {
   valuePlayerBar = 0;
   maxValueRange;
 
+  seriesTvMainTitle$: Observable<any>;
+  seriesTvVideoKey$: Observable<any>;
+
   constructor(
+    public config: DynamicDialogConfig,
     public ref: DynamicDialogRef,
+    public themoviedbService: TheMovieDBService,
     @Inject(DOCUMENT) private document: any
   ) { }
 
   ngOnInit() {
     this.rootElem = document.documentElement;
+
+    this.seriesTvMainTitle$ = this.themoviedbService.getTvMovieDetailById(this.config.data.indexTvMazeSeries, 'tv').pipe(map((item) => item?.name));
+    this.seriesTvVideoKey$ = this.themoviedbService.getVideosById(this.config.data.indexTvMazeSeries, 'tv').pipe(map((item) => item?.results[0].key));
 
     setTimeout(() => {
       /* this.showVideoPreview = true; */
@@ -88,15 +99,15 @@ export class NfFullscreenPlayerComponent {
     time = Math.round(time);
 
     let minutes = Math.floor(time / 60),
-    seconds = time - minutes * 60;
+      seconds = time - minutes * 60;
 
     seconds = seconds < 10 ? Number('0' + seconds) : seconds;
 
     return minutes + ":" + seconds;
   }
 
-  onChangeThumb(event: any): void {  
-     // Calculate the new time for the video.
+  onChangeThumb(event: any): void {
+    // Calculate the new time for the video.
     // new time in seconds = total duration in seconds * ( value of range input / 100 )
     var newTime = this.player.getDuration() * (event.target.value / 100);
 

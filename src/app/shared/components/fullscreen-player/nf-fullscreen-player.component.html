@@ -32,7 +32,7 @@
 <div class="youtube-container-dialog">
   <youtube-player
     #player
-    [videoId]="'R1ZXOOLMJ8s'"
+    [videoId]="(this.seriesTvVideoKey$ | async)"
     [width]="'100%'"
     [height]="'100%'"
     [playerVars]="playerConfig"
@@ -58,7 +58,6 @@
 
 <!-- Bottom player -->
 <div class="bottom-player-bar">
-  <!-- <div class="space-between"></div> -->
 
   <div class="player-controller">
     <!-- Play -->
@@ -143,8 +142,8 @@
 
     <!-- Title episode -->
     <div class="title-player">
-      <h4>Black Mirror</h4>
-      <span>The National Anthem</span>
+      <h4>{{(this.seriesTvMainTitle$ | async)}}</h4>
+      <span>{{episodeTitle}}</span>
     </div>
 
     <!-- Next episode -->

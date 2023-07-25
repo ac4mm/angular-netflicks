@@ -59,7 +59,8 @@ svg {
 }
 
 .svg-size:hover,
-.top-player-bar .svg-size:not(:hover) {
+.top-player-bar .svg-size:not(:hover),
+input[type="range"]::-webkit-slider-thumb:hover {
   -webkit-transform: scale(1.3);
   transform: scale(1.3);
 }
@@ -144,16 +145,6 @@ input[type="range"] {
 .top-player-bar,
 .player-controller {
   padding: 0px 1rem;
-}
-
-.space-between {
-  height: 3rem;
-  min-height: 3rem;
-  min-width: 100%;
-  width: 100%;
-  box-sizing: border-box;
-  display: flex;
-  position: relative;
 }
 
 .bottom-player-bar > .custom-btn,

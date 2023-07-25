@@ -33,7 +33,7 @@
         <!-- Play -->
         <button
           class="btn btn-light btn-sm font-weight-bold btn-block custom-btn play-btn"
-          (click)="playVideo()"
+          (click)="playVideo(this.selectedIdMainTMDB)"
         >
           <div class="icon-button">
             <svg
@@ -181,7 +181,7 @@
         <div class="card-details">
           <div class="card-icons">
             <!-- Play button -->
-            <nf-play-button></nf-play-button>
+            <nf-play-button  (click)="playVideo(coverIndexImgKeepWatchingTMDB[i])"></nf-play-button>
 
             <div (click)="onClickShowCheckIcon()">
               <!-- Add button  -->
@@ -292,7 +292,7 @@
         <div class="card-details">
           <div class="card-icons">
             <!-- Play button -->
-            <nf-play-button></nf-play-button>
+            <nf-play-button (click)="playVideo(coverIndexImgMyListTMDB[i])"></nf-play-button>
 
             <div (click)="onClickShowCheckIcon()">
               <!-- Add button  -->
@@ -406,7 +406,7 @@
         <div class="card-details">
           <div class="card-icons">
             <!-- Play button -->
-            <nf-play-button></nf-play-button>
+            <nf-play-button (click)="playVideo(coverIndexTopRatedMoviesTMDB[i])"></nf-play-button>
 
             <div (click)="onClickShowCheckIcon()">
               <!-- Add button  -->
@@ -518,7 +518,7 @@
         <div class="card-details">
           <div class="card-icons">
             <!-- Play button -->
-            <nf-play-button></nf-play-button>
+            <nf-play-button (click)="playVideo(coverIndexTvShowsTMDB[i])"></nf-play-button>
 
             <div (click)="onClickShowCheckIcon()">
               <!-- Add button  -->

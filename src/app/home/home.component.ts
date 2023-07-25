@@ -201,60 +201,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         'onStateChange': this.onPlayerStateChange.bind(this)
       }
     });
-
-    /* Testing */
-    this.playerDialogList = [
-      {
-        id: 'player0', height: '100%', width: '100%', videoId: 'fUiifh_aCLU', playerVars: {
-          autohide: 1,
-          controls: 0,
-          showinfo: 0,
-          autoplay: 1,
-          modestbranding: 1,
-          disablekb: 1,
-          rel: 0,
-          fs: 0,
-          playsinline: 1,
-          loop: 1,
-          end: 5,
-          origin: 'http://localhost:4200',
-          enablejsapi: 1
-        },
-        events: {
-          'onReady': this.onPlayerReady.bind(this),
-          'onStateChange': this.onPlayerStateChange.bind(this)
-        }
-      },
-      {
-        id: 'player1', height: '100%', width: '100%', videoId: 'mnd7sFt5c3A', playerVars: {
-          autohide: 1,
-          controls: 0,
-          showinfo: 0,
-          autoplay: 1,
-          modestbranding: 1,
-          disablekb: 1,
-          rel: 0,
-          fs: 0,
-          playsinline: 1,
-          loop: 1,
-          end: 5,
-          origin: 'http://localhost:4200',
-          enablejsapi: 1
-        },
-        events: {
-          'onReady': this.onPlayerReady.bind(this),
-          'onStateChange': this.onPlayerStateChange.bind(this)
-        }
-      }
-    ];;
-
-    if (typeof this.playerDialogList === 'undefined')
-      return;
-
-    for (var i = 0; i < this.playerDialogList.length; i++) {
-      var curplayer = this.createPlayer(this.playerDialogList[i]);
-      this.players[i] = curplayer;
-    }
   }
 
   createPlayer(playerInfo) {
@@ -292,7 +238,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.player.playVideo();
   }
 
-  playVideo() {
+  playVideo(indexTvMazeSeries: number) {
     /* this.onReplayVideo();
 
     if (this.player.getPlayerState() === 0) {
@@ -309,12 +255,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       width:'100%', 
       height:'100%',
       data: {
-        randMatchScore: this.randMatchScore,
-        ratingNumberCover: this.ratingNumberCover,
-        numbersOfSeasonsKeepWatching$: this.numbersOfSeasonsKeepWatching$,
-        coverImagePreviewModal: this.coverImagePreviewModal,
-        indexSelectedItem: this.indexSelectedItem,
-        players: this.players
+        indexTvMazeSeries: indexTvMazeSeries,
       }
     })
   }
