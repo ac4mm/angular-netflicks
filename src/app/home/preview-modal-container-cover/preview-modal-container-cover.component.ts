@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { BehaviorSubject, Observable, Subject, concatMap, of } from "rxjs";
+import { BehaviorSubject, Observable, Subject, concatMap, of, takeUntil } from "rxjs";
 
 import { TvMazeService } from "@shared/services/tvmaze.service";
 import { UtilitiesService } from "@shared/services/utilities.service";
@@ -20,7 +20,7 @@ import { ManagePlayerService } from "@shared/services/manage-player.service";
 })
 export class PreviewModalContainerCover {
   @ViewChild('player') player: any;
-  
+
   @Input() seasonSelected: number = 1;
   @Input() seasonSelector: any = [];
   @Input() showSpeakerUpIcon: boolean = true;
@@ -80,7 +80,7 @@ export class PreviewModalContainerCover {
 
 
 
-    this.themovieDbService.getVideosById(this.config.data.indexTheMovieDb, 'tv').subscribe((item) => {
+    this.themovieDbService.getVideosById(this.config.data.indexTheMovieDb, 'tv').pipe(takeUntil(this.destroy$)).subscribe((item) => {
       this.keyYTVideo = item?.["results"][0].key;
 
       setTimeout(() => {
@@ -100,13 +100,13 @@ export class PreviewModalContainerCover {
   }
 
   onClickSpeakerIcon() {
-    if(!! this.player && this.player?.getPlayerState() === 1){
+    if (!!this.player && this.player?.getPlayerState() === 1) {
       this.showSpeakerUpIcon = !this.showSpeakerUpIcon;
 
       this.managePlayerService.changeMuteState(this.player);
     }
   }
-  
+
   onClickShowCheckIcon() {
     this.showCheckIcon = !this.showCheckIcon;
   }

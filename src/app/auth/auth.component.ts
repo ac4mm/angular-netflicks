@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { AuthService, AuthResponseData } from './auth.service';
-import { SelectUserService } from '../shared/services/select-user.service';
 
 @Component({
   selector: 'nf-auth',
@@ -50,17 +49,18 @@ export class AuthComponent {
       this.authObs = this.authService.signup(email, password);
     }
 
-    this.authObs.subscribe(
-      (resData) => {
-        this.isLoading = false;
-        this.router.navigate(['/browse']);
-      },
-      (errorMessage) => {
+    this.authObs.pipe(takeUntil(this.destroy$)).subscribe({
+      next: () => {},
+      error: (errorMessage) =>{
         console.error(errorMessage);
         this.error = errorMessage;
         this.isLoading = false;
+      },
+      complete: () => {
+        this.isLoading = false;
+        this.router.navigate(['/browse']);
       }
-    );
+    });
     form.reset();
   }
 
