@@ -10,6 +10,7 @@ import { TvMazeService } from '@shared/services/tvmaze.service';
 import { UtilitiesService } from '@shared/services/utilities.service';
 import { TheMovieDBService } from '@shared/services/themoviedb.service';
 import { NfFullscreenPlayerComponent } from '@shared/components/fullscreen-player/nf-fullscreen-player.component';
+import { ManagePlayerService } from '@shared/services/manage-player.service';
 
 @Component({
   selector: 'nf-home',
@@ -117,7 +118,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     private tvmazeService: TvMazeService,
     public dialogService: DialogService,
     private utilitiesService: UtilitiesService,
-    public themoviedbService: TheMovieDBService
+    public themoviedbService: TheMovieDBService,
+    private managePlayerService: ManagePlayerService
   ) { }
 
   ngOnInit(): void {
@@ -163,15 +165,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.numbersOfSeasonsMyList$ = this.getAllNumbersOfSeasonsById$(this.coverIndexImgMyList);
     this.numbersOfSeasonsTopRatedMovies$ = this.getAllNumbersOfSeasonsById$(this.coverIndexTopRatedMovies);
     this.numbersOfSeasonsTvShows$ = this.getAllNumbersOfSeasonsById$(this.coverIndexTvShows);
-  }
-
-  initScriptIFrame() {
-    // 2. This code loads the IFrame Player API code asynchronously.
-    const tag = document.createElement('script');
-
-    tag.src = 'https://www.youtube.com/iframe_api';
-    document.body.appendChild(tag);
-    window['onYouTubeIframeAPIReady'] = () => this.onYouTubeIframeAPIReady('b9EkMc79ZSU');
   }
 
   // 3. This function creates an <iframe> (and YouTube player)
@@ -258,7 +251,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   autoplayVideo() {
     setTimeout(() => {
       this.showVideoPreview = true;
-      this.initScriptIFrame();
+
+      this.managePlayerService.initScriptIFrame();
+      //b9EkMc79ZSU -> id YT video Stranger Things
+      window['onYouTubeIframeAPIReady'] = () => this.onYouTubeIframeAPIReady('b9EkMc79ZSU');
     }, 3000)
   }
 
@@ -267,15 +263,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(!! this.player && this.player?.getPlayerState() === 1){
       this.showSpeakerUpIcon = !this.showSpeakerUpIcon;
 
-      this.changeMuteState();
-    }
-  }
-
-  changeMuteState() {
-    if (this.player.isMuted()) {
-      this.player.unMute();
-    } else {
-      this.player.mute();
+      this.managePlayerService.changeMuteState(this.player);
     }
   }
 
