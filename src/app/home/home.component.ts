@@ -232,6 +232,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   playVideo(indexTvMazeSeries: number) {
+    if (!!this.player) {
+      this.player.pauseVideo();
+    }
+
     const dialog: DynamicDialogRef = this.dialogService.open(NfFullscreenPlayerComponent, {
       baseZIndex: 10000,
       modal: true,
@@ -244,6 +248,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       data: {
         indexTvMazeSeries: indexTvMazeSeries,
       }
+    })
+
+    /* On close dialog, resume video */
+    dialog.onClose.pipe(takeUntil(this.destroy$)).subscribe(() => {
+      this.player.playVideo();
     })
   }
 
@@ -384,7 +393,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.indexSelectedItem = index;
     this.coverImagePreviewModal = coverImage;
 
-    if (this.player) {
+    if (!!this.player) {
       this.player.pauseVideo();
     }
 
