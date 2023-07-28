@@ -10,6 +10,7 @@ import { TvMazeService } from '@shared/services/tvmaze.service';
 import { UtilitiesService } from '@shared/services/utilities.service';
 import { TheMovieDBService } from '@shared/services/themoviedb.service';
 import { NfFullscreenPlayerComponent } from '@shared/components/fullscreen-player/nf-fullscreen-player.component';
+import { ManagePlayerService } from '@shared/services/manage-player.service';
 
 @Component({
   selector: 'nf-home',
@@ -117,14 +118,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     private tvmazeService: TvMazeService,
     public dialogService: DialogService,
     private utilitiesService: UtilitiesService,
-    public themoviedbService: TheMovieDBService
-  ) {}
+    public themoviedbService: TheMovieDBService,
+    private managePlayerService: ManagePlayerService
+  ) { }
 
   ngOnInit(): void {
     this.selectUserSub = this.selectUser.currentState$.pipe(takeUntil(this.destroy$)).subscribe(
       (state) => {
         this.isValidUser = !!state;
-        if(this.isValidUser) this.autoplayVideo();
+        if (this.isValidUser) this.autoplayVideo();
       }
     );
 
@@ -163,15 +165,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.numbersOfSeasonsMyList$ = this.getAllNumbersOfSeasonsById$(this.coverIndexImgMyList);
     this.numbersOfSeasonsTopRatedMovies$ = this.getAllNumbersOfSeasonsById$(this.coverIndexTopRatedMovies);
     this.numbersOfSeasonsTvShows$ = this.getAllNumbersOfSeasonsById$(this.coverIndexTvShows);
-  }
-
-  initScriptIFrame() {
-    // 2. This code loads the IFrame Player API code asynchronously.
-    const tag = document.createElement('script');
-
-    tag.src = 'https://www.youtube.com/iframe_api';
-    document.body.appendChild(tag);
-    window['onYouTubeIframeAPIReady'] = () => this.onYouTubeIframeAPIReady('b9EkMc79ZSU');
   }
 
   // 3. This function creates an <iframe> (and YouTube player)
@@ -239,11 +232,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   playVideo(indexTvMazeSeries: number) {
-    /* this.onReplayVideo();
-
-    if (this.player.getPlayerState() === 0) {
-      this.onClickSpeakerIcon();
-    } */
+    if (!!this.player) {
+      this.player.pauseVideo();
+    }
 
     const dialog: DynamicDialogRef = this.dialogService.open(NfFullscreenPlayerComponent, {
       baseZIndex: 10000,
@@ -252,11 +243,16 @@ export class HomeComponent implements OnInit, OnDestroy {
       dismissableMask: true,
       showHeader: false,
       closeOnEscape: true,
-      width:'100%', 
-      height:'100%',
+      width: '100%',
+      height: '100%',
       data: {
         indexTvMazeSeries: indexTvMazeSeries,
       }
+    })
+
+    /* On close dialog, resume video */
+    dialog.onClose.pipe(takeUntil(this.destroy$)).subscribe(() => {
+      this.player.playVideo();
     })
   }
 
@@ -264,22 +260,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   autoplayVideo() {
     setTimeout(() => {
       this.showVideoPreview = true;
-      this.initScriptIFrame();
+
+      this.managePlayerService.initScriptIFrame();
+      //b9EkMc79ZSU -> id YT video Stranger Things
+      window['onYouTubeIframeAPIReady'] = () => this.onYouTubeIframeAPIReady('b9EkMc79ZSU');
     }, 3000)
   }
 
 
   onClickSpeakerIcon() {
-    this.showSpeakerUpIcon = !this.showSpeakerUpIcon;
+    if(!! this.player && this.player?.getPlayerState() === 1){
+      this.showSpeakerUpIcon = !this.showSpeakerUpIcon;
 
-    this.changeMuteState();
-  }
-
-  changeMuteState() {
-    if (this.player.isMuted()) {
-      this.player.unMute();
-    } else {
-      this.player.mute();
+      this.managePlayerService.changeMuteState(this.player);
     }
   }
 
@@ -400,6 +393,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.indexSelectedItem = index;
     this.coverImagePreviewModal = coverImage;
 
+    if (!!this.player) {
+      this.player.pauseVideo();
+    }
+
     const dialog: DynamicDialogRef = this.dialogService.open(PreviewModalContainerCover, {
       baseZIndex: 10000,
       modal: true,
@@ -418,6 +415,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         logoImageURL: logoImageURL,
         players: this.players
       }
+    });
+
+    /* On close dialog, resume video */
+    dialog.onClose.pipe(takeUntil(this.destroy$)).subscribe(() => {
+      this.player.playVideo();
     })
   }
 
@@ -482,27 +484,27 @@ export class HomeComponent implements OnInit, OnDestroy {
         spaceBetween: 5,
       },
       1200: {
-        slidesPerView: 6,
+        slidesPerView: 7,
         spaceBetween: 5,
       },
       1024: {
-        slidesPerView: 5,
+        slidesPerView: 6,
         spaceBetween: 5,
       },
       500: {
-        slidesPerView: 4,
+        slidesPerView: 6,
         spaceBetween: 5,
       },
       400: {
-        slidesPerView: 3,
+        slidesPerView: 5,
         spaceBetween: 5,
       },
       300: {
-        slidesPerView: 2,
+        slidesPerView: 4,
         spaceBetween: 5,
       },
       200: {
-        slidesPerView: 2,
+        slidesPerView: 4,
         spaceBetween: 5,
       },
     },

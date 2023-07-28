@@ -1,11 +1,12 @@
 import { Component, Input, ViewChild } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { BehaviorSubject, Observable, Subject, concatMap, of } from "rxjs";
+import { BehaviorSubject, Observable, Subject, concatMap, of, takeUntil } from "rxjs";
 
 import { TvMazeService } from "@shared/services/tvmaze.service";
 import { UtilitiesService } from "@shared/services/utilities.service";
 import { TheMovieDBService } from "@shared/services/themoviedb.service";
 import { DomSanitizer } from "@angular/platform-browser";
+import { ManagePlayerService } from "@shared/services/manage-player.service";
 
 @Component({
   selector: 'nf-preview-modal-container-cover',
@@ -19,10 +20,10 @@ import { DomSanitizer } from "@angular/platform-browser";
 })
 export class PreviewModalContainerCover {
   @ViewChild('player') player: any;
-  
+
   @Input() seasonSelected: number = 1;
   @Input() seasonSelector: any = [];
-  @Input() speakerUpIconShow: boolean = true;
+  @Input() showSpeakerUpIcon: boolean = true;
   @Input() showCheckIcon: boolean = true;
   @Input() displayModal: any;
 
@@ -65,7 +66,8 @@ export class PreviewModalContainerCover {
     private tvmazeService: TvMazeService,
     private themovieDbService: TheMovieDBService,
     public utilitiesService: UtilitiesService,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
+    private managePlayerService: ManagePlayerService
   ) { }
 
   ngOnInit() {
@@ -78,20 +80,14 @@ export class PreviewModalContainerCover {
 
 
 
-    this.themovieDbService.getVideosById(this.config.data.indexTheMovieDb, 'tv').subscribe((item) => {
+    this.themovieDbService.getVideosById(this.config.data.indexTheMovieDb, 'tv').pipe(takeUntil(this.destroy$)).subscribe((item) => {
       this.keyYTVideo = item?.["results"][0].key;
 
       setTimeout(() => {
         this.showVideoPreview = true;
-        this.initScriptIFrame();
+        this.managePlayerService.initScriptIFrame();
       }, 3000);
     })
-  }
-
-  initScriptIFrame() {
-    const tag = document.createElement('script');
-      tag.src = "https://www.youtube.com/iframe_api";
-      document.body.appendChild(tag);
   }
 
   ngOnDestroy() {
@@ -104,12 +100,10 @@ export class PreviewModalContainerCover {
   }
 
   onClickSpeakerIcon() {
-    this.speakerUpIconShow = !this.speakerUpIconShow;
-  
-    if (this.player.isMuted()) {
-      this.player.unMute();
-    } else {
-      this.player.mute();
+    if (!!this.player && this.player?.getPlayerState() === 1) {
+      this.showSpeakerUpIcon = !this.showSpeakerUpIcon;
+
+      this.managePlayerService.changeMuteState(this.player);
     }
   }
 

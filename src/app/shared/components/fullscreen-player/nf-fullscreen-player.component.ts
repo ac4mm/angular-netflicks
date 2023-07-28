@@ -1,5 +1,6 @@
 import { DOCUMENT } from "@angular/common";
 import { Component, Inject, ViewChild } from "@angular/core";
+import { ManagePlayerService } from "@shared/services/manage-player.service";
 import { TheMovieDBService } from "@shared/services/themoviedb.service";
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, map } from 'rxjs';
@@ -11,7 +12,7 @@ import { Observable, map } from 'rxjs';
 export class NfFullscreenPlayerComponent {
   @ViewChild('player') player: any;
 
-  playerConfig = {
+  playerVars = {
     autoHide: 1,
     controls: 0,
     showInfo: 0,
@@ -33,8 +34,8 @@ export class NfFullscreenPlayerComponent {
 
   rootElem: HTMLElement | any;
   isMaximixe: boolean = false;
-  speakerUpIconShow: boolean = true;
-  playIconShow: boolean = true;
+  showSpeakerUpIcon: boolean = true;
+  showPlayIcon: boolean = true;
   valuePlayerBar = 0;
   maxValueRange;
 
@@ -45,7 +46,8 @@ export class NfFullscreenPlayerComponent {
     public config: DynamicDialogConfig,
     public ref: DynamicDialogRef,
     public themoviedbService: TheMovieDBService,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: any,
+    private managePlayerService: ManagePlayerService
   ) { }
 
   ngOnInit() {
@@ -56,28 +58,18 @@ export class NfFullscreenPlayerComponent {
 
     setTimeout(() => {
       /* this.showVideoPreview = true; */
-      this.initScriptIFrame();
+      this.managePlayerService.initScriptIFrame();
     }, 3000);
   }
 
-  initScriptIFrame() {
-    const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    document.body.appendChild(tag);
-  }
-
   onClickSpeakerIcon() {
-    this.speakerUpIconShow = !this.speakerUpIconShow;
+    this.showSpeakerUpIcon = !this.showSpeakerUpIcon;
 
-    if (this.player.isMuted()) {
-      this.player.unMute();
-    } else {
-      this.player.mute();
-    }
+    this.managePlayerService.changeMuteState(this.player);
   }
 
   onReadyPlayer() {
-    this.playIconShow = !this.playIconShow;
+    this.showPlayIcon = !this.showPlayIcon;
   }
 
   onApiChange() {
@@ -120,13 +112,9 @@ export class NfFullscreenPlayerComponent {
   }
 
   changeStatusSpeaker() {
-    this.speakerUpIconShow = !this.speakerUpIconShow;
+    this.showSpeakerUpIcon = !this.showSpeakerUpIcon;
 
-    if (this.player.isMuted()) {
-      this.player.unMute();
-    } else {
-      this.player.mute();
-    }
+    this.managePlayerService.changeMuteState(this.player);
   }
 
   //https://developers.google.com/youtube/iframe_api_reference#getPlayerState
@@ -136,7 +124,8 @@ export class NfFullscreenPlayerComponent {
     } else if (this.player.getPlayerState() === 2) {
       this.player.playVideo();
     }
-    this.playIconShow = !this.playIconShow;
+    
+    this.onReadyPlayer();
   }
 
   goAhead10sNext() {

@@ -19,6 +19,7 @@ import { MoviesComponent } from '@movies/movies.component';
 import { SelectUserService } from '@shared/services/select-user.service';
 import { SharedModule } from '@shared/shared.module';
 import { MaterialModule } from '@material/module';
+import { ManagePlayerService } from '@shared/services/manage-player.service';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,6 @@ import { MaterialModule } from '@material/module';
     SharedModule
   ],
   bootstrap: [AppComponent],
-  providers: [SelectUserService],
+  providers: [SelectUserService, ManagePlayerService],
 })
 export class AppModule { }
