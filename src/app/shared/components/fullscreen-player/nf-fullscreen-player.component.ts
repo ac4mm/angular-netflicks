@@ -33,8 +33,8 @@ export class NfFullscreenPlayerComponent {
 
   rootElem: HTMLElement | any;
   isMaximixe: boolean = false;
-  speakerUpIconShow: boolean = true;
-  playIconShow: boolean = true;
+  showSpeakerUpIcon: boolean = true;
+  showPlayIcon: boolean = true;
   valuePlayerBar = 0;
   maxValueRange;
 
@@ -67,7 +67,7 @@ export class NfFullscreenPlayerComponent {
   }
 
   onClickSpeakerIcon() {
-    this.speakerUpIconShow = !this.speakerUpIconShow;
+    this.showSpeakerUpIcon = !this.showSpeakerUpIcon;
 
     if (this.player.isMuted()) {
       this.player.unMute();
@@ -77,7 +77,7 @@ export class NfFullscreenPlayerComponent {
   }
 
   onReadyPlayer() {
-    this.playIconShow = !this.playIconShow;
+    this.showPlayIcon = !this.showPlayIcon;
   }
 
   onApiChange() {
@@ -120,7 +120,7 @@ export class NfFullscreenPlayerComponent {
   }
 
   changeStatusSpeaker() {
-    this.speakerUpIconShow = !this.speakerUpIconShow;
+    this.showSpeakerUpIcon = !this.showSpeakerUpIcon;
 
     if (this.player.isMuted()) {
       this.player.unMute();
@@ -136,7 +136,8 @@ export class NfFullscreenPlayerComponent {
     } else if (this.player.getPlayerState() === 2) {
       this.player.playVideo();
     }
-    this.playIconShow = !this.playIconShow;
+    
+    this.onReadyPlayer();
   }
 
   goAhead10sNext() {

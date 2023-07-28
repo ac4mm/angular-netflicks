@@ -22,7 +22,7 @@ export class PreviewModalContainerCover {
   
   @Input() seasonSelected: number = 1;
   @Input() seasonSelector: any = [];
-  @Input() speakerUpIconShow: boolean = true;
+  @Input() showSpeakerUpIcon: boolean = true;
   @Input() showCheckIcon: boolean = true;
   @Input() displayModal: any;
 
@@ -104,8 +104,14 @@ export class PreviewModalContainerCover {
   }
 
   onClickSpeakerIcon() {
-    this.speakerUpIconShow = !this.speakerUpIconShow;
-  
+    if(!! this.player && this.player?.getPlayerState() === 1){
+      this.showSpeakerUpIcon = !this.showSpeakerUpIcon;
+
+      this.changeMuteState();
+    }
+  }
+
+  changeMuteState() {
     if (this.player.isMuted()) {
       this.player.unMute();
     } else {

@@ -118,13 +118,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     public dialogService: DialogService,
     private utilitiesService: UtilitiesService,
     public themoviedbService: TheMovieDBService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.selectUserSub = this.selectUser.currentState$.pipe(takeUntil(this.destroy$)).subscribe(
       (state) => {
         this.isValidUser = !!state;
-        if(this.isValidUser) this.autoplayVideo();
+        if (this.isValidUser) this.autoplayVideo();
       }
     );
 
@@ -239,12 +239,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   playVideo(indexTvMazeSeries: number) {
-    /* this.onReplayVideo();
-
-    if (this.player.getPlayerState() === 0) {
-      this.onClickSpeakerIcon();
-    } */
-
     const dialog: DynamicDialogRef = this.dialogService.open(NfFullscreenPlayerComponent, {
       baseZIndex: 10000,
       modal: true,
@@ -252,8 +246,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       dismissableMask: true,
       showHeader: false,
       closeOnEscape: true,
-      width:'100%', 
-      height:'100%',
+      width: '100%',
+      height: '100%',
       data: {
         indexTvMazeSeries: indexTvMazeSeries,
       }
@@ -270,9 +264,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
   onClickSpeakerIcon() {
-    this.showSpeakerUpIcon = !this.showSpeakerUpIcon;
+    if(!! this.player && this.player?.getPlayerState() === 1){
+      this.showSpeakerUpIcon = !this.showSpeakerUpIcon;
 
-    this.changeMuteState();
+      this.changeMuteState();
+    }
   }
 
   changeMuteState() {
@@ -400,6 +396,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.indexSelectedItem = index;
     this.coverImagePreviewModal = coverImage;
 
+    if (this.player) {
+      this.player.pauseVideo();
+    }
+
     const dialog: DynamicDialogRef = this.dialogService.open(PreviewModalContainerCover, {
       baseZIndex: 10000,
       modal: true,
@@ -418,6 +418,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         logoImageURL: logoImageURL,
         players: this.players
       }
+    });
+
+    /* On close dialog, resume video */
+    dialog.onClose.pipe(takeUntil(this.destroy$)).subscribe(() => {
+      this.player.playVideo();
     })
   }
 

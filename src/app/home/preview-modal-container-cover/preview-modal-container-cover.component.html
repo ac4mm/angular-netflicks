@@ -162,7 +162,7 @@
     (click)="onClickSpeakerIcon()"
   >
     <!-- Speaker up -->
-    <button class="btn-circle" *ngIf="speakerUpIconShow">
+    <button class="btn-circle" *ngIf="showSpeakerUpIcon">
       <svg
         width="20"
         height="20"
@@ -180,7 +180,7 @@
     </button>
 
     <!-- Speaker down -->
-    <button class="btn-circle" *ngIf="!speakerUpIconShow">
+    <button class="btn-circle" *ngIf="!showSpeakerUpIcon">
       <svg
         width="20"
         height="20"

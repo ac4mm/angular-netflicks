@@ -61,7 +61,7 @@
 
   <div class="player-controller">
     <!-- Play -->
-    <button class="btn" *ngIf="playIconShow" (click)="changeStatusPlay()">
+    <button class="btn" *ngIf="showPlayIcon" (click)="changeStatusPlay()">
       <div class="icon-button">
         <svg width="24" height="24" viewBox="0 0 24 24" class="svg-size">
           <path
@@ -73,7 +73,7 @@
     </button>
 
     <!-- Pause -->
-    <button class="btn" *ngIf="!playIconShow" (click)="changeStatusPlay()">
+    <button class="btn" *ngIf="!showPlayIcon" (click)="changeStatusPlay()">
       <div class="icon-button">
         <svg width="24" height="24" viewBox="0 0 24 24" class="svg-size">
           <path
@@ -111,7 +111,7 @@
     <!-- speakerUp -->
     <button
       class="btn"
-      *ngIf="this.speakerUpIconShow"
+      *ngIf="this.showSpeakerUpIcon"
       (click)="changeStatusSpeaker()"
     >
       <div class="icon-button">
@@ -127,7 +127,7 @@
     <!-- speakerDown -->
     <button
       class="btn"
-      *ngIf="!this.speakerUpIconShow"
+      *ngIf="!this.showSpeakerUpIcon"
       (click)="changeStatusSpeaker()"
     >
       <div class="icon-button">
