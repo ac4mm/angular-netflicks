@@ -3,7 +3,7 @@ import { Subject, Subscription, concatMap, from, map, of, shareReplay, switchMap
 import { SwiperOptions } from 'swiper';
 
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { PreviewModalContainerCover } from '@home/preview-modal-container-cover/preview-modal-container-cover.component';
+import { PreviewModalContainer } from '@home/preview-modal-container/preview-modal-container.component';
 
 import { SelectUserService } from '@shared/services/select-user.service';
 import { TvMazeService } from '@shared/services/tvmaze.service';
@@ -424,7 +424,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.player.pauseVideo();
     }
 
-    const dialog: DynamicDialogRef = this.dialogService.open(PreviewModalContainerCover, {
+    const dialog: DynamicDialogRef = this.dialogService.open(PreviewModalContainer, {
       baseZIndex: 10000,
       modal: true,
       draggable: false,

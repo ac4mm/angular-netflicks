@@ -12,7 +12,7 @@ import { ProfileGateComponent } from './profile-gate/profile-gate.component';
 import { ManageProfilesComponent } from '../manage-profiles/manage-profiles.component';
 import { SelectUserService } from '../shared/services/select-user.service';
 import { MaterialModule } from 'src/app/material.module';
-import { PreviewModalContainerCover } from './preview-modal-container-cover/preview-modal-container-cover.component'
+import { PreviewModalContainer } from './preview-modal-container/preview-modal-container.component'
 
 import { DialogModule } from 'primeng/dialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
@@ -20,7 +20,7 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { SkeletonModule } from 'primeng/skeleton';
 @NgModule({
-  declarations: [HomeComponent, FooterComponent, ProfileGateComponent, ManageProfilesComponent, PreviewModalContainerCover],
+  declarations: [HomeComponent, FooterComponent, ProfileGateComponent, ManageProfilesComponent, PreviewModalContainer],
   imports: [
     NgxUsefulSwiperModule,
     RouterModule.forChild([
@@ -37,7 +37,7 @@ import { SkeletonModule } from 'primeng/skeleton';
     SkeletonModule,
     YouTubePlayerModule
   ],
-  exports: [HomeComponent, FooterComponent, ProfileGateComponent, ManageProfilesComponent, PreviewModalContainerCover],
+  exports: [HomeComponent, FooterComponent, ProfileGateComponent, ManageProfilesComponent, PreviewModalContainer],
   providers: [],
 })
 export class HomeModule { }

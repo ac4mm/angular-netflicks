@@ -10,16 +10,16 @@ import { ManagePlayerService } from "@shared/services/manage-player.service";
 import { NfFullscreenPlayerComponent } from "@shared/components/fullscreen-player/nf-fullscreen-player.component";
 
 @Component({
-  selector: 'nf-preview-modal-container-cover',
-  templateUrl: './preview-modal-container-cover.component.html',
+  selector: 'nf-preview-modal-container',
+  templateUrl: './preview-modal-container.component.html',
   styleUrls: [
-    './preview-modal-container-cover.component.scss',
+    './preview-modal-container.component.scss',
     '../home.component.scss',
     '../footer/footer.component.scss'
   ],
   providers: [UtilitiesService]
 })
-export class PreviewModalContainerCover {
+export class PreviewModalContainer {
   @ViewChild('player') player: any;
 
   @Input() seasonSelected: number = 1;
