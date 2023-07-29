@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer2 } from '@angular/core';
 import { Subject, Subscription, concatMap, from, map, of, shareReplay, switchMap, Observable, takeUntil } from 'rxjs';
 import { SwiperOptions } from 'swiper';
 
@@ -120,7 +120,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     public dialogService: DialogService,
     private utilitiesService: UtilitiesService,
     public themoviedbService: TheMovieDBService,
-    private managePlayerService: ManagePlayerService
+    private managePlayerService: ManagePlayerService,
+    private renderer: Renderer2
   ) { }
 
   ngOnInit(): void {
@@ -274,6 +275,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
       setTimeout(() => {
         dialogFullScreenLogo.close();
+        this.renderer.removeStyle(document.body, 'overflow-y');
       }, 2000)
       setTimeout(() => {
         this.onReplayVideo();
