@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild } from "@angular/core";
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BehaviorSubject, Observable, Subject, concatMap, of, takeUntil } from "rxjs";
 
 import { TvMazeService } from "@shared/services/tvmaze.service";
@@ -7,6 +7,7 @@ import { UtilitiesService } from "@shared/services/utilities.service";
 import { TheMovieDBService } from "@shared/services/themoviedb.service";
 import { DomSanitizer } from "@angular/platform-browser";
 import { ManagePlayerService } from "@shared/services/manage-player.service";
+import { NfFullscreenPlayerComponent } from "@shared/components/fullscreen-player/nf-fullscreen-player.component";
 
 @Component({
   selector: 'nf-preview-modal-container-cover',
@@ -67,7 +68,8 @@ export class PreviewModalContainerCover {
     private themovieDbService: TheMovieDBService,
     public utilitiesService: UtilitiesService,
     public sanitizer: DomSanitizer,
-    private managePlayerService: ManagePlayerService
+    private managePlayerService: ManagePlayerService,
+    public dialogService: DialogService,
   ) { }
 
   ngOnInit() {
@@ -109,6 +111,27 @@ export class PreviewModalContainerCover {
 
   onClickShowCheckIcon() {
     this.showCheckIcon = !this.showCheckIcon;
+  }
+
+  playVideo() {
+    if (!!this.player) {
+      this.player.pauseVideo();
+    }
+
+    const dialogFullScreenPlayer: DynamicDialogRef = this.dialogService.open(NfFullscreenPlayerComponent, {
+      baseZIndex: 10000,
+      modal: true,
+      draggable: false,
+      dismissableMask: true,
+      showHeader: false,
+      closeOnEscape: true,
+      width: '100%',
+      height: '100%',
+      transitionOptions: '600ms',
+      data: {
+        indexTheMovieDb: this.config.data.indexTheMovieDb,
+      }
+    })
   }
 
   getAllSeriesTvInfo$(coverIndexImg: number) {

@@ -249,7 +249,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     return dialogFullScreenLogo;
   }
 
-  playVideo(indexTvMazeSeries: number) {
+  playVideo(indexTheMovieDb: number) {
     if (!!this.player) {
       this.player.pauseVideo();
     }
@@ -265,7 +265,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       height: '100%',
       transitionOptions: '600ms',
       data: {
-        indexTvMazeSeries: indexTvMazeSeries,
+        indexTheMovieDb: indexTheMovieDb,
       }
     })
 

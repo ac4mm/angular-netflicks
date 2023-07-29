@@ -54,11 +54,10 @@ export class NfFullscreenPlayerComponent {
   ngOnInit() {
     this.rootElem = document.documentElement;
 
-    this.seriesTvMainTitle$ = this.themoviedbService.getTvMovieDetailById(this.config.data.indexTvMazeSeries, 'tv').pipe(map((item) => item?.name));
-    this.seriesTvVideoKey$ = this.themoviedbService.getVideosById(this.config.data.indexTvMazeSeries, 'tv').pipe(map((item) => item?.results[0].key));
+    this.seriesTvMainTitle$ = this.themoviedbService.getTvMovieDetailById(this.config.data.indexTheMovieDb, 'tv').pipe(map((item) => item?.name));
+    this.seriesTvVideoKey$ = this.themoviedbService.getVideosById(this.config.data.indexTheMovieDb, 'tv').pipe(map((item) => item?.results[0].key));
 
     setTimeout(() => {
-      /* this.showVideoPreview = true; */
       this.managePlayerService.initScriptIFrame();
     }, 3000);
   }
