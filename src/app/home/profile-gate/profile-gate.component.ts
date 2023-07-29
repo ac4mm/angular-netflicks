@@ -33,6 +33,7 @@ export class ProfileGateComponent implements OnInit, OnDestroy {
       (id) => (this.idUser = id)
     );
 
+    //Hide Scrollbar
     this.renderer.setStyle(document.body, 'overflow-y', 'hidden');
   }
 

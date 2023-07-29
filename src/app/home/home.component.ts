@@ -274,10 +274,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
       setTimeout(() => {
         dialogFullScreenLogo.close();
-      }, 3000);
+      }, 2000)
       setTimeout(() => {
         this.onReplayVideo();
-      }, 4000)
+      }, 3000)
     })
   }
 
