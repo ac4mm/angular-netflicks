@@ -1,6 +1,5 @@
-<div *ngIf="isLoading">
-  <nf-loading-spinner></nf-loading-spinner>
-</div>
+<nf-loading-spinner *ngIf="isLoading"></nf-loading-spinner>
+
 <div class="profile-gate-container" *ngIf="!isLoading">
   <div class="centered-div list-profiles-container">
     <div class="list-profiles">

@@ -9,9 +9,7 @@
         <span>{{ error }}</span>
       </div>
 
-      <div *ngIf="isLoading">
-        <nf-loading-spinner></nf-loading-spinner>
-      </div>
+      <nf-loading-spinner *ngIf="isLoading"></nf-loading-spinner>
 
       <h2 class="login-form-text">
         {{ isLoginMode ? "Login" : "Sign up" }}
