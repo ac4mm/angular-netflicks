@@ -1,5 +1,9 @@
+<div class="black-screen-preload" *ngIf="this.isLoading$ | async">
+  <nf-loading-spinner></nf-loading-spinner>
+</div>
+
 <!-- Top player -->
-<div class="top-player-bar">
+<div class="top-player-bar" [hidden]="this.isLoading$ | async">
   <!-- Come back -->
   <button
     class="btn btn-sm font-weight-bold btn-block custom-btn"
@@ -29,10 +33,10 @@
 </div>
 
 <!-- YT Player -->
-<div class="youtube-container-dialog">
+<div class="youtube-container-dialog" [hidden]="this.isLoading$ | async">
   <youtube-player
     #player
-    [videoId]="(this.seriesTvVideoKey$ | async)"
+    [videoId]="this.seriesTvVideoKey$ | async"
     [width]="'100%'"
     [height]="'100%'"
     [playerVars]="playerVars"
@@ -41,7 +45,7 @@
   ></youtube-player>
 </div>
 
-<div class="player-bar">
+<div class="player-bar" [hidden]="this.isLoading$ | async">
   <div class="progress-range-bar">
     <input
       type="range"
@@ -51,14 +55,15 @@
     />
   </div>
 
-  <div class="duration">
-    <span class="duration-number" *ngIf="maxValueRange">{{this.formatTime(maxValueRange)}}</span>
+  <div class="duration" *ngIf="!(this.isLoading$ | async)">
+    <span class="duration-number" *ngIf="maxValueRange">{{
+      this.formatTime(maxValueRange)
+    }}</span>
   </div>
 </div>
 
 <!-- Bottom player -->
-<div class="bottom-player-bar">
-
+<div class="bottom-player-bar" [hidden]="this.isLoading$ | async">
   <div class="player-controller">
     <!-- Play -->
     <button class="btn" *ngIf="showPlayIcon" (click)="changeStatusPlay()">
@@ -142,8 +147,8 @@
 
     <!-- Title episode -->
     <div class="title-player">
-      <h4>{{(this.seriesTvMainTitle$ | async)}}</h4>
-      <span>{{episodeTitle}}</span>
+      <h4>{{ this.seriesTvMainTitle$ | async }}</h4>
+      <span>{{ episodeTitle }}</span>
     </div>
 
     <!-- Next episode -->

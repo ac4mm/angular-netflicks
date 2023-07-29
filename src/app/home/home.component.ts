@@ -245,6 +245,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       closeOnEscape: true,
       width: '100%',
       height: '100%',
+      transitionOptions: '600ms',
       data: {
         indexTvMazeSeries: indexTvMazeSeries,
       }

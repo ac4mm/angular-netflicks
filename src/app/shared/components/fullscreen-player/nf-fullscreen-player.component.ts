@@ -3,7 +3,7 @@ import { Component, Inject, ViewChild } from "@angular/core";
 import { ManagePlayerService } from "@shared/services/manage-player.service";
 import { TheMovieDBService } from "@shared/services/themoviedb.service";
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 @Component({
   selector: 'nf-fullscreen-player',
   templateUrl: 'nf-fullscreen-player.component.html',
@@ -41,6 +41,7 @@ export class NfFullscreenPlayerComponent {
 
   seriesTvMainTitle$: Observable<any>;
   seriesTvVideoKey$: Observable<any>;
+  isLoading$ = new BehaviorSubject<boolean>(true);
 
   constructor(
     public config: DynamicDialogConfig,
@@ -70,6 +71,7 @@ export class NfFullscreenPlayerComponent {
 
   onReadyPlayer() {
     this.showPlayIcon = !this.showPlayIcon;
+    this.isLoading$.next(false);
   }
 
   onApiChange() {
