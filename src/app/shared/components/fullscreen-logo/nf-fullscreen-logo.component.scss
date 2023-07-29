@@ -1,0 +1,87 @@
+.watch-video {
+  box-sizing: border-box;
+  height: 100%;
+  left: 0;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.watch-video-leaving-view{
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.nf-screen-wrapper {
+  align-content: center;
+  align-items: center;
+  animation: fade-in 0.5s;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 3;
+}
+
+.nf-screen {
+  display: block;
+  height: 19.44444444em;
+  position: relative;
+  width: 100%;
+}
+
+.nf-screen-logo {
+  animation: fade-in 0.7s 0.3s forwards, scale-in 2.5s 0.3s forwards;
+  background-image: url('/assets/svg/netflicks.svg');
+  background-size: 100%;
+  height: 7.66666667em;
+  top: 0;
+  transform: scale(0.7);
+  width: 28.44444444em;
+  z-index: 1;
+}
+
+.nf-screen-light {
+  animation: fade-in 0.5s;
+  background-image: url(https://assets.nflxext.com/en_us/pages/wiplayer/directional-light.jpg);
+  background-position: 50%;
+  background-size: contain;
+  height: 22.05555556em;
+  top: 2.22222222em;
+  width: 100%;
+  z-index: 0;
+}
+
+.nf-screen-shadow {
+  animation: fade-in 0.7s 0.3s forwards, scale-in 2.5s 0.3s forwards;
+  background-image: url(https://assets.nflxext.com/en_us/pages/wiplayer/shadow.png);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 2.33333333em;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  top: 13.33333333em;
+  width: 32.55555556em;
+  z-index: 1;
+}
+
+.nf-screen-light,
+.nf-screen-logo {
+  background-repeat: no-repeat;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+}

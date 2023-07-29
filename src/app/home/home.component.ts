@@ -11,6 +11,7 @@ import { UtilitiesService } from '@shared/services/utilities.service';
 import { TheMovieDBService } from '@shared/services/themoviedb.service';
 import { NfFullscreenPlayerComponent } from '@shared/components/fullscreen-player/nf-fullscreen-player.component';
 import { ManagePlayerService } from '@shared/services/manage-player.service';
+import { NfFullscreenLogoComponent } from '@shared/components/fullscreen-logo/nf-fullscreen-logo.component';
 
 @Component({
   selector: 'nf-home',
@@ -231,12 +232,28 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.player.playVideo();
   }
 
+  openFullScreenLogo() {
+    const dialogFullScreenLogo: DynamicDialogRef = this.dialogService.open(NfFullscreenLogoComponent, {
+      baseZIndex: 10001,
+      modal: true,
+      draggable: false,
+      dismissableMask: true,
+      showHeader: false,
+      closeOnEscape: true,
+      width: '100%',
+      height: '100%',
+      transitionOptions: '600ms',
+    })
+
+    return dialogFullScreenLogo;
+  }
+
   playVideo(indexTvMazeSeries: number) {
     if (!!this.player) {
       this.player.pauseVideo();
     }
 
-    const dialog: DynamicDialogRef = this.dialogService.open(NfFullscreenPlayerComponent, {
+    const dialogFullScreenPlayer: DynamicDialogRef = this.dialogService.open(NfFullscreenPlayerComponent, {
       baseZIndex: 10000,
       modal: true,
       draggable: false,
@@ -251,9 +268,16 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
     })
 
-    /* On close dialog, resume video */
-    dialog.onClose.pipe(takeUntil(this.destroy$)).subscribe(() => {
-      this.player.playVideo();
+    /* On close dialog, open FullScreenLogo and resume video */
+    dialogFullScreenPlayer.onClose.pipe(takeUntil(this.destroy$)).subscribe(() => {
+      const dialogFullScreenLogo: DynamicDialogRef = this.openFullScreenLogo();
+
+      setTimeout(() => {
+        dialogFullScreenLogo.close();
+      }, 3000);
+      setTimeout(() => {
+        this.onReplayVideo();
+      }, 4000)
     })
   }
 
@@ -270,7 +294,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
   onClickSpeakerIcon() {
-    if(!! this.player && this.player?.getPlayerState() === 1){
+    if (!!this.player && this.player?.getPlayerState() === 1) {
       this.showSpeakerUpIcon = !this.showSpeakerUpIcon;
 
       this.managePlayerService.changeMuteState(this.player);

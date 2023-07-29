@@ -12,6 +12,7 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { DropdownDirective } from './directive/dropdown.directive';
 import { NfFullscreenPlayerComponent } from '@shared/components/fullscreen-player/nf-fullscreen-player.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { NfFullscreenLogoComponent } from '@shared/components/fullscreen-logo/nf-fullscreen-logo.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     LoadingSpinnerComponent,
     DropdownDirective,
     SkeletonCardComponent,
-    NfFullscreenPlayerComponent
+    NfFullscreenPlayerComponent,
+    NfFullscreenLogoComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +42,8 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     LoadingSpinnerComponent,
     DropdownDirective,
     SkeletonCardComponent,
-    NfFullscreenPlayerComponent
+    NfFullscreenPlayerComponent,
+    NfFullscreenLogoComponent
   ],
   providers: [],
 })
