@@ -1,23 +1,7 @@
 <!-- Close dialog -->
 <div class="previewModal-container-close">
   <div class="previewModal-player-wrapper previewModal-close">
-    <button class="btn-circle" (click)="onClickClose()">
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="#fff"
-        xmlns="http://www.w3.org/2000/svg"
-        role="button"
-        aria-label="close"
-        tabindex="0"
-      >
-        <path
-          d="M2.29297 3.70706L10.5859 12L2.29297 20.2928L3.70718 21.7071L12.0001 13.4142L20.293 21.7071L21.7072 20.2928L13.4143 12L21.7072 3.70706L20.293 2.29285L12.0001 10.5857L3.70718 2.29285L2.29297 3.70706Z"
-          fill="#fff"
-        ></path>
-      </svg>
-    </button>
+    <nf-close-button [mediumSize]="true" (click)="onClickClose()"></nf-close-button>
   </div>
 </div>
 
@@ -77,22 +61,7 @@
 
       <div (click)="onClickShowCheckIcon()">
         <!-- Add button  -->
-        <button class="btn-circle btn-add" *ngIf="showCheckIcon">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="#fff"
-            xmlns="http://www.w3.org/2000/svg"
-            stroke="white"
-            stroke-width="0.3"
-          >
-            <path
-              d="M11 2V11H2V13H11V22H13V13H22V11H13V2H11Z"
-              fill="#fff"
-            ></path>
-          </svg>
-        </button>
+        <nf-add-button [mediumSize]="true" *ngIf="showCheckIcon"></nf-add-button>
 
         <!-- Hover text add button -->
         <div class="container-hover-btn">
@@ -106,22 +75,7 @@
         </div>
 
         <!-- Check -->
-        <button class="btn-circle btn-check" *ngIf="!showCheckIcon">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="#fff"
-            xmlns="http://www.w3.org/2000/svg"
-            stroke="white"
-            stroke-width="0.3"
-          >
-            <path
-              d="M8.68239 19.7312L23.6824 5.73115L22.3178 4.26904L8.02404 17.6098L2.70718 12.293L1.29297 13.7072L7.29297 19.7072C7.67401 20.0882 8.28845 20.0988 8.68239 19.7312Z"
-              fill="#fff"
-            ></path>
-          </svg>
-        </button>
+        <nf-check-button [mediumSize]="true" *ngIf="!showCheckIcon"></nf-check-button>
 
         <!-- Hover text check button -->
         <div class="container-hover-btn">
@@ -136,22 +90,7 @@
       </div>
 
       <!-- Thumb up -->
-      <button class="btn-circle">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          fill="#fff"
-          class="bi bi-hand-thumbs-up"
-          viewBox="0 0 16 16"
-          stroke="white"
-          stroke-width="0.3"
-        >
-          <path
-            d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111L8.864.046zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"
-          ></path>
-        </svg>
-      </button>
+      <nf-thumb-up-button [mediumSize]="true"></nf-thumb-up-button>
     </div>
 
     <div class="buttons-controls-messagging"></div>
@@ -163,40 +102,10 @@
     (click)="onClickSpeakerIcon()"
   >
     <!-- Speaker up -->
-    <button class="btn-circle" *ngIf="showSpeakerUpIcon">
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="#fff"
-        xmlns="http://www.w3.org/2000/svg"
-        stroke="white"
-        stroke-width="0.3"
-      >
-        <path
-          d="M24 12C24 8.28699 22.525 4.72603 19.8995 2.10052L18.4853 3.51474C20.7357 5.76517 22 8.81742 22 12C22 15.1826 20.7357 18.2349 18.4853 20.4853L19.8995 21.8995C22.525 19.274 24 15.7131 24 12ZM11 4.00001C11 3.59555 10.7564 3.23092 10.3827 3.07613C10.009 2.92135 9.57889 3.00691 9.29289 3.29291L4.58579 8.00001H1C0.447715 8.00001 0 8.44773 0 9.00001V15C0 15.5523 0.447715 16 1 16H4.58579L9.29289 20.7071C9.57889 20.9931 10.009 21.0787 10.3827 20.9239C10.7564 20.7691 11 20.4045 11 20V4.00001ZM5.70711 9.70712L9 6.41423V17.5858L5.70711 14.2929L5.41421 14H5H2V10H5H5.41421L5.70711 9.70712ZM16.0001 12C16.0001 10.4087 15.368 8.8826 14.2428 7.75739L12.8285 9.1716C13.5787 9.92174 14.0001 10.9392 14.0001 12C14.0001 13.0609 13.5787 14.0783 12.8285 14.8285L14.2428 16.2427C15.368 15.1174 16.0001 13.5913 16.0001 12ZM17.0709 4.92896C18.9462 6.80432 19.9998 9.34786 19.9998 12C19.9998 14.6522 18.9462 17.1957 17.0709 19.0711L15.6567 17.6569C17.157 16.1566 17.9998 14.1218 17.9998 12C17.9998 9.87829 17.157 7.84346 15.6567 6.34317L17.0709 4.92896Z"
-          fill="#fff"
-        ></path>
-      </svg>
-    </button>
+    <nf-speakerup-button [mediumSize]="true" *ngIf="showSpeakerUpIcon"></nf-speakerup-button>
 
     <!-- Speaker down -->
-    <button class="btn-circle" *ngIf="!showSpeakerUpIcon">
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="#fff"
-        xmlns="http://www.w3.org/2000/svg"
-        stroke="white"
-        stroke-width="0.3"
-      >
-        <path
-          d="M11 4.00003C11 3.59557 10.7564 3.23093 10.3827 3.07615C10.009 2.92137 9.57889 3.00692 9.29289 3.29292L4.58579 8.00003H1C0.447715 8.00003 0 8.44774 0 9.00003V15C0 15.5523 0.447715 16 1 16H4.58579L9.29289 20.7071C9.57889 20.9931 10.009 21.0787 10.3827 20.9239C10.7564 20.7691 11 20.4045 11 20V4.00003ZM5.70711 9.70714L9 6.41424V17.5858L5.70711 14.2929L5.41421 14H5H2V10H5H5.41421L5.70711 9.70714ZM15.2929 9.70714L17.5858 12L15.2929 14.2929L16.7071 15.7071L19 13.4142L21.2929 15.7071L22.7071 14.2929L20.4142 12L22.7071 9.70714L21.2929 8.29292L19 10.5858L16.7071 8.29292L15.2929 9.70714Z"
-          fill="#fff"
-        ></path>
-      </svg>
-    </button>
+    <nf-speakerdown-button [mediumSize]="true" *ngIf="!showSpeakerUpIcon"></nf-speakerdown-button>
   </div>
 
   <!-- Container Dialog -->
@@ -305,15 +214,6 @@
         </div>
 
         <div class="dropdown-selector">
-          <!-- <p-dropdown
-            [options]="seasonSelector"
-            [(ngModel)]="seasonSelected"
-            placeholder="Season 1"
-            optionLabel="name"
-            [showClear]="false"
-            appendTo="body"
-            (onChange)="onChangeSeason($event)"
-          ></p-dropdown> -->
 
           <div class="dropdown">
             <button

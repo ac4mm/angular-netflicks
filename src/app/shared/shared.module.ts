@@ -13,14 +13,20 @@ import { DropdownDirective } from './directive/dropdown.directive';
 import { NfFullscreenPlayerComponent } from '@shared/components/fullscreen-player/nf-fullscreen-player.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { NfFullscreenLogoComponent } from '@shared/components/fullscreen-logo/nf-fullscreen-logo.component';
+import { NfCloseButton } from '@shared/components/buttons/nf-close-button.component';
+import { NfSpeakerupButton } from '@shared/components/buttons/nf-speakerup-button.component';
+import { NfSpeakerdownButton } from '@shared/components/buttons/nf-speakerdown-button.component';
 
 @NgModule({
   declarations: [
     NfPlayButton,
     NfAddButton,
     NfCheckButton,
+    NfCloseButton,
     NfThumbUpButton,
     NfExpandButton,
+    NfSpeakerdownButton,
+    NfSpeakerupButton,
     LoadingSpinnerComponent,
     DropdownDirective,
     SkeletonCardComponent,
@@ -37,8 +43,11 @@ import { NfFullscreenLogoComponent } from '@shared/components/fullscreen-logo/nf
     NfPlayButton,
     NfAddButton,
     NfCheckButton,
+    NfCloseButton,
     NfThumbUpButton,
     NfExpandButton,
+    NfSpeakerdownButton,
+    NfSpeakerupButton,
     LoadingSpinnerComponent,
     DropdownDirective,
     SkeletonCardComponent,

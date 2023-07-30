@@ -159,12 +159,6 @@ export class PreviewModalContainer {
     return seasonSelector;
   }
 
-  onChangeSeason(item: any) {
-    const selectedSeries = item.value.code.substring(1, 2);
-    //Index start from 0
-    this.seriesSelectedDropdown$.next(selectedSeries - 1);
-  }
-
   getAllPeopleCastById$(coverIndexImg: number) {
 
     return this.tvmazeService.searchCastById(coverIndexImg).pipe(
