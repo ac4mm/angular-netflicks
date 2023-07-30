@@ -756,6 +756,22 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
 	.player-feature-badge {
     padding: 0 0.2em;
   }
+
+  /* Hover text in Add/check button */
+  .hover-text-add-btn,
+  .hover-text-check-btn {
+    font-size: 7px !important;
+    bottom: 2em !important;
+  }
+
+  .card-details .container-triangle{
+    bottom: 0.6em;
+  }
+
+  .container-triangle {
+    width: 0.6em;
+  }
+	
 }
 
 @media only screen and (max-width: 650px) {
