@@ -79,12 +79,8 @@ img {
   position: relative;
   display: inline-block;
   cursor: pointer;
-
-  /* -webkit-transform-origin: center;
-  transform-origin: center; */
   height: auto;
   width: auto;
-
   -o-object-fit: cover;
   object-fit: cover;
   transition: opacity 1s;
@@ -377,7 +373,6 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
   transition: opacity 1s;
   transition: ease-in-out 500ms;
   opacity: 0.95;
-  /* background-color: khaki; */
 }
 
 .swiper-slide:hover .card_title,
@@ -507,15 +502,12 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 1;
 }
-/******************************** TO CHECK*/
 
 /* *****************Video player */
 .youtube-container {
   overflow: hidden;
   width: 100%;
-  /* Keep it the right aspect-ratio */
   aspect-ratio: 16/9;
-  /* No clicking/hover effects */
   pointer-events: none;
 
   iframe {
@@ -784,11 +776,7 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
     height: 30px;
   }
 
-  .btn-circle-white {
-    width: 16px;
-    height: 16px;
-  }
-
+  .btn-circle-white,
   .btn-icon-cover {
     width: 16px;
     height: 16px;
