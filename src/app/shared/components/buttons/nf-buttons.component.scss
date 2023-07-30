@@ -64,4 +64,17 @@
     width: 16px;
     height: 16px;
   }
+
+  svg {
+    width: 8px;
+    height: 8px;
+  }
+
+  .btn-circle {
+    border: 1px solid rgba(255, 255, 255, 0.7);
+  }
+
+  .btn-circle-white, .btn-circle {
+    margin: 0.1em;
+  }
 }

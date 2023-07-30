@@ -731,10 +731,9 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
     width: 16px;
     height: 16px;
   }
-
-  .btn-icon-cover {
-    width: 16px;
-    height: 16px;
+  
+  .card-details {
+    padding: 0.25em !important;
   }
 
   .preview-audio-toggle {
@@ -751,6 +750,11 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
   .video-metadata-container-info .second-line-info .player-feature-badge,
   .video-metadata-container-tags .evidence-tags .evidence-list .evidence-item {
     font-size: 0.5em;
+  }
+
+  .maturity-rating .rating-number,
+	.player-feature-badge {
+    padding: 0 0.2em;
   }
 }
 

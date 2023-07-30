@@ -518,12 +518,16 @@ export class HomeComponent implements OnInit, OnDestroy {
         slidesPerView: 6,
         spaceBetween: 5,
       },
+      800: {
+        slidesPerView: 5,
+        spaceBetween: 5,
+      },
       500: {
-        slidesPerView: 6,
+        slidesPerView: 5,
         spaceBetween: 5,
       },
       400: {
-        slidesPerView: 5,
+        slidesPerView: 4,
         spaceBetween: 5,
       },
       300: {
@@ -531,7 +535,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         spaceBetween: 5,
       },
       200: {
-        slidesPerView: 4,
+        slidesPerView: 3,
         spaceBetween: 5,
       },
     },
