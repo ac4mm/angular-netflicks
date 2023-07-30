@@ -1,9 +1,10 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
   selector: 'nf-check-button',
   template: `<button
                 class="btn-circle btn-check btn-icon-cover"
+                [ngClass]="mediumSize ? 'btn-circle-medium' : ''"
               >
               <svg
                   width="16"
@@ -24,5 +25,5 @@ import { Component } from "@angular/core";
   styleUrls: ['./nf-buttons.component.scss']
 })
 export class NfCheckButton {
-
+  @Input() mediumSize: boolean = false;
 }

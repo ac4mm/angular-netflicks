@@ -22,6 +22,15 @@
   height: 24px;
 }
 
+.btn-circle-medium {
+  height: 2.8rem;
+  width: 2.8rem;
+  min-height: 32px;
+  max-height: 42px;
+  min-width: 32px;
+  max-width: 42px;
+}
+
 .btn-circle:hover {
   border-color: white;
 }
@@ -57,7 +66,6 @@
   position: relative;
 }
 
-
 /* Media query */
 @media only screen and (max-width: 700px) {
   .btn-icon-cover {
@@ -74,7 +82,8 @@
     border: 1px solid rgba(255, 255, 255, 0.7);
   }
 
-  .btn-circle-white, .btn-circle {
+  .btn-circle-white,
+  .btn-circle {
     margin: 0.1em;
   }
 }

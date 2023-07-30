@@ -1,9 +1,10 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
   selector: 'nf-thumb-up-button',
   template: `<button
                 class="btn-circle btn-icon-cover"
+                [ngClass]="mediumSize ? 'btn-circle-medium' : ''"
               >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -24,5 +25,5 @@ import { Component } from "@angular/core";
   styleUrls: ['./nf-buttons.component.scss']
 })
 export class NfThumbUpButton {
-
+  @Input() mediumSize: boolean = false;
 }
