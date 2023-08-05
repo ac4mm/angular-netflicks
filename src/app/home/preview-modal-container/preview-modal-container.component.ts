@@ -41,7 +41,7 @@ export class PreviewModalContainer {
 
   keyYTVideo: string;
 
-  playerConfig = {
+  playerVars = {
     autoHide: 1,
     controls: 0,
     showInfo: 0,
@@ -52,7 +52,6 @@ export class PreviewModalContainer {
     fs: 0,
     playsinline: 1,
     loop: 0,
-    end: 35,
     mute: 0,
     autoplay: 1,
     allowfullscreen: 1,

@@ -187,7 +187,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         fs: 0,
         playsinline: 1,
         loop: 1,
-        end: 35,
         origin: location.href,
         enablejsapi: 1
       },
