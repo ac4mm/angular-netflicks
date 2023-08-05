@@ -10,13 +10,19 @@
   left: auto;
   transform-origin: 50% 12.5%;
   top: 2em;
-  width: 850px;
+  width: 55vw;
+  min-width: 55vw;
+  max-height: 100% !important;
   opacity: 1;
   transform: translateX(0%) translateY(0px) scale(1) translateZ(0px);
-  min-width: 850px;
-  max-height: 100% !important;
   margin: 2em 0 2em 0 !important;
   z-index: 2;
+}
+
+@media only screen and (max-width: 850px) {
+  ::ng-deep .p-dialog {
+    width: 90vw;
+  }
 }
 
 ::ng-deep .p-dialog-header-icons .p-dialog-header-close-icon {
@@ -73,7 +79,7 @@
 
 ::ng-deep .p-dialog .p-dialog-content .detail-modal-container {
   padding: 0 3em;
-  margin-top: -3em;
+  margin-top: -10em;
   position: relative;
   color: white;
 
@@ -335,13 +341,14 @@
   .previewModal-player-wrapper {
   height: 10%;
   position: relative;
-  top: -6rem;
-  width: 44%;
+  top: -12rem;
+  width: 85%;
   opacity: 1;
   margin-left: 3rem;
 }
 
 ::ng-deep .p-dialog .wrapper-logo-img {
+  max-width: 50%;
   margin-bottom: 1.5em;
 }
 
@@ -358,10 +365,15 @@
   z-index: 2;
 }
 
-::ng-deep .p-dialog .previewModal-player-container .preview-audio-toggle {
-  display: block;
-  margin-left: 46rem !important;
+.custom-btn {
+  max-height: 42px;
+  min-height: 32px;
 }
+
+::ng-deep .p-dialog .previewModal-player-container .preview-audio-toggle {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;}
 
 ::ng-deep .p-dialog .previewModal-container-close {
   position: relative;
@@ -380,11 +392,6 @@
   .previewModal-player-container.preview-audio-toggle
   .previewModal-close {
   display: block;
-}
-
-::ng-deep .p-dialog .previewModal-player-container .preview-audio-toggle {
-  display: block;
-  margin-left: 46rem !important;
 }
 
 ::ng-deep .p-dialog .previewModal-container-close {
@@ -419,16 +426,14 @@
   z-index: 2;
 }
 
-/* Buttons control */
-::ng-deep
-  .p-dialog
-  .previewModal-player-container
-  .previewModal-player-wrapper
-  .buttons-controls-container {
-  align-items: center;
-  display: flex;
-  margin-bottom: 1em;
-  min-height: 2em;
-  position: absolute;
-  z-index: 2;
+.p-dialog-content {
+  display: grid;
+
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  grid-column-gap: 16px;
+
+  /* @include mobile {
+    grid-template-columns: auto;
+  } */
 }

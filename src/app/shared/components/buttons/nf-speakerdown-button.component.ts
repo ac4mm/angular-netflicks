@@ -3,10 +3,12 @@ import { Component, Input } from "@angular/core";
 @Component({
   selector: 'nf-speakerdown-button',
   template: `<button
-                class="btn-circle"
+                class="btn-circle btn-icon-cover"
                 [ngClass]="mediumSize ? 'btn-circle-medium' : ''"
               >
                 <svg
+                  width="16"
+                  height="16"
                   viewBox="0 0 24 24"
                   fill="#fff"
                   xmlns="http://www.w3.org/2000/svg"
