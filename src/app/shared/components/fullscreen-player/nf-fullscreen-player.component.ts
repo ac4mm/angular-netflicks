@@ -27,7 +27,8 @@ export class NfFullscreenPlayerComponent {
     autoplay: 1,
     allowfullscreen: 1,
     frameBorder: 0,
-    cc_load_policy: 3
+    cc_load_policy: 3,
+    origin: location.href,
   };
 
   episodeTitle: string = "Official Trailer";

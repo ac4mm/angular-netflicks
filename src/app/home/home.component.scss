@@ -791,6 +791,11 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
   .text-button {
     font-size: 0.8vw !important;
   }
+
+  .hover-text-add-btn,
+  .hover-text-check-btn {
+    bottom: 2.2em !important;
+  }
 }
 
 @media only screen and (max-width: 500px) {

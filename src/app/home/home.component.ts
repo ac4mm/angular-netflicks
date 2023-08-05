@@ -188,7 +188,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         playsinline: 1,
         loop: 1,
         end: 35,
-        origin: 'http://localhost:4200',
+        origin: location.href,
         enablejsapi: 1
       },
       events: {
@@ -431,6 +431,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       dismissableMask: true,
       showHeader: false,
       closeOnEscape: true,
+      keepInViewport: true,
       data: {
         randMatchScore: this.randMatchScore,
         ratingNumberCover: this.ratingNumberCover,
