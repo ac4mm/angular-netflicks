@@ -22,6 +22,10 @@
   height: 24px;
 }
 
+.btn-round-blk {
+  border: none !important;
+}
+
 .btn-circle-medium {
   height: 2.8rem;
   width: 2.8rem;
@@ -39,6 +43,7 @@
   background-color: rgba(205, 205, 205, 0.6);
   border-color: rgba(205, 205, 205, 0.6);
 }
+
 
 .btn-add:hover ~ .container-hover-btn .hover-text-add-btn,
 .btn-add:hover ~ .container-hover-btn .container-triangle,

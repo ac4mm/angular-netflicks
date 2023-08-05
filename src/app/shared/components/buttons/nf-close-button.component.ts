@@ -3,7 +3,7 @@ import { Component, Input } from "@angular/core";
 @Component({
   selector: 'nf-close-button',
   template: `<button 
-              class="btn-circle btn-icon-cover"
+              class="btn-circle btn-icon-cover btn-round-blk"
               [ngClass]="mediumSize ? 'btn-circle-medium' : 'btn-circle'"
               >
               <svg
