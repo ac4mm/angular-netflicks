@@ -1,37 +1,13 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
     "downlevelIteration": true,
-    "experimentalDecorators": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "target": "ES2022",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
     "esModuleInterop": true,
-    "useDefineForClassFields": false,
-    "paths":{
-      "@home/*": ["src/app/home/*"],
-      "@kids/*": ["src/app/kids/*"],
-      "@latest/*": ["src/app/latest/*"],
-      "@movies/*": ["src/app/movies/*"],
-      "@my-list/*": ["src/app/my-list/*"],
-      "@page-not-found/*": ["src/app/page-not-found/*"],
-      "@tv-shows/*": ["src/app/tv-shows/*"],
-      "@referfriends/*": ["src/app/referfriends/*"],
-      "@shared/*": ["src/app/shared/*"],
-      "@material/module": ["src/app/material.module"]
-    }
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true
-  }
+  },
+  "extends": "./tsconfig.base.json"
 }
