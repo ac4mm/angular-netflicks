@@ -21,6 +21,9 @@ import { SharedModule } from '@shared/shared.module';
 import { MaterialModule } from '@material/module';
 import { ManagePlayerService } from '@shared/services/manage-player.service';
 
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+// import function to register Swiper custom elements
+import { register } from 'swiper/element/bundle';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,5 +47,11 @@ import { ManagePlayerService } from '@shared/services/manage-player.service';
   ],
   bootstrap: [AppComponent],
   providers: [SelectUserService, ManagePlayerService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(){
+    // register Swiper custom elements
+    register();
+  }
+ }

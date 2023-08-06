@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { YouTubePlayerModule } from '@angular/youtube-player';
@@ -38,6 +38,6 @@ import { SkeletonModule } from 'primeng/skeleton';
     YouTubePlayerModule
   ],
   exports: [HomeComponent, FooterComponent, ProfileGateComponent, ManageProfilesComponent, PreviewModalContainer],
-  providers: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomeModule { }

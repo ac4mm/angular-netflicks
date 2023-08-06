@@ -156,6 +156,126 @@
 
 <!-- Main content cover card -->
 <div class="container-fluid" *ngIf="isValidUser">
+  <!-- TESTING -->
+  <p class="title-slide">
+    User{{ this.selectUser?.getIdUser() }}, keep watching :
+  </p>
+  <swiper-container
+    slides-per-view="7"
+    [pagination]="{ el: '.swiper-pagination', clickable: true }"
+    allowTouchMove="true"
+    updateOnWindowResize="true"
+    slidesOffsetBefore="40"
+    slidesOffsetAfter="130"
+  >
+    <swiper-slide
+      class="swiper-slide"
+      *ngFor="let coverImage of coverImgKeepWatching$ | async; let i = index"
+      #swiperSlides
+    >
+      <img class="card-img" [src]="coverImage" />
+      <div class="container-logo-img">
+        <img
+          class="logo-img"
+          *ngIf="(this.logoImagesKeepWatching$ | async)?.[i] as logo"
+          [src]="'https://image.tmdb.org/t/p/w500' + logo"
+        />
+      </div>
+
+      <!-- Detail Card -->
+      <div class="card-details">
+        <div class="card-icons">
+          <!-- Play button -->
+          <nf-play-button
+            (click)="playVideo(coverIndexImgKeepWatchingTMDB[i])"
+          ></nf-play-button>
+
+          <div (click)="onClickShowCheckIcon()">
+            <!-- Add button  -->
+            <nf-add-button *ngIf="showCheckIcon"></nf-add-button>
+
+            <!-- Hover text add button -->
+            <div class="container-hover-btn">
+              <h6 class="hover-text-add-btn">Add to My List</h6>
+
+              <div class="container-triangle">
+                <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
+                  <polygon points="0 0, 100 0, 50 50" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Check -->
+            <nf-check-button *ngIf="!showCheckIcon"></nf-check-button>
+
+            <!-- Hover text check button -->
+            <div class="container-hover-btn">
+              <h6 class="hover-text-check-btn">Remove from My List</h6>
+
+              <div class="container-triangle">
+                <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
+                  <polygon points="0 0, 100 0, 50 50" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Thumb up -->
+          <nf-thumb-up-button></nf-thumb-up-button>
+
+          <!-- expand -->
+          <nf-expand-button
+            *ngIf="(this.logoImagesKeepWatching$ | async)?.[i] as logo"
+            style="margin-left: auto"
+            (click)="
+              openDialogCoverImage(
+                coverImage,
+                i,
+                coverIndexImgKeepWatching[i],
+                coverIndexImgKeepWatchingTMDB[i],
+                logo
+              )
+            "
+          ></nf-expand-button>
+        </div>
+        <div class="video-metadata-container-info">
+          <div class="first-line-info">
+            <span class="match-score">{{ randMatchScore[i] }}% Match</span>
+          </div>
+          <div class="second-line-info">
+            <div class="maturity-rating">
+              <span class="rating-number">{{ ratingNumberCover[i] }}+</span>
+            </div>
+
+            <div
+              class="duration"
+              *ngFor="let season of (numbersOfSeasonsKeepWatching$ | async)?.[i]"
+            >
+              <span>{{ season }} seasons</span>
+            </div>
+            <div class="player-feature-badge">
+              <span>HD</span>
+            </div>
+          </div>
+        </div>
+        <div class="video-metadata-container-tags">
+          <div class="evidence-tags">
+            <div class="evidence-list">
+              <div
+                class="evidence-item"
+                *ngFor="let genre of (genresCoverImagesKeepWatching$ | async)?.[i]"
+              >
+                <span class="evidence-text">{{ genre }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </swiper-slide>
+  </swiper-container>
+
+  <!--END TESTING -->
+
   <!-- User N, keep watching -->
   <swiper [config]="config">
     <p class="title-slide">
@@ -181,12 +301,14 @@
         <div class="card-details">
           <div class="card-icons">
             <!-- Play button -->
-            <nf-play-button  (click)="playVideo(coverIndexImgKeepWatchingTMDB[i])"></nf-play-button>
+            <nf-play-button
+              (click)="playVideo(coverIndexImgKeepWatchingTMDB[i])"
+            ></nf-play-button>
 
             <div (click)="onClickShowCheckIcon()">
               <!-- Add button  -->
               <nf-add-button *ngIf="showCheckIcon"></nf-add-button>
-              
+
               <!-- Hover text add button -->
               <div class="container-hover-btn">
                 <h6 class="hover-text-add-btn">Add to My List</h6>
@@ -292,12 +414,14 @@
         <div class="card-details">
           <div class="card-icons">
             <!-- Play button -->
-            <nf-play-button (click)="playVideo(coverIndexImgMyListTMDB[i])"></nf-play-button>
+            <nf-play-button
+              (click)="playVideo(coverIndexImgMyListTMDB[i])"
+            ></nf-play-button>
 
             <div (click)="onClickShowCheckIcon()">
               <!-- Add button  -->
               <nf-add-button *ngIf="showCheckIcon"></nf-add-button>
-             
+
               <!-- Hover text add button -->
               <div class="container-hover-btn">
                 <h6 class="hover-text-add-btn">Add to My List</h6>
@@ -406,7 +530,9 @@
         <div class="card-details">
           <div class="card-icons">
             <!-- Play button -->
-            <nf-play-button (click)="playVideo(coverIndexTopRatedMoviesTMDB[i])"></nf-play-button>
+            <nf-play-button
+              (click)="playVideo(coverIndexTopRatedMoviesTMDB[i])"
+            ></nf-play-button>
 
             <div (click)="onClickShowCheckIcon()">
               <!-- Add button  -->
@@ -518,7 +644,9 @@
         <div class="card-details">
           <div class="card-icons">
             <!-- Play button -->
-            <nf-play-button (click)="playVideo(coverIndexTvShowsTMDB[i])"></nf-play-button>
+            <nf-play-button
+              (click)="playVideo(coverIndexTvShowsTMDB[i])"
+            ></nf-play-button>
 
             <div (click)="onClickShowCheckIcon()">
               <!-- Add button  -->
@@ -568,7 +696,7 @@
               "
             ></nf-expand-button>
           </div>
-          
+
           <div class="video-metadata-container-info">
             <div class="first-line-info">
               <span class="match-score">{{ randMatchScore[i] }}% Match</span>
