@@ -1,26 +1,37 @@
-import { Component, OnInit, OnDestroy, Renderer2 } from '@angular/core';
-import { Subject, Subscription, concatMap, from, map, of, shareReplay, switchMap, Observable, takeUntil } from 'rxjs';
+import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import {
+  concatMap,
+  from,
+  map,
+  Observable,
+  of,
+  shareReplay,
+  Subject,
+  Subscription,
+  switchMap,
+  takeUntil,
+} from 'rxjs';
 import { SwiperOptions } from 'swiper';
-
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { PreviewModalContainer } from '@home/preview-modal-container/preview-modal-container.component';
-
-import { SelectUserService } from '@shared/services/select-user.service';
-import { TvMazeService } from '@shared/services/tvmaze.service';
-import { UtilitiesService } from '@shared/services/utilities.service';
-import { TheMovieDBService } from '@shared/services/themoviedb.service';
-import { NfFullscreenPlayerComponent } from '@shared/components/fullscreen-player/nf-fullscreen-player.component';
-import { ManagePlayerService } from '@shared/services/manage-player.service';
-import { NfFullscreenLogoComponent } from '@shared/components/fullscreen-logo/nf-fullscreen-logo.component';
+import { PreviewModalContainer } from './preview-modal-container/preview-modal-container.component';
+import {
+  ManagePlayerService,
+  NfFullscreenLogoComponent,
+  NfFullscreenPlayerComponent,
+  SelectUserService,
+  TheMovieDBService,
+  TvMazeService,
+  UtilitiesService,
+} from '@shared/netflicks';
 
 @Component({
   selector: 'nf-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  providers: [DialogService, UtilitiesService]
+  providers: [DialogService, UtilitiesService],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  public isValidUser: boolean = false;
+  public isValidUser = false;
   private authServiceSub: Subscription;
   private selectUserSub: Subscription;
 
@@ -45,26 +56,36 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   /*Array index images TV Maze  */
   /*Index of: Rick and morty,Stranger Things,Dark, Lost, Casa de Papel, You, Squid Game */
-  coverIndexImgKeepWatching: number[] = [216, 2993, 17861, 123, 27436, 26856, 43687];
+  coverIndexImgKeepWatching: number[] = [
+    216, 2993, 17861, 123, 27436, 26856, 43687,
+  ];
   /*Array index images ThemovieDb  */
-  coverIndexImgKeepWatchingTMDB: number[] = [60625, 66732, 70523, 4607, 71446, 78191, 93405];
-
+  coverIndexImgKeepWatchingTMDB: number[] = [
+    60625, 66732, 70523, 4607, 71446, 78191, 93405,
+  ];
 
   /*Index of: Better Call Saul, Black Mirror,13 Reasons Why, 1899, BoJack Horseman,MINDHUNTER, How to Sell Drugs Online (Fast) */
   coverIndexImgMyList: number[] = [618, 305, 7194, 39749, 184, 10822, 39319];
   /*Array index images ThemovieDb  */
-  coverIndexImgMyListTMDB: number[] = [60059, 42009, 66788, 90669, 61222, 67744, 88236];
-
+  coverIndexImgMyListTMDB: number[] = [
+    60059, 42009, 66788, 90669, 61222, 67744, 88236,
+  ];
 
   /* Index of:The Queen's Gambit, The Big Bang Theory, Snowpiercer, The Last of Us, Our Planet, House of the Dragon, Manifest */
-  coverIndexTopRatedMovies: number[] = [41428, 66, 23030, 46562, 17868, 44778, 31365];
+  coverIndexTopRatedMovies: number[] = [
+    41428, 66, 23030, 46562, 17868, 44778, 31365,
+  ];
   /*Array index images ThemovieDb  */
-  coverIndexTopRatedMoviesTMDB: number[] = [87739, 1418, 79680, 100088, 83880, 94997, 79696];
+  coverIndexTopRatedMoviesTMDB: number[] = [
+    87739, 1418, 79680, 100088, 83880, 94997, 79696,
+  ];
 
   /* Index of:The Office, Peaky Blinders, Family Guy, Game of Thrones, The Simpsons, Chernobyl, Love, Death & Robots */
   coverIndexTvShows: number[] = [526, 269, 84, 82, 83, 30770, 40329];
   /*Array index images ThemovieDb  */
-  coverIndexTvShowsTMDB: number[] = [2316, 60574, 1434, 1399, 456, 87108, 86831];
+  coverIndexTvShowsTMDB: number[] = [
+    2316, 60574, 1434, 1399, 456, 87108, 86831,
+  ];
 
   randMatchScore = [];
 
@@ -87,24 +108,24 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   //Seasons
   numbersOfSeasonsKeepWatching$: Observable<string[]>;
-  numbersOfSeasonsMyList$: Observable<string[]>;;
-  numbersOfSeasonsTopRatedMovies$: Observable<string[]>;;
-  numbersOfSeasonsTvShows$: Observable<string[]>;;
+  numbersOfSeasonsMyList$: Observable<string[]>;
+  numbersOfSeasonsTopRatedMovies$: Observable<string[]>;
+  numbersOfSeasonsTvShows$: Observable<string[]>;
 
   season: string;
   episode: string;
   episodeImage: [];
 
   displayModal: boolean;
-  showCheckIcon: boolean = true;
-  showSpeakerUpIcon: boolean = true;
-  showRefreshIcon: boolean = false;
+  showCheckIcon = true;
+  showSpeakerUpIcon = true;
+  showRefreshIcon = false;
 
   customCarretDownIcon = 'pi pi-caret-down';
 
   private destroy$ = new Subject<void>();
 
-  showVideoPreview: boolean = false;
+  showVideoPreview = false;
 
   videoClicked = false;
   playerSettings: any;
@@ -122,51 +143,90 @@ export class HomeComponent implements OnInit, OnDestroy {
     public themoviedbService: TheMovieDBService,
     private managePlayerService: ManagePlayerService,
     private renderer: Renderer2
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.selectUserSub = this.selectUser.currentState$.pipe(takeUntil(this.destroy$)).subscribe(
-      (state) => {
+    this.selectUserSub = this.selectUser.currentState$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((state) => {
         this.isValidUser = !!state;
         if (this.isValidUser) this.autoplayVideo();
-      }
-    );
+      });
 
     //Index Stranger Things
     this.selectedIdMainTvMaze = 2993;
     this.selectedIdMainTMDB = 66732;
 
     //Setting with random number, the match score
-    this.randMatchScore = Array.from({ length: this.coverIndexImgKeepWatching.length }, () => this.utilitiesService.getRandomIntBetweenRange(64, 100))
+    this.randMatchScore = Array.from(
+      { length: this.coverIndexImgKeepWatching.length },
+      () => this.utilitiesService.getRandomIntBetweenRange(64, 100)
+    );
 
     //setting rating number cover with distribution weight
-    this.ratingNumberCover = this.getWeightedRandomNumberInArr(this.ratingNumberObject, 7);
+    this.ratingNumberCover = this.getWeightedRandomNumberInArr(
+      this.ratingNumberObject,
+      7
+    );
 
-    this.coverMainImageAndTypography$ = this.getCoverImageAndTypographyById$(this.selectedIdMainTvMaze, 10);
+    this.coverMainImageAndTypography$ = this.getCoverImageAndTypographyById$(
+      this.selectedIdMainTvMaze,
+      10
+    );
 
     //Get all cover images by id (TvMaze)
-    this.coverImgKeepWatching$ = this.getAllCoverImagesById$(this.coverIndexImgKeepWatching);
-    this.coverImgMyList$ = this.getAllCoverImagesById$(this.coverIndexImgMyList);
-    this.coverImgTopRatedMovies$ = this.getAllCoverImagesById$(this.coverIndexTopRatedMovies);
+    this.coverImgKeepWatching$ = this.getAllCoverImagesById$(
+      this.coverIndexImgKeepWatching
+    );
+    this.coverImgMyList$ = this.getAllCoverImagesById$(
+      this.coverIndexImgMyList
+    );
+    this.coverImgTopRatedMovies$ = this.getAllCoverImagesById$(
+      this.coverIndexTopRatedMovies
+    );
     this.coverImgTvShows$ = this.getAllCoverImagesById$(this.coverIndexTvShows);
 
     //Get all logo in images by id (themoviedb)
-    this.logoImagesKeepWatching$ = this.getLogoImagesById$(this.coverIndexImgKeepWatchingTMDB);
-    this.logoImagesMyList$ = this.getLogoImagesById$(this.coverIndexImgMyListTMDB);
-    this.logoImagesTopRatedMovies$ = this.getLogoImagesById$(this.coverIndexTopRatedMoviesTMDB);
-    this.logoImagesTvShows$ = this.getLogoImagesById$(this.coverIndexTvShowsTMDB);
+    this.logoImagesKeepWatching$ = this.getLogoImagesById$(
+      this.coverIndexImgKeepWatchingTMDB
+    );
+    this.logoImagesMyList$ = this.getLogoImagesById$(
+      this.coverIndexImgMyListTMDB
+    );
+    this.logoImagesTopRatedMovies$ = this.getLogoImagesById$(
+      this.coverIndexTopRatedMoviesTMDB
+    );
+    this.logoImagesTvShows$ = this.getLogoImagesById$(
+      this.coverIndexTvShowsTMDB
+    );
 
     //Gel all genre by images id
-    this.genresCoverImagesKeepWatching$ = this.getAllGenresById$(this.coverIndexImgKeepWatching);
-    this.genresCoverImagesMyList$ = this.getAllGenresById$(this.coverIndexImgMyList);
-    this.genresCoverImagesTopRatedMovies$ = this.getAllGenresById$(this.coverIndexTopRatedMovies);
-    this.genresCoverImagesTvShows$ = this.getAllGenresById$(this.coverIndexTvShows);
+    this.genresCoverImagesKeepWatching$ = this.getAllGenresById$(
+      this.coverIndexImgKeepWatching
+    );
+    this.genresCoverImagesMyList$ = this.getAllGenresById$(
+      this.coverIndexImgMyList
+    );
+    this.genresCoverImagesTopRatedMovies$ = this.getAllGenresById$(
+      this.coverIndexTopRatedMovies
+    );
+    this.genresCoverImagesTvShows$ = this.getAllGenresById$(
+      this.coverIndexTvShows
+    );
 
     //Number of seasons by id
-    this.numbersOfSeasonsKeepWatching$ = this.getAllNumbersOfSeasonsById$(this.coverIndexImgKeepWatching);
-    this.numbersOfSeasonsMyList$ = this.getAllNumbersOfSeasonsById$(this.coverIndexImgMyList);
-    this.numbersOfSeasonsTopRatedMovies$ = this.getAllNumbersOfSeasonsById$(this.coverIndexTopRatedMovies);
-    this.numbersOfSeasonsTvShows$ = this.getAllNumbersOfSeasonsById$(this.coverIndexTvShows);
+    this.numbersOfSeasonsKeepWatching$ = this.getAllNumbersOfSeasonsById$(
+      this.coverIndexImgKeepWatching
+    );
+    this.numbersOfSeasonsMyList$ = this.getAllNumbersOfSeasonsById$(
+      this.coverIndexImgMyList
+    );
+    this.numbersOfSeasonsTopRatedMovies$ = this.getAllNumbersOfSeasonsById$(
+      this.coverIndexTopRatedMovies
+    );
+    this.numbersOfSeasonsTvShows$ = this.getAllNumbersOfSeasonsById$(
+      this.coverIndexTvShows
+    );
   }
 
   // 3. This function creates an <iframe> (and YouTube player)
@@ -188,41 +248,31 @@ export class HomeComponent implements OnInit, OnDestroy {
         playsinline: 1,
         loop: 1,
         origin: location.href,
-        enablejsapi: 1
+        enablejsapi: 1,
       },
       events: {
-        'onReady': this.onPlayerReady.bind(this),
-        'onStateChange': this.onPlayerStateChange.bind(this)
-      }
-    });
-  }
-
-  createPlayer(playerInfo) {
-    return new window['YT'].Player(playerInfo.id, {
-      videoId: playerInfo.videoId,
-      height: playerInfo.height,
-      width: playerInfo.width,
-      playerVars: playerInfo.playerVars,
-      events: playerInfo.events
+        onReady: this.onPlayerReady.bind(this),
+        onStateChange: this.onPlayerStateChange.bind(this),
+      },
     });
   }
 
   // 4. The API will call this function when the video player is ready.
-  onPlayerReady(event) {
+  onPlayerReady(event: { target: { playVideo: () => void } }) {
     /* this.showVideoPreview = true; */
     event.target.playVideo();
   }
 
   // 5. The API calls this function when the player's state changes.
-  onPlayerStateChange(event) {
+  onPlayerStateChange(event: { target: { getPlayerState: () => number } }) {
     if (event.target.getPlayerState() === 1) {
-      console.log("Video starts")
+      console.log('Video starts');
     }
 
     if (event.target.getPlayerState() === 0) {
       this.showRefreshIcon = true;
       this.onClickSpeakerIcon();
-      console.log("video completed");
+      console.log('video completed');
     }
   }
 
@@ -233,7 +283,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   openFullScreenLogo() {
-    const dialogFullScreenLogo: DynamicDialogRef = this.dialogService.open(NfFullscreenLogoComponent, {
+    return this.dialogService.open(NfFullscreenLogoComponent, {
       baseZIndex: 10001,
       modal: true,
       draggable: false,
@@ -243,45 +293,48 @@ export class HomeComponent implements OnInit, OnDestroy {
       width: '100%',
       height: '100%',
       transitionOptions: '600ms',
-    })
-
-    return dialogFullScreenLogo;
+    });
   }
 
   playVideo(indexTheMovieDb: number) {
-    if (!!this.player) {
+    if (this.player) {
       this.player.pauseVideo();
     }
 
-    const dialogFullScreenPlayer: DynamicDialogRef = this.dialogService.open(NfFullscreenPlayerComponent, {
-      baseZIndex: 10000,
-      modal: true,
-      draggable: false,
-      dismissableMask: true,
-      showHeader: false,
-      closeOnEscape: true,
-      width: '100%',
-      height: '100%',
-      transitionOptions: '600ms',
-      data: {
-        indexTheMovieDb: indexTheMovieDb,
+    const dialogFullScreenPlayer: DynamicDialogRef = this.dialogService.open(
+      NfFullscreenPlayerComponent,
+      {
+        baseZIndex: 10000,
+        modal: true,
+        draggable: false,
+        dismissableMask: true,
+        showHeader: false,
+        closeOnEscape: true,
+        width: '100%',
+        height: '100%',
+        transitionOptions: '600ms',
+        data: {
+          indexTheMovieDb: indexTheMovieDb,
+        },
       }
-    })
+    );
 
     /* On close dialog, open FullScreenLogo and resume video */
-    dialogFullScreenPlayer.onClose.pipe(takeUntil(this.destroy$)).subscribe(() => {
-      const dialogFullScreenLogo: DynamicDialogRef = this.openFullScreenLogo();
+    dialogFullScreenPlayer.onClose
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        const dialogFullScreenLogo: DynamicDialogRef =
+          this.openFullScreenLogo();
 
-      setTimeout(() => {
-        dialogFullScreenLogo.close();
-        this.renderer.removeStyle(document.body, 'overflow-y');
-      }, 2000)
-      setTimeout(() => {
-        this.onReplayVideo();
-      }, 3000)
-    })
+        setTimeout(() => {
+          dialogFullScreenLogo.close();
+          this.renderer.removeStyle(document.body, 'overflow-y');
+        }, 2000);
+        setTimeout(() => {
+          this.onReplayVideo();
+        }, 3000);
+      });
   }
-
 
   autoplayVideo() {
     setTimeout(() => {
@@ -289,10 +342,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
       this.managePlayerService.initScriptIFrame();
       //b9EkMc79ZSU -> id YT video Stranger Things
-      window['onYouTubeIframeAPIReady'] = () => this.onYouTubeIframeAPIReady('b9EkMc79ZSU');
-    }, 3000)
+      window['onYouTubeIframeAPIReady'] = () =>
+        this.onYouTubeIframeAPIReady('b9EkMc79ZSU');
+    }, 3000);
   }
-
 
   onClickSpeakerIcon() {
     if (!!this.player && this.player?.getPlayerState() === 1) {
@@ -310,7 +363,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  getCoverImageAndTypographyById$(coverId: number, indexBackground: number = 0, indexTypography: number = 0): Observable<any[]> {
+  getCoverImageAndTypographyById$(
+    coverId: number,
+    indexBackground: number = 0,
+    indexTypography: number = 0
+  ): Observable<any[]> {
     let finalCoverTypoImage = [];
 
     return this.tvmazeService.searchImagesMovie(coverId).pipe(
@@ -328,24 +385,27 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
 
         return finalCoverTypoImage;
-      }),
-    )
+      })
+    );
   }
-
 
   getLogoImagesById$(coverIndexImg: number[]): Observable<any[]> {
     let finalLogos = [];
 
     return from(coverIndexImg).pipe(
-      concatMap((item) => this.themoviedbService.getImagesById(item, 'tv').pipe(
-        map((images) => {
-          let filterByLangEn = images?.["logos"].filter((logo) => logo.iso_639_1 === 'en');
-          finalLogos.push(filterByLangEn[0]?.file_path);
-          return finalLogos;
-        }),
-      )),
-      shareReplay(1),
-    )
+      concatMap((item) =>
+        this.themoviedbService.getImagesById(item, 'tv').pipe(
+          map((images) => {
+            let filterByLangEn = images?.['logos'].filter(
+              (logo) => logo.iso_639_1 === 'en'
+            );
+            finalLogos.push(filterByLangEn[0]?.file_path);
+            return finalLogos;
+          })
+        )
+      ),
+      shareReplay(1)
+    );
   }
 
   getAllCoverImagesById$(coverIndexImg: number[]): Observable<any[]> {
@@ -354,59 +414,79 @@ export class HomeComponent implements OnInit, OnDestroy {
     return from(coverIndexImg).pipe(
       concatMap((item) => this.tvmazeService.searchImagesMovie(item)),
       switchMap((images) => {
-        const backgroundImages = images.filter((image) => image.type === 'background');
+        const backgroundImages = images.filter(
+          (image) => image.type === 'background'
+        );
         const bannerImages = images.filter((image) => image.type === 'banner');
         const posterImages = images.filter((image) => image.type === 'poster');
 
         //defined rand number in the range of background images
         let randNumbBackgroundImg;
         if (backgroundImages.length > 0) {
-          randNumbBackgroundImg = this.utilitiesService.getRandomInt(backgroundImages.length);
+          randNumbBackgroundImg = this.utilitiesService.getRandomInt(
+            backgroundImages.length
+          );
           //Assign first background image to array
-          finalCoverImages.push(backgroundImages[randNumbBackgroundImg]?.resolutions?.original?.url);
+          finalCoverImages.push(
+            backgroundImages[randNumbBackgroundImg]?.resolutions?.original?.url
+          );
         }
 
         if (finalCoverImages.length == 0 && bannerImages.length > 0) {
-          randNumbBackgroundImg = this.utilitiesService.getRandomInt(bannerImages.length);
+          randNumbBackgroundImg = this.utilitiesService.getRandomInt(
+            bannerImages.length
+          );
           //Assign first background image to array
-          finalCoverImages.push(bannerImages[randNumbBackgroundImg]?.resolutions?.original?.url);
+          finalCoverImages.push(
+            bannerImages[randNumbBackgroundImg]?.resolutions?.original?.url
+          );
         }
 
         if (finalCoverImages.length == 0 && posterImages.length > 0) {
-          randNumbBackgroundImg = this.utilitiesService.getRandomInt(posterImages.length);
+          randNumbBackgroundImg = this.utilitiesService.getRandomInt(
+            posterImages.length
+          );
           //Assign first background image to array
-          finalCoverImages.push(posterImages[randNumbBackgroundImg]?.resolutions?.original?.url);
+          finalCoverImages.push(
+            posterImages[randNumbBackgroundImg]?.resolutions?.original?.url
+          );
         }
-
 
         return of(finalCoverImages);
       })
-    )
+    );
   }
 
   getAllGenresById$(coverIndexImg: number[]): Observable<any[]> {
     let finalGenreSeasons = [];
 
-
     return from(coverIndexImg).pipe(
-      concatMap((indexImg) => this.tvmazeService.searchMainInfoMovie(indexImg).pipe(map((item) => {
-        finalGenreSeasons.push(item.genres);
-        return finalGenreSeasons;
-      }))),
+      concatMap((indexImg) =>
+        this.tvmazeService.searchMainInfoMovie(indexImg).pipe(
+          map((item) => {
+            finalGenreSeasons.push(item.genres);
+            return finalGenreSeasons;
+          })
+        )
+      ),
       shareReplay(1)
-    )
+    );
   }
 
   getAllNumbersOfSeasonsById$(coverIndexImg: number[]): Observable<any[]> {
     let finalNumberSeasons = [];
 
     return from(coverIndexImg).pipe(
-      concatMap((indexImg) => this.tvmazeService.searchNumberSeasonsById(indexImg).pipe(map((seasons) => {
-        finalNumberSeasons.push([seasons.length]);
-        return finalNumberSeasons;
-      }))),
+      concatMap((indexImg) =>
+        this.tvmazeService.searchNumberSeasonsById(indexImg).pipe(
+          map((seasons) => {
+            finalNumberSeasons.push([seasons.length]);
+            return finalNumberSeasons;
+          })
+        )
+      ),
       shareReplay(1)
-    )
+    );
   }
 
   showModalDialog(coverImage: any, index: number) {
@@ -415,7 +495,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.displayModal = true;
   }
 
-  openDialogCoverImage(coverImage: any, index: number, indexTvMazeSeries: number, indexTheMovieDb?: number, logoImageURL?: string) {
+  openDialogCoverImage(
+    coverImage: any,
+    index: number,
+    indexTvMazeSeries: number,
+    indexTheMovieDb?: number,
+    logoImageURL?: string
+  ) {
     this.indexSelectedItem = index;
     this.coverImagePreviewModal = coverImage;
 
@@ -423,63 +509,77 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.player.pauseVideo();
     }
 
-    const dialog: DynamicDialogRef = this.dialogService.open(PreviewModalContainer, {
-      baseZIndex: 10000,
-      modal: true,
-      draggable: false,
-      dismissableMask: true,
-      showHeader: false,
-      closeOnEscape: true,
-      keepInViewport: true,
-      data: {
-        randMatchScore: this.randMatchScore,
-        ratingNumberCover: this.ratingNumberCover,
-        numbersOfSeasonsKeepWatching$: this.numbersOfSeasonsKeepWatching$,
-        coverImagePreviewModal: this.coverImagePreviewModal,
-        indexSelectedItem: this.indexSelectedItem,
-        indexTvMazeSeries: indexTvMazeSeries,
-        indexTheMovieDb: indexTheMovieDb,
-        logoImageURL: logoImageURL,
-        players: this.players
+    const dialog: DynamicDialogRef = this.dialogService.open(
+      PreviewModalContainer,
+      {
+        baseZIndex: 10000,
+        modal: true,
+        draggable: false,
+        dismissableMask: true,
+        showHeader: false,
+        closeOnEscape: true,
+        keepInViewport: true,
+        data: {
+          randMatchScore: this.randMatchScore,
+          ratingNumberCover: this.ratingNumberCover,
+          numbersOfSeasonsKeepWatching$: this.numbersOfSeasonsKeepWatching$,
+          coverImagePreviewModal: this.coverImagePreviewModal,
+          indexSelectedItem: this.indexSelectedItem,
+          indexTvMazeSeries: indexTvMazeSeries,
+          indexTheMovieDb: indexTheMovieDb,
+          logoImageURL: logoImageURL,
+          players: this.players,
+        },
       }
-    });
+    );
 
     /* On close dialog, resume video */
     dialog.onClose.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.player.playVideo();
-    })
+    });
   }
 
   //Use prevision random algorithm with size
   getWeightedRandomNumberInArr(objWithWeight: any, size: number) {
     let arrWeightedRand = [];
     for (let i = 0; i < size; i++) {
-      arrWeightedRand.push(this.utilitiesService.getWeightedRandomNumber(objWithWeight))
+      arrWeightedRand.push(
+        this.utilitiesService.getWeightedRandomNumber(objWithWeight)
+      );
     }
 
     return arrWeightedRand;
   }
 
-
   getImageMovie(id: number) {
-    this.tvmazeService.searchImagesMovie(id).pipe(
-      map((images) => images.filter((image) => image.type === 'background'))
-    ).pipe(takeUntil(this.destroy$)).subscribe(images => {
-      this.tempImg = images[0].resolutions.original.url;
-      this.coverImages.push(this.tempImg);
-    })
+    this.tvmazeService
+      .searchImagesMovie(id)
+      .pipe(
+        map((images) => images.filter((image) => image.type === 'background'))
+      )
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((images) => {
+        this.tempImg = images[0].resolutions.original.url;
+        this.coverImages.push(this.tempImg);
+      });
   }
 
   getIdMovie(id: string) {
-    this.tvmazeService.getMovies(id).pipe(takeUntil(this.destroy$)).subscribe(movie => {
-      this.movieDetails = movie;
-    })
+    this.tvmazeService
+      .getMovies(id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((movie) => {
+        this.movieDetails = movie;
+      });
   }
 
   searchMovie(query: string) {
-    this.tvmazeService.searchMovie(query).pipe(takeUntil(this.destroy$)).subscribe(movie => {
-      this.movieDetails = movie;
-    })
+    this.tvmazeService
+      .searchMovie(query)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((movie) => {
+        this.movieDetails = movie;
+      });
   }
 
   getEpisode(season: string, numb: string) {
@@ -487,8 +587,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       .getEpisodeByNumber(this.movieDetails.id, season, numb)
       .pipe(takeUntil(this.destroy$))
       .subscribe((episode) => {
-        this.detailsEpisode = episode
-        this.episodeImage = this.detailsEpisode.image.original
+        this.detailsEpisode = episode;
+        this.episodeImage = this.detailsEpisode.image.original;
       });
   }
 
@@ -546,6 +646,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     },
 
     loopedSlides: 7,
-    loop: false
+    loop: false,
   };
 }

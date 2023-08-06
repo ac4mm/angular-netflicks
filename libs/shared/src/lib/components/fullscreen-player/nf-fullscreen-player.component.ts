@@ -1,13 +1,13 @@
-import { DOCUMENT } from "@angular/common";
-import { Component, Inject, ViewChild } from "@angular/core";
-import { ManagePlayerService } from "@shared/services/manage-player.service";
-import { TheMovieDBService } from "@shared/services/themoviedb.service";
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, ViewChild } from '@angular/core';
+import { TheMovieDBService } from '../../services/themoviedb.service';
+import { ManagePlayerService } from '../../services/manage-player.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 @Component({
   selector: 'nf-fullscreen-player',
   templateUrl: 'nf-fullscreen-player.component.html',
-  styleUrls: ['nf-fullscreen-player.component.scss']
+  styleUrls: ['nf-fullscreen-player.component.scss'],
 })
 export class NfFullscreenPlayerComponent {
   @ViewChild('player') player: any;
@@ -31,14 +31,14 @@ export class NfFullscreenPlayerComponent {
     origin: location.href,
   };
 
-  episodeTitle: string = "Official Trailer";
+  episodeTitle = 'Official Trailer';
 
   rootElem: HTMLElement | any;
-  isMaximixe: boolean = false;
-  showSpeakerUpIcon: boolean = true;
-  showPlayIcon: boolean = true;
+  isMaximixe = false;
+  showSpeakerUpIcon = true;
+  showPlayIcon = true;
   valuePlayerBar = 0;
-  maxValueRange;
+  maxValueRange: any;
 
   seriesTvMainTitle$: Observable<any>;
   seriesTvVideoKey$: Observable<any>;
@@ -50,13 +50,17 @@ export class NfFullscreenPlayerComponent {
     public themoviedbService: TheMovieDBService,
     @Inject(DOCUMENT) private document: any,
     private managePlayerService: ManagePlayerService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.rootElem = document.documentElement;
 
-    this.seriesTvMainTitle$ = this.themoviedbService.getTvMovieDetailById(this.config.data.indexTheMovieDb, 'tv').pipe(map((item) => item?.name));
-    this.seriesTvVideoKey$ = this.themoviedbService.getVideosById(this.config.data.indexTheMovieDb, 'tv').pipe(map((item) => item?.results[0].key));
+    this.seriesTvMainTitle$ = this.themoviedbService
+      .getTvMovieDetailById(this.config.data.indexTheMovieDb, 'tv')
+      .pipe(map((item) => item?.name));
+    this.seriesTvVideoKey$ = this.themoviedbService
+      .getVideosById(this.config.data.indexTheMovieDb, 'tv')
+      .pipe(map((item) => item?.results[0].key));
 
     setTimeout(() => {
       this.managePlayerService.initScriptIFrame();
@@ -82,28 +86,29 @@ export class NfFullscreenPlayerComponent {
 
     setInterval(() => {
       this.updateProgressBar();
-    }, 1000)
+    }, 1000);
   }
 
   updateProgressBar() {
-    this.valuePlayerBar = (this.player.getCurrentTime() / this.player.getDuration()) * 100;
+    this.valuePlayerBar =
+      (this.player.getCurrentTime() / this.player.getDuration()) * 100;
   }
 
-  formatTime(time) {
+  formatTime(time: number) {
     time = Math.round(time);
 
-    let minutes = Math.floor(time / 60),
-      seconds = time - minutes * 60;
+    const minutes = Math.floor(time / 60);
+    let seconds = time - minutes * 60;
 
     seconds = seconds < 10 ? Number('0' + seconds) : seconds;
 
-    return minutes + ":" + seconds;
+    return minutes + ':' + seconds;
   }
 
   onChangeThumb(event: any): void {
     // Calculate the new time for the video.
     // new time in seconds = total duration in seconds * ( value of range input / 100 )
-    var newTime = this.player.getDuration() * (event.target.value / 100);
+    const newTime = this.player.getDuration() * (event.target.value / 100);
 
     // Skip video to new time.
     this.player.seekTo(newTime);
@@ -126,12 +131,12 @@ export class NfFullscreenPlayerComponent {
     } else if (this.player.getPlayerState() === 2) {
       this.player.playVideo();
     }
-    
+
     this.onReadyPlayer();
   }
 
   goAhead10sNext() {
-    this.player.seekTo(this.player.getCurrentTime() + 10)
+    this.player.seekTo(this.player.getCurrentTime() + 10);
   }
 
   comeBack10sPrev() {

@@ -1,28 +1,29 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./dist/out-tsc",
-    "downlevelIteration": true,
-    "esModuleInterop": true,
-    "useDefineForClassFields": false,
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "esnext",
+    "lib": ["es2018", "dom"],
+    "baseUrl": "./",
     "strictPropertyInitialization": false,
     "paths": {
       "@home/*": ["libs/feature/src/lib/home/*"],
       "@kids/*": ["src/app/kids/*"],
       "@latest/*": ["src/app/latest/*"],
+      "@libs": ["libs/src/index.ts"],
+      "@libs/feature": ["libs/feature/src/index.ts"],
       "@material/module": ["src/app/material.module"],
       "@movies/*": ["src/app/movies/*"],
       "@my-list/*": ["src/app/my-list/*"],
       "@page-not-found/*": ["src/app/page-not-found/*"],
       "@referfriends/*": ["src/app/referfriends/*"],
-      "@shared/netflicks": ["libs/shared/src/index.ts"],
       "@tv-shows/*": ["src/app/tv-shows/*"],
-      "@libs": ["libs/src/index.ts"],
-      "@libs/feature": ["libs/feature/src/index.ts"]
+      "@shared/netflicks": ["libs/shared/src/index.ts"]
     }
-  },
-  "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
-  },
-  "extends": "./tsconfig.base.json"
+  }
 }

@@ -7,7 +7,7 @@ import { ReferfriendsComponent } from './referfriends/referfriends.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TvShowsComponent } from './tv-shows/tv-shows.component';
 import { MoviesComponent } from './movies/movies.component';
-import { ManageProfilesComponent } from './manage-profiles/manage-profiles.component';
+import { ManageProfilesComponent } from '../../libs/feature/src/lib/manage-profiles/manage-profiles.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -15,7 +15,7 @@ const routes: Routes = [
   {
     path: 'browse',
     loadChildren: () =>
-      import('./home/home.module').then((home) => home.HomeModule),
+      import('libs/feature/src/lib/home/home.module').then((home) => home.HomeModule),
   },
   { path: 'tv-shows', component: TvShowsComponent },
   { path: 'movies', component: MoviesComponent },
@@ -31,7 +31,7 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () =>
-      import('./auth/auth.module').then((auth) => auth.AuthModule),
+      import('libs/feature/src/lib/auth/auth.module').then((auth) => auth.AuthModule),
   },
 
   { path: 'not-found', component: PageNotFoundComponent },

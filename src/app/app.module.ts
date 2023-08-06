@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
 
 import { LatestComponent } from '@latest/latest.component';
 import { MyListComponent } from '@my-list/my-list.component';
@@ -16,15 +15,18 @@ import { KidsComponent } from '@kids/kids.component';
 import { TvShowsComponent } from '@tv-shows/tv-shows.component';
 import { MoviesComponent } from '@movies/movies.component';
 
-import { SelectUserService } from '@shared/services/select-user.service';
-import { SharedModule } from '@shared/shared.module';
 import { MaterialModule } from '@material/module';
-import { ManagePlayerService } from '@shared/services/manage-player.service';
+
+import { LibsFeatureModule } from '@libs/feature';
+import {
+  SelectUserService,
+  ManagePlayerService,
+  SharedModule,
+} from '@shared/netflicks';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     TvShowsComponent,
     MoviesComponent,
     LatestComponent,
@@ -32,7 +34,7 @@ import { ManagePlayerService } from '@shared/services/manage-player.service';
     PageNotFoundComponent,
     MoviesComponent,
     ReferfriendsComponent,
-    KidsComponent
+    KidsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -40,9 +42,10 @@ import { ManagePlayerService } from '@shared/services/manage-player.service';
     HttpClientModule,
     MaterialModule,
     BrowserAnimationsModule,
-    SharedModule
+    LibsFeatureModule,
+    SharedModule,
   ],
   bootstrap: [AppComponent],
   providers: [SelectUserService, ManagePlayerService],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,13 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ImagesMovie, MainInfo } from 'src/app/shared/model/images-movie.model';
-
+import { ImagesMovie, MainInfo } from '../model/images-movie.model';
 
 @Injectable({ providedIn: 'root' })
 export class TvMazeService {
   private basePath = 'https://api.tvmaze.com';
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   getMovies(id: string) {
     return this.httpClient.get(`${this.basePath}/shows/${id}`);
@@ -24,7 +23,9 @@ export class TvMazeService {
   }
 
   searchImagesMovie(id: number): Observable<ImagesMovie[]> {
-    return this.httpClient.get<ImagesMovie[]>(`${this.basePath}/shows/${id}/images`);
+    return this.httpClient.get<ImagesMovie[]>(
+      `${this.basePath}/shows/${id}/images`
+    );
   }
 
   searchMainInfoMovie(id: number) {

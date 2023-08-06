@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
-import { SelectUserService } from '../shared/services/select-user.service';
+import { SelectUserService } from '@shared/netflicks';
 
 @Component({
   selector: 'nf-navbar',
@@ -18,11 +18,11 @@ import { SelectUserService } from '../shared/services/select-user.service';
 export class NavbarComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
   public isValidUser: boolean = false;
-  public idUserMaster: number;
+  public idUserMaster: number | undefined;
 
-  private userSub: Subscription;
-  private statusUserSub: Subscription;
-  private idUserSub: Subscription;
+  private userSub: Subscription | undefined;
+  private statusUserSub: Subscription | undefined;
+  private idUserSub: Subscription | undefined;
 
   private destroy$ = new Subject<void>();
 
@@ -31,21 +31,23 @@ export class NavbarComponent implements OnInit, OnDestroy {
   constructor(
     private elRef: ElementRef,
     private authService: AuthService,
-    private selectUser: SelectUserService,
-  ) { }
+    private selectUser: SelectUserService
+  ) {}
 
   ngOnInit(): void {
-    this.userSub = this.authService.user$.pipe(takeUntil(this.destroy$)).subscribe((user) => {
-      this.isAuthenticated = !!user;
-    });
+    this.userSub = this.authService.user$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((user) => {
+        this.isAuthenticated = !!user;
+      });
 
-    this.statusUserSub = this.selectUser.currentState$.pipe(takeUntil(this.destroy$)).subscribe(
-      (state) => (this.isValidUser = !!state)
-    );
+    this.statusUserSub = this.selectUser.currentState$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((state) => (this.isValidUser = !!state));
 
-    this.idUserSub = this.selectUser.currentId$.pipe(takeUntil(this.destroy$)).subscribe(
-      (id) => (this.idUserMaster = id)
-    );
+    this.idUserSub = this.selectUser.currentId$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((id) => (this.idUserMaster = id));
   }
 
   activateSearchbar() {
@@ -53,16 +55,19 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('document:click', ['$event'])
-  clickoutSearchbar(event) {
-    if (!this.elRef.nativeElement.contains(event.target) && this.searchBox[0]?.classList?.value.includes('active')) {
+  clickoutSearchbar(event: { target: any }) {
+    if (
+      !this.elRef.nativeElement.contains(event.target) &&
+      this.searchBox[0]?.classList?.value.includes('active')
+    ) {
       this.activateSearchbar();
     }
   }
 
   @HostListener('window:scroll', ['$event'])
-  scrollNavBarEffect($event) {
+  scrollNavBarEffect() {
     let navbarElement = document.querySelector('.navbar');
-    if (window.pageYOffset > navbarElement?.clientHeight) {
+    if (window.pageYOffset > navbarElement.clientHeight) {
       navbarElement?.classList.add('navbar-scrolled');
     } else {
       navbarElement?.classList.remove('navbar-scrolled');

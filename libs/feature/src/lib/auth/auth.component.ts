@@ -14,7 +14,7 @@ export class AuthComponent {
   isLoginMode: boolean = true;
   isLoading: boolean = false;
   showPassword: boolean = false;
-  error: string = null;
+  error: string;
 
   typePassword: any = document.getElementsByClassName('form-control');
 
