@@ -5,7 +5,7 @@
     "nx": "nx",
     "start": "nx serve",
     "start-prod": "nx serve --configuration=production",
-    "build": "nx build --configuration production",
+    "build": "nx build netflicks --configuration production",
     "config": "ts-node ./scripts/setenv.ts",
     "watch": "nx build --watch --configuration development",
     "test": "jest",
