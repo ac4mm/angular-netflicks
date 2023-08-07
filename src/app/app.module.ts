@@ -6,14 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { MyListComponent } from '@my-list/my-list.component';
-import { PageNotFoundComponent } from '@page-not-found/page-not-found.component';
-import { ReferfriendsComponent } from '@referfriends/referfriends.component';
-
-import { TvShowsComponent } from '@tv-shows/tv-shows.component';
-
 import { MaterialModule } from '@material/module';
-
 import { LibsFeatureModule } from '@libs/feature';
 import {
   SelectUserService,
@@ -22,13 +15,7 @@ import {
 } from '@shared/netflicks';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TvShowsComponent,
-    MyListComponent,
-    PageNotFoundComponent,
-    ReferfriendsComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
