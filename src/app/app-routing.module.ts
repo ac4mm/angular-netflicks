@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
-import { ReferfriendsComponent } from '../../libs/feature/src/lib/referfriends/referfriends.component';
-import { TvShowsComponent } from '../../libs/feature/src/lib/tv-shows/tv-shows.component';
-
-import { ManageProfilesComponent } from '../../libs/feature/src/lib/manage-profiles/manage-profiles.component';
-import { KidsComponent } from '../../libs/feature/src/lib/kids/kids.component';
-import { LatestComponent } from '../../libs/feature/src/lib/latest/latest.component';
-import { MoviesComponent } from '../../libs/feature/src/lib/movies/movies.component';
-import { MyListComponent } from '../../libs/feature/src/lib/my-list/my-list.component';
-import { HomeComponent } from '@home/home.component';
+import { ManageProfilesComponent } from '@feature/manage-profiles/manage-profiles.component';
+import { TvShowsComponent } from '@feature/tv-shows/tv-shows.component';
+import { MoviesComponent } from '@feature/movies/movies.component';
+import { LatestComponent } from '@feature/latest/latest.component';
+import { MyListComponent } from '@feature/my-list/my-list.component';
+import { KidsComponent } from '@feature/kids/kids.component';
+import { ReferfriendsComponent } from '@feature/referfriends/referfriends.component';
+import { HomeComponent } from '@feature/home/home.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -25,7 +24,6 @@ const routes: Routes = [
   { path: 'movies', component: MoviesComponent },
   { path: 'latest', component: LatestComponent },
   { path: 'my-list', component: MyListComponent },
-
   { path: 'Kids', component: KidsComponent },
   {
     path: 'referfriends',
