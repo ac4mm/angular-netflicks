@@ -9,7 +9,7 @@ import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { ProfileGateComponent } from './profile-gate/profile-gate.component';
 
 import { ManageProfilesComponent } from '../manage-profiles/manage-profiles.component';
-import { PreviewModalContainer } from './preview-modal-container/preview-modal-container.component';
+import { PreviewModalContainerComponent } from './preview-modal-container/preview-modal-container.component';
 
 import { DialogModule } from 'primeng/dialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
@@ -18,7 +18,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { SkeletonModule } from 'primeng/skeleton';
 import { AsyncPipe, NgClass, NgStyle } from '@angular/common';
 import { SharedModule } from '@shared/netflicks';
-import { MaterialModule } from '@material/module';
 
 @NgModule({
   declarations: [
@@ -26,7 +25,7 @@ import { MaterialModule } from '@material/module';
     FooterComponent,
     ProfileGateComponent,
     ManageProfilesComponent,
-    PreviewModalContainer,
+    PreviewModalContainerComponent,
   ],
   imports: [
     NgxUsefulSwiperModule,
@@ -36,7 +35,6 @@ import { MaterialModule } from '@material/module';
     ]),
     FormsModule,
     SharedModule,
-    MaterialModule,
     DialogModule,
     DynamicDialogModule,
     ButtonModule,
@@ -52,7 +50,7 @@ import { MaterialModule } from '@material/module';
     FooterComponent,
     ProfileGateComponent,
     ManageProfilesComponent,
-    PreviewModalContainer,
+    PreviewModalContainerComponent,
   ],
   providers: [],
 })

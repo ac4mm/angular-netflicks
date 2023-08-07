@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { LatestComponent } from './latest/latest.component';
-import { MyListComponent } from './my-list/my-list.component';
-import { KidsComponent } from './kids/kids.component';
-import { ReferfriendsComponent } from './referfriends/referfriends.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { TvShowsComponent } from './tv-shows/tv-shows.component';
-import { MoviesComponent } from './movies/movies.component';
+
+import { MyListComponent } from '@my-list/my-list.component';
+import { ReferfriendsComponent } from '@referfriends/referfriends.component';
+import { PageNotFoundComponent } from '@page-not-found/page-not-found.component';
+import { TvShowsComponent } from '@tv-shows/tv-shows.component';
+
 import { ManageProfilesComponent } from '../../libs/feature/src/lib/manage-profiles/manage-profiles.component';
+import { KidsComponent } from '../../libs/feature/src/lib/kids/kids.component';
+import { LatestComponent } from '../../libs/feature/src/lib/latest/latest.component';
+import { MoviesComponent } from '../../libs/feature/src/lib/movies/movies.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -15,7 +17,9 @@ const routes: Routes = [
   {
     path: 'browse',
     loadChildren: () =>
-      import('libs/feature/src/lib/home/home.module').then((home) => home.HomeModule),
+      import('libs/feature/src/lib/home/home.module').then(
+        (home) => home.HomeModule
+      ),
   },
   { path: 'tv-shows', component: TvShowsComponent },
   { path: 'movies', component: MoviesComponent },
@@ -31,7 +35,9 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () =>
-      import('libs/feature/src/lib/auth/auth.module').then((auth) => auth.AuthModule),
+      import('libs/feature/src/lib/auth/auth.module').then(
+        (auth) => auth.AuthModule
+      ),
   },
 
   { path: 'not-found', component: PageNotFoundComponent },
@@ -41,9 +47,9 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-    preloadingStrategy: PreloadAllModules
-}),
+      preloadingStrategy: PreloadAllModules,
+    }),
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -13,7 +13,7 @@ import {
 } from 'rxjs';
 import { SwiperOptions } from 'swiper';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { PreviewModalContainer } from './preview-modal-container/preview-modal-container.component';
+import { PreviewModalContainerComponent } from './preview-modal-container/preview-modal-container.component';
 import {
   ManagePlayerService,
   NfFullscreenLogoComponent,
@@ -32,12 +32,11 @@ import {
 })
 export class HomeComponent implements OnInit, OnDestroy {
   public isValidUser = false;
-  private authServiceSub: Subscription;
   private selectUserSub: Subscription;
 
   movieDetails: any;
   detailsEpisode: any;
-  imagesMovies: [];
+
   coverImages: string[] = [];
   tempImg: string;
 
@@ -87,11 +86,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     2316, 60574, 1434, 1399, 456, 87108, 86831,
   ];
 
-  randMatchScore = [];
+  randMatchScore: number[] = [];
 
   //7+ Kids (10%), 13+ teenagers (20%), 16+ (40%), 18+ adults (60%)
   ratingNumberObject = { 7: 0.1, 13: 0.2, 16: 0.4, 18: 0.6 };
-  ratingNumberCover = [];
+  ratingNumberCover: (string | undefined)[] = [];
 
   //Logos
   logoImagesKeepWatching$: Observable<string[]>;
@@ -342,7 +341,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
       this.managePlayerService.initScriptIFrame();
       //b9EkMc79ZSU -> id YT video Stranger Things
-      window['onYouTubeIframeAPIReady'] = () =>
+      (window as any)['onYouTubeIframeAPIReady'] = () =>
         this.onYouTubeIframeAPIReady('b9EkMc79ZSU');
     }, 3000);
   }
@@ -368,11 +367,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     indexBackground: number = 0,
     indexTypography: number = 0
   ): Observable<any[]> {
-    let finalCoverTypoImage = [];
+    const finalCoverTypoImage: any[] = [];
 
     return this.tvmazeService.searchImagesMovie(coverId).pipe(
       map((images) => {
-        let arr = [];
+        const arr = [];
         arr.push(images.filter((image) => image.type === 'background'));
         arr.push(images.filter((image) => image.type === 'typography'));
 
@@ -390,14 +389,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getLogoImagesById$(coverIndexImg: number[]): Observable<any[]> {
-    let finalLogos = [];
+    const finalLogos: any[] = [];
 
     return from(coverIndexImg).pipe(
       concatMap((item) =>
         this.themoviedbService.getImagesById(item, 'tv').pipe(
           map((images) => {
-            let filterByLangEn = images?.['logos'].filter(
-              (logo) => logo.iso_639_1 === 'en'
+            const filterByLangEn = images?.['logos'].filter(
+              (logo: { iso_639_1: string }) => logo.iso_639_1 === 'en'
             );
             finalLogos.push(filterByLangEn[0]?.file_path);
             return finalLogos;
@@ -409,7 +408,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getAllCoverImagesById$(coverIndexImg: number[]): Observable<any[]> {
-    let finalCoverImages = [];
+    const finalCoverImages: any[] = [];
 
     return from(coverIndexImg).pipe(
       concatMap((item) => this.tvmazeService.searchImagesMovie(item)),
@@ -458,7 +457,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getAllGenresById$(coverIndexImg: number[]): Observable<any[]> {
-    let finalGenreSeasons = [];
+    const finalGenreSeasons: any[] = [];
 
     return from(coverIndexImg).pipe(
       concatMap((indexImg) =>
@@ -474,7 +473,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getAllNumbersOfSeasonsById$(coverIndexImg: number[]): Observable<any[]> {
-    let finalNumberSeasons = [];
+    const finalNumberSeasons: any[] = [];
 
     return from(coverIndexImg).pipe(
       concatMap((indexImg) =>
@@ -505,12 +504,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.indexSelectedItem = index;
     this.coverImagePreviewModal = coverImage;
 
-    if (!!this.player) {
+    if (this.player) {
       this.player.pauseVideo();
     }
 
     const dialog: DynamicDialogRef = this.dialogService.open(
-      PreviewModalContainer,
+      PreviewModalContainerComponent,
       {
         baseZIndex: 10000,
         modal: true,
@@ -541,7 +540,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   //Use prevision random algorithm with size
   getWeightedRandomNumberInArr(objWithWeight: any, size: number) {
-    let arrWeightedRand = [];
+    const arrWeightedRand = [];
     for (let i = 0; i < size; i++) {
       arrWeightedRand.push(
         this.utilitiesService.getWeightedRandomNumber(objWithWeight)
@@ -597,6 +596,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   //Configuration SwiperJs
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   config: SwiperOptions = {
     pagination: { el: '.swiper-pagination', clickable: true },
 

@@ -4,7 +4,6 @@ import {
   HostListener,
   OnDestroy,
   ElementRef,
-  Input,
 } from '@angular/core';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
@@ -17,7 +16,7 @@ import { SelectUserService } from '@shared/netflicks';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
-  public isValidUser: boolean = false;
+  public isValidUser = false;
   public idUserMaster: number | undefined;
 
   private userSub: Subscription | undefined;
@@ -66,8 +65,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   @HostListener('window:scroll', ['$event'])
   scrollNavBarEffect() {
-    let navbarElement = document.querySelector('.navbar');
-    if (window.pageYOffset > navbarElement.clientHeight) {
+    const navbarElement = document.querySelector('.navbar');
+    if (!!navbarElement && window.pageYOffset > navbarElement.clientHeight) {
       navbarElement?.classList.add('navbar-scrolled');
     } else {
       navbarElement?.classList.remove('navbar-scrolled');
@@ -80,10 +79,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.userSub.unsubscribe();
-    this.statusUserSub.unsubscribe();
+    this.userSub?.unsubscribe();
+    this.statusUserSub?.unsubscribe();
     this.selectUser.currState();
-    this.idUserSub.unsubscribe();
+    this.idUserSub?.unsubscribe();
 
     this.destroy$.next();
     this.destroy$.complete();

@@ -32,13 +32,13 @@ import {
   ],
   providers: [UtilitiesService],
 })
-export class PreviewModalContainer {
+export class PreviewModalContainerComponent {
   @ViewChild('player') player: any;
 
-  @Input() seasonSelected: number = 1;
+  @Input() seasonSelected = 1;
   @Input() seasonSelector: any = [];
-  @Input() showSpeakerUpIcon: boolean = true;
-  @Input() showCheckIcon: boolean = true;
+  @Input() showSpeakerUpIcon = true;
+  @Input() showCheckIcon = true;
   @Input() displayModal: any;
 
   seriesTvInfo$: Observable<any>;
@@ -66,7 +66,7 @@ export class PreviewModalContainer {
   ];
   selectedRandWords: string[];
 
-  showVideoPreview: boolean = false;
+  showVideoPreview = false;
 
   keyYTVideo: string;
 
@@ -152,7 +152,7 @@ export class PreviewModalContainer {
   }
 
   playVideo() {
-    if (!!this.player) {
+    if (this.player) {
       this.player.pauseVideo();
     }
 
@@ -176,17 +176,17 @@ export class PreviewModalContainer {
   }
 
   getAllSeriesTvInfo$(coverIndexImg: number) {
-    let finalSeriesTvInfo = [];
+    const finalSeriesTvInfo: any[] = [];
 
     return this.tvmazeService.searchEpisodesById(coverIndexImg).pipe(
       concatMap((items) => {
         const mapGroupBySeason = this.utilitiesService.groupBy(
           items,
-          (item) => item.season
+          (item: { season: any }) => item.season
         );
         finalSeriesTvInfo.push(mapGroupBySeason);
 
-        let finalArrayTvInfo = Array.from(
+        const finalArrayTvInfo = Array.from(
           finalSeriesTvInfo[0],
           ([key, value]) => ({ key, value })
         );
@@ -199,7 +199,7 @@ export class PreviewModalContainer {
   }
 
   definedArrayDropdownSeasons(size: number) {
-    let seasonSelector = [];
+    const seasonSelector = [];
     for (let i = 1; i <= size; i++) {
       seasonSelector.push(i);
     }
@@ -211,7 +211,9 @@ export class PreviewModalContainer {
       concatMap((items) => {
         //Used Set to remove duplicate
         return of([
-          ...new Set(items.map((item) => item.person.name)),
+          ...new Set(
+            items.map((item: { person: { name: any } }) => item.person.name)
+          ),
         ] as string[]);
       })
     );
@@ -225,7 +227,7 @@ export class PreviewModalContainer {
   }
 
   onClickScrollToMore() {
-    document.getElementById('more').scrollIntoView({
+    document.getElementById('more')?.scrollIntoView({
       behavior: 'smooth',
       block: 'start',
       inline: 'nearest',
