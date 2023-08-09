@@ -15,7 +15,6 @@
                       ? 'profile-icon profile-edit-mode'
                       : 'profile-icon'
                   "
-                  #userId1
                   [ngStyle]="{
                     'background-image':
                       'url(' + '../../assets/img/account0.png' + ')'
@@ -53,7 +52,6 @@
                       ? 'profile-icon profile-edit-mode'
                       : 'profile-icon'
                   "
-                  #user2
                   [ngStyle]="{
                     'background-image':
                       'url(' + '../../assets/img/account1.png' + ')'
@@ -91,7 +89,10 @@
                       ? 'profile-icon profile-edit-mode'
                       : 'profile-icon'
                   "
-                  style="background-image: url('~src/assets/img/account2.png')"
+                  [ngStyle]="{
+                    'background-image':
+                      'url(' + '../../assets/img/account2.png' + ')'
+                  }"
                 ></div>
 
                 <div class="svg-edit-overlay" *ngIf="showManageProfile">
@@ -125,7 +126,10 @@
                       ? 'profile-icon profile-edit-mode'
                       : 'profile-icon'
                   "
-                  style="background-image: url(../../assets/img/account3.png)"
+                  [ngStyle]="{
+                    'background-image':
+                      'url(' + '../../assets/img/account3.png' + ')'
+                  }"
                 ></div>
 
                 <div class="svg-edit-overlay" *ngIf="showManageProfile">
@@ -159,7 +163,10 @@
                       ? 'profile-icon profile-edit-mode'
                       : 'profile-icon'
                   "
-                  style="background-image: url(../../assets/img/account4.png)"
+                  [ngStyle]="{
+                    'background-image':
+                      'url(' + '../../assets/img/account4.png' + ')'
+                  }"
                 ></div>
 
                 <div class="svg-edit-overlay" *ngIf="showManageProfile">
