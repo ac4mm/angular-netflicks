@@ -15,8 +15,8 @@
     />
 
     <div class="youtube-container-dialog" *ngIf="showVideoPreview">
-      <youtube-player 
-      *ngIf="this.config.data.indexSelectedItem" 
+      <youtube-player
+      *ngIf="this.config.data.indexSelectedItem"
       #player
       [videoId]="this.keyYTVideo"
       [width]="'100%'"
@@ -40,23 +40,26 @@
     <div class="buttons-controls-container">
       <!-- Play -->
       <button
-        class="btn btn-light btn-sm font-weight-bold btn-block custom-btn"
+        class="simple-btn responsive-btn p-2"
         (click)="playVideo()"
       >
-        <div class="icon-button">
+        <div class="container-svg icon baseline">
           <svg
-            width="2.5vw"
-            height="2.5vw"
+            width="32"
+            height="32"
             fill="currentColor"
-            class="bi bi-play-fill custom-icon-btn"
-            viewBox="0 0 16 16"
+            class="bi bi-play-fill"
+            viewBox="0 0 24 24"
           >
             <path
-              d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"
+              d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
             ></path>
           </svg>
         </div>
-        <span class="text-button">Play</span>
+
+        <div class="space-between"></div>
+
+        <span class="text-btn">Play</span>
       </button>
 
       <div (click)="onClickShowCheckIcon()">

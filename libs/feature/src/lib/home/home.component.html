@@ -27,38 +27,42 @@
           />
         </div>
       </div>
-      <div class="info-wrapper"></div>
 
-      <div class="d-flex">
-        <!-- Play -->
+      <!--      Billboard controllers-->
+      <div
+        class="d-flex flex-row justify-content-start align-items-end main-controllers"
+      >
+        <!--        Play-->
         <button
-          class="btn btn-light btn-sm font-weight-bold btn-block custom-btn play-btn"
+          class="simple-btn responsive-btn p-2"
           (click)="playVideo(this.selectedIdMainTMDB)"
         >
-          <div class="icon-button">
+          <div class="container-svg icon baseline">
             <svg
-              width="2.5vw"
-              height="2.5vw"
+              width="32"
+              height="32"
               fill="currentColor"
               class="bi bi-play-fill"
-              viewBox="0 0 16 16"
+              viewBox="0 0 24 24"
             >
               <path
-                d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"
+                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
               ></path>
             </svg>
           </div>
 
-          <span class="text-button">Play</span>
+          <div class="space-between"></div>
+
+          <span class="text-btn">Play</span>
         </button>
 
-        <!-- More info -->
+        <!--        More info-->
         <ng-container
           *ngIf="(this.coverMainImageAndTypography$ | async)?.[0]?.resolutions?.original?.url as URLMainImage"
         >
           <button
             type="button"
-            class="btn btn-secondary btn-sm font-weight-bold custom-btn more-info-btn"
+            class="btn btn-secondary simple-btn responsive-btn p-2"
             *ngIf="(this.logoImagesKeepWatching$ | async)?.[1] as logo"
             (click)="
               openDialogCoverImage(
@@ -70,11 +74,11 @@
               )
             "
           >
-            <div class="icon-button">
+            <div class="container-svg icon baseline">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="2.5vw"
-                height="1.5vw"
+                width="32"
+                height="32"
                 fill="currentColor"
                 class="bi bi-info-circle"
                 viewBox="0 0 16 16"
@@ -87,6 +91,8 @@
                 />
               </svg>
             </div>
+
+            <div class="space-between"></div>
 
             <span class="text-button">More info</span>
           </button>

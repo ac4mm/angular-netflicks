@@ -8,6 +8,10 @@ p {
   font-family: "Aestetico-bold";
 }
 
+html {
+  font-size: 16px;
+}
+
 video {
   /* display: block; */
   width: 100%;
@@ -584,7 +588,7 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
   flex-direction: row;
   justify-content: flex-end;
   position: relative;
-  bottom: 50px;
+  bottom: 5vw;
 }
 
 .preview-audio-toggle {
@@ -595,6 +599,7 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
 }
 
 .maturity-rating-home {
+  font-size: 1.1vw;
   align-items: center;
   background-color: rgba(51, 51, 51, 0.6);
   color: white;
@@ -653,6 +658,88 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
 .play-btn {
   width: 8vw;
 }
+//************************
+.main-controllers button {
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+}
+
+.simple-btn {
+  -webkit-box-align: center;
+  align-items: center;
+  appearance: none;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  opacity: 1;
+  padding: 0.4rem 2.6rem 0.4rem 2.2rem;
+  position: relative;
+  user-select: none;
+  will-change: background-color, color;
+  word-break: break-word;
+  white-space: nowrap;
+}
+
+.simple-btn:hover{
+  background-color: rgba(195,196,197);
+}
+
+.btn-secondary {
+  background-color: rgba(109, 109, 110, 0.8);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(109, 109, 110, 0.6);
+}
+
+.responsive-btn {
+  width: 10vw;
+  height: 3vw;
+}
+
+.d-flex > button {
+  flex-shrink: 0;
+}
+
+.container-svg {
+  min-height:16px;
+  min-width:16px;
+}
+
+.container-svg svg {
+  height: 100%;
+  width: 100%;
+}
+
+.icon {
+  display: inline-flex;
+  align-self: center;
+}
+
+
+.icon.baseline svg, .icon img {
+  top: .125em;
+  position: relative;
+}
+
+.space-between {
+  display: flex;
+  height: 100%;
+  position: relative;
+  width: 0.8rem;
+}
+
+.text-btn {
+  display: block;
+  font-size: 1.5vw;
+  font-weight: 500;
+  line-height: 1.4vw;
+}
+
+//************************
 
 .more-info-btn {
   background-color: rgba(109, 109, 110, 0.7);
@@ -663,12 +750,6 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
 .more-info-btn:hover {
   background-color: rgba(109, 109, 110, 0.4);
   border: none;
-}
-
-.custom-btn {
-  width: 10vw;
-  height: 3vw;
-  margin-right: 3%;
 }
 
 .custom-btn:hover {
@@ -698,13 +779,6 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
   }
 }
 
-@media screen and (min-width: 481px) and (max-width: 840px) and (max-aspect-ratio: 4 / 3) {
-  .custom-btn {
-    font-size: 1vw;
-  }
-}
-
-
 @media screen and (min-width: 601px) {
   .title-slide,
   p,
@@ -733,7 +807,7 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
   }
 
   .info-meta-layer-other-actions {
-    bottom: 30px;
+    bottom: 8vw;
   }
 
   .first-line-info .match-score,
@@ -813,3 +887,52 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
     height: 30px;
   }
 }
+
+
+//**********************
+//21:9 size
+@media screen and (min-width: 1921px) and (orientation: landscape) {
+  body, html {
+    font-size: 14px;
+  }
+}
+
+
+//notebook
+@media screen and (min-width: 1281px) and (max-width: 1600px) and (orientation: landscape) {
+  body, html {
+    font-size: .75vw;
+  }
+}
+
+@media screen and (min-width: 841px) and (max-width: 1280px) and (orientation: landscape) {
+  body, html {
+    font-size: .85vw;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 840px) and (orientation: landscape) {
+  body, html {
+    font-size: 1.2vw;
+  }
+}
+
+//Ipad
+@media screen and (min-width: 481px) and (max-width: 840px) and (max-aspect-ratio: 4 / 3) {
+  body, html {
+    font-size: 1vw;
+  }
+}
+
+
+//smartphone
+@media screen and (min-width: 0) and (max-width: 480px) and (max-aspect-ratio: 4 / 3) {
+  body, html {
+    font-size: 1.5vw;
+  }
+
+  .navbar {
+    padding: 0 !important;
+  }
+}
+//**********************
