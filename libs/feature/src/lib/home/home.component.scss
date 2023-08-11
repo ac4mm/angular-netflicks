@@ -41,7 +41,6 @@ img {
 
 .title-slide {
   font-size: 1.4vw;
-  margin-left: 1px;
   font-weight: bold;
   margin-top: -5px;
   margin-left: 60px;
@@ -69,8 +68,6 @@ img {
 
 .swiper-wrapper {
   -webkit-transition: 350ms -webkit-transform;
-  transition: 350ms -webkit-transform;
-  transition: 350ms transform;
   transition: 350ms transform, 350ms -webkit-transform;
   position: relative;
   display: flex;
@@ -320,11 +317,11 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
   padding-right: 0.5vw;
 }
 
-.card-details
-  .video-metadata-container-tags
-  .evidence-tags
-  .evidence-list
-  .evidence-item
+.card-details,
+  .video-metadata-container-tags,
+  .evidence-tags,
+  .evidence-list,
+  .evidence-item,
   .evidence-separator::before {
   font-size: 1.2em;
 }
@@ -370,7 +367,7 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
 .card_title {
   position: absolute;
   margin-left: 10px;
-  margin-top: 0px;
+  margin-top: 0;
   display: none;
   color: white;
   font-weight: 500;
@@ -386,8 +383,7 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
 
 /***************SwiperJs container */
 .swiper-slide:hover .card-img {
-  border: 1px solid black;
-  border-style: ridge;
+  border: 1px ridge black;
 }
 
 .swiper-slide:first-child:hover {
@@ -396,11 +392,17 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
 
 .swiper-wrapper:hover {
   -webkit-transform: translateX(-15px);
+  -ms-transform: translateX(-15px);
+  -moz-transform: translateX(-15px);
+  -o-transform: translateX(-15px);
   transform: translateX(-15px);
 }
 
 .swiper-wrapper:hover .swiper-slide:hover {
   -webkit-transform: scale(1.7);
+  -ms-transform: scale(1.7);
+  -moz-transform: scale(1.7);
+  -o-transform: scale(1.7);
   transform: scale(1.7);
   z-index: 4;
   transition: ease-in-out 400ms;
@@ -410,7 +412,11 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
 
 .swiper-wrapper:hover .swiper-slide:first-child:hover {
   transform-origin: 30% 50%;
+
   -webkit-transform: scale(1.7);
+  -ms-transform: scale(1.7);
+  -moz-transform: scale(1.7);
+  -o-transform: scale(1.7);
   transform: scale(1.7);
   z-index: 4;
   transition: ease-in-out 400ms;
@@ -420,6 +426,9 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
 
 .swiper-slide:first-child:hover ~ .swiper-slide {
   -webkit-transform: translateX(7vw);
+  -ms-transform: translateX(7vw);
+  -moz-transform: translateX(7vw);
+  -o-transform: translateX(7vw);
   transform: translateX(7vw);
   transition-duration: 1s;
   transition: ease 500ms;
@@ -430,6 +439,9 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
 
 .swiper-wrapper:hover .swiper-slide {
   -webkit-transform: translateX(-5vw);
+  -ms-transform: translateX(-5vw);
+  -moz-transform: translateX(-5vw);
+  -o-transform: translateX(-5vw);
   transform: translateX(-5vw);
   touch-action: auto;
   opacity: 0.4;
@@ -439,6 +451,9 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
 
 .swiper-slide:hover ~ .swiper-slide {
   -webkit-transform: translateX(5vw);
+  -ms-transform: translateX(5vw);
+  -moz-transform: translateX(5vw);
+  -o-transform: translateX(5vw);
   transform: translateX(5vw);
   transition-duration: 1s;
   transition: ease 500ms;
@@ -456,7 +471,6 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
 }
 
 .swiper-slide:hover > .card-details {
-  display: block;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -667,7 +681,6 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
 .simple-btn {
   -webkit-box-align: center;
   align-items: center;
-  appearance: none;
   border: 0;
   border-radius: 4px;
   cursor: pointer;
@@ -678,7 +691,6 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
   padding: 0.4rem 2.6rem 0.4rem 2.2rem;
   position: relative;
   user-select: none;
-  will-change: background-color, color;
   word-break: break-word;
   white-space: nowrap;
 }
