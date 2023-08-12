@@ -3,7 +3,7 @@
   *ngIf="isAuthenticated"
 >
   <div class="container-fluid">
-    <img class="navbar-brand" src="assets/svg/netflicks.svg" />
+    <img class="navbar-brand" alt="navbar-brand" src="assets/svg/netflicks.svg" />
 
     <!-- <button
       *ngIf="isValidUser"
@@ -34,7 +34,7 @@
 
         <div class="dropdown-menu text-center dropdown-menu-left">
           <a class="dropdown-item" routerLink="/browse">Home</a>
-          <a class="dropdown-item" routerLink="tv-series">Tv Shows</a>
+          <a class="dropdown-item" routerLink="tv-shows">Tv Shows</a>
           <a class="dropdown-item" routerLink="movies">Movies</a>
           <a class="dropdown-item" routerLink="latest">Latest</a>
           <a class="dropdown-item" routerLink="my-list">My List</a>
@@ -166,6 +166,7 @@
               <a class="dropdown-item" href="/browse "
                 ><img
                   class="dropdown-img-item"
+                  alt="account0"
                   src="{{ 'assets/img/' + 'account' + 0 + '.png' }}"
                 />User0</a
               >
@@ -174,6 +175,7 @@
               <a class="dropdown-item" href="/browse"
                 ><img
                   class="dropdown-img-item"
+                  alt="account1"
                   src="{{ 'assets/img/' + 'account' + 1 + '.png' }}"
                 />User1</a
               >
@@ -182,6 +184,7 @@
               <a class="dropdown-item" href="/browse">
                 <img
                   class="dropdown-img-item"
+                  alt="account2"
                   src="{{ 'assets/img/' + 'account' + 2 + '.png' }}"
                 />User2</a
               >
@@ -190,6 +193,7 @@
               <a class="dropdown-item" href="/browse"
                 ><img
                   class="dropdown-img-item"
+                  alt="account3"
                   src="{{ 'assets/img/' + 'account' + 3 + '.png' }}"
                 />User3</a
               >
@@ -198,6 +202,7 @@
               <a class="dropdown-item" href="/Kids"
                 ><img
                   class="dropdown-img-item"
+                  alt="account4"
                   src="{{ 'assets/img/' + 'account' + 4 + '.png' }}"
                 />Kids</a
               >

@@ -1,5 +1,4 @@
 import {
-  ChangeDetectorRef,
   Component,
   OnDestroy,
   OnInit,
@@ -143,8 +142,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     fs: 0;
     playsinline: 1;
     loop: 1;
-    enablejsapi: 1;
     allowfullscreen: 1;
+    frameBorder: 0;
   };
 
   constructor(
@@ -154,8 +153,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private utilitiesService: UtilitiesService,
     public themoviedbService: TheMovieDBService,
     private managePlayerService: ManagePlayerService,
-    private renderer: Renderer2,
-    private cdr: ChangeDetectorRef
+    private renderer: Renderer2
   ) {
     //id YT video Stranger Things
     this.keyYTVideo = 'b9EkMc79ZSU';
@@ -254,25 +252,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     console.log('playerReady');
   }
 
-  onStateChange(event: any) {
+  onStateChange() {
     if (this.player.getPlayerState() === 1) {
       console.log('Video starts');
     }
 
     if (this.player.getPlayerState() === 0) {
-      this.showRefreshIcon = true;
-      this.onClickSpeakerIcon();
-      console.log('video completed');
-    }
-  }
-
-  // 5. The API calls this function when the player's state changes.
-  onPlayerStateChange(event: { target: { getPlayerState: () => number } }) {
-    if (event.target.getPlayerState() === 1) {
-      console.log('Video starts');
-    }
-
-    if (event.target.getPlayerState() === 0) {
       this.showRefreshIcon = true;
       this.onClickSpeakerIcon();
       console.log('video completed');
