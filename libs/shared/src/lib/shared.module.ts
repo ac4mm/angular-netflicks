@@ -1,4 +1,8 @@
-import { NgModule } from '@angular/core';
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  NO_ERRORS_SCHEMA,
+  NgModule,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SkeletonModule } from 'primeng/skeleton';
 
@@ -16,6 +20,7 @@ import { NfFullscreenLogoComponent } from './components/fullscreen-logo/nf-fulls
 import { NfCloseButtonComponent } from './components/buttons/nf-close-button.component';
 import { NfSpeakerupButtonComponent } from './components/buttons/nf-speakerup-button.component';
 import { NfSpeakerdownButtonComponent } from './components/buttons/nf-speakerdown-button.component';
+import { FullscreenIntroAnimationComponent } from './components/fullscreen-intro-animation/fullscreen-intro-animation.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +37,7 @@ import { NfSpeakerdownButtonComponent } from './components/buttons/nf-speakerdow
     SkeletonCardComponent,
     NfFullscreenPlayerComponent,
     NfFullscreenLogoComponent,
+    FullscreenIntroAnimationComponent,
   ],
   imports: [CommonModule, SkeletonModule, YouTubePlayerModule],
   exports: [
@@ -49,7 +55,8 @@ import { NfSpeakerdownButtonComponent } from './components/buttons/nf-speakerdow
     SkeletonCardComponent,
     NfFullscreenPlayerComponent,
     NfFullscreenLogoComponent,
+    FullscreenIntroAnimationComponent,
   ],
-  providers: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 })
 export class SharedModule {}

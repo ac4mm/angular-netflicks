@@ -9,10 +9,6 @@ export class SelectUserService {
   currentState$ = this.selectUser.asObservable();
   currentId$ = this.idUserSubject.asObservable();
 
-  //userLink: string;
-
-  constructor() { }
-
   changeState(state: boolean) {
     this.selectUser.next(state);
   }
@@ -39,23 +35,12 @@ export class SelectUserService {
   }
 
   getStateUser() {
-    let saveState = localStorage.getItem('saveState');
-    this.selectUser.next(JSON.parse(saveState));
-    
-    let saveId = localStorage.getItem('idUser');
-    this.idUserSubject.next(JSON.parse(saveId));
-  }
+    const saveState = localStorage.getItem('saveState');
+    if (saveState) this.selectUser.next(JSON.parse(saveState));
 
-  /*  getIdUser(idUser: number) {
-    for (let key in this.imgIdUsers) {
-      let keyValue: number = +key;
-      if (keyValue === idUser) {
-        this.userLink = this.imgIdUsers[keyValue].link;
-        return this.userLink;
-      }
-    }
-    return;
-  } */
+    const saveId = localStorage.getItem('idUser');
+    if (saveId) this.idUserSubject.next(JSON.parse(saveId));
+  }
 
   getIdUser() {
     return this.idUserSubject.getValue();
@@ -63,6 +48,5 @@ export class SelectUserService {
 
   changeIdUser(idUser: number) {
     this.idUserSubject.next(idUser);
-    /* console.log('id changed to:' + idUser); */
   }
 }

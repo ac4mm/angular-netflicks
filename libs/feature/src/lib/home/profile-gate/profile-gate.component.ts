@@ -8,17 +8,15 @@ import { Subject, Subscription, takeUntil } from 'rxjs';
   styleUrls: ['./profile-gate.component.scss'],
 })
 export class ProfileGateComponent implements OnInit, OnDestroy {
-  @Input() mainTitle: string = "Who's watching?";
-  @Input() showManageProfile: boolean = false;
+  @Input() mainTitle = "Who's watching?";
+  @Input() showManageProfile = false;
 
   idUser: number;
-  isValidStatus: boolean = false;
-  isLoading: boolean = false;
+  isValidStatus = false;
+  isLoading = false;
 
   private statusUserSub: Subscription;
   private idUserSub: Subscription;
-
-  currentStyles: {};
 
   private destroy$ = new Subject<void>();
 
@@ -56,12 +54,5 @@ export class ProfileGateComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.statusUserSub.unsubscribe();
     this.idUserSub.unsubscribe();
-  }
-
-  setPropertyLoadingSpinner() {
-    this.currentStyles = {
-      width: '150px',
-      height: '150px',
-    };
   }
 }

@@ -1,0 +1,1247 @@
+$background-color_1: #000000;
+$background-color_2: rgba(228, 9, 19, 0.5);
+$background-color_3: #e40913;
+
+@keyframes brush-moving {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+@keyframes fading-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes lumieres-moving-right {
+  0% {
+    transform: translate(0);
+  }
+  40% {
+    transform: translate(-10px) scaleX(1);
+  }
+  50% {
+    transform: translate(-60px);
+  }
+  100% {
+    transform: translate(-120px) scaleX(3);
+  }
+}
+@keyframes lumieres-moving-left {
+  0% {
+    transform: translate(0);
+  }
+  40% {
+    transform: translate(10px) scaleX(1);
+  }
+  50% {
+    transform: translate(60px);
+  }
+  100% {
+    transform: translate(120px) scaleX(3);
+  }
+}
+@keyframes zoom-in {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(15);
+  }
+}
+@keyframes showing-lumieres {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fading-lumieres-box {
+  0% {
+    background-color: rgba(228, 9, 19, 0.5);
+  }
+  100% {
+    background-color: rgba(228, 9, 19, 0);
+  }
+}
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+#container {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $background-color_1;
+  overflow: hidden;
+  z-index: 11;
+  netflixintro {
+    display: block;
+    position: relative;
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    animation-name: zoom-in;
+    animation-delay: 0.5s;
+    animation-duration: 3.5s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+    background-size: 4000px;
+    background-position: -1950px 0;
+    &::before {
+      content: '';
+      position: absolute;
+      display: block;
+      background-color: $background-color_1;
+      width: 150%;
+      height: 30%;
+      left: -25%;
+      bottom: -27%;
+      border-radius: 50%;
+      z-index: 5;
+      transform-origin: left center;
+      background-size: 4000px;
+      background-position: -1950px 0;
+    }
+    [class*='helper-'] {
+      position: absolute;
+      .effect-brush {
+        position: absolute;
+        width: 100%;
+        height: 300%;
+        top: 0;
+        overflow: hidden;
+        &::before {
+          display: block;
+          content: '';
+          position: absolute;
+          background-color: $background-color_3;
+          width: 100%;
+          height: 70%;
+          box-shadow: 0 0 29px 24px #e40913;
+        }
+        [class*='fur-'] {
+          display: block;
+          position: absolute;
+          bottom: 10%;
+          height: 30%;
+        }
+        .fur-1 {
+          left: 0;
+          width: 3.8%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 15%,
+            rgba(0, 0, 0, 0) 81%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-2 {
+          left: 3.8%;
+          width: 2.8%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 10%,
+            rgba(0, 0, 0, 0) 62%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-3 {
+          left: 6.6%;
+          width: 4.8%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 37%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-4 {
+          left: 11.4%;
+          width: 4%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 23%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-5 {
+          left: 15.4%;
+          width: 4%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 15%,
+            rgba(0, 0, 0, 0) 86%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-6 {
+          left: 19.4%;
+          width: 2.5%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 27%,
+            rgba(0, 0, 0, 0) 89%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-7 {
+          left: 21.9%;
+          width: 4%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 20%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-8 {
+          left: 25.9%;
+          width: 2%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 30%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-9 {
+          left: 27.9%;
+          width: 4%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 35%,
+            rgba(0, 0, 0, 0) 95%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-10 {
+          left: 31.9%;
+          width: 3.5%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 39%,
+            rgba(0, 0, 0, 0) 95%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-11 {
+          left: 35.4%;
+          width: 2%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 34%,
+            rgba(0, 0, 0, 0) 95%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-12 {
+          left: 37.4%;
+          width: 2.6%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 22%,
+            rgba(0, 0, 0, 0) 95%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-13 {
+          left: 40%;
+          width: 6%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 47%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-14 {
+          left: 46%;
+          width: 2%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 36%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-15 {
+          left: 48%;
+          width: 5.5%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 29%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-16 {
+          left: 53.5%;
+          width: 3%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 39%,
+            rgba(0, 0, 0, 0) 95%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-17 {
+          left: 56.5%;
+          width: 4.1%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 45%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-18 {
+          left: 60.6%;
+          width: 2.4%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 34%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-19 {
+          left: 63%;
+          width: 4%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 47%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-20 {
+          left: 67%;
+          width: 1.5%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 27%,
+            rgba(0, 0, 0, 0) 95%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-21 {
+          left: 68.5%;
+          width: 2.8%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 37%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-22 {
+          left: 71.3%;
+          width: 2.3%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 9%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-23 {
+          left: 73.6%;
+          width: 2.2%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 28%,
+            rgba(0, 0, 0, 0) 92%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-24 {
+          left: 75.8%;
+          width: 1%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 37%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-25 {
+          left: 76.8%;
+          width: 2.1%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 28%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-26 {
+          left: 78.9%;
+          width: 4.1%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 34%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-27 {
+          left: 83%;
+          width: 2.5%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 21%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-28 {
+          left: 85.5%;
+          width: 4.5%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 39%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-29 {
+          left: 90%;
+          width: 2.8%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 30%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-30 {
+          left: 92.8%;
+          width: 3.5%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 19%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+        .fur-31 {
+          left: 96.3%;
+          width: 3.7%;
+          background: linear-gradient(
+            to bottom,
+            #e40913 0%,
+            #e40913 37%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+      }
+      .effect-lumieres {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        animation-name: showing-lumieres;
+        animation-duration: 2s;
+        animation-delay: 1.6s;
+        animation-fill-mode: forwards;
+        [class*='lamp-'] {
+          position: absolute;
+          display: block;
+          height: 100%;
+          box-shadow: 0 0 10px 0 rgba(228, 9, 19, 0.75);
+          background: var(--color);
+          &::before {
+            position: absolute;
+            content: ' ';
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: var(--color);
+            box-shadow: 0 0 10px 0 rgba(228, 9, 19, 0.75);
+          }
+        }
+        .lamp-1 {
+          --color: #ff0100;
+          z: 6;
+          left: 0.7%;
+          width: 1%;
+          animation-delay: 0.38s;
+          animation-name: lumieres-moving-left;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 173%;
+            animation-delay: 0.97s;
+            animation-name: lumieres-moving-left;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-2 {
+          --color: #ffde01;
+          left: 2.2%;
+          width: 1.4%;
+          animation-delay: 0.79s;
+          animation-name: lumieres-moving-right;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 196%;
+            animation-delay: 0.28s;
+            animation-name: lumieres-moving-right;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-3 {
+          --color: #ff00cc;
+          left: 5.8%;
+          width: 2.1%;
+          animation-delay: 1.27s;
+          animation-name: lumieres-moving-left;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 28%;
+            animation-delay: 1.41s;
+            animation-name: lumieres-moving-left;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-4 {
+          --color: #04fd8f;
+          left: 10.1%;
+          width: 2%;
+          animation-delay: 2s;
+          animation-name: lumieres-moving-right;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 38%;
+            animation-delay: 0.89s;
+            animation-name: lumieres-moving-right;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-5 {
+          --color: #ff0100;
+          left: 12.9%;
+          width: 1.4%;
+          animation-delay: 1.2s;
+          animation-name: lumieres-moving-left;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 130%;
+            animation-delay: 1.03s;
+            animation-name: lumieres-moving-left;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-6 {
+          --color: #ff9600;
+          left: 15.3%;
+          width: 2.8%;
+          animation-delay: 1.54s;
+          animation-name: lumieres-moving-right;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 178%;
+            animation-delay: 1.18s;
+            animation-name: lumieres-moving-right;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-7 {
+          --color: #0084ff;
+          left: 21.2%;
+          width: 2.5%;
+          animation-delay: 1.82s;
+          animation-name: lumieres-moving-left;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 134%;
+            animation-delay: 1.2s;
+            animation-name: lumieres-moving-left;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-8 {
+          --color: #f84006;
+          left: 25%;
+          width: 2.5%;
+          animation-delay: 1.28s;
+          animation-name: lumieres-moving-right;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 35%;
+            animation-delay: 0.52s;
+            animation-name: lumieres-moving-right;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-9 {
+          --color: #ffc601;
+          left: 30.5%;
+          width: 3%;
+          animation-delay: 1.02s;
+          animation-name: lumieres-moving-left;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 181%;
+            animation-delay: 0.09s;
+            animation-name: lumieres-moving-left;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-10 {
+          --color: #ff4800;
+          left: 36.3%;
+          width: 3%;
+          animation-delay: 0.85s;
+          animation-name: lumieres-moving-right;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 131%;
+            animation-delay: 1.06s;
+            animation-name: lumieres-moving-right;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-11 {
+          --color: #fd0100;
+          left: 41%;
+          width: 2.2%;
+          animation-delay: 1.35s;
+          animation-name: lumieres-moving-left;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 70%;
+            animation-delay: 0.77s;
+            animation-name: lumieres-moving-left;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-12 {
+          --color: #01ffff;
+          left: 44.2%;
+          width: 2.6%;
+          animation-delay: 1.96s;
+          animation-name: lumieres-moving-right;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 20%;
+            animation-delay: 0.36s;
+            animation-name: lumieres-moving-right;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-13 {
+          --color: #ffc601;
+          left: 51.7%;
+          width: 0.5%;
+          animation-delay: 0.89s;
+          animation-name: lumieres-moving-left;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 52%;
+            animation-delay: 1.66s;
+            animation-name: lumieres-moving-left;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-14 {
+          --color: #ffc601;
+          left: 52.1%;
+          width: 1.8%;
+          animation-delay: 1.76s;
+          animation-name: lumieres-moving-right;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 103%;
+            animation-delay: 1.1s;
+            animation-name: lumieres-moving-right;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-15 {
+          --color: #0078fe;
+          left: 53.8%;
+          width: 2.3%;
+          animation-delay: 0.56s;
+          animation-name: lumieres-moving-left;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 81%;
+            animation-delay: 0.06s;
+            animation-name: lumieres-moving-left;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-16 {
+          --color: #0080ff;
+          left: 57.2%;
+          width: 2%;
+          animation-delay: 1.09s;
+          animation-name: lumieres-moving-right;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 85%;
+            animation-delay: 1.34s;
+            animation-name: lumieres-moving-right;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-17 {
+          --color: #ffae01;
+          left: 62.3%;
+          width: 2.9%;
+          animation-delay: 0.91s;
+          animation-name: lumieres-moving-left;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 108%;
+            animation-delay: 0.4s;
+            animation-name: lumieres-moving-left;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-18 {
+          --color: #ff00bf;
+          left: 65.8%;
+          width: 1.7%;
+          animation-delay: 1.7s;
+          animation-name: lumieres-moving-right;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 198%;
+            animation-delay: 1.33s;
+            animation-name: lumieres-moving-right;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-19 {
+          --color: #a601f4;
+          left: 72.8%;
+          width: 0.8%;
+          animation-delay: 1.2s;
+          animation-name: lumieres-moving-left;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 116%;
+            animation-delay: 1.1s;
+            animation-name: lumieres-moving-left;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-20 {
+          --color: #f30b34;
+          left: 74.3%;
+          width: 2%;
+          animation-delay: 1.31s;
+          animation-name: lumieres-moving-right;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 17%;
+            animation-delay: 1.58s;
+            animation-name: lumieres-moving-right;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-21 {
+          --color: #ff00bf;
+          left: 79.8%;
+          width: 2%;
+          animation-delay: 1.62s;
+          animation-name: lumieres-moving-left;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 162%;
+            animation-delay: 1s;
+            animation-name: lumieres-moving-left;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-22 {
+          --color: #04fd8f;
+          left: 78.2%;
+          width: 2%;
+          animation-delay: 1.31s;
+          animation-name: lumieres-moving-right;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 69%;
+            animation-delay: 1.87s;
+            animation-name: lumieres-moving-right;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-23 {
+          --color: #01ffff;
+          left: 78.5%;
+          width: 2%;
+          animation-delay: 1.43s;
+          animation-name: lumieres-moving-left;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 129%;
+            animation-delay: 1.83s;
+            animation-name: lumieres-moving-left;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-24 {
+          --color: #a201ff;
+          left: 85.3%;
+          width: 1.1%;
+          animation-delay: 1.95s;
+          animation-name: lumieres-moving-right;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 173%;
+            animation-delay: 0.03s;
+            animation-name: lumieres-moving-right;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-25 {
+          --color: #ec0014;
+          left: 86.9%;
+          width: 1.1%;
+          animation-delay: 0.14s;
+          animation-name: lumieres-moving-left;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 50%;
+            animation-delay: 1.18s;
+            animation-name: lumieres-moving-left;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-26 {
+          --color: #0078fe;
+          left: 88.8%;
+          width: 2%;
+          animation-delay: 0.67s;
+          animation-name: lumieres-moving-right;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 127%;
+            animation-delay: 0.61s;
+            animation-name: lumieres-moving-right;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-27 {
+          --color: #ff0036;
+          left: 92.4%;
+          width: 2.4%;
+          animation-delay: 0.4s;
+          animation-name: lumieres-moving-left;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 123%;
+            animation-delay: 1.91s;
+            animation-name: lumieres-moving-left;
+            animation-duration: 5.5s;
+          }
+        }
+        .lamp-28 {
+          --color: #06f98c;
+          left: 96.2%;
+          width: 2.1%;
+          animation-delay: 1.36s;
+          animation-name: lumieres-moving-right;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          &::before {
+            left: 112%;
+            animation-delay: 1.1s;
+            animation-name: lumieres-moving-right;
+            animation-duration: 5.5s;
+          }
+        }
+      }
+    }
+  }
+  netflixintro[letter='N'] {
+    transform-origin: 30% center;
+    .helper-1 {
+      width: 19.5%;
+      height: 100%;
+      background-color: $background-color_2;
+      left: 22.4%;
+      top: 0;
+      transform: rotate(180deg);
+      animation-name: fading-lumieres-box;
+      animation-duration: 2s;
+      animation-delay: 0.6s;
+      animation-fill-mode: forwards;
+      .effect-brush {
+        animation-name: brush-moving;
+        animation-duration: 2.5s;
+        animation-fill-mode: forwards;
+        animation-delay: 1.2s;
+        [class*='fur-'] {
+          bottom: 0;
+          height: 40%;
+        }
+      }
+    }
+    .helper-3 {
+      width: 19%;
+      height: 150%;
+      left: 40.5%;
+      top: -25%;
+      transform: rotate(-19.5deg);
+      box-shadow: 0 0 35px -12px rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+      .effect-brush {
+        animation-name: brush-moving;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.8s;
+      }
+    }
+    .helper-2 {
+      width: 19.5%;
+      height: 100%;
+      left: 57.8%;
+      top: 0;
+      transform: rotate(180deg);
+      overflow: hidden;
+      .effect-brush {
+        animation-name: brush-moving;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.5s;
+      }
+    }
+  }
+  netflixintro[letter='E'] {
+    transform-origin: 30% center;
+    .helper-1 {
+      width: 19.5%;
+      height: 100%;
+      background-color: $background-color_2;
+      left: 22%;
+      top: 0;
+      transform: rotate(180deg);
+      animation-name: fading-lumieres-box;
+      animation-duration: 2s;
+      animation-delay: 0.6s;
+      animation-fill-mode: forwards;
+      .effect-brush {
+        animation-name: brush-moving;
+        animation-duration: 2.5s;
+        animation-fill-mode: forwards;
+        animation-delay: 1.2s;
+        [class*='fur-'] {
+          bottom: 0;
+          height: 40%;
+        }
+      }
+    }
+    .helper-2 {
+      width: 17.5%;
+      height: 50%;
+      left: 38%;
+      top: -49px;
+      transform: rotate(270deg);
+      overflow: hidden;
+      .effect-brush {
+        animation-name: brush-moving;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.8s;
+      }
+    }
+    .helper-3 {
+      width: 17%;
+      height: 39%;
+      left: 33%;
+      top: 29%;
+      transform: rotate(-90deg);
+      box-shadow: 0 0 35px -12px rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+      animation-name: fading-out;
+      animation-duration: 2s;
+      animation-fill-mode: forwards;
+      animation-delay: 1s;
+      .effect-brush {
+        animation-name: brush-moving;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.6s;
+      }
+    }
+    .helper-4 {
+      width: 17.5%;
+      height: 50%;
+      left: 38%;
+      top: 196px;
+      transform: rotate(270deg);
+      overflow: hidden;
+      .effect-brush {
+        animation-name: brush-moving;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.5s;
+      }
+    }
+  }
+  netflixintro[letter='T'] {
+    transform-origin: center center;
+    .helper-1 {
+      width: 19.5%;
+      height: 100%;
+      background-color: $background-color_2;
+      left: 38%;
+      top: 0;
+      transform: rotate(180deg);
+      animation-name: fading-lumieres-box;
+      animation-duration: 2s;
+      animation-delay: 0.6s;
+      animation-fill-mode: forwards;
+      .effect-brush {
+        animation-name: brush-moving;
+        animation-duration: 2.5s;
+        animation-fill-mode: forwards;
+        animation-delay: 1s;
+        [class*='fur-'] {
+          bottom: 0;
+          height: 40%;
+        }
+      }
+    }
+    .helper-2 {
+      width: 17.5%;
+      height: 54%;
+      left: 39%;
+      top: -55px;
+      transform: rotate(270deg);
+      overflow: hidden;
+      .effect-brush {
+        animation-name: brush-moving;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.5s;
+      }
+    }
+  }
+  netflixintro[letter='F'] {
+    transform-origin: 30% center;
+    .helper-1 {
+      width: 19.5%;
+      height: 100%;
+      background-color: $background-color_2;
+      left: 22%;
+      top: 0;
+      transform: rotate(180deg);
+      animation-name: fading-lumieres-box;
+      animation-duration: 2s;
+      animation-delay: 0.6s;
+      animation-fill-mode: forwards;
+      .effect-brush {
+        animation-name: brush-moving;
+        animation-duration: 2.5s;
+        animation-fill-mode: forwards;
+        animation-delay: 1.2s;
+        [class*='fur-'] {
+          bottom: 0;
+          height: 40%;
+        }
+      }
+    }
+    .helper-2 {
+      width: 17.5%;
+      height: 50%;
+      left: 38%;
+      top: -49px;
+      transform: rotate(270deg);
+      overflow: hidden;
+      .effect-brush {
+        animation-name: brush-moving;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.7s;
+      }
+    }
+    .helper-3 {
+      width: 17%;
+      height: 39%;
+      left: 33%;
+      top: 29%;
+      transform: rotate(-90deg);
+      box-shadow: 0 0 35px -12px rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+      animation-name: fading-out;
+      animation-duration: 2s;
+      animation-fill-mode: forwards;
+      animation-delay: 1s;
+      .effect-brush {
+        animation-name: brush-moving;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.5s;
+      }
+    }
+  }
+  netflixintro[letter='L'] {
+    transform-origin: 30% center;
+    .helper-1 {
+      width: 19.5%;
+      height: 100%;
+      background-color: $background-color_2;
+      left: 22%;
+      top: 0;
+      transform: rotate(180deg);
+      animation-name: fading-lumieres-box;
+      animation-duration: 2s;
+      animation-delay: 0.6s;
+      animation-fill-mode: forwards;
+      .effect-brush {
+        animation-name: brush-moving;
+        animation-duration: 2.5s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.8s;
+        [class*='fur-'] {
+          bottom: 0;
+          height: 40%;
+        }
+      }
+    }
+    .helper-2 {
+      width: 17.5%;
+      height: 50%;
+      left: 38%;
+      top: 196px;
+      transform: rotate(270deg);
+      overflow: hidden;
+      .effect-brush {
+        animation-name: brush-moving;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.4s;
+      }
+    }
+  }
+  netflixintro[letter='I'] {
+    transform-origin: center center;
+    .helper-1 {
+      width: 19.5%;
+      height: 100%;
+      background-color: $background-color_2;
+      left: 38%;
+      top: 0;
+      transform: rotate(180deg);
+      animation-name: fading-lumieres-box;
+      animation-duration: 2s;
+      animation-delay: 0.6s;
+      animation-fill-mode: forwards;
+      .effect-brush {
+        animation-name: brush-moving;
+        animation-duration: 2.5s;
+        animation-fill-mode: forwards;
+        animation-delay: 1s;
+        [class*='fur-'] {
+          bottom: 0;
+          height: 40%;
+        }
+      }
+    }
+  }
+  netflixintro[letter='X'] {
+    transform-origin: center center;
+    .helper-1 {
+      width: 19%;
+      height: 150%;
+      left: 40.5%;
+      top: -25%;
+      transform: rotate(-19.5deg);
+      animation-name: fading-lumieres-box;
+      animation-duration: 2s;
+      animation-delay: 0.6s;
+      animation-fill-mode: forwards;
+      .effect-brush {
+        animation-name: brush-moving;
+        animation-duration: 2.5s;
+        animation-fill-mode: forwards;
+        animation-delay: 1.2s;
+        [class*='fur-'] {
+          bottom: 0;
+          height: 40%;
+        }
+      }
+    }
+    .helper-2 {
+      width: 19%;
+      height: 150%;
+      left: 40.5%;
+      top: -25%;
+      transform: rotate(19.5deg);
+      overflow: hidden;
+      .effect-brush {
+        animation-name: brush-moving;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.5s;
+      }
+    }
+  }
+}

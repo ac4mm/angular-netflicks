@@ -1,4 +1,9 @@
+<!--Choose your profile-->
 <nf-profile-gate *ngIf="!isValidUser"></nf-profile-gate>
+
+<!--Tudum logo animation-->
+<nf-fullscreen-intro-animation *ngIf="isValidUser && !showVideoPreview" (emitAudioEnded)="onEndedAudio($event)"></nf-fullscreen-intro-animation>
+
 
 <!-- Static Cover Image -->
 <div class="cover-image-wrapper">
@@ -6,6 +11,7 @@
     *ngIf="!showVideoPreview"
     class="static-image image-layer"
     [src]="(this.coverMainImageAndTypography$ | async)?.[0]?.resolutions?.original?.url"
+    alt="Static cover image Strager Things"
   />
   <div class="youtube-container" *ngIf="showVideoPreview">
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
@@ -22,6 +28,7 @@
         <div class="billboard-title">
           <img
             *ngIf="(this.logoImagesKeepWatching$ | async)?.[1] as logo"
+            alt="Title Logo"
             class="title-logo"
             [src]="'https://image.tmdb.org/t/p/w500' + logo"
           />
@@ -154,10 +161,11 @@
         *ngFor="let coverImage of coverImgKeepWatching$ | async; let i = index"
         #swiperSlides
       >
-        <img class="card-img" [src]="coverImage" />
+        <img class="card-img" alt="Card image" [src]="coverImage" />
         <div class="container-logo-img">
           <img
             class="logo-img"
+            alt="Logo image"
             *ngIf="(this.logoImagesKeepWatching$ | async)?.[i] as logo"
             [src]="'https://image.tmdb.org/t/p/w500' + logo"
           />
@@ -267,10 +275,11 @@
         *ngFor="let coverImage of coverImgMyList$ | async; let i = index"
         #swiperSlides
       >
-        <img class="card-img" [src]="coverImage" />
+        <img class="card-img" alt="Card image" [src]="coverImage" />
         <div class="container-logo-img">
           <img
             class="logo-img"
+            alt="Logo image"
             *ngIf="(this.logoImagesMyList$ | async)?.[i] as logo"
             [src]="'https://image.tmdb.org/t/p/w500' + logo"
           />
@@ -383,10 +392,11 @@
         "
         #swiperSlides
       >
-        <img class="card-img" [src]="coverImage" />
+        <img class="card-img" alt="Card image" [src]="coverImage" />
         <div class="container-logo-img">
           <img
             class="logo-img"
+            alt="Logo image"
             *ngIf="(this.logoImagesTopRatedMovies$ | async)?.[i] as logo"
             [src]="'https://image.tmdb.org/t/p/w500' + logo"
           />
@@ -497,10 +507,11 @@
         *ngFor="let coverImage of coverImgTvShows$ | async; let i = index"
         #swiperSlides
       >
-        <img class="card-img" [src]="coverImage" />
+        <img class="card-img" alt="Card image" [src]="coverImage" />
         <div class="container-logo-img">
           <img
             class="logo-img"
+            alt="Logo image"
             *ngIf="(this.logoImagesTvShows$ | async)?.[i] as logo"
             [src]="'https://image.tmdb.org/t/p/w500' + logo"
           />

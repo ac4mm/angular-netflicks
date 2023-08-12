@@ -1,8 +1,7 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class UtilitiesService {
-
   /****** Math operator Utilities*/
 
   //Getting a random integer
@@ -19,13 +18,12 @@ export class UtilitiesService {
 
   //Get random word from dictionary
   getRandomWord(arr: any[]) {
-    return arr[Math.floor(Math.random() * arr.length)];;
+    return arr[Math.floor(Math.random() * arr.length)];
   }
-
 
   getMultipleRandItem(arr: any[], num: number) {
     const shuffled = [...arr].sort(() => 0.5 - Math.random());
-  
+
     return shuffled.slice(0, num);
   }
 
@@ -45,31 +43,32 @@ export class UtilitiesService {
     return shuffled.slice(0, arr.length);
   }
 
-  /* Pick a rand number in [0,1) and iterate over the weight specification summing the weights  
-    if the random number is less than the sum then return the associated value. 
+  /* Pick a rand number in [0,1) and iterate over the weight specification summing the weights
+    if the random number is less than the sum then return the associated value.
     */
   getWeightedRandomNumber(objWithWeight: any) {
-    var i, sum = 0, r = Math.random();
+    let i;
+    let sum = 0;
+    const r = Math.random();
     for (i in objWithWeight) {
       sum += objWithWeight[i];
       if (r <= sum) return i;
     }
   }
 
-
   /****** Data Structures Utilities*/
   /**
- * @description
- * Takes an Array<V>, and a grouping function,
- * and returns a Map of the array grouped by the grouping function.
- *
- * @param list An array of type V.
- * @param keyGetter A Function that takes the the Array type V as an input, and returns a value of type K.
- *                  K is generally intended to be a property key of V.
- *
- * @returns Map of the array grouped by the grouping function.
- */
-  groupBy(list, keyGetter) {
+   * @description
+   * Takes an Array<V>, and a grouping function,
+   * and returns a Map of the array grouped by the grouping function.
+   *
+   * @param list An array of type V.
+   * @param keyGetter A Function that takes the the Array type V as an input, and returns a value of type K.
+   *                  K is generally intended to be a property key of V.
+   *
+   * @returns Map of the array grouped by the grouping function.
+   */
+  groupBy(list: any[], keyGetter: (arg0: any) => any) {
     const map = new Map();
     list.forEach((item) => {
       const key = keyGetter(item);

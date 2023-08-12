@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
 import {
   concatMap,
   from,
@@ -111,8 +117,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   numbersOfSeasonsTopRatedMovies$: Observable<string[]>;
   numbersOfSeasonsTvShows$: Observable<string[]>;
 
-  season: string;
-  episode: string;
   episodeImage: [];
 
   displayModal: boolean;
@@ -126,13 +130,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   showVideoPreview = false;
 
-  videoClicked = false;
-  playerSettings: any;
-  public YT: any;
-  public videoId: any;
   public player: any;
-  public playerDialogList: any[];
-  public players: any[] = [];
 
   constructor(
     public selectUser: SelectUserService,
@@ -141,15 +139,23 @@ export class HomeComponent implements OnInit, OnDestroy {
     private utilitiesService: UtilitiesService,
     public themoviedbService: TheMovieDBService,
     private managePlayerService: ManagePlayerService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private cdr: ChangeDetectorRef
   ) {}
+
+  onEndedAudio(item: boolean) {
+    if (item) {
+      if (this.isValidUser) this.autoplayVideo();
+      this.renderer.removeStyle(document.body, 'overflow-y');
+      this.cdr.detectChanges();
+    }
+  }
 
   ngOnInit(): void {
     this.selectUserSub = this.selectUser.currentState$
       .pipe(takeUntil(this.destroy$))
       .subscribe((state) => {
-        this.isValidUser = !!state;
-        if (this.isValidUser) this.autoplayVideo();
+        this.isValidUser = state;
       });
 
     //Index Stranger Things
@@ -527,7 +533,6 @@ export class HomeComponent implements OnInit, OnDestroy {
           indexTvMazeSeries: indexTvMazeSeries,
           indexTheMovieDb: indexTheMovieDb,
           logoImageURL: logoImageURL,
-          players: this.players,
         },
       }
     );
