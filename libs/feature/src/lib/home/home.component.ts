@@ -4,6 +4,7 @@ import {
   OnDestroy,
   OnInit,
   Renderer2,
+  ViewChild,
 } from '@angular/core';
 import {
   concatMap,
@@ -103,7 +104,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   logoImagesMyList$: Observable<string[]>;
   logoImagesTopRatedMovies$: Observable<string[]>;
   logoImagesTvShows$: Observable<string[]>;
-  filePathLogo: string;
 
   //Genres
   genresCoverImagesKeepWatching$: Observable<string[]>;
@@ -130,7 +130,22 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   showVideoPreview = false;
 
-  public player: any;
+  @ViewChild('player') player: any;
+  keyYTVideo: string;
+  playerVars: {
+    autohide: 1;
+    controls: 0;
+    showinfo: 0;
+    autoplay: 1;
+    modestbranding: 1;
+    disablekb: 1;
+    rel: 0;
+    fs: 0;
+    playsinline: 1;
+    loop: 1;
+    enablejsapi: 1;
+    allowfullscreen: 1;
+  };
 
   constructor(
     public selectUser: SelectUserService,
@@ -141,14 +156,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     private managePlayerService: ManagePlayerService,
     private renderer: Renderer2,
     private cdr: ChangeDetectorRef
-  ) {}
-
-  onEndedAudio(item: boolean) {
-    if (item) {
-      if (this.isValidUser) this.autoplayVideo();
-      this.renderer.removeStyle(document.body, 'overflow-y');
-      this.cdr.detectChanges();
-    }
+  ) {
+    //id YT video Stranger Things
+    this.keyYTVideo = 'b9EkMc79ZSU';
   }
 
   ngOnInit(): void {
@@ -156,6 +166,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe((state) => {
         this.isValidUser = state;
+
+        if (this.isValidUser) {
+          this.renderer.removeStyle(document.body, 'overflow-y');
+          this.autoplayVideo();
+        }
       });
 
     //Index Stranger Things
@@ -234,38 +249,21 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
 
-  // 3. This function creates an <iframe> (and YouTube player)
-  //    after the API code downloads.
-  onYouTubeIframeAPIReady(videoId: string) {
-    this.player = new window['YT'].Player('player', {
-      videoId: videoId,
-      height: '100%',
-      width: '100%',
-      playerVars: {
-        autohide: 1,
-        controls: 0,
-        showinfo: 0,
-        autoplay: 1,
-        modestbranding: 1,
-        disablekb: 1,
-        rel: 0,
-        fs: 0,
-        playsinline: 1,
-        loop: 1,
-        origin: location.href,
-        enablejsapi: 1,
-      },
-      events: {
-        onReady: this.onPlayerReady.bind(this),
-        onStateChange: this.onPlayerStateChange.bind(this),
-      },
-    });
+  onPlayerReady() {
+    this.player.playVideo();
+    console.log('playerReady');
   }
 
-  // 4. The API will call this function when the video player is ready.
-  onPlayerReady(event: { target: { playVideo: () => void } }) {
-    /* this.showVideoPreview = true; */
-    event.target.playVideo();
+  onStateChange(event: any) {
+    if (this.player.getPlayerState() === 1) {
+      console.log('Video starts');
+    }
+
+    if (this.player.getPlayerState() === 0) {
+      this.showRefreshIcon = true;
+      this.onClickSpeakerIcon();
+      console.log('video completed');
+    }
   }
 
   // 5. The API calls this function when the player's state changes.
@@ -346,9 +344,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.showVideoPreview = true;
 
       this.managePlayerService.initScriptIFrame();
-      //b9EkMc79ZSU -> id YT video Stranger Things
-      (window as any)['onYouTubeIframeAPIReady'] = () =>
-        this.onYouTubeIframeAPIReady('b9EkMc79ZSU');
     }, 3000);
   }
 

@@ -55,7 +55,7 @@ Tha main goal of this simple repository is to learn how to use reactive programm
 
 
 ## Stack
-FE
+Frontend
 - [Angular](https://angular.io/)
 - [RxJS](https://rxjs.dev/)
 - [Bootstrap](https://getbootstrap.com/)
@@ -67,6 +67,21 @@ API
 
 Hosting
 - [Firebase](https://firebase.google.com/)
+
+## Generate Components with Nx
+
+Feature
+```bash
+nx generate @nrwl/angular:component fullscreen-intro-animation --project=netflicks --module=libs-feature --path=libs/feature/src/lib --export=true --style=scss
+
+```
+
+Shared
+```bash
+nx generate @nrwl/angular:component fullscreen-intro-animation --project=netflicks --module=shared --path=libs/shared/src/lib/components --export=true --style=scss    
+
+```
+
 
 
 

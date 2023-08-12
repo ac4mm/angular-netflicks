@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {
   DialogService,
   DynamicDialogConfig,
@@ -32,7 +32,7 @@ import {
   ],
   providers: [UtilitiesService],
 })
-export class PreviewModalContainerComponent {
+export class PreviewModalContainerComponent implements OnInit, OnDestroy {
   @ViewChild('player') player: any;
 
   @Input() seasonSelected = 1;

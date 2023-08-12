@@ -15,6 +15,8 @@ export class ProfileGateComponent implements OnInit, OnDestroy {
   isValidStatus = false;
   isLoading = false;
 
+  showFullScreenIntroAnimation = false;
+
   private statusUserSub: Subscription;
   private idUserSub: Subscription;
 
@@ -39,7 +41,9 @@ export class ProfileGateComponent implements OnInit, OnDestroy {
   }
 
   onChangeUser(idUser: number) {
-    this.isLoading = true;
+    this.isLoading = !this.isLoading;
+    this.showFullScreenIntroAnimation = !this.showFullScreenIntroAnimation;
+
     setTimeout(() => {
       this.statusUser.changeState(!this.isValidStatus);
       this.statusUser.currState();
@@ -48,7 +52,7 @@ export class ProfileGateComponent implements OnInit, OnDestroy {
       this.statusUser.setStateUser();
 
       this.renderer.removeStyle(document.body, 'overflow-y');
-    }, 1000);
+    }, 5000);
   }
 
   ngOnDestroy() {

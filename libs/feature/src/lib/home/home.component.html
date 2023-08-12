@@ -1,10 +1,6 @@
 <!--Choose your profile-->
 <nf-profile-gate *ngIf="!isValidUser"></nf-profile-gate>
 
-<!--Tudum logo animation-->
-<nf-fullscreen-intro-animation *ngIf="isValidUser && !showVideoPreview" (emitAudioEnded)="onEndedAudio($event)"></nf-fullscreen-intro-animation>
-
-
 <!-- Static Cover Image -->
 <div class="cover-image-wrapper">
   <img
@@ -14,8 +10,15 @@
     alt="Static cover image Strager Things"
   />
   <div class="youtube-container" *ngIf="showVideoPreview">
-    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-    <div id="player"></div>
+    <youtube-player
+      #player
+      [videoId]="this.keyYTVideo"
+      [width]="'100%'"
+      [height]="'100%'"
+      [playerVars]="playerVars"
+      (stateChange)="onStateChange($event)"
+      (ready)="onPlayerReady()"
+    ></youtube-player>
   </div>
 </div>
 
