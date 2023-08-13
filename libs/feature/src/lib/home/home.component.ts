@@ -40,12 +40,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   public isValidUser = false;
   private selectUserSub: Subscription;
 
-  movieDetails: any;
-  detailsEpisode: any;
-
-  coverImages: string[] = [];
-  tempImg: string;
-
   indexSelectedItem: number;
   coverImagePreviewModal: string;
 
@@ -116,17 +110,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   numbersOfSeasonsTopRatedMovies$: Observable<string[]>;
   numbersOfSeasonsTvShows$: Observable<string[]>;
 
-  episodeImage: [];
-
-  displayModal: boolean;
   showCheckIcon = true;
   showSpeakerUpIcon = true;
   showRefreshIcon = false;
 
-  customCarretDownIcon = 'pi pi-caret-down';
-
   private destroy$ = new Subject<void>();
 
+  //Utils player Youtube video
   showVideoPreview = false;
 
   @ViewChild('player') player: any;
@@ -474,12 +464,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
 
-  showModalDialog(coverImage: any, index: number) {
-    this.indexSelectedItem = index;
-    this.coverImagePreviewModal = coverImage;
-    this.displayModal = true;
-  }
-
   openDialogCoverImage(
     coverImage: any,
     index: number,
@@ -533,47 +517,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     return arrWeightedRand;
-  }
-
-  getImageMovie(id: number) {
-    this.tvmazeService
-      .searchImagesMovie(id)
-      .pipe(
-        map((images) => images.filter((image) => image.type === 'background'))
-      )
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((images) => {
-        this.tempImg = images[0].resolutions.original.url;
-        this.coverImages.push(this.tempImg);
-      });
-  }
-
-  getIdMovie(id: string) {
-    this.tvmazeService
-      .getMovies(id)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((movie) => {
-        this.movieDetails = movie;
-      });
-  }
-
-  searchMovie(query: string) {
-    this.tvmazeService
-      .searchMovie(query)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((movie) => {
-        this.movieDetails = movie;
-      });
-  }
-
-  getEpisode(season: string, numb: string) {
-    return this.tvmazeService
-      .getEpisodeByNumber(this.movieDetails.id, season, numb)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((episode) => {
-        this.detailsEpisode = episode;
-        this.episodeImage = this.detailsEpisode.image.original;
-      });
   }
 
   onClickShowCheckIcon() {

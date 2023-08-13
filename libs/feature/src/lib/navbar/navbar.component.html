@@ -1,29 +1,17 @@
-<nav
-  class="navbar fixed-top navbar-expand navbar-dark"
-  *ngIf="isAuthenticated"
->
+<nav class="navbar fixed-top navbar-expand navbar-dark" *ngIf="isAuthenticated">
   <div class="container-fluid">
-    <img class="navbar-brand" alt="navbar-brand" src="assets/svg/netflicks.svg" />
-
-    <!-- <button
-      *ngIf="isValidUser"
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#collapsibleNavbar"
-      aria-controls="collapsibleNavbar"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button> -->
+    <img
+      class="navbar-brand"
+      alt="navbar-brand"
+      src="assets/svg/netflicks.svg"
+    />
 
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <!-- Browse dropdown menu -->
       <li class="nav-item dropdown dropdown-left" *ngIf="isValidUser">
         <a
           class="btn nav-link dropdown-toggle browse"
-          style="color: #fff;"
+          style="color: #fff"
           type="button"
           data-toggle="dropdown"
         >
@@ -72,8 +60,8 @@
 
       <!--navbar right-->
       <ul class="navbar-nav ml-auto" id="rightNavbar" *ngIf="isValidUser">
+        <!-- Searchbar -->
         <li class="nav-item search-box space-item">
-          <!-- Searchbar -->
           <a class="nav-link">
             <svg
               class="bi bi-search search-box_icon"
@@ -95,13 +83,18 @@
               />
             </svg>
 
-            <input class="search-box_input" placeholder="Titles, people, genres"
+            <input
+              class="search-box_input"
+              placeholder="Titles, people, genres"
           /></a>
         </li>
 
+        <!--        Kids-->
         <li class="nav-item space-item nav-kids" routerLinkActive="active">
-          <a class="nav-link" routerLink="Kids">{{ "kids" | uppercase }}</a>
+          <a class="nav-link" routerLink="Kids">{{ 'kids' | uppercase }}</a>
         </li>
+
+        <!--        ReferFriends-->
         <li class="nav-item space-item" routerLinkActive="active">
           <a class="nav-link gift" routerLink="referfriends"
             ><svg
@@ -130,6 +123,7 @@
           </a>
         </li>
 
+        <!--        Bell icon-->
         <li class="nav-item space-item tooltip-bell" routerLinkActive="active">
           <a class="nav-link"
             ><svg
@@ -143,16 +137,20 @@
             >
               <path
                 d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"
-              /></svg></a>
+              /></svg
+          ></a>
           <p class="triangle-up"></p>
           <span class="tooltiptext-bell">No recent notices</span>
         </li>
 
+        <!--        Dropdown profiles-->
         <li class="nav-item dropdown">
           <a
-            class="nav-link btn dropdown-toggle account"
+            class="nav-link btn dropdown-toggle"
             data-toggle="dropdown"
             type="button"
+            aria-haspopup="true"
+            aria-expanded="false"
             ><img
               class="dropdown-img"
               src="{{ 'assets/img/' + 'account' + idUserMaster + '.png' }}"
@@ -208,7 +206,9 @@
               >
             </li>
             <li>
-              <a class="dropdown-item" href="/ManageProfiles">Manage Profiles</a>
+              <a class="dropdown-item" href="/ManageProfiles"
+                >Manage Profiles</a
+              >
             </li>
             <div class="dropdown-divider"></div>
             <li class="kids-item">
@@ -219,7 +219,9 @@
               <a class="dropdown-item" href="/YourAccount">Account</a>
             </li>
             <li>
-              <a class="dropdown-item" href="https://help.netflix.com/">Help Center</a>
+              <a class="dropdown-item" href="https://help.netflix.com/"
+                >Help Center</a
+              >
             </li>
             <li>
               <a class="dropdown-item" routerLink="login" (click)="onLogout()"

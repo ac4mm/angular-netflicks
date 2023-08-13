@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
@@ -10,22 +10,16 @@ import { AuthService, AuthResponseData } from './auth.service';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
 })
-export class AuthComponent {
-  isLoginMode: boolean = true;
-  isLoading: boolean = false;
-  showPassword: boolean = false;
+export class AuthComponent implements OnDestroy {
+  isLoginMode = true;
+  isLoading = false;
+  showPassword = false;
   error: string;
-
-  typePassword: any = document.getElementsByClassName('form-control');
 
   authObs: Observable<AuthResponseData>;
   private destroy$ = new Subject<void>();
 
-  constructor(private authService: AuthService, private router: Router) {
-  }
-
-  ngOnInit(): void {
-  }
+  constructor(private authService: AuthService, private router: Router) {}
 
   onShowPassword() {
     this.showPassword = !this.showPassword;
@@ -50,8 +44,8 @@ export class AuthComponent {
     }
 
     this.authObs.pipe(takeUntil(this.destroy$)).subscribe({
-      next: () => {},
-      error: (errorMessage) =>{
+      next: () => undefined,
+      error: (errorMessage) => {
         console.error(errorMessage);
         this.error = errorMessage;
         this.isLoading = false;
@@ -59,7 +53,7 @@ export class AuthComponent {
       complete: () => {
         this.isLoading = false;
         this.router.navigate(['/browse']);
-      }
+      },
     });
     form.reset();
   }
@@ -67,9 +61,5 @@ export class AuthComponent {
   ngOnDestroy() {
     document.body.classList.remove('background');
     this.destroy$.unsubscribe();
-  }
-
-  onHandleError() {
-    this.error = null;
   }
 }
