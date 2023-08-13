@@ -16,31 +16,10 @@ export class UtilitiesService {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  //Get random word from dictionary
-  getRandomWord(arr: any[]) {
-    return arr[Math.floor(Math.random() * arr.length)];
-  }
-
-  getMultipleRandItem(arr: any[], num: number) {
+  getMultipleRandItem(arr: string[], num: number) {
     const shuffled = [...arr].sort(() => 0.5 - Math.random());
 
     return shuffled.slice(0, num);
-  }
-
-  getRandomRatingNumberFromArray(arr: any[]) {
-    // get random index value
-    const randomIndex = Math.floor(Math.random() * arr.length);
-
-    // get random item
-    return arr[randomIndex];
-  }
-
-  getRandomNumberFromArray(arr: any[]) {
-    // Shuffle array
-    const shuffled = arr.sort(() => 0.5 - Math.random());
-
-    // Get sub-array of first n elements after shuffled
-    return shuffled.slice(0, arr.length);
   }
 
   /* Pick a rand number in [0,1) and iterate over the weight specification summing the weights
@@ -54,6 +33,8 @@ export class UtilitiesService {
       sum += objWithWeight[i];
       if (r <= sum) return i;
     }
+
+    return;
   }
 
   /****** Data Structures Utilities*/
