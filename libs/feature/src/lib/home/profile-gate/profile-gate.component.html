@@ -5,7 +5,7 @@
 
 <div class="profile-gate-container">
   <!--Loading spinner-->
-  <nf-loading-spinner *ngIf="isLoading"></nf-loading-spinner>
+  <nf-loading-spinner *ngIf="isLoading" [profileId]="this.statusUser.getIdUser()"></nf-loading-spinner>
 
   <div
     class="centered-div list-profiles-container"

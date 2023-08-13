@@ -23,7 +23,7 @@ export class ProfileGateComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
   constructor(
-    private statusUser: SelectUserService,
+    public statusUser: SelectUserService,
     private renderer: Renderer2
   ) {}
 
@@ -41,14 +41,17 @@ export class ProfileGateComponent implements OnInit, OnDestroy {
   }
 
   onChangeUser(idUser: number) {
+    this.statusUser.changeIdUser(idUser);
     this.isLoading = !this.isLoading;
-    this.showFullScreenIntroAnimation = !this.showFullScreenIntroAnimation;
 
+    setTimeout(() => {
+      this.showFullScreenIntroAnimation = !this.showFullScreenIntroAnimation;
+    }, 2000);
+
+    //Change state user and remove scrollbar hidden
     setTimeout(() => {
       this.statusUser.changeState(!this.isValidStatus);
       this.statusUser.currState();
-
-      this.statusUser.changeIdUser(idUser);
       this.statusUser.setStateUser();
 
       this.renderer.removeStyle(document.body, 'overflow-y');
