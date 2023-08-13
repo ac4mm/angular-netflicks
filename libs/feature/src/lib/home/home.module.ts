@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { YouTubePlayerModule } from '@angular/youtube-player';
@@ -53,5 +53,6 @@ import { SharedModule } from '@shared/netflicks';
     PreviewModalContainerComponent,
   ],
   providers: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomeModule {}
