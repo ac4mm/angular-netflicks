@@ -71,7 +71,7 @@ img {
   transition: 350ms transform, 350ms -webkit-transform;
   position: relative;
   display: flex;
-  padding-bottom: 40px;
+  padding-bottom: 3vw;
 }
 
 .swiper-slide {
@@ -372,7 +372,20 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
   display: block;
 }
 
-/***************SwiperJs container */
+/***************Swiper Element */
+//Override overflow:hidden and fixed overlap between swiper when hover
+.swiper {
+  overflow: unset !important;
+}
+
+.container-fluid:hover .swiper:not(:hover) {
+  position: unset;
+}
+
+.swiper-slide {
+  //height: auto;
+}
+
 .swiper-slide:hover .card-img {
   border: 1px ridge black;
 }
@@ -387,6 +400,7 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
   -moz-transform: translateX(-15px);
   -o-transform: translateX(-15px);
   transform: translateX(-15px);
+
 }
 
 .swiper-wrapper:hover .swiper-slide:hover {

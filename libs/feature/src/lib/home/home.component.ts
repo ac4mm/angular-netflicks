@@ -164,7 +164,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
         if (this.isValidUser) {
           this.renderer.removeStyle(document.body, 'overflow-y');
-          this.autoplayVideo();
+          // this.autoplayVideo();
         }
       });
 
@@ -544,7 +544,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       pagination: {
         el: '.swiper-pagination',
       },
-      // slidesPerView: 1,
       // Default parameters
       slidesPerView: 7,
       spaceBetween: 10,
