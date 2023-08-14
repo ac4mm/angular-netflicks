@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   OnDestroy,
   OnInit,
@@ -17,7 +18,13 @@ import {
   switchMap,
   takeUntil,
 } from 'rxjs';
-import { SwiperOptions } from 'swiper';
+import Swiper, {
+  A11y,
+  Mousewheel,
+  Navigation,
+  Pagination,
+  SwiperOptions,
+} from 'swiper';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PreviewModalContainerComponent } from './preview-modal-container/preview-modal-container.component';
 import {
@@ -36,7 +43,7 @@ import {
   styleUrls: ['./home.component.scss'],
   providers: [DialogService, UtilitiesService],
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   public isValidUser = false;
   private selectUserSub: Subscription;
 
@@ -523,9 +530,66 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.showCheckIcon = !this.showCheckIcon;
   }
 
+  ngAfterViewInit() {
+    const swiper = new Swiper('.swiper', {
+      modules: [Navigation, Pagination, A11y, Mousewheel],
+      autoHeight: true,
+      slidesOffsetBefore: 40,
+      slidesOffsetAfter: 130,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+
+      pagination: {
+        el: '.swiper-pagination',
+      },
+      // slidesPerView: 1,
+      // Default parameters
+      slidesPerView: 7,
+      spaceBetween: 10,
+      // Responsive breakpoints
+      breakpoints: {
+        1201: {
+          slidesPerView: 7,
+          spaceBetween: 5,
+        },
+        1200: {
+          slidesPerView: 7,
+          spaceBetween: 5,
+        },
+        1024: {
+          slidesPerView: 6,
+          spaceBetween: 5,
+        },
+        800: {
+          slidesPerView: 5,
+          spaceBetween: 5,
+        },
+        500: {
+          slidesPerView: 5,
+          spaceBetween: 5,
+        },
+        400: {
+          slidesPerView: 4,
+          spaceBetween: 5,
+        },
+        300: {
+          slidesPerView: 4,
+          spaceBetween: 5,
+        },
+        200: {
+          slidesPerView: 3,
+          spaceBetween: 5,
+        },
+      },
+    });
+  }
+
+  //TODO to remove after migrate to Swiper Element
   //Configuration SwiperJs
   // eslint-disable-next-line @typescript-eslint/member-ordering
-  config: SwiperOptions = {
+  configOld: SwiperOptions = {
     pagination: { el: '.swiper-pagination', clickable: true },
 
     allowTouchMove: true,

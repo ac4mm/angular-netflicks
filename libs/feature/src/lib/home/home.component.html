@@ -152,128 +152,138 @@
 
 <!-- Main content cover card -->
 <div class="container-fluid" *ngIf="isValidUser">
-  <!-- TESTING -->
-  <p class="title-slide">
-    User{{ this.selectUser?.getIdUser() }}, keep watching :
-  </p>
-  <swiper-container
-    slides-per-view="7"
-    [pagination]="{ el: '.swiper-pagination', clickable: true }"
-    allowTouchMove="true"
-    updateOnWindowResize="true"
-    slidesOffsetBefore="40"
-    slidesOffsetAfter="130"
-  >
-    <swiper-slide
-      class="swiper-slide"
-      *ngFor="let coverImage of coverImgKeepWatching$ | async; let i = index"
-      #swiperSlides
-    >
-      <img class="card-img" [src]="coverImage" />
-      <div class="container-logo-img">
-        <img
-          class="logo-img"
-          *ngIf="(this.logoImagesKeepWatching$ | async)?.[i] as logo"
-          [src]="'https://image.tmdb.org/t/p/w500' + logo"
-        />
-      </div>
 
-      <!-- Detail Card -->
-      <div class="card-details">
-        <div class="card-icons">
-          <!-- Play button -->
-          <nf-play-button
-            (click)="playVideo(coverIndexImgKeepWatchingTMDB[i])"
-          ></nf-play-button>
+<!--  TESTING-->
+  <!-- Slider main container -->
+  <div class="swiper">
+    <p class="title-slide">
+      User{{ this.selectUser?.getIdUser() }}, keep watching :
+    </p>
 
-          <div (click)="onClickShowCheckIcon()">
-            <!-- Add button  -->
-            <nf-add-button *ngIf="showCheckIcon"></nf-add-button>
-
-            <!-- Hover text add button -->
-            <div class="container-hover-btn">
-              <h6 class="hover-text-add-btn">Add to My List</h6>
-
-              <div class="container-triangle">
-                <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
-                  <polygon points="0 0, 100 0, 50 50" />
-                </svg>
-              </div>
-            </div>
-
-            <!-- Check -->
-            <nf-check-button *ngIf="!showCheckIcon"></nf-check-button>
-
-            <!-- Hover text check button -->
-            <div class="container-hover-btn">
-              <h6 class="hover-text-check-btn">Remove from My List</h6>
-
-              <div class="container-triangle">
-                <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
-                  <polygon points="0 0, 100 0, 50 50" />
-                </svg>
-              </div>
-            </div>
-          </div>
-
-          <!-- Thumb up -->
-          <nf-thumb-up-button></nf-thumb-up-button>
-
-          <!-- expand -->
-          <nf-expand-button
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      <div
+        class="swiper-slide"
+        *ngFor="let coverImage of coverImgKeepWatching$ | async; let i = index"
+        #swiperSlides
+      >
+        <img class="card-img" alt="Card image" [src]="coverImage" />
+        <div class="container-logo-img">
+          <img
+            class="logo-img"
+            alt="Logo image"
             *ngIf="(this.logoImagesKeepWatching$ | async)?.[i] as logo"
-            style="margin-left: auto"
-            (click)="
-              openDialogCoverImage(
-                coverImage,
-                i,
-                coverIndexImgKeepWatching[i],
-                coverIndexImgKeepWatchingTMDB[i],
-                logo
-              )
-            "
-          ></nf-expand-button>
+            [src]="'https://image.tmdb.org/t/p/w500' + logo"
+          />
         </div>
-        <div class="video-metadata-container-info">
-          <div class="first-line-info">
-            <span class="match-score">{{ randMatchScore[i] }}% Match</span>
-          </div>
-          <div class="second-line-info">
-            <div class="maturity-rating">
-              <span class="rating-number">{{ ratingNumberCover[i] }}+</span>
+
+        <!-- Detail Card -->
+        <div class="card-details">
+          <div class="card-icons">
+            <!-- Play button -->
+            <nf-play-button
+              (click)="playVideo(coverIndexImgKeepWatchingTMDB[i])"
+            ></nf-play-button>
+
+            <div (click)="onClickShowCheckIcon()">
+              <!-- Add button  -->
+              <nf-add-button *ngIf="showCheckIcon"></nf-add-button>
+
+              <!-- Hover text add button -->
+              <div class="container-hover-btn">
+                <h6 class="hover-text-add-btn">Add to My List</h6>
+
+                <div class="container-triangle">
+                  <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
+                    <polygon points="0 0, 100 0, 50 50" />
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Check -->
+              <nf-check-button *ngIf="!showCheckIcon"></nf-check-button>
+
+              <!-- Hover text check button -->
+              <div class="container-hover-btn">
+                <h6 class="hover-text-check-btn">Remove from My List</h6>
+
+                <div class="container-triangle">
+                  <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
+                    <polygon points="0 0, 100 0, 50 50" />
+                  </svg>
+                </div>
+              </div>
             </div>
 
-            <div
-              class="duration"
-              *ngFor="let season of (numbersOfSeasonsKeepWatching$ | async)?.[i]"
-            >
-              <span>{{ season }} seasons</span>
+            <!-- Thumb up -->
+            <nf-thumb-up-button></nf-thumb-up-button>
+
+            <!-- expand -->
+            <nf-expand-button
+              *ngIf="(this.logoImagesKeepWatching$ | async)?.[i] as logo"
+              style="margin-left: auto"
+              (click)="
+                openDialogCoverImage(
+                  coverImage,
+                  i,
+                  coverIndexImgKeepWatching[i],
+                  coverIndexImgKeepWatchingTMDB[i],
+                  logo
+                )
+              "
+            ></nf-expand-button>
+          </div>
+          <div class="video-metadata-container-info">
+            <div class="first-line-info">
+              <span class="match-score">{{ randMatchScore[i] }}% Match</span>
             </div>
-            <div class="player-feature-badge">
-              <span>HD</span>
+            <div class="second-line-info">
+              <div class="maturity-rating">
+                <span class="rating-number">{{ ratingNumberCover[i] }}+</span>
+              </div>
+
+              <div
+                class="duration"
+                *ngFor="let season of (numbersOfSeasonsKeepWatching$ | async)?.[i]"
+              >
+                <span>{{ season }} seasons</span>
+              </div>
+              <div class="player-feature-badge">
+                <span>HD</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="video-metadata-container-tags">
-          <div class="evidence-tags">
-            <div class="evidence-list">
-              <div
-                class="evidence-item"
-                *ngFor="let genre of (genresCoverImagesKeepWatching$ | async)?.[i]"
-              >
-                <span class="evidence-text">{{ genre }}</span>
+          <div class="video-metadata-container-tags">
+            <div class="evidence-tags">
+              <div class="evidence-list">
+                <div
+                  class="evidence-item"
+                  *ngFor="let genre of (genresCoverImagesKeepWatching$ | async)?.[i]"
+                >
+                  <span class="evidence-text">{{ genre }}</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </swiper-slide>
-  </swiper-container>
+    </div>
 
-  <!--END TESTING -->
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+
+    <!-- If we need scrollbar -->
+    <div class="swiper-scrollbar"></div>
+  </div>
+<!--  END TESTING-->
 
   <!-- User N, keep watching -->
-  <swiper [config]="config">
+  <swiper [config]="configOld">
     <p class="title-slide">
       User{{ this.selectUser?.getIdUser() }}, keep watching :
     </p>
@@ -389,352 +399,352 @@
     <div class="swiper-button-prev"></div>
   </swiper>
 
-  <!-- My List -->
-  <swiper [config]="config">
-    <p class="title-slide">My List</p>
-    <div class="swiper-wrapper">
-      <div
-        class="swiper-slide"
-        *ngFor="let coverImage of coverImgMyList$ | async; let i = index"
-        #swiperSlides
-      >
-        <img class="card-img" alt="Card image" [src]="coverImage" />
-        <div class="container-logo-img">
-          <img
-            class="logo-img"
-            alt="Logo image"
-            *ngIf="(this.logoImagesMyList$ | async)?.[i] as logo"
-            [src]="'https://image.tmdb.org/t/p/w500' + logo"
-          />
-        </div>
-
-        <!-- Detail Card -->
-        <div class="card-details">
-          <div class="card-icons">
-            <!-- Play button -->
-            <nf-play-button
-              (click)="playVideo(coverIndexImgMyListTMDB[i])"
-            ></nf-play-button>
-
-            <div (click)="onClickShowCheckIcon()">
-              <!-- Add button  -->
-              <nf-add-button *ngIf="showCheckIcon"></nf-add-button>
-
-              <!-- Hover text add button -->
-              <div class="container-hover-btn">
-                <h6 class="hover-text-add-btn">Add to My List</h6>
-
-                <div class="container-triangle">
-                  <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
-                    <polygon points="0 0, 100 0, 50 50" />
-                  </svg>
-                </div>
-              </div>
-
-              <!-- Check -->
-              <nf-check-button *ngIf="!showCheckIcon"></nf-check-button>
-
-              <!-- Hover text check button -->
-              <div class="container-hover-btn">
-                <h6 class="hover-text-check-btn">Remove from My List</h6>
-
-                <div class="container-triangle">
-                  <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
-                    <polygon points="0 0, 100 0, 50 50" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-
-            <!-- Thumb up -->
-            <nf-thumb-up-button></nf-thumb-up-button>
-
-            <!-- Expand -->
-            <nf-expand-button
+  <!--  &lt;!&ndash; My List &ndash;&gt;-->
+    <swiper [config]="configOld">
+      <p class="title-slide">My List</p>
+      <div class="swiper-wrapper">
+        <div
+          class="swiper-slide"
+          *ngFor="let coverImage of coverImgMyList$ | async; let i = index"
+          #swiperSlides
+        >
+          <img class="card-img" alt="Card image" [src]="coverImage" />
+          <div class="container-logo-img">
+            <img
+              class="logo-img"
+              alt="Logo image"
               *ngIf="(this.logoImagesMyList$ | async)?.[i] as logo"
-              style="margin-left: auto"
-              (click)="
-                openDialogCoverImage(
-                  coverImage,
-                  i,
-                  coverIndexImgMyList[i],
-                  coverIndexImgMyListTMDB[i],
-                  logo
-                )
-              "
-            ></nf-expand-button>
+              [src]="'https://image.tmdb.org/t/p/w500' + logo"
+            />
           </div>
-          <div class="video-metadata-container-info">
-            <div class="first-line-info">
-              <span class="match-score">{{ randMatchScore[i] }}% Match</span>
+
+          <!-- Detail Card -->
+          <div class="card-details">
+            <div class="card-icons">
+              <!-- Play button -->
+              <nf-play-button
+                (click)="playVideo(coverIndexImgMyListTMDB[i])"
+              ></nf-play-button>
+
+              <div (click)="onClickShowCheckIcon()">
+                <!-- Add button  -->
+                <nf-add-button *ngIf="showCheckIcon"></nf-add-button>
+
+                <!-- Hover text add button -->
+                <div class="container-hover-btn">
+                  <h6 class="hover-text-add-btn">Add to My List</h6>
+
+                  <div class="container-triangle">
+                    <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
+                      <polygon points="0 0, 100 0, 50 50" />
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Check -->
+                <nf-check-button *ngIf="!showCheckIcon"></nf-check-button>
+
+                <!-- Hover text check button -->
+                <div class="container-hover-btn">
+                  <h6 class="hover-text-check-btn">Remove from My List</h6>
+
+                  <div class="container-triangle">
+                    <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
+                      <polygon points="0 0, 100 0, 50 50" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Thumb up -->
+              <nf-thumb-up-button></nf-thumb-up-button>
+
+              <!-- Expand -->
+              <nf-expand-button
+                *ngIf="(this.logoImagesMyList$ | async)?.[i] as logo"
+                style="margin-left: auto"
+                (click)="
+                  openDialogCoverImage(
+                    coverImage,
+                    i,
+                    coverIndexImgMyList[i],
+                    coverIndexImgMyListTMDB[i],
+                    logo
+                  )
+                "
+              ></nf-expand-button>
             </div>
-            <div class="second-line-info">
-              <div class="maturity-rating">
-                <span class="rating-number">{{ ratingNumberCover[i] }}+</span>
+            <div class="video-metadata-container-info">
+              <div class="first-line-info">
+                <span class="match-score">{{ randMatchScore[i] }}% Match</span>
               </div>
-              <div
-                class="duration"
-                *ngFor="let season of (numbersOfSeasonsMyList$ | async)?.[i]"
-              >
-                <span>{{ season }} seasons</span>
-              </div>
-              <div class="player-feature-badge">
-                <span>HD</span>
-              </div>
-            </div>
-          </div>
-          <div class="video-metadata-container-tags">
-            <div class="evidence-tags">
-              <div class="evidence-list">
+              <div class="second-line-info">
+                <div class="maturity-rating">
+                  <span class="rating-number">{{ ratingNumberCover[i] }}+</span>
+                </div>
                 <div
-                  class="evidence-item"
-                  *ngFor="let genre of (genresCoverImagesMyList$ | async)?.[i]"
+                  class="duration"
+                  *ngFor="let season of (numbersOfSeasonsMyList$ | async)?.[i]"
                 >
-                  <span class="evidence-text">{{ genre }}</span>
+                  <span>{{ season }} seasons</span>
+                </div>
+                <div class="player-feature-badge">
+                  <span>HD</span>
+                </div>
+              </div>
+            </div>
+            <div class="video-metadata-container-tags">
+              <div class="evidence-tags">
+                <div class="evidence-list">
+                  <div
+                    class="evidence-item"
+                    *ngFor="let genre of (genresCoverImagesMyList$ | async)?.[i]"
+                  >
+                    <span class="evidence-text">{{ genre }}</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </swiper>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </swiper>
 
-  <!-- Top rated Movies -->
-  <swiper [config]="config">
-    <p class="title-slide">Top rated Movies</p>
-    <div class="swiper-wrapper">
-      <div
-        class="swiper-slide"
-        *ngFor="
-          let coverImage of coverImgTopRatedMovies$ | async;
-          let i = index
-        "
-        #swiperSlides
-      >
-        <img class="card-img" alt="Card image" [src]="coverImage" />
-        <div class="container-logo-img">
-          <img
-            class="logo-img"
-            alt="Logo image"
-            *ngIf="(this.logoImagesTopRatedMovies$ | async)?.[i] as logo"
-            [src]="'https://image.tmdb.org/t/p/w500' + logo"
-          />
-        </div>
+  <!--  &lt;!&ndash; Top rated Movies &ndash;&gt;-->
+  <!--  <swiper [config]="config">-->
+  <!--    <p class="title-slide">Top rated Movies</p>-->
+  <!--    <div class="swiper-wrapper">-->
+  <!--      <div-->
+  <!--        class="swiper-slide"-->
+  <!--        *ngFor="-->
+  <!--          let coverImage of coverImgTopRatedMovies$ | async;-->
+  <!--          let i = index-->
+  <!--        "-->
+  <!--        #swiperSlides-->
+  <!--      >-->
+  <!--        <img class="card-img" alt="Card image" [src]="coverImage" />-->
+  <!--        <div class="container-logo-img">-->
+  <!--          <img-->
+  <!--            class="logo-img"-->
+  <!--            alt="Logo image"-->
+  <!--            *ngIf="(this.logoImagesTopRatedMovies$ | async)?.[i] as logo"-->
+  <!--            [src]="'https://image.tmdb.org/t/p/w500' + logo"-->
+  <!--          />-->
+  <!--        </div>-->
 
-        <!-- Detail Card -->
-        <div class="card-details">
-          <div class="card-icons">
-            <!-- Play button -->
-            <nf-play-button
-              (click)="playVideo(coverIndexTopRatedMoviesTMDB[i])"
-            ></nf-play-button>
+  <!--        &lt;!&ndash; Detail Card &ndash;&gt;-->
+  <!--        <div class="card-details">-->
+  <!--          <div class="card-icons">-->
+  <!--            &lt;!&ndash; Play button &ndash;&gt;-->
+  <!--            <nf-play-button-->
+  <!--              (click)="playVideo(coverIndexTopRatedMoviesTMDB[i])"-->
+  <!--            ></nf-play-button>-->
 
-            <div (click)="onClickShowCheckIcon()">
-              <!-- Add button  -->
-              <nf-add-button *ngIf="showCheckIcon"></nf-add-button>
+  <!--            <div (click)="onClickShowCheckIcon()">-->
+  <!--              &lt;!&ndash; Add button  &ndash;&gt;-->
+  <!--              <nf-add-button *ngIf="showCheckIcon"></nf-add-button>-->
 
-              <!-- Hover text add button -->
-              <div class="container-hover-btn">
-                <h6 class="hover-text-add-btn">Add to My List</h6>
+  <!--              &lt;!&ndash; Hover text add button &ndash;&gt;-->
+  <!--              <div class="container-hover-btn">-->
+  <!--                <h6 class="hover-text-add-btn">Add to My List</h6>-->
 
-                <div class="container-triangle">
-                  <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
-                    <polygon points="0 0, 100 0, 50 50" />
-                  </svg>
-                </div>
-              </div>
+  <!--                <div class="container-triangle">-->
+  <!--                  <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">-->
+  <!--                    <polygon points="0 0, 100 0, 50 50" />-->
+  <!--                  </svg>-->
+  <!--                </div>-->
+  <!--              </div>-->
 
-              <!-- Check -->
-              <nf-check-button *ngIf="!showCheckIcon"></nf-check-button>
+  <!--              &lt;!&ndash; Check &ndash;&gt;-->
+  <!--              <nf-check-button *ngIf="!showCheckIcon"></nf-check-button>-->
 
-              <!-- Hover text check button -->
-              <div class="container-hover-btn">
-                <h6 class="hover-text-check-btn">Remove from My List</h6>
+  <!--              &lt;!&ndash; Hover text check button &ndash;&gt;-->
+  <!--              <div class="container-hover-btn">-->
+  <!--                <h6 class="hover-text-check-btn">Remove from My List</h6>-->
 
-                <div class="container-triangle">
-                  <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
-                    <polygon points="0 0, 100 0, 50 50" />
-                  </svg>
-                </div>
-              </div>
-            </div>
+  <!--                <div class="container-triangle">-->
+  <!--                  <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">-->
+  <!--                    <polygon points="0 0, 100 0, 50 50" />-->
+  <!--                  </svg>-->
+  <!--                </div>-->
+  <!--              </div>-->
+  <!--            </div>-->
 
-            <!-- Thumb up -->
-            <nf-thumb-up-button></nf-thumb-up-button>
+  <!--            &lt;!&ndash; Thumb up &ndash;&gt;-->
+  <!--            <nf-thumb-up-button></nf-thumb-up-button>-->
 
-            <!-- Expand -->
-            <nf-expand-button
-              *ngIf="(this.logoImagesTopRatedMovies$ | async)?.[i] as logo"
-              style="margin-left: auto"
-              (click)="
-                openDialogCoverImage(
-                  coverImage,
-                  i,
-                  coverIndexTopRatedMovies[i],
-                  coverIndexTopRatedMoviesTMDB[i],
-                  logo
-                )
-              "
-            ></nf-expand-button>
-          </div>
+  <!--            &lt;!&ndash; Expand &ndash;&gt;-->
+  <!--            <nf-expand-button-->
+  <!--              *ngIf="(this.logoImagesTopRatedMovies$ | async)?.[i] as logo"-->
+  <!--              style="margin-left: auto"-->
+  <!--              (click)="-->
+  <!--                openDialogCoverImage(-->
+  <!--                  coverImage,-->
+  <!--                  i,-->
+  <!--                  coverIndexTopRatedMovies[i],-->
+  <!--                  coverIndexTopRatedMoviesTMDB[i],-->
+  <!--                  logo-->
+  <!--                )-->
+  <!--              "-->
+  <!--            ></nf-expand-button>-->
+  <!--          </div>-->
 
-          <div class="video-metadata-container-info">
-            <div class="first-line-info">
-              <span class="match-score">{{ randMatchScore[i] }}% Match</span>
-            </div>
-            <div class="second-line-info">
-              <div class="maturity-rating">
-                <span class="rating-number">{{ ratingNumberCover[i] }}+</span>
-              </div>
-              <div
-                class="duration"
-                *ngFor="let season of (numbersOfSeasonsTopRatedMovies$ | async)?.[i]"
-              >
-                <span>{{ season }} seasons</span>
-              </div>
-              <div class="player-feature-badge">
-                <span>HD</span>
-              </div>
-            </div>
-          </div>
-          <div class="video-metadata-container-tags">
-            <div class="evidence-tags">
-              <div class="evidence-list">
-                <div
-                  class="evidence-item"
-                  *ngFor="let genre of (genresCoverImagesTopRatedMovies$ | async)?.[i]"
-                >
-                  <span class="evidence-text">{{ genre }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!--          <div class="video-metadata-container-info">-->
+  <!--            <div class="first-line-info">-->
+  <!--              <span class="match-score">{{ randMatchScore[i] }}% Match</span>-->
+  <!--            </div>-->
+  <!--            <div class="second-line-info">-->
+  <!--              <div class="maturity-rating">-->
+  <!--                <span class="rating-number">{{ ratingNumberCover[i] }}+</span>-->
+  <!--              </div>-->
+  <!--              <div-->
+  <!--                class="duration"-->
+  <!--                *ngFor="let season of (numbersOfSeasonsTopRatedMovies$ | async)?.[i]"-->
+  <!--              >-->
+  <!--                <span>{{ season }} seasons</span>-->
+  <!--              </div>-->
+  <!--              <div class="player-feature-badge">-->
+  <!--                <span>HD</span>-->
+  <!--              </div>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--          <div class="video-metadata-container-tags">-->
+  <!--            <div class="evidence-tags">-->
+  <!--              <div class="evidence-list">-->
+  <!--                <div-->
+  <!--                  class="evidence-item"-->
+  <!--                  *ngFor="let genre of (genresCoverImagesTopRatedMovies$ | async)?.[i]"-->
+  <!--                >-->
+  <!--                  <span class="evidence-text">{{ genre }}</span>-->
+  <!--                </div>-->
+  <!--              </div>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
 
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </swiper>
+  <!--    <div class="swiper-button-next"></div>-->
+  <!--    <div class="swiper-button-prev"></div>-->
+  <!--  </swiper>-->
 
-  <!-- Tv Shows -->
-  <swiper [config]="config" #usefulSwiper>
-    <p class="title-slide">Tv Shows</p>
-    <div class="swiper-wrapper">
-      <div
-        class="swiper-slide"
-        *ngFor="let coverImage of coverImgTvShows$ | async; let i = index"
-        #swiperSlides
-      >
-        <img class="card-img" alt="Card image" [src]="coverImage" />
-        <div class="container-logo-img">
-          <img
-            class="logo-img"
-            alt="Logo image"
-            *ngIf="(this.logoImagesTvShows$ | async)?.[i] as logo"
-            [src]="'https://image.tmdb.org/t/p/w500' + logo"
-          />
-        </div>
+  <!--  &lt;!&ndash; Tv Shows &ndash;&gt;-->
+  <!--  <swiper [config]="config" #usefulSwiper>-->
+  <!--    <p class="title-slide">Tv Shows</p>-->
+  <!--    <div class="swiper-wrapper">-->
+  <!--      <div-->
+  <!--        class="swiper-slide"-->
+  <!--        *ngFor="let coverImage of coverImgTvShows$ | async; let i = index"-->
+  <!--        #swiperSlides-->
+  <!--      >-->
+  <!--        <img class="card-img" alt="Card image" [src]="coverImage" />-->
+  <!--        <div class="container-logo-img">-->
+  <!--          <img-->
+  <!--            class="logo-img"-->
+  <!--            alt="Logo image"-->
+  <!--            *ngIf="(this.logoImagesTvShows$ | async)?.[i] as logo"-->
+  <!--            [src]="'https://image.tmdb.org/t/p/w500' + logo"-->
+  <!--          />-->
+  <!--        </div>-->
 
-        <!-- Detail Card -->
-        <div class="card-details">
-          <div class="card-icons">
-            <!-- Play button -->
-            <nf-play-button
-              (click)="playVideo(coverIndexTvShowsTMDB[i])"
-            ></nf-play-button>
+  <!--        &lt;!&ndash; Detail Card &ndash;&gt;-->
+  <!--        <div class="card-details">-->
+  <!--          <div class="card-icons">-->
+  <!--            &lt;!&ndash; Play button &ndash;&gt;-->
+  <!--            <nf-play-button-->
+  <!--              (click)="playVideo(coverIndexTvShowsTMDB[i])"-->
+  <!--            ></nf-play-button>-->
 
-            <div (click)="onClickShowCheckIcon()">
-              <!-- Add button  -->
-              <nf-add-button *ngIf="showCheckIcon"></nf-add-button>
+  <!--            <div (click)="onClickShowCheckIcon()">-->
+  <!--              &lt;!&ndash; Add button  &ndash;&gt;-->
+  <!--              <nf-add-button *ngIf="showCheckIcon"></nf-add-button>-->
 
-              <!-- Hover text add button -->
-              <div class="container-hover-btn">
-                <h6 class="hover-text-add-btn">Add to My List</h6>
+  <!--              &lt;!&ndash; Hover text add button &ndash;&gt;-->
+  <!--              <div class="container-hover-btn">-->
+  <!--                <h6 class="hover-text-add-btn">Add to My List</h6>-->
 
-                <div class="container-triangle">
-                  <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
-                    <polygon points="0 0, 100 0, 50 50" />
-                  </svg>
-                </div>
-              </div>
+  <!--                <div class="container-triangle">-->
+  <!--                  <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">-->
+  <!--                    <polygon points="0 0, 100 0, 50 50" />-->
+  <!--                  </svg>-->
+  <!--                </div>-->
+  <!--              </div>-->
 
-              <!-- Check -->
-              <nf-check-button *ngIf="!showCheckIcon"></nf-check-button>
+  <!--              &lt;!&ndash; Check &ndash;&gt;-->
+  <!--              <nf-check-button *ngIf="!showCheckIcon"></nf-check-button>-->
 
-              <!-- Hover text check button -->
-              <div class="container-hover-btn">
-                <h6 class="hover-text-check-btn">Remove from My List</h6>
+  <!--              &lt;!&ndash; Hover text check button &ndash;&gt;-->
+  <!--              <div class="container-hover-btn">-->
+  <!--                <h6 class="hover-text-check-btn">Remove from My List</h6>-->
 
-                <div class="container-triangle">
-                  <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
-                    <polygon points="0 0, 100 0, 50 50" />
-                  </svg>
-                </div>
-              </div>
-            </div>
+  <!--                <div class="container-triangle">-->
+  <!--                  <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">-->
+  <!--                    <polygon points="0 0, 100 0, 50 50" />-->
+  <!--                  </svg>-->
+  <!--                </div>-->
+  <!--              </div>-->
+  <!--            </div>-->
 
-            <!-- Thumb up -->
-            <nf-thumb-up-button></nf-thumb-up-button>
+  <!--            &lt;!&ndash; Thumb up &ndash;&gt;-->
+  <!--            <nf-thumb-up-button></nf-thumb-up-button>-->
 
-            <!-- Expand -->
-            <nf-expand-button
-              *ngIf="(this.logoImagesTvShows$ | async)?.[i] as logo"
-              style="margin-left: auto"
-              (click)="
-                openDialogCoverImage(
-                  coverImage,
-                  i,
-                  coverIndexTvShows[i],
-                  coverIndexTvShowsTMDB[i],
-                  logo
-                )
-              "
-            ></nf-expand-button>
-          </div>
+  <!--            &lt;!&ndash; Expand &ndash;&gt;-->
+  <!--            <nf-expand-button-->
+  <!--              *ngIf="(this.logoImagesTvShows$ | async)?.[i] as logo"-->
+  <!--              style="margin-left: auto"-->
+  <!--              (click)="-->
+  <!--                openDialogCoverImage(-->
+  <!--                  coverImage,-->
+  <!--                  i,-->
+  <!--                  coverIndexTvShows[i],-->
+  <!--                  coverIndexTvShowsTMDB[i],-->
+  <!--                  logo-->
+  <!--                )-->
+  <!--              "-->
+  <!--            ></nf-expand-button>-->
+  <!--          </div>-->
 
-          <div class="video-metadata-container-info">
-            <div class="first-line-info">
-              <span class="match-score">{{ randMatchScore[i] }}% Match</span>
-            </div>
-            <div class="second-line-info">
-              <div class="maturity-rating">
-                <span class="rating-number">{{ ratingNumberCover[i] }}+</span>
-              </div>
-              <div
-                class="duration"
-                *ngFor="let season of (numbersOfSeasonsTvShows$ | async)?.[i]"
-              >
-                <span>{{ season }} seasons</span>
-              </div>
-              <div class="player-feature-badge">
-                <span>HD</span>
-              </div>
-            </div>
-          </div>
-          <div class="video-metadata-container-tags">
-            <div class="evidence-tags">
-              <div class="evidence-list">
-                <div
-                  class="evidence-item"
-                  *ngFor="let genre of (genresCoverImagesTvShows$ | async)?.[i]"
-                >
-                  <span class="evidence-text">{{ genre }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!--          <div class="video-metadata-container-info">-->
+  <!--            <div class="first-line-info">-->
+  <!--              <span class="match-score">{{ randMatchScore[i] }}% Match</span>-->
+  <!--            </div>-->
+  <!--            <div class="second-line-info">-->
+  <!--              <div class="maturity-rating">-->
+  <!--                <span class="rating-number">{{ ratingNumberCover[i] }}+</span>-->
+  <!--              </div>-->
+  <!--              <div-->
+  <!--                class="duration"-->
+  <!--                *ngFor="let season of (numbersOfSeasonsTvShows$ | async)?.[i]"-->
+  <!--              >-->
+  <!--                <span>{{ season }} seasons</span>-->
+  <!--              </div>-->
+  <!--              <div class="player-feature-badge">-->
+  <!--                <span>HD</span>-->
+  <!--              </div>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--          <div class="video-metadata-container-tags">-->
+  <!--            <div class="evidence-tags">-->
+  <!--              <div class="evidence-list">-->
+  <!--                <div-->
+  <!--                  class="evidence-item"-->
+  <!--                  *ngFor="let genre of (genresCoverImagesTvShows$ | async)?.[i]"-->
+  <!--                >-->
+  <!--                  <span class="evidence-text">{{ genre }}</span>-->
+  <!--                </div>-->
+  <!--              </div>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
 
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </swiper>
+  <!--    <div class="swiper-button-next"></div>-->
+  <!--    <div class="swiper-button-prev"></div>-->
+  <!--  </swiper>-->
 
   <!-- Footer -->
   <nf-footer></nf-footer>

@@ -53,6 +53,6 @@ import { SharedModule } from '@shared/netflicks';
     PreviewModalContainerComponent,
   ],
   providers: [],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomeModule {}

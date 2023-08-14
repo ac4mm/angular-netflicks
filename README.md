@@ -68,7 +68,7 @@ API
 Hosting
 - [Firebase](https://firebase.google.com/)
 
-## Generate Components with Nx
+### Generate Components with Nx
 
 Feature
 ```bash
@@ -79,6 +79,13 @@ nx generate @nrwl/angular:component fullscreen-intro-animation --project=netflic
 Shared
 ```bash
 nx generate @nrwl/angular:component fullscreen-intro-animation --project=netflicks --module=shared --path=libs/shared/src/lib/components --export=true --style=scss    
+
+```
+
+### Generate Directive with Nx
+
+```bash
+nx generate @nrwl/angular:directive swiper-element --project=netflicks  --path=libs/shared/src/lib/directive
 
 ```
 
