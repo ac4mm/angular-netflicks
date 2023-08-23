@@ -1,0 +1,126 @@
+<!-- Slider main container -->
+<div class="swiper">
+  <p class="title-slide">
+    {{titleSlide}}
+  </p>
+
+  <!-- Additional required wrapper -->
+  <div class="swiper-wrapper">
+    <!-- Slides -->
+    <div
+      class="swiper-slide"
+      *ngFor="let coverImage of coverImages; let i = index"
+      #swiperSlides
+    >
+      <img class="card-img" alt="Card image" [src]="coverImage" />
+      <div class="container-logo-img">
+        <img
+          class="logo-img"
+          alt="Logo image"
+          *ngIf="logoImages?.[i] as logo"
+          [src]="'https://image.tmdb.org/t/p/w500' + logo"
+        />
+      </div>
+
+      <!-- Detail Card -->
+      <div class="card-details">
+        <div class="card-icons">
+          <!-- Play button -->
+          <nf-play-button
+            (click)="playVideo(coverIndexImages[i])"
+          ></nf-play-button>
+
+          <div (click)="onClickShowCheckIcon()">
+            <!-- Add button  -->
+            <nf-add-button *ngIf="showCheckIcon"></nf-add-button>
+
+            <!-- Hover text add button -->
+            <div class="container-hover-btn">
+              <h6 class="hover-text-add-btn">Add to My List</h6>
+
+              <div class="container-triangle">
+                <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
+                  <polygon points="0 0, 100 0, 50 50" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Check -->
+            <nf-check-button *ngIf="!showCheckIcon"></nf-check-button>
+
+            <!-- Hover text check button -->
+            <div class="container-hover-btn">
+              <h6 class="hover-text-check-btn">Remove from My List</h6>
+
+              <div class="container-triangle">
+                <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
+                  <polygon points="0 0, 100 0, 50 50" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Thumb up -->
+          <nf-thumb-up-button></nf-thumb-up-button>
+
+          <!-- expand -->
+          <nf-expand-button
+            *ngIf="logoImages?.[i] as logo"
+            style="margin-left: auto"
+            (click)="
+                openDialogCoverImage(
+                  coverImage,
+                  i,
+                  coverIndexImages[i],
+                  coverIndexImagesTMDB[i],
+                  logo
+                )
+              "
+          ></nf-expand-button>
+        </div>
+        <div class="video-metadata-container-info">
+          <div class="first-line-info">
+            <span class="match-score">{{ randMatchScore[i] }}% Match</span>
+          </div>
+          <div class="second-line-info">
+            <div class="maturity-rating">
+              <span class="rating-number">{{ ratingNumberCover[i] }}+</span>
+            </div>
+
+            <div
+              class="duration"
+              *ngFor="let season of numbersOfSeasons?.[i]"
+            >
+              <span>{{ season }} seasons</span>
+            </div>
+            <div class="player-feature-badge">
+              <span>HD</span>
+            </div>
+          </div>
+        </div>
+        <div class="video-metadata-container-tags">
+          <div class="evidence-tags">
+            <div class="evidence-list">
+              <div
+                class="evidence-item"
+                *ngFor="let genre of genresCoverImages?.[i]"
+              >
+                <span class="evidence-text">{{ genre }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- If we need pagination -->
+  <div class="swiper-pagination"></div>
+
+  <!-- If we need navigation buttons -->
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+
+  <!-- If we need scrollbar -->
+  <div class="swiper-scrollbar"></div>
+</div>

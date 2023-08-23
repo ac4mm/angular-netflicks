@@ -1,0 +1,153 @@
+/***************Swiper Element */
+//Override overflow:hidden and fixed overlap between swiper when hover
+.swiper {
+  overflow: unset !important;
+}
+
+.container-fluid:hover .swiper:not(:hover) {
+  position: unset;
+}
+
+.swiper-slide {
+  //height: auto;
+}
+
+.swiper-slide:hover .card-img {
+  border: 1px ridge black;
+}
+
+.swiper-slide:first-child:hover {
+  margin-left: 10px;
+}
+
+.swiper-wrapper:hover {
+  -webkit-transform: translateX(-15px);
+  -ms-transform: translateX(-15px);
+  -moz-transform: translateX(-15px);
+  -o-transform: translateX(-15px);
+  transform: translateX(-15px);
+
+}
+
+.swiper-wrapper:hover .swiper-slide:hover {
+  -webkit-transform: scale(1.7);
+  -ms-transform: scale(1.7);
+  -moz-transform: scale(1.7);
+  -o-transform: scale(1.7);
+  transform: scale(1.7);
+  z-index: 4;
+  transition: ease-in-out 400ms;
+  transition-delay: 0.24s;
+  opacity: 1;
+}
+
+.swiper-wrapper:hover .swiper-slide:first-child:hover {
+  transform-origin: 30% 50%;
+
+  -webkit-transform: scale(1.7);
+  -ms-transform: scale(1.7);
+  -moz-transform: scale(1.7);
+  -o-transform: scale(1.7);
+  transform: scale(1.7);
+  z-index: 4;
+  transition: ease-in-out 400ms;
+  transition-delay: 0.24s;
+  opacity: 1;
+}
+
+.swiper-slide:first-child:hover ~ .swiper-slide {
+  -webkit-transform: translateX(7vw);
+  -ms-transform: translateX(7vw);
+  -moz-transform: translateX(7vw);
+  -o-transform: translateX(7vw);
+  transform: translateX(7vw);
+  transition-duration: 1s;
+  transition: ease 500ms;
+  transition-delay: 0.28s;
+  touch-action: auto;
+  opacity: 0.4;
+}
+
+.swiper-wrapper:hover .swiper-slide {
+  -webkit-transform: translateX(-5vw);
+  -ms-transform: translateX(-5vw);
+  -moz-transform: translateX(-5vw);
+  -o-transform: translateX(-5vw);
+  transform: translateX(-5vw);
+  touch-action: auto;
+  opacity: 0.4;
+  transition: ease 500ms;
+  transition-delay: 0.28s;
+}
+
+.swiper-slide:hover ~ .swiper-slide {
+  -webkit-transform: translateX(5vw);
+  -ms-transform: translateX(5vw);
+  -moz-transform: translateX(5vw);
+  -o-transform: translateX(5vw);
+  transform: translateX(5vw);
+  transition-duration: 1s;
+  transition: ease 500ms;
+  transition-delay: 0.28s;
+  touch-action: auto;
+  opacity: 0.4;
+}
+
+.card-details {
+  display: none;
+  padding: 0.5em;
+  color: white;
+  width: 100%;
+  position: absolute;
+}
+
+.swiper-slide:hover > .card-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #181818;
+}
+
+.card-img,
+.card-details {
+  border-radius: 4px;
+}
+
+.container-logo-img {
+  position: absolute;
+  max-width: 100%;
+  bottom: 0;
+  padding: 0 0 1rem 1rem;
+}
+
+.logo-img {
+  position: relative;
+  max-width: 100%;
+  width: 44%;
+}
+
+.card-icons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-row {
+  flex: 25%;
+  max-width: 25%;
+}
+
+.container-fluid:hover .swiper-wrapper:not(:hover) {
+  position: unset;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #ffffff;
+  opacity: 0;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+}

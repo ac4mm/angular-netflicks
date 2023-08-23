@@ -21,6 +21,7 @@ import { NfCloseButtonComponent } from './components/buttons/nf-close-button.com
 import { NfSpeakerupButtonComponent } from './components/buttons/nf-speakerup-button.component';
 import { NfSpeakerdownButtonComponent } from './components/buttons/nf-speakerdown-button.component';
 import { FullscreenIntroAnimationComponent } from './components/fullscreen-intro-animation/fullscreen-intro-animation.component';
+import { SwiperContainerComponent } from './components/swiper-container/swiper-container.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { FullscreenIntroAnimationComponent } from './components/fullscreen-intro
     NfFullscreenPlayerComponent,
     NfFullscreenLogoComponent,
     FullscreenIntroAnimationComponent,
+    SwiperContainerComponent,
   ],
   imports: [CommonModule, SkeletonModule, YouTubePlayerModule],
   exports: [
@@ -56,6 +58,7 @@ import { FullscreenIntroAnimationComponent } from './components/fullscreen-intro
     NfFullscreenPlayerComponent,
     NfFullscreenLogoComponent,
     FullscreenIntroAnimationComponent,
+    SwiperContainerComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 })
