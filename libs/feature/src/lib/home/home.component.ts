@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   Component,
   OnDestroy,
   OnInit,
@@ -18,13 +17,7 @@ import {
   switchMap,
   takeUntil,
 } from 'rxjs';
-import Swiper, {
-  A11y,
-  Mousewheel,
-  Navigation,
-  Pagination,
-  SwiperOptions,
-} from 'swiper';
+import Swiper, { SwiperOptions } from 'swiper';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PreviewModalContainerComponent } from './preview-modal-container/preview-modal-container.component';
 import {
@@ -43,7 +36,7 @@ import {
   styleUrls: ['./home.component.scss'],
   providers: [DialogService, UtilitiesService],
 })
-export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy {
   public isValidUser = false;
   private selectUserSub: Subscription;
 
@@ -165,6 +158,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         if (this.isValidUser) {
           this.renderer.removeStyle(document.body, 'overflow-y');
           // this.autoplayVideo();
+          setTimeout(() => {
+            this.initializeSwiper();
+          });
         }
       });
 
@@ -530,10 +526,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.showCheckIcon = !this.showCheckIcon;
   }
 
-  ngAfterViewInit() {
+  initializeSwiper() {
     const swiper = new Swiper('.swiper', {
-      modules: [Navigation, Pagination, A11y, Mousewheel],
-      autoHeight: true,
+      // modules: [Navigation, Pagination, A11y, Mousewheel],
       slidesOffsetBefore: 40,
       slidesOffsetAfter: 130,
       navigation: {
@@ -546,7 +541,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       },
       // Default parameters
       slidesPerView: 7,
-      spaceBetween: 10,
+      spaceBetween: 5,
       // Responsive breakpoints
       breakpoints: {
         1201: {
