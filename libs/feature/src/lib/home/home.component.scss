@@ -378,7 +378,10 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
   overflow: unset !important;
 }
 
-.container-fluid:hover .swiper:not(:hover) {
+.container-fluid:hover .swiper:not(:hover),
+.container-fluid:hover .swiper-wrapper:not(:hover),
+.container-fluid:hover ::ng-deep nf-swiper-container .swiper:not(:hover),
+.container-fluid:hover ::ng-deep nf-swiper-container .swiper-wrapper:not(:hover) {
   position: unset;
 }
 
@@ -508,10 +511,6 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
 .card-row {
   flex: 25%;
   max-width: 25%;
-}
-
-.container-fluid:hover .swiper-wrapper:not(:hover) {
-  position: unset;
 }
 
 .swiper-button-next,
