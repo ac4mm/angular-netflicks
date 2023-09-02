@@ -82,7 +82,6 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
     playsinline: 1,
     loop: 0,
     mute: 0,
-    autoplay: 1,
     allowfullscreen: 1,
     frameBorder: 0,
   };

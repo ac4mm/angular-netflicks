@@ -111,7 +111,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   numbersOfSeasonsTvShows$: Observable<string[]>;
 
   showCheckIcon = true;
-  showSpeakerUpIcon = true;
+  showSpeakerUpIcon = false;
   showRefreshIcon = false;
 
   private destroy$ = new Subject<void>();
@@ -157,7 +157,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
         if (this.isValidUser) {
           this.renderer.removeStyle(document.body, 'overflow-y');
-          // this.autoplayVideo();
+          this.autoplayVideo();
+
           setTimeout(() => {
             this.initializeSwiper();
           });
@@ -320,7 +321,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   autoplayVideo() {
     setTimeout(() => {
       this.showVideoPreview = true;
-
       this.managePlayerService.initScriptIFrame();
     }, 3000);
   }
