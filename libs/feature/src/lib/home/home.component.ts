@@ -110,7 +110,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   numbersOfSeasonsTopRatedMovies$: Observable<string[]>;
   numbersOfSeasonsTvShows$: Observable<string[]>;
 
-  showCheckIcon = true;
   showSpeakerUpIcon = false;
   showRefreshIcon = false;
 
@@ -522,8 +521,18 @@ export class HomeComponent implements OnInit, OnDestroy {
     return arrWeightedRand;
   }
 
-  onClickShowCheckIcon() {
-    this.showCheckIcon = !this.showCheckIcon;
+  onPlayStopEvent(isPause: boolean) {
+    if (this.player) {
+      //1 = Playing
+      if (isPause && this.player?.getPlayerState() === 1) {
+        this.player.pauseVideo();
+        //2 = paused
+      } else if (!isPause && this.player.getPlayerState() === 2) {
+        this.player.playVideo();
+      } else {
+        this.onReplayVideo();
+      }
+    }
   }
 
   initializeSwiper() {
@@ -579,59 +588,4 @@ export class HomeComponent implements OnInit, OnDestroy {
       },
     });
   }
-
-  //TODO to remove after migrate to Swiper Element
-  //Configuration SwiperJs
-  // eslint-disable-next-line @typescript-eslint/member-ordering
-  configOld: SwiperOptions = {
-    pagination: { el: '.swiper-pagination', clickable: true },
-
-    allowTouchMove: true,
-    updateOnWindowResize: true,
-    slidesOffsetBefore: 40,
-    slidesOffsetAfter: 130,
-
-    breakpoints: {
-      1201: {
-        slidesPerView: 7,
-        spaceBetween: 5,
-      },
-      1200: {
-        slidesPerView: 7,
-        spaceBetween: 5,
-      },
-      1024: {
-        slidesPerView: 6,
-        spaceBetween: 5,
-      },
-      800: {
-        slidesPerView: 5,
-        spaceBetween: 5,
-      },
-      500: {
-        slidesPerView: 5,
-        spaceBetween: 5,
-      },
-      400: {
-        slidesPerView: 4,
-        spaceBetween: 5,
-      },
-      300: {
-        slidesPerView: 4,
-        spaceBetween: 5,
-      },
-      200: {
-        slidesPerView: 3,
-        spaceBetween: 5,
-      },
-    },
-
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-
-    loopedSlides: 7,
-    loop: false,
-  };
 }

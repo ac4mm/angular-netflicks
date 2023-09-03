@@ -1,8 +1,10 @@
 import {
   AfterViewInit,
   Component,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
   Renderer2,
   ViewChild,
 } from '@angular/core';
@@ -28,6 +30,8 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
   @Input() numbersOfSeasons: string[] = [];
   @Input() genresCoverImages: string[] = [];
 
+  @Output() playStopEvent = new EventEmitter<any>();
+
   randMatchScore: number[] = [];
   ratingNumberCover: (string | undefined)[] = [];
 
@@ -38,21 +42,6 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
   showRefreshIcon = false;
 
   @ViewChild('player') player: any;
-  // keyYTVideo: string;
-  // playerVars: {
-  //   autohide: 1;
-  //   controls: 0;
-  //   showinfo: 0;
-  //   autoplay: 1;
-  //   modestbranding: 1;
-  //   disablekb: 1;
-  //   rel: 0;
-  //   fs: 0;
-  //   playsinline: 1;
-  //   loop: 1;
-  //   allowfullscreen: 1;
-  //   frameBorder: 0;
-  // };
 
   indexSelectedItem: number;
   coverImagePreviewModal: string;
@@ -153,9 +142,7 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
     this.indexSelectedItem = index;
     this.coverImagePreviewModal = coverImage;
 
-    if (this.player) {
-      this.player.pauseVideo();
-    }
+    this.playStopEvent.emit(true);
 
     const dialog: DynamicDialogRef = this.dialogService.open(
       PreviewModalContainerComponent,
@@ -181,7 +168,7 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
 
     /* On close dialog, resume video */
     dialog.onClose.pipe(takeUntil(this.destroy$)).subscribe(() => {
-      this.player.playVideo();
+      this.playStopEvent.emit(false);
     });
   }
 
