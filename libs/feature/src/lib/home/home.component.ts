@@ -110,7 +110,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   numbersOfSeasonsTopRatedMovies$: Observable<string[]>;
   numbersOfSeasonsTvShows$: Observable<string[]>;
 
-  showSpeakerUpIcon = false;
+  showSpeakerUpIcon = true;
   showRefreshIcon = false;
 
   private destroy$ = new Subject<void>();
