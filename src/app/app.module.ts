@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { MaterialModule } from '@material/module';
 import { LibsFeatureModule } from '@libs/feature';
 import {
   SelectUserService,
@@ -24,18 +23,17 @@ import { register } from 'swiper/element/bundle';
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     HttpClientModule,
-    MaterialModule,
     BrowserAnimationsModule,
     LibsFeatureModule,
     SharedModule,
   ],
   bootstrap: [AppComponent],
   providers: [SelectUserService, ManagePlayerService],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {
-  constructor(){
+  constructor() {
     // register Swiper custom elements
     register();
   }
- }
+}
