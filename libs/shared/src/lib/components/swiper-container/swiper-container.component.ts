@@ -69,9 +69,7 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
   }
 
   playVideo(indexTheMovieDb: number) {
-    if (this.player) {
-      this.player.pauseVideo();
-    }
+    this.playStopEvent.emit(true);
 
     const dialogFullScreenPlayer: DynamicDialogRef = this.dialogService.open(
       NfFullscreenPlayerComponent,
@@ -103,7 +101,8 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
           this.renderer.removeStyle(document.body, 'overflow-y');
         }, 2000);
         setTimeout(() => {
-          this.onReplayVideo();
+          /* On close dialog, resume video */
+          this.playStopEvent.emit(false);
         }, 3000);
       });
   }
