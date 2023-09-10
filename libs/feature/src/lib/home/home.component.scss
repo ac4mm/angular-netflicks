@@ -351,6 +351,7 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
   justify-content: flex-end;
   position: relative;
   bottom: 5vw;
+  z-index: 4;
 }
 
 .preview-audio-toggle {
