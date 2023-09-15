@@ -160,50 +160,19 @@
           <p class="account-triangle-up"></p>
 
           <ul class="dropdown-menu dropdown-menu-right">
-            <li *ngIf="idUserMaster !== 1" (click)="onChangeUser(1)">
-              <a class="dropdown-item" href="/browse "
-                ><img
-                  class="dropdown-img-item"
-                  alt="account1"
-                  src="{{ 'assets/img/' + 'account' + 1 + '.png' }}"
-                />User1</a
-              >
-            </li>
-            <li *ngIf="idUserMaster !== 2" (click)="onChangeUser(2)">
-              <a class="dropdown-item" href="/browse"
-                ><img
-                  class="dropdown-img-item"
-                  alt="account2"
-                  src="{{ 'assets/img/' + 'account' + 2 + '.png' }}"
-                />User2</a
-              >
-            </li>
-            <li *ngIf="idUserMaster !== 3" (click)="onChangeUser(3)">
-              <a class="dropdown-item" href="/browse">
-                <img
-                  class="dropdown-img-item"
-                  alt="account3"
-                  src="{{ 'assets/img/' + 'account' + 3 + '.png' }}"
-                />User3</a
-              >
-            </li>
-            <li *ngIf="idUserMaster !== 4" (click)="onChangeUser(4)">
-              <a class="dropdown-item" href="/browse"
-                ><img
-                  class="dropdown-img-item"
-                  alt="account4"
-                  src="{{ 'assets/img/' + 'account' + 4 + '.png' }}"
-                />User4</a
-              >
-            </li>
-            <li *ngIf="idUserMaster !== 5" (click)="onChangeUser(5)">
-              <a class="dropdown-item" href="/Kids"
-                ><img
-                  class="dropdown-img-item"
-                  alt="account5"
-                  src="{{ 'assets/img/' + 'account' + 5 + '.png' }}"
-                />Kids</a
-              >
+            <li
+              *ngFor="let indexUser of [1, 2, 3, 4, 5]"
+              (click)="onChangeUser(indexUser)"
+            >
+              <ng-container *ngIf="indexUser !== idUserMaster">
+                <a class="dropdown-item" href="/browse"
+                  ><img
+                    class="dropdown-img-item"
+                    alt="user{{ indexUser }}"
+                    src="{{ 'assets/img/' + 'account' + indexUser + '.png' }}"
+                  />User{{ indexUser }}</a
+                >
+              </ng-container>
             </li>
             <li>
               <a class="dropdown-item" href="/ManageProfiles"
