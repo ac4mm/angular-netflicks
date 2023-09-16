@@ -15,9 +15,12 @@ export class FullscreenIntroAnimationComponent {
     this.renderer.setStyle(document.body, 'overflow-y', 'hidden');
 
     //Load audio 'tudum'
-    const audio = new Audio();
-    audio.src = '../../../../../../assets/audio/tudum.mp3';
+    const audio = new Audio('../../../../../../assets/audio/tudum.mp3');
     audio.load();
+    audio.play();
+
+    //Used for mobile audio
+    audio.pause();
     audio.play();
 
     setTimeout(() => {
