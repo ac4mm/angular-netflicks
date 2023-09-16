@@ -1,34 +1,26 @@
-# Angular 15, RxJS and Bootstrap
-A case study of Netflix Clone, using Angular 15 framework, RxJS library for manage state with Observable, Bootstrap for style and Swipe.js for animation carousel.
+# Angular 16, RxJS and Bootstrap
+A case study of **Netflix Clone**, using Angular 16 framework, 
+[RxJS](https://rxjs.dev/) library for manage state with Observable, 
+[Nx](https://nx.dev/) for manage library and shared component in monorepo, 
+Bootstrap for style (Scss), [Swipe.js](https://swiperjs.com/) for animation carousel, 
+[Tv Maze API](https://www.tvmaze.com/api) and The [Movie DB API](https://developer.themoviedb.org/reference/intro/getting-started) for the data and [Youtube player](https://github.com/angular/components/blob/main/src/youtube-player/README.md), 
+that wrap the embed Youtube player API.
 
-<br />
-
-![ScreenShot](meta-assets/home.png)
-
-![ScreenShot](meta-assets/template-login.png)
-
-![ScreenShot](meta-assets/template-users.png)
-
-![ScreenShot](meta-assets/manage-profiles.png)
-
-![ScreenShot](meta-assets/preview-modal.png)
-
-![ScreenShot](meta-assets/mobile.png)
 
 ## Demo Preview
 
-![](meta-assets/demo-preview.gif)
+![](meta-assets/demo-netflicks.gif)
 
+![ScreenShot](meta-assets/templates-example.png)
 <br />
 
 ## Live Preview
 [Netflicks](https://netflicks-6c8b7.web.app)
 
 ## Table of Content
-- [Angular 15, RxJS and Bootstrap](#angular-15-rxjs-and-bootstrap)
+- [Angular 16, RxJS and Bootstrap](#angular-16-rxjs-and-bootstrap)
   - [Demo Preview](#demo-preview)
   - [Live Preview](#live-preview)
-  - [Table of Content](#table-of-content)
   - [Getting Started](#getting-started)
   - [Goals](#goals)
   - [Features](#features)
@@ -45,7 +37,11 @@ yarn start
 ```
 
 ## Goals
-Tha main goal of this simple repository is to learn how to use reactive programming (with RxJS) and Angular 15 with routing, lazy loading and the main feature of framework.
+Tha main goal of this simple repository is to learn how to use reactive programming (with RxJS) 
+and Angular 16 with routing, lazy loading and the main feature of framework.
+
+The project has evolved over time, starting from a situation in which I started to learn the framework and library, 
+up to today, with all the best practices and evolutions of the monorepo, with the addition of the API for images and video trailers of Youtube.
 
 ## Features
 - Lazy loading
@@ -88,6 +84,13 @@ nx generate @nrwl/angular:component fullscreen-intro-animation --project=netflic
 nx generate @nrwl/angular:directive swiper-element --project=netflicks  --path=libs/shared/src/lib/directive
 
 ```
+
+
+## Support
+by [@_ac4mm](https://twitter.com/_ac4mm)
+
+<a href="https://www.buymeacoffee.com/ac4mm" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-red.png" alt="Buy Me A Coffee" height="34" ></a>
+
 
 
 
