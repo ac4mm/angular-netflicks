@@ -29,6 +29,7 @@ import {
   TvMazeService,
   UtilitiesService,
 } from '@shared/netflicks';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'nf-home',
@@ -136,6 +137,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   };
 
   constructor(
+    private authService: AuthService,
     public selectUser: SelectUserService,
     private tvmazeService: TvMazeService,
     public dialogService: DialogService,
@@ -149,6 +151,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.authService.checkCookieUserData();
+
     this.selectUserSub = this.selectUser.currentState$
       .pipe(takeUntil(this.destroy$))
       .subscribe((state) => {

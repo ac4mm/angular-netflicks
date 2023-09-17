@@ -148,4 +148,10 @@ export class AuthService {
     }
     return throwError(errorMessage);
   }
+
+  checkCookieUserData() {
+    if (localStorage.getItem('userData') === null) {
+      this.logout();
+    }
+  }
 }
