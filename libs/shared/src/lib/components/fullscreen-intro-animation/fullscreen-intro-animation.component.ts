@@ -19,10 +19,6 @@ export class FullscreenIntroAnimationComponent {
     audio.load();
     audio.play();
 
-    //Used for mobile audio
-    audio.pause();
-    audio.play();
-
     setTimeout(() => {
       this.showNetflicksLogo = true;
     }, 300);
