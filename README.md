@@ -85,6 +85,11 @@ nx generate @nrwl/angular:directive swiper-element --project=netflicks  --path=l
 
 ```
 
+## Thinks to know
+- I used the **combination of two API**, since some information was not present (e.g. trailer) in TvMaze API or logo, etc;
+- I combined the cover images with the **logo**, since some images did not have the logo, so images with a double logo could be presented;
+- for the **match** of the films/TV series I used a random value between 64 and 100, while for the **maturity rating**, I used a probability with a weight: 7+ Kids (10%), 13+ teenagers (20%), 16 + (40%), 18+ adults (60%);
+- **Pages** Tv Shows, Movie, Latest and My List, Kids, Referral friends and **notification** aren't implemented;
 
 ## Support
 by [@_ac4mm](https://twitter.com/_ac4mm)
