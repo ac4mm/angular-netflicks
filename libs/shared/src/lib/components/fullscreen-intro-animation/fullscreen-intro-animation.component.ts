@@ -17,6 +17,8 @@ export class FullscreenIntroAnimationComponent {
     //Load audio 'tudum'
     const audio = new Audio('../../../../../../assets/audio/tudum.mp3');
     audio.load();
+
+    audio.muted = false;
     audio.play();
 
     setTimeout(() => {
