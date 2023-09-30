@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnDestroy,
   OnInit,
@@ -114,6 +115,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   showSpeakerUpIcon = true;
   showRefreshIcon = false;
 
+  mainMaturityRating: number;
+
   private destroy$ = new Subject<void>();
 
   //Utils player Youtube video
@@ -144,7 +147,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     private utilitiesService: UtilitiesService,
     public themoviedbService: TheMovieDBService,
     private managePlayerService: ManagePlayerService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private cdr: ChangeDetectorRef
   ) {
     //id YT video Stranger Things
     this.keyYTVideo = 'b9EkMc79ZSU';
@@ -537,6 +541,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.onReplayVideo();
       }
     }
+  }
+
+  onEmitRatingNumber(ratingNumber: number) {
+    this.mainMaturityRating = ratingNumber;
+    this.cdr.detectChanges();
   }
 
   initializeSwiper() {

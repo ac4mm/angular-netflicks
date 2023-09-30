@@ -150,7 +150,7 @@
       </button>
     </span>
 
-        <span class="maturity-rating-home"> 16+ </span>
+        <span class="maturity-rating-home"> {{mainMaturityRating}}+ </span>
       </div>
     </div>
   </div>
@@ -168,6 +168,7 @@
     [numbersOfSeasons]="numbersOfSeasonsKeepWatching$ | async"
     [genresCoverImages]="genresCoverImagesKeepWatching$ | async"
     (playStopEvent)="onPlayStopEvent($event)"
+    (emitRatingNumber)="onEmitRatingNumber($event)"
   ></nf-swiper-container>
 
   <!--  My list-->

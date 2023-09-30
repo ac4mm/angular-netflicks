@@ -31,6 +31,7 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
   @Input() genresCoverImages: string[] = [];
 
   @Output() playStopEvent = new EventEmitter<any>();
+  @Output() emitRatingNumber = new EventEmitter<number>();
 
   randMatchScore: number[] = [];
   ratingNumberCover: (string | undefined)[] = [];
@@ -66,6 +67,7 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
       this.ratingNumberObject,
       7
     );
+    this.emitRatingNumber.emit(+this.ratingNumberCover?.[1]);
   }
 
   playVideo(indexTheMovieDb: number) {
