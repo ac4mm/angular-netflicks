@@ -350,7 +350,6 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
   flex-direction: row;
   justify-content: flex-end;
   position: relative;
-  bottom: 5vw;
   z-index: 4;
 }
 
@@ -401,8 +400,11 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
   font-weight: 500;
 }
 
+.main-controllers {
+  margin: 9px 0;
+}
+
 .main-controllers button {
-  margin-bottom: 1rem;
   margin-right: 1rem;
 }
 
@@ -543,10 +545,6 @@ nf-check-button:hover ~ .container-hover-btn .container-triangle {
 
   .preview-audio-toggle {
     margin-right: 10px;
-  }
-
-  .info-meta-layer-other-actions {
-    bottom: 8vw;
   }
 
   .first-line-info .match-score,

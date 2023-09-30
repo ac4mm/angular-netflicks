@@ -37,10 +37,14 @@
           />
         </div>
       </div>
+    </div>
+  </div>
 
-      <!--      Billboard controllers-->
+  <div class="row justify-content-between">
+    <!-- main actions buttons-->
+    <div class="col-6" style="left:4%">
       <div
-        class="d-flex flex-row justify-content-start align-items-end main-controllers"
+        class="d-flex flex-row justify-content-start main-controllers"
       >
         <!--        Play-->
         <button
@@ -109,10 +113,10 @@
         </ng-container>
       </div>
     </div>
-  </div>
 
-  <!-- Other actions -->
-  <div class="info-meta-layer-other-actions">
+    <!-- Other actions buttons-->
+    <div class="col-6">
+      <div class="info-meta-layer-other-actions">
     <span
       class="previewModal-player-wrapper preview-audio-toggle"
       (click)="onClickSpeakerIcon()"
@@ -146,7 +150,9 @@
       </button>
     </span>
 
-    <span class="maturity-rating-home"> 16+ </span>
+        <span class="maturity-rating-home"> 16+ </span>
+      </div>
+    </div>
   </div>
 </div>
 
