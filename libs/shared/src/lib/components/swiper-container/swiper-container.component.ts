@@ -67,10 +67,19 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
       this.ratingNumberObject,
       7
     );
-    this.emitRatingNumber.emit(+this.ratingNumberCover?.[1]);
+
+    //if it exists I emit the rating number of cover image (Stranger Things)
+    if (this.ratingNumberCover?.[1]) {
+      this.emitRatingNumber.emit(+this.ratingNumberCover[1]);
+    }
   }
 
-  playVideo(indexTheMovieDb: number) {
+  playVideo(indexTheMovieDb: number, event?: Event) {
+    //Used to avoid double open dialog, since there are two nested invocations function
+    if (event) {
+      event.stopPropagation();
+    }
+
     this.playStopEvent.emit(true);
 
     const dialogFullScreenPlayer: DynamicDialogRef = this.dialogService.open(
@@ -129,8 +138,12 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
     });
   }
 
-  onClickShowCheckIcon() {
+  onClickShowCheckIcon(event: Event) {
     this.showCheckIcon = !this.showCheckIcon;
+
+    if (event) {
+      event.stopPropagation();
+    }
   }
 
   openDialogCoverImage(
@@ -138,8 +151,14 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
     index: number,
     indexTvMazeSeries: number,
     indexTheMovieDb?: number,
-    logoImageURL?: string
+    logoImageURL?: string,
+    event?: Event
   ) {
+    //Used to avoid double open dialog, since there are two nested invocations function
+    if (event) {
+      event.stopPropagation();
+    }
+
     this.indexSelectedItem = index;
     this.coverImagePreviewModal = coverImage;
 

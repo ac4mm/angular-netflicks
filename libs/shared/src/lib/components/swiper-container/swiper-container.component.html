@@ -1,7 +1,7 @@
 <!-- Slider main container -->
 <div class="swiper">
   <p class="title-slide">
-    {{titleSlide}}
+    {{ titleSlide }}
   </p>
 
   <!-- Additional required wrapper -->
@@ -12,7 +12,7 @@
       *ngFor="let coverImage of coverImages; let i = index"
       #swiperSlides
     >
-      <img class="card-img" alt="Card image" [src]="coverImage" />
+      <img class="card-img" alt="Card image" [src]="coverImage"/>
       <div class="container-logo-img">
         <img
           class="logo-img"
@@ -23,14 +23,26 @@
       </div>
 
       <!-- Detail Card -->
-      <div class="card-details">
+      <div
+        class="card-details"
+        *ngIf="logoImages?.[i] as logo"
+        (click)="
+          openDialogCoverImage(
+            coverImage,
+            i,
+            coverIndexImages[i],
+            coverIndexImagesTMDB[i],
+            logo
+          )
+        "
+      >
         <div class="card-icons">
           <!-- Play button -->
           <nf-play-button
-            (click)="playVideo(coverIndexImagesTMDB[i])"
+            (click)="playVideo(coverIndexImagesTMDB[i], $event)"
           ></nf-play-button>
 
-          <div (click)="onClickShowCheckIcon()">
+          <div (click)="onClickShowCheckIcon($event)">
             <!-- Add button  -->
             <nf-add-button *ngIf="showCheckIcon"></nf-add-button>
 
@@ -61,21 +73,22 @@
           </div>
 
           <!-- Thumb up -->
-          <nf-thumb-up-button></nf-thumb-up-button>
+          <nf-thumb-up-button (click)="$event.stopPropagation()"></nf-thumb-up-button>
 
           <!-- expand -->
           <nf-expand-button
             *ngIf="logoImages?.[i] as logo"
             style="margin-left: auto"
             (click)="
-                openDialogCoverImage(
-                  coverImage,
-                  i,
-                  coverIndexImages[i],
-                  coverIndexImagesTMDB[i],
-                  logo
-                )
-              "
+              openDialogCoverImage(
+                coverImage,
+                i,
+                coverIndexImages[i],
+                coverIndexImagesTMDB[i],
+                logo,
+                $event
+              )
+            "
           ></nf-expand-button>
         </div>
         <div class="video-metadata-container-info">
@@ -87,10 +100,7 @@
               <span class="rating-number">{{ ratingNumberCover[i] }}+</span>
             </div>
 
-            <div
-              class="duration"
-              *ngFor="let season of numbersOfSeasons?.[i]"
-            >
+            <div class="duration" *ngFor="let season of numbersOfSeasons[i]">
               <span>{{ season }} seasons</span>
             </div>
             <div class="player-feature-badge">
@@ -103,7 +113,7 @@
             <div class="evidence-list">
               <div
                 class="evidence-item"
-                *ngFor="let genre of genresCoverImages?.[i]"
+                *ngFor="let genre of genresCoverImages[i]"
               >
                 <span class="evidence-text">{{ genre }}</span>
               </div>
