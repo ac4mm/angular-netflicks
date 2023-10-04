@@ -12,14 +12,16 @@
       *ngFor="let coverImage of coverImages; let i = index"
       #swiperSlides
     >
-      <img class="card-img" alt="Card image" [src]="coverImage"/>
-      <div class="container-logo-img">
-        <img
-          class="logo-img"
-          alt="Logo image"
-          *ngIf="logoImages?.[i] as logo"
-          [src]="'https://image.tmdb.org/t/p/w500' + logo"
-        />
+      <div (click)="playVideo(coverIndexImagesTMDB[i], $event)">
+        <img class="card-img" alt="Card image" [src]="coverImage" />
+        <div class="container-logo-img">
+          <img
+            class="logo-img"
+            alt="Logo image"
+            *ngIf="logoImages?.[i] as logo"
+            [src]="'https://image.tmdb.org/t/p/w500' + logo"
+          />
+        </div>
       </div>
 
       <!-- Detail Card -->
