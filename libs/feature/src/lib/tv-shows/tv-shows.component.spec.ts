@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TvShowsComponent } from './tv-shows.component';
+import { SharedModule } from '../../../../shared/src/lib/shared.module';
 
 describe('TvShowsComponent', () => {
   let component: TvShowsComponent;
@@ -8,9 +9,9 @@ describe('TvShowsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TvShowsComponent ]
-    })
-    .compileComponents();
+      declarations: [TvShowsComponent],
+      imports: [SharedModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

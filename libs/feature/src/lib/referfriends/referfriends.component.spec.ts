@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ReferfriendsComponent } from './referfriends.component';
+import { SharedModule } from '../../../../shared/src/lib/shared.module';
 
 describe('ReferfriendsComponent', () => {
   let component: ReferfriendsComponent;
@@ -8,9 +9,9 @@ describe('ReferfriendsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReferfriendsComponent ]
-    })
-    .compileComponents();
+      declarations: [ReferfriendsComponent],
+      imports: [SharedModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

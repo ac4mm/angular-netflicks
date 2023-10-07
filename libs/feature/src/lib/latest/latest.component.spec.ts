@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { LatestComponent } from './latest.component';
-
+import { SharedModule } from '../../../../shared/src/lib/shared.module';
 describe('LatestComponent', () => {
   let component: LatestComponent;
   let fixture: ComponentFixture<LatestComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ LatestComponent ]
-    })
-    .compileComponents();
+      declarations: [LatestComponent],
+      imports: [SharedModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

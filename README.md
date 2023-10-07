@@ -1,7 +1,7 @@
 # Angular 16, RxJS and Bootstrap
 
 <p align="center">
-  <img alt="angular-netflicks-logo" src="meta-assets/angular_netflicks_logo.png" width="128" height="128" />
+  <img alt="angular-netflicks-logo" src="meta-assets/angular_netflicks_logo.png" width="160" height="160" />
 </p>
 
 A case study of **Netflix Clone**, using Angular 16 framework, 

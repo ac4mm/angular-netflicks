@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { KidsComponent } from './kids.component';
-
+import { SharedModule } from '../../../../shared/src/lib/shared.module';
 describe('KidsComponent', () => {
   let component: KidsComponent;
   let fixture: ComponentFixture<KidsComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ KidsComponent ]
-    })
-    .compileComponents();
+      declarations: [KidsComponent],
+      imports: [SharedModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
