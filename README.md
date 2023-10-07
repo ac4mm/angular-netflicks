@@ -1,10 +1,16 @@
 # Angular 16, RxJS and Bootstrap
+
+<p style="text-align:center">
+  <img alt="angular-netflicks-logo" src="meta-assets/angular_netflicks_logo.png" width="128" height="128" />
+</p>
+
 A case study of **Netflix Clone**, using Angular 16 framework, 
 [RxJS](https://rxjs.dev/) library for manage state with Observable, 
 [Nx](https://nx.dev/) for manage library and shared component in monorepo, 
 Bootstrap for style (Scss), [Swipe.js](https://swiperjs.com/) for animation carousel, 
 [Tv Maze API](https://www.tvmaze.com/api) and The [Movie DB API](https://developer.themoviedb.org/reference/intro/getting-started) for the data and [Youtube player](https://github.com/angular/components/blob/main/src/youtube-player/README.md), 
 that wrap the embed Youtube player API.
+
 
 
 ## Demo Preview
