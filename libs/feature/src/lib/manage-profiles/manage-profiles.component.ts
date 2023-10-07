@@ -1,17 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'nf-manage-profiles',
-  templateUrl: './manage-profiles.component.html',
-  styleUrls: ['./manage-profiles.component.scss']
+  template: `
+    <nf-profile-gate
+      [mainTitle]="mainTitle"
+      [showManageProfile]="true"
+    ></nf-profile-gate>
+  `,
 })
-export class ManageProfilesComponent implements OnInit {
-
+export class ManageProfilesComponent {
   mainTitle = 'Manage Profiles:';
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

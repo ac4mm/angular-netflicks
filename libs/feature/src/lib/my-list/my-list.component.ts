@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'nf-my-list',
-  templateUrl: './my-list.component.html',
-  styleUrls: ['./my-list.component.scss'],
+  template: ` <nf-skeleton-card></nf-skeleton-card> `,
 })
-export class MyListComponent {
-  constructor() {}
-}
+export class MyListComponent {}

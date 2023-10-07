@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'nf-referfriends',
-  templateUrl: './referfriends.component.html',
-  styleUrls: ['./referfriends.component.scss'],
+  template: `<nf-skeleton-card></nf-skeleton-card>`,
 })
-export class ReferfriendsComponent {
-  constructor() {}
-}
+export class ReferfriendsComponent {}

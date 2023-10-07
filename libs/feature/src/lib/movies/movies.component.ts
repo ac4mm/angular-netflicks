@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'nf-movies',
-  templateUrl: './movies.component.html',
-  styleUrls: ['./movies.component.scss'],
+  template: ` <nf-skeleton-card></nf-skeleton-card> `,
 })
-export class MoviesComponent {
-  constructor() {}
-}
+export class MoviesComponent {}

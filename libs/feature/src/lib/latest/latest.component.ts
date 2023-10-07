@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'nf-latest',
-  templateUrl: './latest.component.html',
-  styleUrls: ['./latest.component.scss'],
+  template: `<nf-skeleton-card></nf-skeleton-card>`,
 })
-export class LatestComponent {
-  constructor() {}
-}
+export class LatestComponent {}

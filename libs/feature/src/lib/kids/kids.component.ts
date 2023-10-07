@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'nf-kids',
-  templateUrl: './kids.component.html',
-  styleUrls: ['./kids.component.scss'],
+  template: ` <nf-skeleton-card></nf-skeleton-card> `,
 })
-export class KidsComponent {
-  constructor() {}
-}
+export class KidsComponent {}
