@@ -1,6 +1,6 @@
 # Angular 16, RxJS and Bootstrap
 
-<p style="text-align:center">
+<p align="center">
   <img alt="angular-netflicks-logo" src="meta-assets/angular_netflicks_logo.png" width="128" height="128" />
 </p>
 
