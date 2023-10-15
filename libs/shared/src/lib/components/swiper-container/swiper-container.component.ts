@@ -27,7 +27,7 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
   @Input() logoImages: string[] = [];
   @Input() coverIndexImages: number[] = [];
   @Input() coverIndexImagesTMDB: number[] = [];
-  @Input() numbersOfSeasons: string[] = [];
+  @Input() numbersOfSeasons: any[] = [];
   @Input() genresCoverImages: string[] = [];
 
   @Output() playStopEvent = new EventEmitter<any>();

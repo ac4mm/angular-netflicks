@@ -95,14 +95,14 @@
         </div>
         <div class="video-metadata-container-info">
           <div class="first-line-info">
-            <span class="match-score">{{ randMatchScore[i] }}% Match</span>
+            <span class="match-score">{{ randMatchScore?.[i] }}% Match</span>
           </div>
           <div class="second-line-info">
             <div class="maturity-rating">
-              <span class="rating-number">{{ ratingNumberCover[i] }}+</span>
+              <span class="rating-number">{{ ratingNumberCover?.[i] }}+</span>
             </div>
 
-            <div class="duration" *ngFor="let season of numbersOfSeasons[i]">
+            <div class="duration" *ngFor="let season of numbersOfSeasons?.[i]">
               <span>{{ season }} seasons</span>
             </div>
             <div class="player-feature-badge">
@@ -112,7 +112,7 @@
         </div>
         <div class="video-metadata-container-tags">
           <div class="evidence-tags">
-            <div class="evidence-list">
+            <div class="evidence-list" *ngIf="i">
               <div
                 class="evidence-item"
                 *ngFor="let genre of genresCoverImages[i]"
