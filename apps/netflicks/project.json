@@ -1,0 +1,153 @@
+{
+  "name": "netflicks",
+  "root": "apps/netflicks",
+  "sourceRoot": "apps/netflicks/src",
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  },
+  "prefix": "nf",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "outputPath": "dist/apps/netflicks",
+        "index": {
+          "input": "apps/netflicks/src/index.html",
+          "output": "index.html"
+        },
+        "main": "apps/netflicks/src/main.ts",
+        "polyfills": "apps/netflicks/src/polyfills.ts",
+        "tsConfig": "apps/netflicks/tsconfig.app.json",
+        "assets": [
+          "apps/netflicks/src/fevicon.ico",
+          "apps/netflicks/src/assets"
+        ],
+        "styles": [
+          "apps/netflicks/src/styles.scss",
+          "./node_modules/bootstrap/scss/bootstrap.scss",
+          "./node_modules/swiper/swiper.scss",
+          "node_modules/primeng/resources/themes/md-light-indigo/theme.css",
+          "node_modules/primeng/resources/primeng.min.css",
+          "node_modules/primeicons/primeicons.css"
+        ],
+        "scripts": [
+          "./node_modules/jquery/dist/jquery.min.js",
+          "./node_modules/popper.js/dist/umd/popper.min.js",
+          "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+        ],
+        "vendorChunk": true,
+        "extractLicenses": false,
+        "buildOptimizer": false,
+        "sourceMap": true,
+        "optimization": false,
+        "namedChunks": true
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/netflicks/src/environments/environment.ts",
+              "with": "apps/netflicks/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            }
+          ]
+        }
+      },
+      "defaultConfiguration": "",
+      "outputs": [
+        "{options.outputPath}"
+      ]
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "browserTarget": "netflicks:build"
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "netflicks:build:production"
+        }
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "netflicks:build"
+      }
+    },
+    "server": {
+      "executor": "@angular-devkit/build-angular:server",
+      "options": {
+        "outputPath": "dist/netflicks/server",
+        "main": "server.ts",
+        "tsConfig": "tsconfig.server.json",
+        "sourceMap": true,
+        "optimization": false
+      },
+      "configurations": {
+        "production": {
+          "outputHashing": "media",
+          "fileReplacements": [
+            {
+              "replace": "src/environments/environment.ts",
+              "with": "src/environments/environment.prod.ts"
+            }
+          ],
+          "sourceMap": false,
+          "optimization": true
+        }
+      },
+      "defaultConfiguration": "",
+      "outputs": [
+        "{options.outputPath}"
+      ]
+    },
+    "serve-ssr": {
+      "executor": "@nguniversal/builders:ssr-dev-server",
+      "options": {
+        "browserTarget": "netflicks:build",
+        "serverTarget": "netflicks:server"
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "netflicks:build:production",
+          "serverTarget": "netflicks:server:production"
+        }
+      }
+    },
+    "prerender": {
+      "executor": "@nguniversal/builders:prerender",
+      "options": {
+        "browserTarget": "netflicks:build:production",
+        "serverTarget": "netflicks:server:production",
+        "routes": [
+          "/"
+        ]
+      },
+      "configurations": {
+        "production": {}
+      }
+    }
+  }
+}

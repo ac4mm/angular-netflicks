@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "nx": "nx",
-    "start": "nx serve",
+    "start": "nx run netflicks:serve",
     "start:local": " nx serve netflicks --host 0.0.0.0",
     "start-prod": "nx serve --configuration=production",
     "build": "nx build netflicks --configuration production",

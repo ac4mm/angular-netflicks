@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/spec",
+    "types": [
+      "jest",
+      "node"
+    ]
+  },
+  "include": [
+    "apps/netflicks/src/**/*.spec.ts",
+    "apps/netflicks/src/**/*.d.ts"
+  ]
+}

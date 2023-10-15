@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  background-color: #141414 !important;
+}
+
+body {
+  /* Hide horizontal scroll */
+  overflow-x: hidden !important;
+}
+
+h2,
+h3,
+p,
+a {
+  color: #e5e5e5;
+}
+
+/**For Chrome and Safari you can change the scrollbar style using this code*/
+::-webkit-scrollbar {
+  width: 15px;
+  height: 15px;
+}
+::-webkit-scrollbar-track-piece {
+  background-color: #242424;
+}
+::-webkit-scrollbar-thumb:vertical {
+  height: 25px;
+  background-color: #6a6a6a;
+}
