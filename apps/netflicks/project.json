@@ -148,6 +148,16 @@
       "configurations": {
         "production": {}
       }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/netflicks/src/**/*.ts",
+          "apps/netflicks/src/**/*.html"
+        ]
+      },
+      "outputs": ["{options.outputFile}"]
     }
   }
 }
