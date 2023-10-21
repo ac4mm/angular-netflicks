@@ -29,8 +29,10 @@ import {
   TheMovieDBService,
   TvMazeService,
   UtilitiesService,
+  RatingNumberObject,
 } from '@shared/netflicks';
 import { AuthService } from '../auth/auth.service';
+import { YouTubePlayer } from '@angular/youtube-player';
 
 @Component({
   selector: 'nf-home',
@@ -91,7 +93,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   randMatchScore: number[] = [];
 
   //7+ Kids (10%), 13+ teenagers (20%), 16+ (40%), 18+ adults (60%)
-  ratingNumberObject = { 7: 0.1, 13: 0.2, 16: 0.4, 18: 0.6 };
+  ratingNumberObject: RatingNumberObject = {
+    7: 0.1,
+    13: 0.2,
+    16: 0.4,
+    18: 0.6,
+  };
   ratingNumberCover: (string | undefined)[] = [];
 
   //Logos
@@ -122,7 +129,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   //Utils player Youtube video
   showVideoPreview = false;
 
-  @ViewChild('player') player: any;
+  @ViewChild('player') player: YouTubePlayer;
   keyYTVideo: string;
   playerVars: {
     autohide: 1;
@@ -267,7 +274,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onReplayVideo() {
     this.showRefreshIcon = false;
-    this.player.seekTo(0);
+    this.player.seekTo(0, true);
     this.player.playVideo();
   }
 
@@ -518,7 +525,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   //Use prevision random algorithm with size
-  getWeightedRandomNumberInArr(objWithWeight: any, size: number) {
+  getWeightedRandomNumberInArr(
+    objWithWeight: RatingNumberObject,
+    size: number
+  ) {
     const arrWeightedRand = [];
     for (let i = 0; i < size; i++) {
       arrWeightedRand.push(

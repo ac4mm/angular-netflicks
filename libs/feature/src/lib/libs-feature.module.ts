@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { NavbarComponent } from './navbar/navbar.component';
-import { AppRoutingModule } from '../../../../apps/netflicks/src/app/app-routing.module';
 import { HomeModule } from './home/home.module';
 import { AuthModule } from './auth/auth.module';
 import { KidsComponent } from './kids/kids.component';
@@ -12,6 +11,7 @@ import { MoviesComponent } from './movies/movies.component';
 import { MyListComponent } from './my-list/my-list.component';
 import { ReferfriendsComponent } from './referfriends/referfriends.component';
 import { TvShowsComponent } from './tv-shows/tv-shows.component';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -25,10 +25,11 @@ import { TvShowsComponent } from './tv-shows/tv-shows.component';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule,
     AuthModule,
     HomeModule,
     SharedModule,
+    RouterLinkActive,
+    RouterLink,
   ],
   exports: [
     NavbarComponent,

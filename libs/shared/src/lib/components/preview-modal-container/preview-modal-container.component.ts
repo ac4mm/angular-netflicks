@@ -14,19 +14,19 @@ import {
 } from 'rxjs';
 
 import { NfFullscreenPlayerComponent } from '../fullscreen-player/nf-fullscreen-player.component';
-import {
-  TvMazeService,
-  UtilitiesService,
-  TheMovieDBService,
-  ManagePlayerService,
-} from '@shared/netflicks';
+import { TvMazeService } from '../../services/tvmaze.service';
+import { UtilitiesService } from '../../services/utilities.service';
+import { TheMovieDBService } from '../../services/themoviedb.service';
+import { ManagePlayerService } from '../../services/manage-player.service';
+import { YouTubePlayer } from '@angular/youtube-player';
+
 @Component({
   selector: 'nf-preview-modal-container',
   templateUrl: './preview-modal-container.component.html',
   styleUrls: ['./preview-modal-container.component.scss'],
 })
 export class PreviewModalContainerComponent implements OnInit, OnDestroy {
-  @ViewChild('player') player: any;
+  @ViewChild('player') player: YouTubePlayer;
 
   @Input() seasonSelected = 1;
   @Input() seasonSelector: any = [];

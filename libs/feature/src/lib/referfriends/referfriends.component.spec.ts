@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ReferfriendsComponent } from './referfriends.component';
-import { SharedModule } from '../../../../shared/src/lib/shared.module';
+import { SharedModule } from '@shared/netflicks';
 
 describe('ReferfriendsComponent', () => {
   let component: ReferfriendsComponent;

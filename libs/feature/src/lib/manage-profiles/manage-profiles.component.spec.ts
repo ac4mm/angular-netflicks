@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ManageProfilesComponent } from './manage-profiles.component';
-import { SharedModule } from '../../../../shared/src/lib/shared.module';
+import { SharedModule } from '@shared/netflicks';
 
 describe('ManageProfilesComponent', () => {
   let component: ManageProfilesComponent;

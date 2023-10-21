@@ -13,7 +13,6 @@ import { NfThumbUpButtonComponent } from './components/buttons/nf-thumb-up-butto
 import { NfExpandButtonComponent } from './components/buttons/nf-expand-button.component';
 import { SkeletonCardComponent } from './components/skeleton-card/skeleton-card.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
-import { DropdownDirective } from './directive/dropdown.directive';
 import { NfFullscreenPlayerComponent } from './components/fullscreen-player/nf-fullscreen-player.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { NfFullscreenLogoComponent } from './components/fullscreen-logo/nf-fullscreen-logo.component';
@@ -34,7 +33,6 @@ import { SwiperContainerComponent } from './components/swiper-container/swiper-c
     NfSpeakerdownButtonComponent,
     NfSpeakerupButtonComponent,
     LoadingSpinnerComponent,
-    DropdownDirective,
     SkeletonCardComponent,
     NfFullscreenPlayerComponent,
     NfFullscreenLogoComponent,
@@ -53,7 +51,6 @@ import { SwiperContainerComponent } from './components/swiper-container/swiper-c
     NfSpeakerdownButtonComponent,
     NfSpeakerupButtonComponent,
     LoadingSpinnerComponent,
-    DropdownDirective,
     SkeletonCardComponent,
     NfFullscreenPlayerComponent,
     NfFullscreenLogoComponent,

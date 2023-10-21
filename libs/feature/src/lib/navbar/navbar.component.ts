@@ -25,7 +25,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<void>();
 
-  searchBox: any = document.getElementsByClassName('search-box');
+  searchBox: HTMLCollectionOf<Element> =
+    document.getElementsByClassName('search-box');
 
   constructor(
     private elRef: ElementRef,

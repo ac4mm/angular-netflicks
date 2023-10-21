@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { MyListComponent } from './my-list.component';
-import { SharedModule } from '../../../../shared/src/lib/shared.module';
+import { SharedModule } from '@shared/netflicks';
 
 describe('MyListComponent', () => {
   let component: MyListComponent;

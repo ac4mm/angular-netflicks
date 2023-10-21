@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { LatestComponent } from './latest.component';
-import { SharedModule } from '../../../../shared/src/lib/shared.module';
+import { SharedModule } from '@shared/netflicks';
 describe('LatestComponent', () => {
   let component: LatestComponent;
   let fixture: ComponentFixture<LatestComponent>;

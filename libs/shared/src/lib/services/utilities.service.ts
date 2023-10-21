@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { RatingNumberObject } from '../model/shared-types.model';
 
 @Injectable({ providedIn: 'root' })
 export class UtilitiesService {
@@ -25,7 +26,7 @@ export class UtilitiesService {
   /* Pick a rand number in [0,1) and iterate over the weight specification summing the weights
     if the random number is less than the sum then return the associated value.
     */
-  getWeightedRandomNumber(objWithWeight: any) {
+  getWeightedRandomNumber(objWithWeight: RatingNumberObject) {
     let i;
     let sum = 0;
     const r = Math.random();

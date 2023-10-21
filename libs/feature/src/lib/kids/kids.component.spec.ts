@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { KidsComponent } from './kids.component';
-import { SharedModule } from '../../../../shared/src/lib/shared.module';
+import { SharedModule } from '@shared/netflicks';
 describe('KidsComponent', () => {
   let component: KidsComponent;
   let fixture: ComponentFixture<KidsComponent>;

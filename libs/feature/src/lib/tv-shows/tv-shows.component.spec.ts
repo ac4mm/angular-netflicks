@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TvShowsComponent } from './tv-shows.component';
-import { SharedModule } from '../../../../shared/src/lib/shared.module';
+import { SharedModule } from '@shared/netflicks';
 
 describe('TvShowsComponent', () => {
   let component: TvShowsComponent;

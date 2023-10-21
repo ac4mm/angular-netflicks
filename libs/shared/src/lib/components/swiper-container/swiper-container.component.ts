@@ -15,6 +15,7 @@ import { UtilitiesService } from '../../services/utilities.service';
 import { NfFullscreenLogoComponent } from '../fullscreen-logo/nf-fullscreen-logo.component';
 import { NfFullscreenPlayerComponent } from '../fullscreen-player/nf-fullscreen-player.component';
 import { PreviewModalContainerComponent } from '../preview-modal-container/preview-modal-container.component';
+import { YouTubePlayer } from '@angular/youtube-player';
 
 @Component({
   selector: 'nf-swiper-container',
@@ -42,7 +43,7 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
   showCheckIcon = true;
   showRefreshIcon = false;
 
-  @ViewChild('player') player: any;
+  @ViewChild('player') player: YouTubePlayer;
 
   indexSelectedItem: number;
   coverImagePreviewModal: string;
@@ -116,12 +117,6 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
           this.playStopEvent.emit(false);
         }, 3000);
       });
-  }
-
-  onReplayVideo() {
-    this.showRefreshIcon = false;
-    this.player.seekTo(0);
-    this.player.playVideo();
   }
 
   openFullScreenLogo() {

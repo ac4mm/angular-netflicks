@@ -1,16 +1,18 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { TheMovieDBService } from '../../services/themoviedb.service';
 import { ManagePlayerService } from '../../services/manage-player.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BehaviorSubject, Observable, map } from 'rxjs';
+import { YouTubePlayer } from '@angular/youtube-player';
+
 @Component({
   selector: 'nf-fullscreen-player',
   templateUrl: 'nf-fullscreen-player.component.html',
   styleUrls: ['nf-fullscreen-player.component.scss'],
 })
-export class NfFullscreenPlayerComponent {
-  @ViewChild('player') player: any;
+export class NfFullscreenPlayerComponent implements OnInit {
+  @ViewChild('player') player: YouTubePlayer;
 
   playerVars = {
     autoHide: 1,
@@ -33,12 +35,13 @@ export class NfFullscreenPlayerComponent {
 
   episodeTitle = 'Official Trailer';
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   rootElem: HTMLElement | any;
   isMaximixe = false;
   showSpeakerUpIcon = true;
   showPlayIcon = true;
   valuePlayerBar = 0;
-  maxValueRange: any;
+  maxValueRange: number;
 
   seriesTvMainTitle$: Observable<any>;
   seriesTvVideoKey$: Observable<any>;
@@ -82,6 +85,7 @@ export class NfFullscreenPlayerComponent {
     // Update the controls on load
     this.updateProgressBar();
 
+    console.log('this.player:', this.player);
     this.maxValueRange = this.player.getDuration();
 
     setInterval(() => {
@@ -111,7 +115,7 @@ export class NfFullscreenPlayerComponent {
     const newTime = this.player.getDuration() * (event.target.value / 100);
 
     // Skip video to new time.
-    this.player.seekTo(newTime);
+    this.player.seekTo(newTime, true);
   }
 
   onClickClose() {
@@ -136,11 +140,11 @@ export class NfFullscreenPlayerComponent {
   }
 
   goAhead10sNext() {
-    this.player.seekTo(this.player.getCurrentTime() + 10);
+    this.player.seekTo(this.player.getCurrentTime() + 10, true);
   }
 
   comeBack10sPrev() {
-    this.player.seekTo(this.player.getCurrentTime() - 10);
+    this.player.seekTo(this.player.getCurrentTime() - 10, true);
   }
 
   maximizeFullscreen() {
