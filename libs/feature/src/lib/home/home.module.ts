@@ -8,7 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ProfileGateComponent } from './profile-gate/profile-gate.component';
 
 import { ManageProfilesComponent } from '../manage-profiles/manage-profiles.component';
-import { PreviewModalContainerComponent } from './preview-modal-container/preview-modal-container.component';
+import { PreviewModalContainerComponent } from '@shared/netflicks';
 
 import { DialogModule } from 'primeng/dialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';

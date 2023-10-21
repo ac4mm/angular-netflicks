@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment } from '../../../../../apps/netflicks/src/environments/environment';
 
 export type TypeShow = 'movie' | 'tv';
 
@@ -10,13 +9,17 @@ export type TypeShow = 'movie' | 'tv';
   providedIn: 'root',
 })
 export class TheMovieDBService {
-  API_KEY_THEMOVIEDB: string;
-  BASEPATH: string = 'https://api.themoviedb.org/3';
+  BASEPATH = 'https://api.themoviedb.org/3';
+  private _environment: string;
 
-  BASEPATHIMAGE: string = 'https://image.tmdb.org/t/p/original/';
+  constructor(public http: HttpClient) {}
 
-  constructor(public http: HttpClient) {
-    this.API_KEY_THEMOVIEDB = environment.API_KEY_THEMOVIEDB;
+  setEnvironment(environment: string) {
+    this._environment = environment;
+  }
+
+  getEnvironment() {
+    return this._environment;
   }
 
   getTvMovieDetailById(
@@ -31,7 +34,7 @@ export class TheMovieDBService {
           '/' +
           movieId +
           '?api_key=' +
-          this.API_KEY_THEMOVIEDB
+          this.getEnvironment()
       )
       .pipe(map((res) => res));
   }
@@ -48,7 +51,7 @@ export class TheMovieDBService {
           '/' +
           movieId +
           '/images?api_key=' +
-          this.API_KEY_THEMOVIEDB
+          this.getEnvironment()
       )
       .pipe(map((res) => res));
   }
@@ -65,7 +68,7 @@ export class TheMovieDBService {
           '/' +
           movieId +
           '/videos?api_key=' +
-          this.API_KEY_THEMOVIEDB
+          this.getEnvironment()
       )
       .pipe(map((res) => res));
   }

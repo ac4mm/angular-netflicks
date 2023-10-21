@@ -14,7 +14,7 @@ import Swiper, { A11y, Mousewheel, Navigation, Pagination } from 'swiper';
 import { UtilitiesService } from '../../services/utilities.service';
 import { NfFullscreenLogoComponent } from '../fullscreen-logo/nf-fullscreen-logo.component';
 import { NfFullscreenPlayerComponent } from '../fullscreen-player/nf-fullscreen-player.component';
-import { PreviewModalContainerComponent } from '../../../../../feature/src/lib/home/preview-modal-container/preview-modal-container.component';
+import { PreviewModalContainerComponent } from '../preview-modal-container/preview-modal-container.component';
 
 @Component({
   selector: 'nf-swiper-container',

@@ -13,14 +13,12 @@ import {
   takeUntil,
 } from 'rxjs';
 
-import { DomSanitizer } from '@angular/platform-browser';
-
+import { NfFullscreenPlayerComponent } from '../fullscreen-player/nf-fullscreen-player.component';
 import {
   TvMazeService,
   UtilitiesService,
   TheMovieDBService,
   ManagePlayerService,
-  NfFullscreenPlayerComponent,
 } from '@shared/netflicks';
 @Component({
   selector: 'nf-preview-modal-container',
@@ -94,7 +92,6 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
     private tvmazeService: TvMazeService,
     private themovieDbService: TheMovieDBService,
     public utilitiesService: UtilitiesService,
-    public sanitizer: DomSanitizer,
     private managePlayerService: ManagePlayerService,
     public dialogService: DialogService
   ) {}

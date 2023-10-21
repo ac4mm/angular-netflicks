@@ -20,8 +20,8 @@ import {
 } from 'rxjs';
 import Swiper from 'swiper';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { PreviewModalContainerComponent } from './preview-modal-container/preview-modal-container.component';
 import {
+  PreviewModalContainerComponent,
   ManagePlayerService,
   NfFullscreenLogoComponent,
   NfFullscreenPlayerComponent,
