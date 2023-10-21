@@ -2,6 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import {
+  ImageDetail,
+  MovieDetail,
+  VideoDetail,
+} from '../model/themoviedb.model';
 
 export type TypeShow = 'movie' | 'tv';
 
@@ -25,7 +30,7 @@ export class TheMovieDBService {
   getTvMovieDetailById(
     movieId: number,
     typeShow: TypeShow = 'movie'
-  ): Observable<any> {
+  ): Observable<MovieDetail> {
     return this.http
       .get(
         this.BASEPATH +
@@ -36,13 +41,13 @@ export class TheMovieDBService {
           '?api_key=' +
           this.getEnvironment()
       )
-      .pipe(map((res) => res));
+      .pipe(map((res) => res as MovieDetail));
   }
 
   getImagesById(
     movieId: number,
     typeShow: TypeShow = 'movie'
-  ): Observable<any> {
+  ): Observable<ImageDetail> {
     return this.http
       .get(
         this.BASEPATH +
@@ -53,13 +58,13 @@ export class TheMovieDBService {
           '/images?api_key=' +
           this.getEnvironment()
       )
-      .pipe(map((res) => res));
+      .pipe(map((res) => res as ImageDetail));
   }
 
   getVideosById(
     movieId: number,
     typeShow: TypeShow = 'movie'
-  ): Observable<any> {
+  ): Observable<VideoDetail> {
     return this.http
       .get(
         this.BASEPATH +
@@ -70,6 +75,6 @@ export class TheMovieDBService {
           '/videos?api_key=' +
           this.getEnvironment()
       )
-      .pipe(map((res) => res));
+      .pipe(map((res) => res as VideoDetail));
   }
 }

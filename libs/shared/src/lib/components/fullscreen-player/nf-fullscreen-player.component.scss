@@ -1,8 +1,4 @@
 @font-face {
-  font-family: Aestetico-bold;
-  src: url("/assets/font/Aestetico-bold.otf");
-  font-family: Aestetico-thin;
-  src: url("/assets/font/Aestetico-thin.otf");
   font-family: Aestetico-light;
   src: url("/assets/font/Aestetico-light.otf");
 }
@@ -87,7 +83,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
   width: 100%;
   align-items: normal;
   justify-content: normal;
-  padding: 0px 1.8rem;
+  padding: 0 1.8rem;
 }
 
 .player-progress-bar {
@@ -97,8 +93,8 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .progress-range-bar {
   box-sizing: border-box;
   display: flex;
-  min-height: 0px;
-  min-width: 0px;
+  min-height: 0;
+  min-width: 0;
   position: relative;
   width: 100%;
 }
@@ -108,6 +104,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
   width: 100%;
   height: 20px;
   cursor: pointer;
+  z-index: 1;
 }
 
 input[type="range"] {
@@ -117,8 +114,8 @@ input[type="range"] {
 .duration {
   box-sizing: border-box;
   display: flex;
-  min-height: 0px;
-  min-width: 0px;
+  min-height: 0;
+  min-width: 0;
   max-height: 1.2rem;
   position: relative;
   padding-left: 1rem;
@@ -149,7 +146,7 @@ input[type="range"] {
 
 .top-player-bar,
 .player-controller {
-  padding: 0px 1rem;
+  padding: 0 1rem;
 }
 
 .bottom-player-bar > .custom-btn,
@@ -168,8 +165,8 @@ input[type="range"] {
 .title-player {
   color: #fff;
   width: 100%;
-  min-height: 0px;
-  min-width: 0px;
+  min-height: 0;
+  min-width: 0;
   direction: ltr;
   font-size: 3rem;
   overflow: hidden;

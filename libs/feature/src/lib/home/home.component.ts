@@ -30,6 +30,7 @@ import {
   TvMazeService,
   UtilitiesService,
   RatingNumberObject,
+  CoverImage,
 } from '@shared/netflicks';
 import { AuthService } from '../auth/auth.service';
 import { YouTubePlayer } from '@angular/youtube-player';
@@ -50,7 +51,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   selectedIdMainTvMaze: number;
   selectedIdMainTMDB: number;
 
-  coverMainImageAndTypography$: Observable<string[]>;
+  coverMainImageAndTypography$: Observable<CoverImage[]>;
 
   coverImgKeepWatching$: Observable<string[]>;
   coverImgMyList$: Observable<string[]>;
@@ -114,10 +115,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   genresCoverImagesTvShows$: Observable<string[]>;
 
   //Seasons
-  numbersOfSeasonsKeepWatching$: Observable<string[]>;
-  numbersOfSeasonsMyList$: Observable<string[]>;
-  numbersOfSeasonsTopRatedMovies$: Observable<string[]>;
-  numbersOfSeasonsTvShows$: Observable<string[]>;
+  numbersOfSeasonsKeepWatching$: Observable<number[]>;
+  numbersOfSeasonsMyList$: Observable<number[]>;
+  numbersOfSeasonsTopRatedMovies$: Observable<number[]>;
+  numbersOfSeasonsTvShows$: Observable<number[]>;
 
   showSpeakerUpIcon = true;
   showRefreshIcon = false;
@@ -359,8 +360,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     coverId: number,
     indexBackground: number = 0,
     indexTypography: number = 0
-  ): Observable<any[]> {
-    const finalCoverTypoImage: any[] = [];
+  ): Observable<CoverImage[]> {
+    const finalCoverTypoImage: CoverImage[] = [];
 
     return this.tvmazeService.searchImagesMovie(coverId).pipe(
       map((images) => {
@@ -381,17 +382,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
 
-  getLogoImagesById$(coverIndexImg: number[]): Observable<any[]> {
-    const finalLogos: any[] = [];
+  getLogoImagesById$(coverIndexImg: number[]): Observable<string[]> {
+    const finalLogos: string[] | undefined = [];
 
     return from(coverIndexImg).pipe(
       concatMap((item) =>
         this.themoviedbService.getImagesById(item, 'tv').pipe(
           map((images) => {
-            const filterByLangEn = images?.['logos'].filter(
-              (logo: { iso_639_1: string }) => logo.iso_639_1 === 'en'
+            const filterByLangEn = images?.logos.filter(
+              (logo) => logo.iso_639_1 === 'en'
             );
-            finalLogos.push(filterByLangEn[0]?.file_path);
+            finalLogos.push(<string>filterByLangEn[0]?.file_path);
             return finalLogos;
           })
         )
@@ -400,13 +401,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
 
-  getAllCoverImagesById$(coverIndexImg: number[]): Observable<any[]> {
-    const finalCoverImages: any[] = [];
+  getAllCoverImagesById$(coverIndexImg: number[]): Observable<string[]> {
+    const finalCoverImages: string[] = [];
 
     return from(coverIndexImg).pipe(
       concatMap((item) => this.tvmazeService.searchImagesMovie(item)),
       switchMap((images) => {
-        const backgroundImages = images.filter(
+        const backgroundImages: CoverImage[] = images.filter(
           (image) => image.type === 'background'
         );
         const bannerImages = images.filter((image) => image.type === 'banner');
@@ -465,7 +466,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
 
-  getAllNumbersOfSeasonsById$(coverIndexImg: number[]): Observable<any[]> {
+  getAllNumbersOfSeasonsById$(coverIndexImg: number[]): Observable<number[]> {
     const finalNumberSeasons: any[] = [];
 
     return from(coverIndexImg).pipe(
@@ -482,7 +483,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   openDialogCoverImage(
-    coverImage: any,
+    coverImage: string,
     index: number,
     indexTvMazeSeries: number,
     indexTheMovieDb?: number,

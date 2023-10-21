@@ -19,6 +19,7 @@ import { UtilitiesService } from '../../services/utilities.service';
 import { TheMovieDBService } from '../../services/themoviedb.service';
 import { ManagePlayerService } from '../../services/manage-player.service';
 import { YouTubePlayer } from '@angular/youtube-player';
+import { MainInfo, ValueEpisode } from '../../model/tvmaze.model';
 
 @Component({
   selector: 'nf-preview-modal-container',
@@ -29,14 +30,14 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
   @ViewChild('player') player: YouTubePlayer;
 
   @Input() seasonSelected = 1;
-  @Input() seasonSelector: any = [];
   @Input() showSpeakerUpIcon = true;
   @Input() showCheckIcon = true;
-  @Input() displayModal: any;
 
-  seriesTvInfo$: Observable<any>;
-  seriesTvMainInfoDetail$: Observable<any>;
-  finalArrayTvInfo$ = new BehaviorSubject<any>([]);
+  seriesTvInfo$: Observable<{ key: number; value: ValueEpisode[] }[]>;
+  seriesTvMainInfoDetail$: Observable<MainInfo>;
+  finalArrayTvInfo$ = new BehaviorSubject<
+    { key: number; value: ValueEpisode[] }[]
+  >([]);
   seriesSelectedDropdown$ = new BehaviorSubject<number>(0);
   peopleCastSeries$: Observable<string[]>;
 
@@ -166,23 +167,27 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
     );
   }
 
-  getAllSeriesTvInfo$(coverIndexImg: number) {
-    const finalSeriesTvInfo: any[] = [];
+  getAllSeriesTvInfo$(
+    coverIndexImg: number
+  ): Observable<{ key: number; value: ValueEpisode[] }[]> {
+    const finalSeriesTvInfo: Map<any, any>[] = [];
 
     return this.tvmazeService.searchEpisodesById(coverIndexImg).pipe(
       concatMap((items) => {
-        const mapGroupBySeason = this.utilitiesService.groupBy(
+        const mapGroupBySeason: Map<any, any> = this.utilitiesService.groupBy(
           items,
-          (item: { season: any }) => item.season
+          (item: { season: number }) => item.season
         );
         finalSeriesTvInfo.push(mapGroupBySeason);
 
-        const finalArrayTvInfo = Array.from(
+        const finalArrayTvInfo: { key: any; value: any }[] = Array.from(
           finalSeriesTvInfo[0],
           ([key, value]) => ({ key, value })
         );
 
-        this.finalArrayTvInfo$.next(finalArrayTvInfo);
+        this.finalArrayTvInfo$.next(
+          finalArrayTvInfo as { key: number; value: ValueEpisode[] }[]
+        );
 
         return of(finalArrayTvInfo);
       })
@@ -190,14 +195,14 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
   }
 
   definedArrayDropdownSeasons(size: number) {
-    const seasonSelector = [];
+    const seasonSelector: number[] = [];
     for (let i = 1; i <= size; i++) {
       seasonSelector.push(i);
     }
     return seasonSelector;
   }
 
-  getAllPeopleCastById$(coverIndexImg: number) {
+  getAllPeopleCastById$(coverIndexImg: number): Observable<string[]> {
     return this.tvmazeService.searchCastById(coverIndexImg).pipe(
       concatMap((items) => {
         //Used Set to remove duplicate

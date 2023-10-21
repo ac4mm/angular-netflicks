@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RatingNumberObject } from '../model/shared-types.model';
+import { EpisodeDetail } from '../model/tvmaze.model';
 
 @Injectable({ providedIn: 'root' })
 export class UtilitiesService {
@@ -50,7 +51,7 @@ export class UtilitiesService {
    *
    * @returns Map of the array grouped by the grouping function.
    */
-  groupBy(list: any[], keyGetter: (arg0: any) => any) {
+  groupBy(list: EpisodeDetail[], keyGetter: (arg0: any) => number) {
     const map = new Map();
     list.forEach((item) => {
       const key = keyGetter(item);

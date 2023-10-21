@@ -16,6 +16,7 @@ import { NfFullscreenLogoComponent } from '../fullscreen-logo/nf-fullscreen-logo
 import { NfFullscreenPlayerComponent } from '../fullscreen-player/nf-fullscreen-player.component';
 import { PreviewModalContainerComponent } from '../preview-modal-container/preview-modal-container.component';
 import { YouTubePlayer } from '@angular/youtube-player';
+import { RatingNumberObject } from '../../model/shared-types.model';
 
 @Component({
   selector: 'nf-swiper-container',
@@ -28,10 +29,10 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
   @Input() logoImages: string[] = [];
   @Input() coverIndexImages: number[] = [];
   @Input() coverIndexImagesTMDB: number[] = [];
-  @Input() numbersOfSeasons: any[] = [];
+  @Input() numbersOfSeasons: number[] = [];
   @Input() genresCoverImages: string[] = [];
 
-  @Output() playStopEvent = new EventEmitter<any>();
+  @Output() playStopEvent = new EventEmitter<boolean>();
   @Output() emitRatingNumber = new EventEmitter<number>();
 
   randMatchScore: number[] = [];
@@ -142,7 +143,7 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
   }
 
   openDialogCoverImage(
-    coverImage: any,
+    coverImage: string,
     index: number,
     indexTvMazeSeries: number,
     indexTheMovieDb?: number,
@@ -188,7 +189,10 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
   }
 
   //Use prevision random algorithm with size
-  getWeightedRandomNumberInArr(objWithWeight: any, size: number) {
+  getWeightedRandomNumberInArr(
+    objWithWeight: RatingNumberObject,
+    size: number
+  ) {
     const arrWeightedRand = [];
     for (let i = 0; i < size; i++) {
       arrWeightedRand.push(

@@ -15,7 +15,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { SkeletonModule } from 'primeng/skeleton';
-import { AsyncPipe, NgClass, NgStyle } from '@angular/common';
+import { AsyncPipe, NgClass, NgOptimizedImage, NgStyle } from '@angular/common';
 import { SharedModule } from '@shared/netflicks';
 
 @NgModule({
@@ -42,6 +42,7 @@ import { SharedModule } from '@shared/netflicks';
     AsyncPipe,
     NgClass,
     NgStyle,
+    NgOptimizedImage,
   ],
   exports: [
     HomeComponent,

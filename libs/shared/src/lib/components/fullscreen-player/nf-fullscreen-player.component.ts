@@ -43,14 +43,15 @@ export class NfFullscreenPlayerComponent implements OnInit {
   valuePlayerBar = 0;
   maxValueRange: number;
 
-  seriesTvMainTitle$: Observable<any>;
-  seriesTvVideoKey$: Observable<any>;
+  seriesTvMainTitle$: Observable<string>;
+  seriesTvVideoKey$: Observable<string>;
   isLoading$ = new BehaviorSubject<boolean>(true);
 
   constructor(
     public config: DynamicDialogConfig,
     public ref: DynamicDialogRef,
     public themoviedbService: TheMovieDBService,
+    // eslint-disable-next-line
     @Inject(DOCUMENT) private document: any,
     private managePlayerService: ManagePlayerService
   ) {}
@@ -63,7 +64,7 @@ export class NfFullscreenPlayerComponent implements OnInit {
       .pipe(map((item) => item?.name));
     this.seriesTvVideoKey$ = this.themoviedbService
       .getVideosById(this.config.data.indexTheMovieDb, 'tv')
-      .pipe(map((item) => item?.results[0].key));
+      .pipe(map((item) => item?.results[0]?.key));
 
     setTimeout(() => {
       this.managePlayerService.initScriptIFrame();
@@ -85,7 +86,6 @@ export class NfFullscreenPlayerComponent implements OnInit {
     // Update the controls on load
     this.updateProgressBar();
 
-    console.log('this.player:', this.player);
     this.maxValueRange = this.player.getDuration();
 
     setInterval(() => {
@@ -109,10 +109,13 @@ export class NfFullscreenPlayerComponent implements OnInit {
     return minutes + ':' + seconds;
   }
 
-  onChangeThumb(event: any): void {
+  onChangeThumb(event: Event): void {
+    // Cast event.target to HTMLInputElement
+    const target = event.target as HTMLInputElement;
     // Calculate the new time for the video.
     // new time in seconds = total duration in seconds * ( value of range input / 100 )
-    const newTime = this.player.getDuration() * (event.target.value / 100);
+    const newTime =
+      this.player.getDuration() * (parseFloat(target.value) / 100);
 
     // Skip video to new time.
     this.player.seekTo(newTime, true);

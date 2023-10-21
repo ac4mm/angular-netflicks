@@ -4,6 +4,8 @@ export * from './lib/components/fullscreen-player/nf-fullscreen-player.component
 export * from './lib/components/loading-spinner/loading-spinner.component';
 export * from './lib/components/preview-modal-container/preview-modal-container.component';
 export * from './lib/model/shared-types.model';
+export * from './lib/model/themoviedb.model';
+export * from './lib/model/tvmaze.model';
 export * from './lib/services/manage-player.service';
 export * from './lib/services/select-user.service';
 export * from './lib/services/themoviedb.service';

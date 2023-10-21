@@ -3,7 +3,7 @@ import {
   NO_ERRORS_SCHEMA,
   NgModule,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { SkeletonModule } from 'primeng/skeleton';
 
 import { NfPlayButtonComponent } from './components/buttons/nf-play-button.component';
@@ -39,7 +39,12 @@ import { SwiperContainerComponent } from './components/swiper-container/swiper-c
     FullscreenIntroAnimationComponent,
     SwiperContainerComponent,
   ],
-  imports: [CommonModule, SkeletonModule, YouTubePlayerModule],
+  imports: [
+    CommonModule,
+    SkeletonModule,
+    YouTubePlayerModule,
+    NgOptimizedImage,
+  ],
   exports: [
     CommonModule,
     NfPlayButtonComponent,
