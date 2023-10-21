@@ -23,12 +23,7 @@ import {
 @Component({
   selector: 'nf-preview-modal-container',
   templateUrl: './preview-modal-container.component.html',
-  styleUrls: [
-    './preview-modal-container.component.scss',
-    '../home.component.scss',
-    '../footer/footer.component.scss',
-  ],
-  providers: [UtilitiesService],
+  styleUrls: ['./preview-modal-container.component.scss'],
 })
 export class PreviewModalContainerComponent implements OnInit, OnDestroy {
   @ViewChild('player') player: any;

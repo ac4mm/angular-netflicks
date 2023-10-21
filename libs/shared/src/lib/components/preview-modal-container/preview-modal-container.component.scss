@@ -1,6 +1,6 @@
+@import 'libs/styles/src/lib/global';
+
 @font-face {
-  font-family: Aestetico-thin;
-  src: url("/assets/font/Aestetico-thin.otf");
   font-family: Aestetico-light;
   src: url("/assets/font/Aestetico-light.otf");
 }
@@ -432,8 +432,4 @@
   grid-template-columns: auto auto;
   grid-template-rows: auto;
   grid-column-gap: 16px;
-
-  /* @include mobile {
-    grid-template-columns: auto;
-  } */
 }

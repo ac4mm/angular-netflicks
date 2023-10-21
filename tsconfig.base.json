@@ -15,7 +15,8 @@
       "@feature/*": ["libs/feature/src/lib/*"],
       "@libs/feature": ["libs/feature/src/index.ts"],
       "@material/module": ["src/app/material.module"],
-      "@shared/netflicks": ["libs/shared/src/index.ts"]
+      "@shared/netflicks": ["libs/shared/src/index.ts"],
+      "@shared/styles": ["libs/styles/src/index.ts"]
     }
   }
 }
