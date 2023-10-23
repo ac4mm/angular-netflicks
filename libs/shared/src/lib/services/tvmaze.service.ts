@@ -35,12 +35,9 @@ export class TvMazeService {
   }
 
   searchMainInfoMovie(id: number): Observable<MainInfo> {
-    return this.httpClient.get<MainInfo>(`${this.basePath}/shows/${id}`).pipe(
-      map((item) => {
-        console.log(item);
-        return item;
-      })
-    );
+    return this.httpClient
+      .get<MainInfo>(`${this.basePath}/shows/${id}`)
+      .pipe(map((item) => item));
   }
 
   searchNumberSeasonsById(id: number): Observable<NumberSeasonDetail[]> {

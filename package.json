@@ -10,7 +10,7 @@
     "config": "ts-node ./scripts/setenv.ts",
     "watch": "nx build --watch --configuration development",
     "test": "jest",
-    "lint": "nx lint",
+    "lint": "nx run-many --target=lint --all",
     "e2e": "nx e2e",
     "dev:ssr": "nx run netflicks:serve-ssr",
     "serve:ssr": "node dist/netflicks/server/main.js",

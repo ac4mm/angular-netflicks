@@ -358,8 +358,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getCoverImageAndTypographyById$(
     coverId: number,
-    indexBackground: number = 0,
-    indexTypography: number = 0
+    indexBackground = 0,
+    indexTypography = 0
   ): Observable<CoverImage[]> {
     const finalCoverTypoImage: CoverImage[] = [];
 
