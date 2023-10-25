@@ -1,8 +1,8 @@
 /* eslint-disable */
 export default {
-  displayName: 'libs-feature',
+  displayName: 'styles',
   preset: '../../jest.preset.js',
-  coverageDirectory: '../../coverage/libs/feature',
+  coverageDirectory: '../../coverage/libs/styles',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

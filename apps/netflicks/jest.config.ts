@@ -1,8 +1,8 @@
 /* eslint-disable */
 export default {
-  displayName: 'libs-feature',
+  displayName: 'netflicks',
   preset: '../../jest.preset.js',
-  coverageDirectory: '../../coverage/libs/feature',
+  coverageDirectory: '../../coverage/apps/netflicks',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
@@ -12,6 +12,7 @@ export default {
       },
     ],
   },
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'html'],
   transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
