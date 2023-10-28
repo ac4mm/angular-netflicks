@@ -1,4 +1,4 @@
-# Angular 16, RxJS and Bootstrap
+# Angular 16, RxJS and Nx
 
 <p align="center">
   <img alt="angular-netflicks-logo" src="meta-assets/angular_netflicks_logo.png" width="160" height="160" />
@@ -89,6 +89,18 @@ nx generate @nrwl/angular:component fullscreen-intro-animation --project=netflic
 ```bash
 nx generate @nrwl/angular:directive swiper-element --project=netflicks  --path=libs/shared/src/lib/directive
 
+```
+
+### Testing with Jest
+
+```bash
+yarn run test
+```
+
+### Linting
+
+```bash
+yarn run lint
 ```
 
 ## Thinks to know
