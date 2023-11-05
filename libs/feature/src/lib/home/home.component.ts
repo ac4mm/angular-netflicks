@@ -18,7 +18,7 @@ import {
   switchMap,
   takeUntil,
 } from 'rxjs';
-import Swiper from 'swiper';
+import { Swiper } from 'swiper';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import {
   PreviewModalContainerComponent,

@@ -1,19 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { SwiperContainerComponent } from './swiper-container.component';
+import { DialogService } from 'primeng/dynamicdialog';
 
 describe('SwiperContainerComponent', () => {
   let component: SwiperContainerComponent;
   let fixture: ComponentFixture<SwiperContainerComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       declarations: [SwiperContainerComponent],
+      providers: [DialogService],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SwiperContainerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();

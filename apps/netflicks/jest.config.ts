@@ -12,8 +12,10 @@ export default {
       },
     ],
   },
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'html'],
-  transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'html', 'mjs'],
+  transformIgnorePatterns: [
+    'node_modules/(?!.*\\.mjs$|swiper|ssr-window|dom7|tslib).*/',
+  ],
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',

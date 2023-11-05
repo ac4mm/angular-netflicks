@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subject, takeUntil } from 'rxjs';
-import Swiper, { A11y, Mousewheel, Navigation, Pagination } from 'swiper';
+import { Swiper, A11y, Mousewheel, Navigation, Pagination } from 'swiper';
 import { UtilitiesService } from '../../services/utilities.service';
 import { NfFullscreenLogoComponent } from '../fullscreen-logo/nf-fullscreen-logo.component';
 import { NfFullscreenPlayerComponent } from '../fullscreen-player/nf-fullscreen-player.component';
