@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { LibsFeatureModule } from '@libs/feature';
+import { FeatureModule } from '@libs/feature';
 import {
   SelectUserService,
   ManagePlayerService,
@@ -26,7 +26,7 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    LibsFeatureModule,
+    FeatureModule,
     SharedModule,
   ],
   bootstrap: [AppComponent],

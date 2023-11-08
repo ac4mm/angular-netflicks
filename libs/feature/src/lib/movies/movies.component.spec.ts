@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
-import { MoviesComponent } from './movies.component';
 import { SharedModule } from '@shared/netflicks';
+import { MoviesComponent } from './movies.component';
 describe('MoviesComponent', () => {
   let component: MoviesComponent;
   let fixture: ComponentFixture<MoviesComponent>;
@@ -11,13 +10,11 @@ describe('MoviesComponent', () => {
       declarations: [MoviesComponent],
       imports: [SharedModule],
     }).compileComponents();
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(MoviesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();

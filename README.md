@@ -74,7 +74,7 @@ Hosting
 
 Feature
 ```bash
-nx generate @nrwl/angular:component fullscreen-intro-animation --project=netflicks --module=libs-feature --path=libs/feature/src/lib --export=true --style=scss
+nx generate @nrwl/angular:component fullscreen-intro-animation --project=netflicks --module=feature --path=libs/feature/src/lib --export=true --style=scss
 
 ```
 

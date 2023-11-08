@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FullscreenIntroAnimationComponent } from './fullscreen-intro-animation.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
@@ -20,8 +20,8 @@ describe('FullscreenIntroAnimationComponent', () => {
   let component: FullscreenIntroAnimationComponent;
   let fixture: ComponentFixture<FullscreenIntroAnimationComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       declarations: [FullscreenIntroAnimationComponent],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
@@ -29,7 +29,7 @@ describe('FullscreenIntroAnimationComponent', () => {
     fixture = TestBed.createComponent(FullscreenIntroAnimationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();

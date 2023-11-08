@@ -12,13 +12,11 @@ describe('MyListComponent', () => {
       declarations: [MyListComponent],
       imports: [SharedModule],
     }).compileComponents();
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(MyListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();

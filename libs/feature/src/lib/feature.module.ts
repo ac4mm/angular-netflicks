@@ -41,4 +41,4 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     TvShowsComponent,
   ],
 })
-export class LibsFeatureModule {}
+export class FeatureModule {}
