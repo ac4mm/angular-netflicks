@@ -1,6 +1,13 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import {
+  ManagePlayerService,
+  SelectUserService,
+  NfSpeakerupButtonComponent,
+} from '@shared/netflicks';
 import { HomeComponent } from './home.component';
+import { AuthService } from '../auth/auth.service';
+import { ProfileGateComponent } from '../home/profile-gate/profile-gate.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -8,9 +15,14 @@ describe('HomeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
-    })
-    .compileComponents();
+      declarations: [
+        HomeComponent,
+        ProfileGateComponent,
+        NfSpeakerupButtonComponent,
+      ],
+      imports: [HttpClientTestingModule],
+      providers: [SelectUserService, AuthService, ManagePlayerService],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

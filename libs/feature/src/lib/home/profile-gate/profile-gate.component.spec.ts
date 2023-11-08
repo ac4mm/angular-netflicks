@@ -1,10 +1,11 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
-import { ProfileGateComponent } from './profile-gate.component';
 import {
   FullscreenIntroAnimationComponent,
   LoadingSpinnerComponent,
+  SelectUserService,
 } from '@shared/netflicks';
+import { ProfileGateComponent } from './profile-gate.component';
+import { AuthService } from '../../auth/auth.service';
 
 describe('ProfileGateComponent', () => {
   let component: ProfileGateComponent;
@@ -17,6 +18,7 @@ describe('ProfileGateComponent', () => {
         FullscreenIntroAnimationComponent,
         LoadingSpinnerComponent,
       ],
+      providers: [SelectUserService, AuthService],
     }).compileComponents();
   }));
 

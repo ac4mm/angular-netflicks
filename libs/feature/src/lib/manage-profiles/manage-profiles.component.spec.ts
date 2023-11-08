@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
+import { SelectUserService, SharedModule } from '@shared/netflicks';
 import { ManageProfilesComponent } from './manage-profiles.component';
-import { SharedModule } from '@shared/netflicks';
+import { ProfileGateComponent } from '../home/profile-gate/profile-gate.component';
 
 describe('ManageProfilesComponent', () => {
   let component: ManageProfilesComponent;
@@ -9,7 +9,8 @@ describe('ManageProfilesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ManageProfilesComponent],
+      declarations: [ManageProfilesComponent, ProfileGateComponent],
+      providers: [SelectUserService],
       imports: [SharedModule],
     }).compileComponents();
   }));

@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NavbarComponent } from './navbar.component';
-import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../auth/auth.service';
+import { SelectUserService } from '@shared/netflicks';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -10,7 +11,8 @@ describe('NavbarComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [NavbarComponent],
-      providers: [HttpClient],
+      imports: [HttpClientTestingModule],
+      providers: [SelectUserService, AuthService],
     }).compileComponents();
   }));
 
