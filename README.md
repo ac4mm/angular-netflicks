@@ -94,13 +94,20 @@ nx generate @nrwl/angular:directive swiper-element --project=netflicks  --path=l
 ### Testing with Jest
 
 ```bash
-yarn run test
+yarn test
 ```
 
-### Linting
+#### For a specific lib
+Example
+```bash
+nx test shared [or feature/netflicks]
+```
+
+
+### Linting with ESLint
 
 ```bash
-yarn run lint
+yarn lint
 ```
 
 ## Thinks to know

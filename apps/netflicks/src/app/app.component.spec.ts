@@ -10,7 +10,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientTestingModule, FeatureModule],
       declarations: [AppComponent],
-      providers: [AuthService, SelectUserService!],
+      providers: [AuthService, SelectUserService],
     }).compileComponents();
   }));
 
