@@ -3,6 +3,7 @@ export default {
   displayName: 'netflicks',
   preset: '../../jest.preset.js',
   coverageDirectory: '../../coverage/apps/netflicks',
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
