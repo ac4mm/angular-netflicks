@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@libs/feature';
+import { AuthService } from '@feature/auth/auth.service';
 import { SelectUserService } from '@shared/netflicks';
 
 @Component({

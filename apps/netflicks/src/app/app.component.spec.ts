@@ -1,7 +1,7 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { AuthService, FeatureModule } from '@libs/feature';
+import { FeatureModule, AuthService } from '@feature/netflicks';
 import { SelectUserService } from '@shared/netflicks';
 import { AppComponent } from './app.component';
 

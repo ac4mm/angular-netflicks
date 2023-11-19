@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { FeatureModule } from '@libs/feature';
+import { FeatureModule } from '@feature/netflicks';
 import {
   SelectUserService,
   ManagePlayerService,
@@ -17,7 +17,6 @@ import {
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 // import function to register Swiper custom elements
 import { register } from 'swiper/element/bundle';
-import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,10 +33,7 @@ import { environment } from '../environments/environment';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {
-  constructor(private theMovieDbService: TheMovieDBService) {
-    //Register API KEY TheMovieDB
-    theMovieDbService.setEnvironment(environment.API_KEY_THEMOVIEDB);
-
+  constructor() {
     // register Swiper custom elements
     register();
   }

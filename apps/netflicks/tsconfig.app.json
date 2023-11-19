@@ -1,15 +1,9 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
     "types": ["node"],
-    "strictPropertyInitialization": false,
-    "paths": {
-      "@feature/*": ["libs/feature/src/lib/*"],
-      "@material/module": ["src/app/material.module"],
-      "@shared/netflicks": ["libs/shared/src/index.ts"],
-      "@libs/feature": ["libs/feature/src/index.ts"]
-    }
+    "strictPropertyInitialization": false
   },
   "files": [
     "src/main.ts",

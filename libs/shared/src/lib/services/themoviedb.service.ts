@@ -7,6 +7,7 @@ import {
   MovieDetail,
   VideoDetail,
 } from '../model/themoviedb.model';
+import { environment } from '@env/environment';
 
 export type TypeShow = 'movie' | 'tv';
 
@@ -15,17 +16,8 @@ export type TypeShow = 'movie' | 'tv';
 })
 export class TheMovieDBService {
   BASEPATH = 'https://api.themoviedb.org/3';
-  private _environment: string;
 
   constructor(public http: HttpClient) {}
-
-  setEnvironment(environment: string) {
-    this._environment = environment;
-  }
-
-  getEnvironment() {
-    return this._environment;
-  }
 
   getTvMovieDetailById(
     movieId: number,
@@ -39,7 +31,7 @@ export class TheMovieDBService {
           '/' +
           movieId +
           '?api_key=' +
-          this.getEnvironment()
+          environment.API_KEY_THEMOVIEDB
       )
       .pipe(map((res) => res as MovieDetail));
   }
@@ -56,7 +48,7 @@ export class TheMovieDBService {
           '/' +
           movieId +
           '/images?api_key=' +
-          this.getEnvironment()
+          environment.API_KEY_THEMOVIEDB
       )
       .pipe(map((res) => res as ImageDetail));
   }
@@ -73,7 +65,7 @@ export class TheMovieDBService {
           '/' +
           movieId +
           '/videos?api_key=' +
-          this.getEnvironment()
+          environment.API_KEY_THEMOVIEDB
       )
       .pipe(map((res) => res as VideoDetail));
   }
