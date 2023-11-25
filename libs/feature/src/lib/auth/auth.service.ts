@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
 import { User } from './user.model';
-import { environment } from '@env/environment';
+import { APP_CONFIG, AppConfig } from '@config/netflicks';
 
 export interface AuthResponseData {
   kind: string;
@@ -21,13 +21,17 @@ export class AuthService {
   user$ = new BehaviorSubject<User | null>(null);
   private tokenExpirationTimer: number | null;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    @Inject(APP_CONFIG) private appConfig: AppConfig
+  ) {}
 
   signup(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
         'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
-          environment.API_KEY_FIREBASE,
+          this.appConfig.API_KEY_FIREBASE,
         {
           email: email,
           password: password,
@@ -51,7 +55,7 @@ export class AuthService {
     return this.http
       .post<AuthResponseData>(
         'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +
-          environment.API_KEY_FIREBASE,
+          this.appConfig.API_KEY_FIREBASE,
         {
           email: email,
           password: password,

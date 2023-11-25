@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {
@@ -7,7 +7,7 @@ import {
   MovieDetail,
   VideoDetail,
 } from '../model/themoviedb.model';
-import { environment } from '@env/environment';
+import { APP_CONFIG, AppConfig } from '@config/netflicks';
 
 export type TypeShow = 'movie' | 'tv';
 
@@ -17,7 +17,10 @@ export type TypeShow = 'movie' | 'tv';
 export class TheMovieDBService {
   BASEPATH = 'https://api.themoviedb.org/3';
 
-  constructor(public http: HttpClient) {}
+  constructor(
+    public http: HttpClient,
+    @Inject(APP_CONFIG) private appConfig: AppConfig
+  ) {}
 
   getTvMovieDetailById(
     movieId: number,
@@ -31,7 +34,7 @@ export class TheMovieDBService {
           '/' +
           movieId +
           '?api_key=' +
-          environment.API_KEY_THEMOVIEDB
+          this.appConfig.API_KEY_THEMOVIEDB
       )
       .pipe(map((res) => res as MovieDetail));
   }
@@ -48,7 +51,7 @@ export class TheMovieDBService {
           '/' +
           movieId +
           '/images?api_key=' +
-          environment.API_KEY_THEMOVIEDB
+          this.appConfig.API_KEY_THEMOVIEDB
       )
       .pipe(map((res) => res as ImageDetail));
   }
@@ -65,7 +68,7 @@ export class TheMovieDBService {
           '/' +
           movieId +
           '/videos?api_key=' +
-          environment.API_KEY_THEMOVIEDB
+          this.appConfig.API_KEY_THEMOVIEDB
       )
       .pipe(map((res) => res as VideoDetail));
   }

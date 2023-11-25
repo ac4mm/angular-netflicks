@@ -6,6 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { getAppConfigProvider } from '@config/netflicks';
+import { environment } from '@env/environment';
 import { FeatureModule } from '@feature/netflicks';
 import {
   SelectUserService,
@@ -29,7 +31,12 @@ import { register } from 'swiper/element/bundle';
     SharedModule,
   ],
   bootstrap: [AppComponent],
-  providers: [TheMovieDBService, SelectUserService, ManagePlayerService],
+  providers: [
+    getAppConfigProvider(environment),
+    TheMovieDBService,
+    SelectUserService,
+    ManagePlayerService,
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {
