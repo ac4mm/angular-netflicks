@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { getAppConfigProvider } from '@config/netflicks';
-import { environment } from '@env/environment';
+import { environment } from '../environments/environment';
 import { FeatureModule } from '@feature/netflicks';
 import {
   SelectUserService,
