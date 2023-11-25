@@ -102,3 +102,4 @@ Thumbs.db
 .firebase/*
 
 .angular
+.nx
