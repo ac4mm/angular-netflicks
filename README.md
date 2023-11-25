@@ -31,6 +31,11 @@ that wrap the embed Youtube player API.
   - [Goals](#goals)
   - [Features](#features)
   - [Stack](#stack)
+  - [Nx](#nx)
+  - [Testing](#testing-with-jest)
+  - [Linting](#linting-with-eslint)
+  - [Thinks to know](#thinks-to-know)
+  - [Support](#support)
 
 
 ## Getting Started
@@ -70,28 +75,41 @@ API
 Hosting
 - [Firebase](https://firebase.google.com/)
 
-### Generate Components with Nx
+## Nx
+### Generate Components
 
 Feature
 ```bash
-nx generate @nrwl/angular:component fullscreen-intro-animation --project=netflicks --module=feature --path=libs/feature/src/lib --export=true --style=scss
+nx generate @nx/angular:component [name-feature-component] --project=netflicks --module=feature --path=libs/feature/src/lib --export=true --style=scss
 
 ```
 
 Shared
 ```bash
-nx generate @nrwl/angular:component fullscreen-intro-animation --project=netflicks --module=shared --path=libs/shared/src/lib/components --export=true --style=scss    
+nx generate @nx/angular:component [name-feature-component] --project=netflicks --module=shared --path=libs/shared/src/lib/components --export=true --style=scss    
 
 ```
 
 ### Generate Directive with Nx
 
 ```bash
-nx generate @nrwl/angular:directive swiper-element --project=netflicks  --path=libs/shared/src/lib/directive
+nx generate @nx/angular:directive [name-directive] --project=netflicks  --path=libs/shared/src/lib/directive
 
 ```
 
-### Testing with Jest
+### Generate Library
+```bash
+nx generate @nx/angular:lib [nameLib]
+
+```
+
+### Lib help options
+```
+nx g lib --help
+
+```
+
+## Testing with Jest
 
 ```bash
 yarn test
@@ -104,7 +122,7 @@ nx test shared [or feature/netflicks]
 ```
 
 
-### Linting with ESLint
+## Linting with ESLint
 
 ```bash
 yarn lint
