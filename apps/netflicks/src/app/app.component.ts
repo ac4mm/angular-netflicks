@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@feature/auth/auth.service';
 import { SelectUserService } from '@shared/netflicks';
+import { RouterOutlet } from '@angular/router';
+import { AuthService, NavbarComponent } from '@feature/netflicks';
 
 @Component({
   selector: 'nf-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  standalone: true,
+  imports: [NavbarComponent, RouterOutlet],
 })
 export class AppComponent implements OnInit {
   title = 'netflicks';
