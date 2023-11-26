@@ -9,12 +9,7 @@ import { AppComponent } from './app.component';
 import { getAppConfigProvider } from '@config/netflicks';
 import { environment } from '../environments/environment';
 import { FeatureModule } from '@feature/netflicks';
-import {
-  SelectUserService,
-  ManagePlayerService,
-  SharedModule,
-  TheMovieDBService,
-} from '@shared/netflicks';
+import { SelectUserService, ManagePlayerService, TheMovieDBService } from '@shared/netflicks';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 // import function to register Swiper custom elements
@@ -28,8 +23,7 @@ import { register } from 'swiper/element/bundle';
     HttpClientModule,
     BrowserAnimationsModule,
     FeatureModule,
-    SharedModule,
-  ],
+],
   bootstrap: [AppComponent],
   providers: [
     getAppConfigProvider(environment),

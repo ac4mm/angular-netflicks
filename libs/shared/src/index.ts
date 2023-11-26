@@ -21,4 +21,4 @@ export * from './lib/services/select-user.service';
 export * from './lib/services/themoviedb.service';
 export * from './lib/services/tvmaze.service';
 export * from './lib/services/utilities.service';
-export * from './lib/shared.module';
+

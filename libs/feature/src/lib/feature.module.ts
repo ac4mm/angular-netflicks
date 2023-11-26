@@ -5,7 +5,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeModule } from './home/home.module';
 import { AuthModule } from './auth/auth.module';
 import { KidsComponent } from './kids/kids.component';
-import { SharedModule } from '@shared/netflicks';
+
 import { LatestComponent } from './latest/latest.component';
 import { MoviesComponent } from './movies/movies.component';
 import { MyListComponent } from './my-list/my-list.component';
@@ -15,20 +15,19 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @NgModule({
     imports: [
-        CommonModule,
-        AuthModule,
-        HomeModule,
-        SharedModule,
-        RouterLinkActive,
-        RouterLink,
-        NavbarComponent,
-        KidsComponent,
-        LatestComponent,
-        MoviesComponent,
-        MyListComponent,
-        ReferfriendsComponent,
-        TvShowsComponent,
-    ],
+    CommonModule,
+    AuthModule,
+    HomeModule,
+    RouterLinkActive,
+    RouterLink,
+    NavbarComponent,
+    KidsComponent,
+    LatestComponent,
+    MoviesComponent,
+    MyListComponent,
+    ReferfriendsComponent,
+    TvShowsComponent,
+],
     exports: [
         NavbarComponent,
         KidsComponent,

@@ -16,32 +16,31 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { SkeletonModule } from 'primeng/skeleton';
 import { AsyncPipe, NgClass, NgOptimizedImage, NgStyle } from '@angular/common';
-import { SharedModule } from '@shared/netflicks';
+
 
 @NgModule({
     imports: [
-        RouterModule.forChild([
-            { path: '', component: HomeComponent },
-            { path: '**', redirectTo: '/not-found' },
-        ]),
-        FormsModule,
-        SharedModule,
-        DialogModule,
-        DynamicDialogModule,
-        ButtonModule,
-        DropdownModule,
-        SkeletonModule,
-        YouTubePlayerModule,
-        AsyncPipe,
-        NgClass,
-        NgStyle,
-        NgOptimizedImage,
-        HomeComponent,
-        FooterComponent,
-        ProfileGateComponent,
-        ManageProfilesComponent,
-        PreviewModalContainerComponent,
-    ],
+    RouterModule.forChild([
+        { path: '', component: HomeComponent },
+        { path: '**', redirectTo: '/not-found' },
+    ]),
+    FormsModule,
+    DialogModule,
+    DynamicDialogModule,
+    ButtonModule,
+    DropdownModule,
+    SkeletonModule,
+    YouTubePlayerModule,
+    AsyncPipe,
+    NgClass,
+    NgStyle,
+    NgOptimizedImage,
+    HomeComponent,
+    FooterComponent,
+    ProfileGateComponent,
+    ManageProfilesComponent,
+    PreviewModalContainerComponent,
+],
     exports: [
         HomeComponent,
         FooterComponent,
