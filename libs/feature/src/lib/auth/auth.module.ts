@@ -7,15 +7,15 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '@shared/netflicks';
 
 @NgModule({
-  declarations: [AuthComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule.forChild([
-      { path: '', component: AuthComponent },
-      { path: '**', redirectTo: '/not-found' },
-    ]),
-    SharedModule,
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        RouterModule.forChild([
+            { path: '', component: AuthComponent },
+            { path: '**', redirectTo: '/not-found' },
+        ]),
+        SharedModule,
+        AuthComponent,
+    ],
 })
 export class AuthModule {}

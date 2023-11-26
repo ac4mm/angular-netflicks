@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
-  selector: 'nf-skeleton-card',
-  template: `
+    selector: 'nf-skeleton-card',
+    template: `
   <div class="container-sm">
   <div class="row row-skeleton">
     <div class="row">
@@ -123,7 +124,7 @@ import { Component } from '@angular/core';
 </div>
 
   `,
-  styles: [`
+    styles: [`
   @media (min-width: 1200px) {
     .container-xl,
     .container-lg,
@@ -143,5 +144,7 @@ import { Component } from '@angular/core';
     margin: 10px 0;
   }
   `],
+    standalone: true,
+    imports: [SkeletonModule],
 })
 export class SkeletonCardComponent {}

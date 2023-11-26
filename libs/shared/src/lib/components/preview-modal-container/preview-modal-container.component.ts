@@ -18,13 +18,33 @@ import { TvMazeService } from '../../services/tvmaze.service';
 import { UtilitiesService } from '../../services/utilities.service';
 import { TheMovieDBService } from '../../services/themoviedb.service';
 import { ManagePlayerService } from '../../services/manage-player.service';
-import { YouTubePlayer } from '@angular/youtube-player';
+import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
 import { MainInfo, ValueEpisode } from '../../model/tvmaze.model';
+import { NfSpeakerdownButtonComponent } from '../buttons/nf-speakerdown-button.component';
+import { NfSpeakerupButtonComponent } from '../buttons/nf-speakerup-button.component';
+import { NfThumbUpButtonComponent } from '../buttons/nf-thumb-up-button.component';
+import { NfCheckButtonComponent } from '../buttons/nf-check-button.component';
+import { NfAddButtonComponent } from '../buttons/nf-add-button.component';
+import { NgIf, NgFor, AsyncPipe } from '@angular/common';
+import { NfCloseButtonComponent } from '../buttons/nf-close-button.component';
 
 @Component({
-  selector: 'nf-preview-modal-container',
-  templateUrl: './preview-modal-container.component.html',
-  styleUrls: ['./preview-modal-container.component.scss'],
+    selector: 'nf-preview-modal-container',
+    templateUrl: './preview-modal-container.component.html',
+    styleUrls: ['./preview-modal-container.component.scss'],
+    standalone: true,
+    imports: [
+        NfCloseButtonComponent,
+        NgIf,
+        YouTubePlayerModule,
+        NfAddButtonComponent,
+        NfCheckButtonComponent,
+        NfThumbUpButtonComponent,
+        NfSpeakerupButtonComponent,
+        NfSpeakerdownButtonComponent,
+        NgFor,
+        AsyncPipe,
+    ],
 })
 export class PreviewModalContainerComponent implements OnInit, OnDestroy {
   @ViewChild('player') player: YouTubePlayer;

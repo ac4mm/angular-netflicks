@@ -1,11 +1,27 @@
 import { Component, OnInit, OnDestroy, Input, Renderer2 } from '@angular/core';
 import { SelectUserService } from '@shared/netflicks';
 import { Subject, Subscription, takeUntil } from 'rxjs';
+import { RouterLink } from '@angular/router';
+import {
+  LoadingSpinnerComponent,
+  FullscreenIntroAnimationComponent,
+} from '@shared/netflicks';
+import { NgIf, NgFor, NgClass, NgStyle } from '@angular/common';
 
 @Component({
   selector: 'nf-profile-gate',
   templateUrl: './profile-gate.component.html',
   styleUrls: ['./profile-gate.component.scss'],
+  standalone: true,
+  imports: [
+    NgIf,
+    FullscreenIntroAnimationComponent,
+    LoadingSpinnerComponent,
+    NgFor,
+    NgClass,
+    NgStyle,
+    RouterLink,
+  ],
 })
 export class ProfileGateComponent implements OnInit, OnDestroy {
   @Input() mainTitle = "Who's watching?";

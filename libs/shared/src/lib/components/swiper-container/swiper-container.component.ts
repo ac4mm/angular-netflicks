@@ -17,11 +17,27 @@ import { NfFullscreenPlayerComponent } from '../fullscreen-player/nf-fullscreen-
 import { PreviewModalContainerComponent } from '../preview-modal-container/preview-modal-container.component';
 import { YouTubePlayer } from '@angular/youtube-player';
 import { RatingNumberObject } from '../../model/shared-types.model';
+import { NfExpandButtonComponent } from '../buttons/nf-expand-button.component';
+import { NfThumbUpButtonComponent } from '../buttons/nf-thumb-up-button.component';
+import { NfCheckButtonComponent } from '../buttons/nf-check-button.component';
+import { NfAddButtonComponent } from '../buttons/nf-add-button.component';
+import { NfPlayButtonComponent } from '../buttons/nf-play-button.component';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
-  selector: 'nf-swiper-container',
-  templateUrl: './swiper-container.component.html',
-  styleUrls: ['./swiper-container.component.scss'],
+    selector: 'nf-swiper-container',
+    templateUrl: './swiper-container.component.html',
+    styleUrls: ['./swiper-container.component.scss'],
+    standalone: true,
+    imports: [
+        NgFor,
+        NgIf,
+        NfPlayButtonComponent,
+        NfAddButtonComponent,
+        NfCheckButtonComponent,
+        NfThumbUpButtonComponent,
+        NfExpandButtonComponent,
+    ],
 })
 export class SwiperContainerComponent implements OnInit, AfterViewInit {
   @Input() titleSlide: string;

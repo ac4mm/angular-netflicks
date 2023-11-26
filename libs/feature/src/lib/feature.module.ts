@@ -14,31 +14,29 @@ import { TvShowsComponent } from './tv-shows/tv-shows.component';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @NgModule({
-  declarations: [
-    NavbarComponent,
-    KidsComponent,
-    LatestComponent,
-    MoviesComponent,
-    MyListComponent,
-    ReferfriendsComponent,
-    TvShowsComponent,
-  ],
-  imports: [
-    CommonModule,
-    AuthModule,
-    HomeModule,
-    SharedModule,
-    RouterLinkActive,
-    RouterLink,
-  ],
-  exports: [
-    NavbarComponent,
-    KidsComponent,
-    LatestComponent,
-    MoviesComponent,
-    MyListComponent,
-    ReferfriendsComponent,
-    TvShowsComponent,
-  ],
+    imports: [
+        CommonModule,
+        AuthModule,
+        HomeModule,
+        SharedModule,
+        RouterLinkActive,
+        RouterLink,
+        NavbarComponent,
+        KidsComponent,
+        LatestComponent,
+        MoviesComponent,
+        MyListComponent,
+        ReferfriendsComponent,
+        TvShowsComponent,
+    ],
+    exports: [
+        NavbarComponent,
+        KidsComponent,
+        LatestComponent,
+        MoviesComponent,
+        MyListComponent,
+        ReferfriendsComponent,
+        TvShowsComponent,
+    ],
 })
 export class FeatureModule {}

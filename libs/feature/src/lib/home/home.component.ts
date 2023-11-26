@@ -33,13 +33,32 @@ import {
   CoverImage,
 } from '@shared/netflicks';
 import { AuthService } from '../auth/auth.service';
-import { YouTubePlayer } from '@angular/youtube-player';
+import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
+import { FooterComponent } from './footer/footer.component';
+import {
+  SwiperContainerComponent,
+  NfSpeakerdownButtonComponent,
+  NfSpeakerupButtonComponent,
+} from '@shared/netflicks';
+import { ProfileGateComponent } from './profile-gate/profile-gate.component';
+import { NgIf, AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'nf-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   providers: [DialogService, UtilitiesService],
+  standalone: true,
+  imports: [
+    NgIf,
+    ProfileGateComponent,
+    YouTubePlayerModule,
+    NfSpeakerupButtonComponent,
+    NfSpeakerdownButtonComponent,
+    SwiperContainerComponent,
+    FooterComponent,
+    AsyncPipe,
+  ],
 })
 export class HomeComponent implements OnInit, OnDestroy {
   public isValidUser = false;

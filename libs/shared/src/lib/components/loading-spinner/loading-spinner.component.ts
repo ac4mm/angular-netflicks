@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
+import { NgClass, NgIf, NgStyle } from '@angular/common';
 
 @Component({
-  selector: 'nf-loading-spinner',
-  template: `<div
+    selector: 'nf-loading-spinner',
+    template: `<div
       id="loader"
       [ngClass]="!!profileId ? 'nfLoaderProfile' : 'nfLoader'"
     ></div>
@@ -14,8 +15,8 @@ import { Component, Input } from '@angular/core';
           'url(' + '../../assets/img/account' + profileId + '.png' + ')'
       }"
     ></div> `,
-  styles: [
-    `
+    styles: [
+        `
       .nfLoader {
         position: absolute;
         top: 48%;
@@ -103,7 +104,13 @@ import { Component, Input } from '@angular/core';
         }
       }
     `,
-  ],
+    ],
+    standalone: true,
+    imports: [
+        NgClass,
+        NgIf,
+        NgStyle,
+    ],
 })
 export class LoadingSpinnerComponent {
   @Input() profileImg = false;

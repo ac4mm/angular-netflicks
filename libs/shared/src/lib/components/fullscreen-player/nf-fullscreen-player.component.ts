@@ -1,15 +1,23 @@
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, NgIf, AsyncPipe } from '@angular/common';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { TheMovieDBService } from '../../services/themoviedb.service';
 import { ManagePlayerService } from '../../services/manage-player.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BehaviorSubject, Observable, map } from 'rxjs';
-import { YouTubePlayer } from '@angular/youtube-player';
+import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
+import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.component';
 
 @Component({
-  selector: 'nf-fullscreen-player',
-  templateUrl: 'nf-fullscreen-player.component.html',
-  styleUrls: ['nf-fullscreen-player.component.scss'],
+    selector: 'nf-fullscreen-player',
+    templateUrl: 'nf-fullscreen-player.component.html',
+    styleUrls: ['nf-fullscreen-player.component.scss'],
+    standalone: true,
+    imports: [
+        NgIf,
+        LoadingSpinnerComponent,
+        YouTubePlayerModule,
+        AsyncPipe,
+    ],
 })
 export class NfFullscreenPlayerComponent implements OnInit {
   @ViewChild('player') player: YouTubePlayer;

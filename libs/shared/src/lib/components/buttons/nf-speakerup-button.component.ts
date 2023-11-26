@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
+import { NgClass } from '@angular/common';
 
 @Component({
-  selector: 'nf-speakerup-button',
-  template: `<button
+    selector: 'nf-speakerup-button',
+    template: `<button
     class="btn-circle btn-icon-cover"
     [ngClass]="mediumSize ? 'btn-circle-medium' : ''"
   >
@@ -21,7 +22,9 @@ import { Component, Input } from '@angular/core';
       ></path>
     </svg>
   </button> `,
-  styleUrls: ['./nf-buttons.component.scss'],
+    styleUrls: ['./nf-buttons.component.scss'],
+    standalone: true,
+    imports: [NgClass],
 })
 export class NfSpeakerupButtonComponent {
   @Input() mediumSize = false;
