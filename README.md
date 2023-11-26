@@ -134,6 +134,14 @@ yarn lint
 - for the **match** of the films/TV series I used a random value between 64 and 100, while for the **maturity rating**, I used a probability with a weight: 7+ Kids (10%), 13+ teenagers (20%), 16 + (40%), 18+ adults (60%);
 - **Pages** Tv Shows, Movie, Latest and My List, Kids, Referral friends and **notification** aren't implemented;
 - I used [Quicktype](https://app.quicktype.io/) app for generate response model (TV maze and TMDB API);
+- I only implemented the home page, so the other pages (Tv Shows, Movies, Latest and My list) are just mocks with the loader;
+- Furthermore, the search bar, the kids page and the refer friends link are also mocks;
+
+## Final considerations
+Is it possible to do better? **absolutely yes**, my project is just an implementation, used to experiment 
+and discover the features of Angular and in particular test the best scalable organization of a project with Nx.
+
+Finally any new merge requests, significant changes or feedback are welcome, just let me know.
 
 ## Support
 by [@_ac4mm](https://twitter.com/_ac4mm)
