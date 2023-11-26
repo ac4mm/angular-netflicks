@@ -22,7 +22,6 @@ dist/
 
 # Maven
 target/
-dist/
 
 # JetBrains IDE
 .idea/
@@ -93,10 +92,6 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
-
-# System Files
-.DS_Store
-Thumbs.db
 
 #Cache
 .firebase/*

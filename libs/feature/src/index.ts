@@ -1,4 +1,3 @@
-export * from './lib/auth/auth.service';
 export * from './lib/auth/auth.component';
 export * from './lib/auth/user.model';
 export * from './lib/home/footer/footer.component';

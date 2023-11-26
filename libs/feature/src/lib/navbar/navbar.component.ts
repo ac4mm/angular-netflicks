@@ -12,17 +12,11 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NgIf, NgFor, UpperCasePipe } from '@angular/common';
 
 @Component({
-    selector: 'nf-navbar',
-    templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.scss'],
-    standalone: true,
-    imports: [
-        NgIf,
-        RouterLink,
-        RouterLinkActive,
-        NgFor,
-        UpperCasePipe,
-    ],
+  selector: 'nf-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss'],
+  standalone: true,
+  imports: [NgIf, RouterLink, RouterLinkActive, NgFor, UpperCasePipe],
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
@@ -65,7 +59,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('document:click', ['$event'])
-  clickoutSearchbar(event: { target: any }) {
+  clickoutSearchbar(event: { target: MouseEvent }) {
     if (
       !this.elRef.nativeElement.contains(event.target) &&
       this.searchBox[0]?.classList?.value.includes('active')

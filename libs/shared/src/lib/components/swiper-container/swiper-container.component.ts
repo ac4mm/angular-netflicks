@@ -25,19 +25,19 @@ import { NfPlayButtonComponent } from '../buttons/nf-play-button.component';
 import { NgFor, NgIf } from '@angular/common';
 
 @Component({
-    selector: 'nf-swiper-container',
-    templateUrl: './swiper-container.component.html',
-    styleUrls: ['./swiper-container.component.scss'],
-    standalone: true,
-    imports: [
-        NgFor,
-        NgIf,
-        NfPlayButtonComponent,
-        NfAddButtonComponent,
-        NfCheckButtonComponent,
-        NfThumbUpButtonComponent,
-        NfExpandButtonComponent,
-    ],
+  selector: 'nf-swiper-container',
+  templateUrl: './swiper-container.component.html',
+  styleUrls: ['./swiper-container.component.scss'],
+  standalone: true,
+  imports: [
+    NgFor,
+    NgIf,
+    NfPlayButtonComponent,
+    NfAddButtonComponent,
+    NfCheckButtonComponent,
+    NfThumbUpButtonComponent,
+    NfExpandButtonComponent,
+  ],
 })
 export class SwiperContainerComponent implements OnInit, AfterViewInit {
   @Input() titleSlide: string;
@@ -220,6 +220,7 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const swiper = new Swiper('.swiper', {
       modules: [Navigation, Pagination, A11y, Mousewheel],
       autoHeight: true,

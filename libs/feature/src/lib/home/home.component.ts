@@ -579,6 +579,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   initializeSwiper() {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const swiper = new Swiper('.swiper', {
       // modules: [Navigation, Pagination, A11y, Mousewheel],
       slidesOffsetBefore: 40,

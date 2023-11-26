@@ -1,31 +1,55 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
-import { ManageProfilesComponent } from '@feature/manage-profiles/manage-profiles.component';
-import { TvShowsComponent } from '@feature/tv-shows/tv-shows.component';
-import { MoviesComponent } from '@feature/movies/movies.component';
-import { LatestComponent } from '@feature/latest/latest.component';
-import { MyListComponent } from '@feature/my-list/my-list.component';
-import { KidsComponent } from '@feature/kids/kids.component';
-import { ReferfriendsComponent } from '@feature/referfriends/referfriends.component';
-import { HomeComponent } from '@feature/home/home.component';
-
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'ManageProfiles', component: ManageProfilesComponent },
+  {
+    path: 'ManageProfiles',
+    loadComponent: () =>
+      import('@feature/manage-profiles/manage-profiles.component').then(
+        (m) => m.ManageProfilesComponent
+      ),
+  },
   {
     path: 'browse',
     loadChildren: () =>
-      import('@feature/home/home.module').then((home) => home.HomeModule),
+      import('@feature/home/home.routes').then((home) => home.HOME_ROUTES),
   },
-  { path: 'tv-shows', component: TvShowsComponent },
-  { path: 'movies', component: MoviesComponent },
-  { path: 'latest', component: LatestComponent },
-  { path: 'my-list', component: MyListComponent },
-  { path: 'Kids', component: KidsComponent },
+  {
+    path: 'tv-shows',
+    loadComponent: () =>
+      import('@feature/tv-shows/tv-shows.component').then(
+        (m) => m.TvShowsComponent
+      ),
+  },
+  {
+    path: 'movies',
+    loadComponent: () =>
+      import('@feature/movies/movies.component').then((m) => m.MoviesComponent),
+  },
+  {
+    path: 'latest',
+    loadComponent: () =>
+      import('@feature/latest/latest.component').then((m) => m.LatestComponent),
+  },
+  {
+    path: 'my-list',
+    loadComponent: () =>
+      import('@feature/my-list/my-list.component').then(
+        (m) => m.MyListComponent
+      ),
+  },
+  {
+    path: 'Kids',
+    loadComponent: () =>
+      import('@feature/kids/kids.component').then((m) => m.KidsComponent),
+  },
   {
     path: 'referfriends',
-    component: ReferfriendsComponent,
+    loadComponent: () =>
+      import('@feature/referfriends/referfriends.component').then(
+        (m) => m.ReferfriendsComponent
+      ),
   },
 
   {
@@ -34,7 +58,11 @@ const routes: Routes = [
       import('@feature/auth/auth.module').then((auth) => auth.AuthModule),
   },
 
-  { path: 'not-found', component: HomeComponent },
+  {
+    path: 'not-found',
+    loadComponent: () =>
+      import('@feature/home/home.component').then((m) => m.HomeComponent),
+  },
   { path: '**', redirectTo: 'login' },
 ];
 
