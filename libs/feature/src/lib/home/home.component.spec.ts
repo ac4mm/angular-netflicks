@@ -6,7 +6,7 @@ import {
   NfSpeakerupButtonComponent,
 } from '@shared/netflicks';
 import { HomeComponent } from './home.component';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '@data-access/auth';
 import { ProfileGateComponent } from '../home/profile-gate/profile-gate.component';
 
 describe('HomeComponent', () => {

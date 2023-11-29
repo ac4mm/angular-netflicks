@@ -73,7 +73,7 @@ export const appConfig: ApplicationConfig = {
       {
         path: 'login',
         loadChildren: () =>
-          import('@feature/auth/auth.module').then((auth) => auth.AuthModule),
+          import('@data-access/auth').then((auth) => auth.AuthModule),
       },
 
       {

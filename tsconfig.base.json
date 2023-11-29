@@ -12,13 +12,15 @@
     "baseUrl": "./",
     "strictPropertyInitialization": false,
     "paths": {
+      "@config/netflicks": ["libs/config/src/index.ts"],
       "@env/*": ["apps/netflicks/src/environments/*"],
       "@feature/*": ["libs/feature/src/lib/*"],
       "@feature/netflicks": ["libs/feature/src/index.ts"],
-      "@shared/netflicks": ["libs/shared/src/index.ts"],
-      "@config/netflicks": ["libs/config/src/index.ts"],
       "@material/module": ["src/app/material.module"],
+      "@shared/netflicks": ["libs/shared/src/index.ts"],
       "@shared/styles": ["libs/styles/src/index.ts"],
+      "@data-access/*": ["libs/data-access/auth/src/lib/*"],
+      "@data-access/auth": ["libs/data-access/auth/src/index.ts"]
     }
   }
 }

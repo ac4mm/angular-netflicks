@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
-import { User } from './user.model';
+import { User } from '../model/user.model';
 import { APP_CONFIG, AppConfig } from '@config/netflicks';
 
 export interface AuthResponseData {

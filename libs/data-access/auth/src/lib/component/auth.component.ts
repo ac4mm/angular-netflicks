@@ -3,7 +3,7 @@ import { NgForm, FormsModule } from '@angular/forms';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 
-import { AuthService, AuthResponseData } from './auth.service';
+import { AuthService, AuthResponseData } from '../services/auth.service';
 import { LoadingSpinnerComponent } from '@shared/netflicks';
 import { NgIf } from '@angular/common';
 

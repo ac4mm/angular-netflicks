@@ -6,7 +6,7 @@ import {
   ElementRef,
 } from '@angular/core';
 import { Subject, Subscription, takeUntil } from 'rxjs';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '@data-access/auth';
 import { SelectUserService } from '@shared/netflicks';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NgIf, NgFor, UpperCasePipe } from '@angular/common';

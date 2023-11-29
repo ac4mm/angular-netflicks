@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SelectUserService } from '@shared/netflicks';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '@feature/netflicks';
-import { AuthService } from '@feature/auth/auth.service';
+import { AuthService } from '@data-access/auth';
 
 @Component({
   selector: 'nf-root',

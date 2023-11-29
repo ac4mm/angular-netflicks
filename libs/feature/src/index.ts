@@ -1,5 +1,3 @@
-export * from './lib/auth/auth.component';
-export * from './lib/auth/user.model';
 export * from './lib/home/footer/footer.component';
 export * from './lib/home/profile-gate/profile-gate.component';
 export * from './lib/home/home.component';
