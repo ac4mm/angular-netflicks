@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { SelectUserService } from '@shared/netflicks';
 import { RouterOutlet } from '@angular/router';
-import { NavbarComponent } from '@feature/netflicks';
+
+import { SelectUserService } from '@shared/netflicks';
+import { NavbarComponent } from '@layout/netflicks';
 import { AuthService } from '@core/auth';
 
 @Component({

@@ -13,13 +13,14 @@
     "strictPropertyInitialization": false,
     "paths": {
       "@config/netflicks": ["libs/config/src/index.ts"],
-      "@core/auth": ["libs/core/auth/src/index.ts"],
       "@core/*": ["libs/core/auth/src/lib/*"],
+      "@core/auth": ["libs/core/auth/src/index.ts"],
       "@env/*": ["apps/netflicks/src/environments/*"],
-      "@feature/netflicks": ["libs/feature/src/index.ts"],
       "@feature/*": ["libs/feature/src/lib/*"],
-      "@material/module": ["src/app/material.module"],
+      "@feature/netflicks": ["libs/feature/src/index.ts"],
       "@shared/netflicks": ["libs/shared/src/index.ts"],
+      "@layout/netflicks": ["libs/layout/src/index.ts"],
+      "@material/module": ["src/app/material.module"],
       "@shared/styles": ["libs/styles/src/index.ts"],
     }
   }

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { NavbarComponent } from './navbar/navbar.component';
 import { HomeModule } from './home/home.module';
 import { KidsComponent } from './kids/kids.component';
 
@@ -18,7 +17,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     HomeModule,
     RouterLinkActive,
     RouterLink,
-    NavbarComponent,
     KidsComponent,
     LatestComponent,
     MoviesComponent,
@@ -27,7 +25,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     TvShowsComponent,
   ],
   exports: [
-    NavbarComponent,
     KidsComponent,
     LatestComponent,
     MoviesComponent,
