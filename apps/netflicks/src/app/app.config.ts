@@ -69,13 +69,11 @@ export const appConfig: ApplicationConfig = {
             (m) => m.ReferfriendsComponent
           ),
       },
-
       {
         path: 'login',
         loadChildren: () =>
-          import('@data-access/auth').then((auth) => auth.AuthModule),
+          import('@feature/auth/auth.routes').then((auth) => auth.AUTH_ROUTES),
       },
-
       {
         path: 'not-found',
         loadComponent: () =>

@@ -1,3 +1,6 @@
+export * from './lib/auth/auth.component';
+export * from './lib/auth/auth.module';
+export * from './lib/auth/auth.routes';
 export * from './lib/home/footer/footer.component';
 export * from './lib/home/profile-gate/profile-gate.component';
 export * from './lib/home/home.component';
