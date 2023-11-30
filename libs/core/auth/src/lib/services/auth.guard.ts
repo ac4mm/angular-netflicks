@@ -1,4 +1,4 @@
-import { Router, UrlTree } from '@angular/router';
+import { UrlTree } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { takeUntil } from 'rxjs/operators';
@@ -9,7 +9,7 @@ export class AuthGuard {
   isAuthenticated = false;
   private destroy$ = new Subject<void>();
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService) {}
 
   canActivate():
     | boolean

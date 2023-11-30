@@ -128,16 +128,16 @@ export class HomeComponent implements OnInit, OnDestroy {
   logoImagesTvShows$: Observable<string[]>;
 
   //Genres
-  genresCoverImagesKeepWatching$: Observable<string[]>;
-  genresCoverImagesMyList$: Observable<string[]>;
-  genresCoverImagesTopRatedMovies$: Observable<string[]>;
-  genresCoverImagesTvShows$: Observable<string[]>;
+  genresCoverImagesKeepWatching$: Observable<string[][]>;
+  genresCoverImagesMyList$: Observable<string[][]>;
+  genresCoverImagesTopRatedMovies$: Observable<string[][]>;
+  genresCoverImagesTvShows$: Observable<string[][]>;
 
   //Seasons
-  numbersOfSeasonsKeepWatching$: Observable<number[]>;
-  numbersOfSeasonsMyList$: Observable<number[]>;
-  numbersOfSeasonsTopRatedMovies$: Observable<number[]>;
-  numbersOfSeasonsTvShows$: Observable<number[]>;
+  numbersOfSeasonsKeepWatching$: Observable<number[][]>;
+  numbersOfSeasonsMyList$: Observable<number[][]>;
+  numbersOfSeasonsTopRatedMovies$: Observable<number[][]>;
+  numbersOfSeasonsTvShows$: Observable<number[][]>;
 
   showSpeakerUpIcon = true;
   showRefreshIcon = false;
@@ -469,8 +469,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
 
-  getAllGenresById$(coverIndexImg: number[]): Observable<any[]> {
-    const finalGenreSeasons: any[] = [];
+  getAllGenresById$(coverIndexImg: number[]): Observable<string[][]> {
+    const finalGenreSeasons: string[][] = [];
 
     return from(coverIndexImg).pipe(
       concatMap((indexImg) =>
@@ -485,8 +485,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
 
-  getAllNumbersOfSeasonsById$(coverIndexImg: number[]): Observable<number[]> {
-    const finalNumberSeasons: any[] = [];
+  getAllNumbersOfSeasonsById$(coverIndexImg: number[]): Observable<number[][]> {
+    const finalNumberSeasons: number[][] = [];
 
     return from(coverIndexImg).pipe(
       concatMap((indexImg) =>

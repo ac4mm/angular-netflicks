@@ -21,7 +21,7 @@ export interface MainInfo {
   name: string;
   type: string;
   language: string;
-  genres: any[];
+  genres: string[];
   status: string;
   runtime?: number;
   averageRuntime?: number;
