@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NavbarComponent } from './navbar.component';
-import { AuthService } from '@data-access/auth';
+import { AuthService } from '@core/auth';
 import { SelectUserService } from '@shared/netflicks';
 
 describe('NavbarComponent', () => {

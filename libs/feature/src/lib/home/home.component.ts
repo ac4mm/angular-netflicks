@@ -32,7 +32,7 @@ import {
   RatingNumberObject,
   CoverImage,
 } from '@shared/netflicks';
-import { AuthService } from '@data-access/auth';
+import { AuthService } from '@core/auth';
 import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
 import { FooterComponent } from './footer/footer.component';
 import {

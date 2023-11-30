@@ -2,10 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { NgForm, FormsModule } from '@angular/forms';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
-import {
-  AuthService,
-  AuthResponseData,
-} from '@data-access/services/auth.service';
+import { AuthService, AuthResponseData } from '@core/services/auth.service';
 import { LoadingSpinnerComponent } from '@shared/netflicks';
 import { NgIf } from '@angular/common';
 

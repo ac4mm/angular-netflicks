@@ -5,7 +5,7 @@ import {
   SelectUserService,
 } from '@shared/netflicks';
 import { ProfileGateComponent } from './profile-gate.component';
-import { AuthService } from '@data-access/auth';
+import { AuthService } from '@core/auth';
 
 describe('ProfileGateComponent', () => {
   let component: ProfileGateComponent;
