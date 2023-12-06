@@ -41,7 +41,7 @@ import {
   NfSpeakerupButtonComponent,
 } from '@shared/netflicks';
 import { ProfileGateComponent } from './profile-gate/profile-gate.component';
-import { NgIf, AsyncPipe } from '@angular/common';
+import { NgIf, AsyncPipe, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'nf-home',
@@ -58,6 +58,7 @@ import { NgIf, AsyncPipe } from '@angular/common';
     SwiperContainerComponent,
     FooterComponent,
     AsyncPipe,
+    NgOptimizedImage,
   ],
 })
 export class HomeComponent implements OnInit, OnDestroy {

@@ -4,14 +4,14 @@ import { Observable, Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthService, AuthResponseData } from '@core/services/auth.service';
 import { LoadingSpinnerComponent } from '@shared/netflicks';
-import { NgIf } from '@angular/common';
+import { NgIf, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'nf-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
   standalone: true,
-  imports: [NgIf, LoadingSpinnerComponent, FormsModule],
+  imports: [NgIf, LoadingSpinnerComponent, FormsModule, NgOptimizedImage],
 })
 export class AuthComponent implements OnDestroy {
   isLoginMode = true;

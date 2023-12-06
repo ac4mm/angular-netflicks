@@ -22,7 +22,7 @@ import { NfThumbUpButtonComponent } from '../buttons/nf-thumb-up-button.componen
 import { NfCheckButtonComponent } from '../buttons/nf-check-button.component';
 import { NfAddButtonComponent } from '../buttons/nf-add-button.component';
 import { NfPlayButtonComponent } from '../buttons/nf-play-button.component';
-import { NgFor, NgIf } from '@angular/common';
+import { NgFor, NgIf, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'nf-swiper-container',
@@ -37,6 +37,7 @@ import { NgFor, NgIf } from '@angular/common';
     NfCheckButtonComponent,
     NfThumbUpButtonComponent,
     NfExpandButtonComponent,
+    NgOptimizedImage,
   ],
 })
 export class SwiperContainerComponent implements OnInit, AfterViewInit {

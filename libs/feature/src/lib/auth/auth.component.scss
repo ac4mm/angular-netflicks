@@ -16,7 +16,7 @@
 
 .navbar-brand {
   width: 215px;
-  height: 80px;
+  height: auto;
   cursor: pointer;
   margin-left: 20px;
 }
@@ -26,17 +26,14 @@
   background: rgba(0, 0, 0, 0.75);
   margin: 0 auto;
   width: 450px;
-  /* height: 825px; */
   height: 520px;
   border-radius: 4px;
-  /* background-color: indigo; */
 }
 
 .login-form-main {
   width: 90%;
   margin: 0 auto;
   padding: 30px;
-  /*  background-color: seagreen; */
 }
 
 .login-form-text {
@@ -47,7 +44,6 @@
   width: 90%;
   margin: 0 auto;
   padding: 30px;
-  /*  background-color: yellowgreen; */
 }
 
 .text-form-other {
@@ -100,7 +96,6 @@ input:-webkit-autofill:focus {
   font-size: 17px;
   transition: 0.2s ease all;
   pointer-events: none;
-  /* background-color: #e50914; */
 }
 
 input:focus + span,
@@ -140,7 +135,6 @@ input:not(:placeholder-shown) ~ .show-password {
 
 .form-check {
   padding-top: 8px;
-  /* background-color: turquoise; */
 }
 
 .form-check-input {
@@ -158,15 +152,12 @@ input:not(:placeholder-shown) ~ .show-password {
 .check-text {
   position: relative;
   float: left;
-
-  /* background-color: teal; */
 }
 
 .help {
   position: absolute;
   right: 0;
   color: #b3b3b3;
-  /* background-color: thistle; */
 }
 
 .help:hover {

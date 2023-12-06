@@ -10,8 +10,10 @@
   <div class="previewModal-player-image">
     <img
       *ngIf="!showVideoPreview"
-      [src]="this.config.data.coverImagePreviewModal"
+      [ngSrc]="this.config.data.coverImagePreviewModal"
       class="previewModal-cover-image"
+      width="650"
+      height="365"
     />
 
     <div class="youtube-container-dialog" *ngIf="showVideoPreview">
@@ -31,9 +33,11 @@
     <div class="wrapper-logo-img">
       <img
         *ngIf="this.config.data.logoImageURL !== null"
-        [src]="
+        [ngSrc]="
           'https://image.tmdb.org/t/p/w500' + this.config.data.logoImageURL
         "
+        width="94"
+        height="94"
       />
     </div>
 
@@ -259,7 +263,7 @@
           <div class="titleCard-title-index">{{ series.number }}</div>
 
           <div class="titleCard-image-wrapper">
-            <img [src]="series.image?.medium" />
+            <img [ngSrc]="series.image?.medium" width="94" height="53"/>
             <div class="play-icon-img">
               <svg
                 width="24"

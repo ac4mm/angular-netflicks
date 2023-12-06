@@ -6,8 +6,10 @@
   <img
     *ngIf="!showVideoPreview"
     class="static-image"
-    [src]="(this.coverMainImageAndTypography$ | async)?.[0]?.resolutions?.original?.url"
+    [ngSrc]="(this.coverMainImageAndTypography$ | async)?.[0]?.resolutions?.original?.url"
     alt="Static cover image Strager Things"
+    fill
+    priority
   />
   <div class="youtube-container" *ngIf="showVideoPreview">
     <youtube-player
@@ -31,9 +33,11 @@
         <div class="billboard-title">
           <img
             *ngIf="(this.logoImagesKeepWatching$ | async)?.[1] as logo"
-            alt="Title Logo"
+            alt="Stranger Things logo"
             class="title-logo"
-            [src]="'https://image.tmdb.org/t/p/w500' + logo"
+            [ngSrc]="'https://image.tmdb.org/t/p/w500' + logo"
+            width="500"
+            height="500"
           />
         </div>
       </div>

@@ -9,14 +9,21 @@ import { Subject, Subscription, takeUntil } from 'rxjs';
 import { AuthService } from '@core/auth';
 import { SelectUserService } from '@shared/netflicks';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { NgIf, NgFor, UpperCasePipe } from '@angular/common';
+import { NgIf, NgFor, UpperCasePipe, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'nf-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   standalone: true,
-  imports: [NgIf, RouterLink, RouterLinkActive, NgFor, UpperCasePipe],
+  imports: [
+    NgIf,
+    RouterLink,
+    RouterLinkActive,
+    NgFor,
+    UpperCasePipe,
+    NgOptimizedImage,
+  ],
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   isAuthenticated = false;

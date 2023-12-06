@@ -25,26 +25,27 @@ import { NfSpeakerupButtonComponent } from '../buttons/nf-speakerup-button.compo
 import { NfThumbUpButtonComponent } from '../buttons/nf-thumb-up-button.component';
 import { NfCheckButtonComponent } from '../buttons/nf-check-button.component';
 import { NfAddButtonComponent } from '../buttons/nf-add-button.component';
-import { NgIf, NgFor, AsyncPipe } from '@angular/common';
+import { NgIf, NgFor, AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { NfCloseButtonComponent } from '../buttons/nf-close-button.component';
 
 @Component({
-    selector: 'nf-preview-modal-container',
-    templateUrl: './preview-modal-container.component.html',
-    styleUrls: ['./preview-modal-container.component.scss'],
-    standalone: true,
-    imports: [
-        NfCloseButtonComponent,
-        NgIf,
-        YouTubePlayerModule,
-        NfAddButtonComponent,
-        NfCheckButtonComponent,
-        NfThumbUpButtonComponent,
-        NfSpeakerupButtonComponent,
-        NfSpeakerdownButtonComponent,
-        NgFor,
-        AsyncPipe,
-    ],
+  selector: 'nf-preview-modal-container',
+  templateUrl: './preview-modal-container.component.html',
+  styleUrls: ['./preview-modal-container.component.scss'],
+  standalone: true,
+  imports: [
+    NfCloseButtonComponent,
+    NgIf,
+    YouTubePlayerModule,
+    NfAddButtonComponent,
+    NfCheckButtonComponent,
+    NfThumbUpButtonComponent,
+    NfSpeakerupButtonComponent,
+    NfSpeakerdownButtonComponent,
+    NgFor,
+    AsyncPipe,
+    NgOptimizedImage,
+  ],
 })
 export class PreviewModalContainerComponent implements OnInit, OnDestroy {
   @ViewChild('player') player: YouTubePlayer;

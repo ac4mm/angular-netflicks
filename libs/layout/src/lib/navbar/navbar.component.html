@@ -3,7 +3,10 @@
     <img
       class="navbar-brand"
       alt="navbar-brand"
-      src="assets/svg/netflicks.svg"
+      ngSrc="assets/svg/netflicks.svg"
+      width="215"
+      height="80"
+      priority
     />
 
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
@@ -153,8 +156,10 @@
             aria-expanded="false"
             ><img
               class="dropdown-img"
-              src="{{ 'assets/img/' + 'account' + idUserMaster + '.png' }}"
+              ngSrc="{{ 'assets/img/' + 'account' + idUserMaster + '.png' }}"
               alt="logo"
+              width="32"
+              height="32"
             />
           </a>
           <p class="account-triangle-up"></p>
@@ -169,7 +174,9 @@
                   ><img
                     class="dropdown-img-item"
                     alt="user{{ indexUser }}"
-                    src="{{ 'assets/img/' + 'account' + indexUser + '.png' }}"
+                    ngSrc="{{ 'assets/img/' + 'account' + indexUser + '.png' }}"
+                    width="32"
+                    height="32"
                   />User{{ indexUser }}</a
                 >
               </ng-container>
