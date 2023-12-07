@@ -10,6 +10,7 @@
   <div class="previewModal-player-image">
     <img
       *ngIf="!showVideoPreview"
+      alt="preview-modal-cover"
       [ngSrc]="this.config.data.coverImagePreviewModal"
       class="previewModal-cover-image"
       width="650"
@@ -33,6 +34,7 @@
     <div class="wrapper-logo-img">
       <img
         *ngIf="this.config.data.logoImageURL !== null"
+        alt="logo-image"
         [ngSrc]="
           'https://image.tmdb.org/t/p/w500' + this.config.data.logoImageURL
         "
