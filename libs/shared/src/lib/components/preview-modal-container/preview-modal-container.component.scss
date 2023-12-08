@@ -162,15 +162,14 @@
 
         .titleCard-image-wrapper {
           border-radius: 4px;
-          flex: 0 0 18%;
           overflow: hidden;
           position: relative;
         }
 
         .titleCard-image-wrapper svg {
           position: absolute;
-          top: 25%;
-          left: 40%;
+          top: 35%;
+          left: 42%;
         }
 
         .titleCard-image-wrapper .play-icon-img {
@@ -179,6 +178,13 @@
 
         .titleCard-image-wrapper:hover .play-icon-img {
           visibility: visible;
+        }
+
+        .img .play-icon-img {
+          top: 50%;
+          left: 50%;
+          position: absolute;
+          transform: translate(-50%, -50%);
         }
 
         .titleCardList-metadataWrapper {
