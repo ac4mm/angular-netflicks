@@ -2,7 +2,7 @@
   "name": "layout",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/layout/src",
-  "prefix": "lib",
+  "prefix": "nf",
   "tags": [],
   "projectType": "library",
   "targets": {

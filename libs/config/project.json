@@ -2,7 +2,7 @@
   "name": "config/netflicks",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/config/src",
-  "prefix": "lib",
+  "prefix": "nf",
   "tags": [],
   "projectType": "library",
   "targets": {
