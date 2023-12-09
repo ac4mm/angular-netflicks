@@ -1,4 +1,4 @@
-# Angular 17, RxJS and Nx
+# Angular Netflicks
 
 <p align="center">
   <img alt="angular-netflicks-logo" src="meta-assets/angular_netflicks_logo.png" width="160" height="160" />
@@ -13,36 +13,36 @@ that wrap the embed Youtube player API.
 
 
 
-## Demo Preview
+## Preview
 
 ![](meta-assets/demo-netflicks.gif)
 
 ![ScreenShot](meta-assets/templates-example.png)
 <br />
 
-## Live Preview
+## Live
 [Netflicks](https://netflicks-6c8b7.web.app)
 
 ## Table of Content
-- [Angular 17, RxJS and Nx](#angular-17-rxjs-and-nx)
-  - [Demo Preview](#demo-preview)
-  - [Live Preview](#live-preview)
-  - [Getting Started](#getting-started)
-  - [Goals](#goals)
-  - [Features](#features)
-  - [Stack](#stack)
-  - [Nx](#nx)
-  - [Testing](#testing-with-jest)
-  - [Linting](#linting-with-eslint)
-  - [Thinks to know](#thinks-to-know)
-  - [Support](#support)
+- [Angular Netflicks](#angular-netflicks)
+  - [Preview](#preview)
+  - [Live](#live)
+- [Getting Started](#getting-started)
+- [Goals](#goals)
+- [Features](#features)
+- [Stack](#stack)
+- [Nx](#nx)
+- [Testing](#testing-with-jest)
+- [Linting](#linting-with-eslint)
+- [Thinks to know](#thinks-to-know)
+- [Support](#support)
 
 
 ## Getting Started
 
 ```bash
-git clone https://github.com/ac4mm/netflicks.git new-project
-cd new-project
+git clone https://github.com/ac4mm/angular-netflicks.git
+cd angular-netflicks
 yarn install
 yarn start
 ```
