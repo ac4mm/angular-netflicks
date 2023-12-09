@@ -7,7 +7,7 @@
     *ngIf="!showVideoPreview"
     class="static-image"
     [src]="(this.coverMainImageAndTypography$ | async)?.[0]?.resolutions?.original?.url"
-    alt="Static cover image Strager Things"
+    alt="cover image Strager Things"
   />
   <div class="youtube-container" *ngIf="showVideoPreview">
     <youtube-player

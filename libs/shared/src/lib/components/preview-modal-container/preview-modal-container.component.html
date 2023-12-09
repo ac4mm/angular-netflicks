@@ -34,7 +34,7 @@
     <div class="wrapper-logo-img">
       <img
         *ngIf="this.config.data.logoImageURL !== null"
-        alt="logo-image"
+        alt="logo image"
         [ngSrc]="
           'https://image.tmdb.org/t/p/w500' + this.config.data.logoImageURL
         "
@@ -265,7 +265,7 @@
           <div class="titleCard-title-index">{{ series.number }}</div>
 
           <div class="titleCard-image-wrapper">
-            <img [ngSrc]="series.image?.medium" width="130" height="74"/>
+            <img [ngSrc]="series.image?.medium" width="130" height="74" alt="episode image"/>
             <div class="play-icon-img">
               <svg
                 width="24"
