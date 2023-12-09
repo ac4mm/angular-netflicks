@@ -1,17 +1,21 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { SelectUserService, SharedModule } from '@shared/netflicks';
 import { ManageProfilesComponent } from './manage-profiles.component';
-import { ProfileGateComponent } from '../home/profile-gate/profile-gate.component';
+import { SelectUserService } from '@shared/netflicks';
+import { AuthService } from '@core/auth';
+import { RouterTestingModule } from '@angular/router/testing';
 
+class AuthServiceMock {}
 describe('ManageProfilesComponent', () => {
   let component: ManageProfilesComponent;
   let fixture: ComponentFixture<ManageProfilesComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ManageProfilesComponent, ProfileGateComponent],
-      providers: [SelectUserService],
-      imports: [SharedModule],
+      providers: [
+        SelectUserService,
+        { provide: AuthService, useClass: AuthServiceMock },
+      ],
+      imports: [RouterTestingModule],
     }).compileComponents();
   }));
 

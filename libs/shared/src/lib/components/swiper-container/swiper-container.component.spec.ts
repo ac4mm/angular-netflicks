@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { SwiperContainerComponent } from './swiper-container.component';
 import { DialogService } from 'primeng/dynamicdialog';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SwiperContainerComponent', () => {
   let component: SwiperContainerComponent;
@@ -8,7 +9,7 @@ describe('SwiperContainerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [SwiperContainerComponent],
+      imports: [HttpClientTestingModule],
       providers: [DialogService],
     }).compileComponents();
 

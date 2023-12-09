@@ -1,11 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import {
-  FullscreenIntroAnimationComponent,
-  LoadingSpinnerComponent,
-  SelectUserService,
-} from '@shared/netflicks';
+import { SelectUserService } from '@shared/netflicks';
 import { ProfileGateComponent } from './profile-gate.component';
 import { AuthService } from '@core/auth';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ProfileGateComponent', () => {
   let component: ProfileGateComponent;
@@ -13,11 +11,7 @@ describe('ProfileGateComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        ProfileGateComponent,
-        FullscreenIntroAnimationComponent,
-        LoadingSpinnerComponent,
-      ],
+      imports: [HttpClientModule, RouterTestingModule],
       providers: [SelectUserService, AuthService],
     }).compileComponents();
   }));

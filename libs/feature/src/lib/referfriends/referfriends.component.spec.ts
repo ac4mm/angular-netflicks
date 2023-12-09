@@ -1,18 +1,10 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ReferfriendsComponent } from './referfriends.component';
-import { SharedModule } from '@shared/netflicks';
 
 describe('ReferfriendsComponent', () => {
   let component: ReferfriendsComponent;
   let fixture: ComponentFixture<ReferfriendsComponent>;
-
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ReferfriendsComponent],
-      imports: [SharedModule],
-    }).compileComponents();
-  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ReferfriendsComponent);
