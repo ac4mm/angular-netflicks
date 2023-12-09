@@ -3,13 +3,16 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SelectUserService } from '@shared/netflicks';
 import { AppComponent } from './app.component';
-import { AuthService } from '@core/auth';
+import { AuthService, AuthServiceMock } from '@core/auth';
 
 describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientTestingModule],
-      providers: [AuthService, SelectUserService],
+      providers: [
+        { provide: AuthService, useClass: AuthServiceMock },
+        SelectUserService,
+      ],
     }).compileComponents();
   }));
 
