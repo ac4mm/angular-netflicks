@@ -13,6 +13,7 @@ export * from './lib/components/loading-spinner/loading-spinner.component';
 export * from './lib/components/preview-modal-container/preview-modal-container.component';
 export * from './lib/components/skeleton-card/skeleton-card.component';
 export * from './lib/components/swiper-container/swiper-container.component';
+export * from './lib/mock/themoviedb.service-mock';
 export * from './lib/model/shared-types.model';
 export * from './lib/model/themoviedb.model';
 export * from './lib/model/tvmaze.model';
@@ -21,4 +22,3 @@ export * from './lib/services/select-user.service';
 export * from './lib/services/themoviedb.service';
 export * from './lib/services/tvmaze.service';
 export * from './lib/services/utilities.service';
-

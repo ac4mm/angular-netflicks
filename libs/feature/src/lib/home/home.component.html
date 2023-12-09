@@ -6,9 +6,8 @@
   <img
     *ngIf="!showVideoPreview"
     class="static-image"
-    [ngSrc]="(this.coverMainImageAndTypography$ | async)?.[0]?.resolutions?.original?.url"
+    [src]="(this.coverMainImageAndTypography$ | async)?.[0]?.resolutions?.original?.url"
     alt="Static cover image Strager Things"
-    priority
   />
   <div class="youtube-container" *ngIf="showVideoPreview">
     <youtube-player
@@ -37,6 +36,7 @@
             [ngSrc]="'https://image.tmdb.org/t/p/w500' + logo"
             width="500"
             height="500"
+            priority
           />
         </div>
       </div>
