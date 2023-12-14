@@ -184,10 +184,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (this.isValidUser) {
           this.renderer.removeStyle(document.body, 'overflow-y');
           this.autoplayVideo();
-
-          setTimeout(() => {
-            this.initializeSwiper();
-          });
         }
       });
 
@@ -517,60 +513,5 @@ export class HomeComponent implements OnInit, OnDestroy {
   onEmitRatingNumber(ratingNumber: number) {
     this.mainMaturityRating = ratingNumber;
     this.cdr.detectChanges();
-  }
-
-  initializeSwiper() {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const swiper = new Swiper('.swiper', {
-      // modules: [Navigation, Pagination, A11y, Mousewheel],
-      slidesOffsetBefore: 40,
-      slidesOffsetAfter: 130,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-
-      pagination: {
-        el: '.swiper-pagination',
-      },
-      // Default parameters
-      slidesPerView: 7,
-      spaceBetween: 5,
-      // Responsive breakpoints
-      breakpoints: {
-        1201: {
-          slidesPerView: 7,
-          spaceBetween: 5,
-        },
-        1200: {
-          slidesPerView: 7,
-          spaceBetween: 5,
-        },
-        1024: {
-          slidesPerView: 6,
-          spaceBetween: 5,
-        },
-        800: {
-          slidesPerView: 5,
-          spaceBetween: 5,
-        },
-        500: {
-          slidesPerView: 5,
-          spaceBetween: 5,
-        },
-        400: {
-          slidesPerView: 4,
-          spaceBetween: 5,
-        },
-        300: {
-          slidesPerView: 4,
-          spaceBetween: 5,
-        },
-        200: {
-          slidesPerView: 3,
-          spaceBetween: 5,
-        },
-      },
-    });
   }
 }

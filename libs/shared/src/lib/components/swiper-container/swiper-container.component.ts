@@ -170,6 +170,10 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.initializeSwiper();
+  }
+
+  initializeSwiper() {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const swiper = new Swiper('.swiper', {
       modules: [Navigation, Pagination, A11y, Mousewheel],

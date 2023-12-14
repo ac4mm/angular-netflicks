@@ -8,16 +8,11 @@ import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
 import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.component';
 
 @Component({
-    selector: 'nf-fullscreen-player',
-    templateUrl: 'nf-fullscreen-player.component.html',
-    styleUrls: ['nf-fullscreen-player.component.scss'],
-    standalone: true,
-    imports: [
-        NgIf,
-        LoadingSpinnerComponent,
-        YouTubePlayerModule,
-        AsyncPipe,
-    ],
+  selector: 'nf-fullscreen-player',
+  templateUrl: 'nf-fullscreen-player.component.html',
+  styleUrls: ['nf-fullscreen-player.component.scss'],
+  standalone: true,
+  imports: [NgIf, LoadingSpinnerComponent, YouTubePlayerModule, AsyncPipe],
 })
 export class NfFullscreenPlayerComponent implements OnInit {
   @ViewChild('player') player: YouTubePlayer;
@@ -77,12 +72,6 @@ export class NfFullscreenPlayerComponent implements OnInit {
     setTimeout(() => {
       this.managePlayerService.initScriptIFrame();
     }, 3000);
-  }
-
-  onClickSpeakerIcon() {
-    this.showSpeakerUpIcon = !this.showSpeakerUpIcon;
-
-    this.managePlayerService.changeMuteState(this.player);
   }
 
   onReadyPlayer() {
