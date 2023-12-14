@@ -19,7 +19,7 @@ import {
   takeUntil,
 } from 'rxjs';
 import { Swiper } from 'swiper';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import {
   ManagePlayerService,
   SelectUserService,
@@ -28,6 +28,7 @@ import {
   UtilitiesService,
   RatingNumberObject,
   CoverImage,
+  INIT_RATING_NUMBER,
 } from '@shared/netflicks';
 import { AuthService } from '@core/auth';
 import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
@@ -44,7 +45,7 @@ import { NgIf, AsyncPipe, NgOptimizedImage } from '@angular/common';
   selector: 'nf-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  providers: [DialogService, UtilitiesService],
+  providers: [UtilitiesService],
   standalone: true,
   imports: [
     NgIf,
@@ -110,13 +111,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   randMatchScore: number[] = [];
 
-  //7+ Kids (10%), 13+ teenagers (20%), 16+ (40%), 18+ adults (60%)
-  ratingNumberObject: RatingNumberObject = {
-    7: 0.1,
-    13: 0.2,
-    16: 0.4,
-    18: 0.6,
-  };
+  ratingNumberObject: RatingNumberObject = INIT_RATING_NUMBER;
   ratingNumberCover: (string | undefined)[] = [];
 
   //Logos
@@ -168,7 +163,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     public selectUser: SelectUserService,
     private tvmazeService: TvMazeService,
-    public dialogService: DialogService,
     private utilitiesService: UtilitiesService,
     public themoviedbService: TheMovieDBService,
     private managePlayerService: ManagePlayerService,
@@ -208,7 +202,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
 
     //setting rating number cover with distribution weight
-    this.ratingNumberCover = this.getWeightedRandomNumberInArr(
+    this.ratingNumberCover = this.utilitiesService.getWeightedRandomNumberInArr(
       this.ratingNumberObject,
       7
     );
@@ -275,18 +269,18 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onPlayerReady() {
     this.player.playVideo();
-    console.log('playerReady');
+    console.info('playerReady');
   }
 
   onStateChange() {
     if (this.player.getPlayerState() === 1) {
-      console.log('Video starts');
+      console.info('Video starts');
     }
 
     if (this.player.getPlayerState() === 0) {
       this.showRefreshIcon = true;
       this.onClickSpeakerIcon();
-      console.log('video completed');
+      console.info('video completed');
     }
   }
 
@@ -301,9 +295,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.player.pauseVideo();
     }
 
-    const dialogFullScreenPlayer: DynamicDialogRef = this.managePlayerService.openFullScreenPlayer({
-      indexTheMovieDb: indexTheMovieDb,
-    });
+    const dialogFullScreenPlayer: DynamicDialogRef =
+      this.managePlayerService.openFullScreenPlayer({
+        indexTheMovieDb: indexTheMovieDb,
+      });
 
     /* On close dialog, open FullScreenLogo and resume video */
     dialogFullScreenPlayer.onClose
@@ -485,36 +480,24 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.player.pauseVideo();
     }
 
-    const dialogPreviewModalContainer: DynamicDialogRef = this.managePlayerService.openPreviewModalContainer({
-      randMatchScore: this.randMatchScore,
-      ratingNumberCover: this.ratingNumberCover,
-      numbersOfSeasonsKeepWatching$: this.numbersOfSeasonsKeepWatching$,
-      coverImagePreviewModal: this.coverImagePreviewModal,
-      indexSelectedItem: this.indexSelectedItem,
-      indexTvMazeSeries: indexTvMazeSeries,
-      indexTheMovieDb: indexTheMovieDb,
-      logoImageURL: logoImageURL,
-    });
+    const dialogPreviewModalContainer: DynamicDialogRef =
+      this.managePlayerService.openPreviewModalContainer({
+        randMatchScore: this.randMatchScore,
+        ratingNumberCover: this.ratingNumberCover,
+        numbersOfSeasonsKeepWatching$: this.numbersOfSeasonsKeepWatching$,
+        coverImagePreviewModal: this.coverImagePreviewModal,
+        indexSelectedItem: this.indexSelectedItem,
+        indexTvMazeSeries: indexTvMazeSeries,
+        indexTheMovieDb: indexTheMovieDb,
+        logoImageURL: logoImageURL,
+      });
 
     /* On close dialogPreviewModalContainer, resume video */
-    dialogPreviewModalContainer.onClose.pipe(takeUntil(this.destroy$)).subscribe(() => {
-      this.player.playVideo();
-    });
-  }
-
-  //Use prevision random algorithm with size
-  getWeightedRandomNumberInArr(
-    objWithWeight: RatingNumberObject,
-    size: number
-  ) {
-    const arrWeightedRand = [];
-    for (let i = 0; i < size; i++) {
-      arrWeightedRand.push(
-        this.utilitiesService.getWeightedRandomNumber(objWithWeight)
-      );
-    }
-
-    return arrWeightedRand;
+    dialogPreviewModalContainer.onClose
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.player.playVideo();
+      });
   }
 
   onPlayStopEvent(isPause: boolean) {

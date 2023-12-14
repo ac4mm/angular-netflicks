@@ -13,14 +13,17 @@ import { Subject, takeUntil } from 'rxjs';
 import { Swiper, A11y, Mousewheel, Navigation, Pagination } from 'swiper';
 import { UtilitiesService } from '../../services/utilities.service';
 import { YouTubePlayer } from '@angular/youtube-player';
-import { RatingNumberObject } from '../../model/shared-types.model';
 import { NfExpandButtonComponent } from '../buttons/nf-expand-button.component';
 import { NfThumbUpButtonComponent } from '../buttons/nf-thumb-up-button.component';
 import { NfCheckButtonComponent } from '../buttons/nf-check-button.component';
 import { NfAddButtonComponent } from '../buttons/nf-add-button.component';
 import { NfPlayButtonComponent } from '../buttons/nf-play-button.component';
 import { NgFor, NgIf, NgOptimizedImage } from '@angular/common';
-import { ManagePlayerService } from "../../services/manage-player.service";
+import { ManagePlayerService } from '../../services/manage-player.service';
+import {
+  INIT_RATING_NUMBER,
+  RatingNumberObject,
+} from '../../model/shared-types.model';
 
 @Component({
   selector: 'nf-swiper-container',
@@ -53,11 +56,9 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
   randMatchScore: number[] = [];
   ratingNumberCover: (string | undefined)[] = [];
 
-  //7+ Kids (10%), 13+ teenagers (20%), 16+ (40%), 18+ adults (60%)
-  ratingNumberObject = { 7: 0.1, 13: 0.2, 16: 0.4, 18: 0.6 };
+  ratingNumberObject: RatingNumberObject = INIT_RATING_NUMBER;
 
   showCheckIcon = true;
-  showRefreshIcon = false;
 
   @ViewChild('player') player: YouTubePlayer;
 
@@ -81,7 +82,7 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
     );
 
     //setting rating number cover with distribution weight
-    this.ratingNumberCover = this.getWeightedRandomNumberInArr(
+    this.ratingNumberCover = this.utilitiesService.getWeightedRandomNumberInArr(
       this.ratingNumberObject,
       7
     );
@@ -100,9 +101,10 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
 
     this.playStopEvent.emit(true);
 
-    const dialogFullScreenPlayer: DynamicDialogRef = this.managePlayerService.openFullScreenPlayer({
-      indexTheMovieDb: indexTheMovieDb,
-    });
+    const dialogFullScreenPlayer: DynamicDialogRef =
+      this.managePlayerService.openFullScreenPlayer({
+        indexTheMovieDb: indexTheMovieDb,
+      });
 
     /* On close dialog, open FullScreenLogo and resume video */
     dialogFullScreenPlayer.onClose
@@ -148,35 +150,23 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
 
     this.playStopEvent.emit(true);
 
-    const dialogPreviewModalContainer: DynamicDialogRef = this.managePlayerService.openPreviewModalContainer({
-      randMatchScore: this.randMatchScore,
-      ratingNumberCover: this.ratingNumberCover,
-      coverImagePreviewModal: this.coverImagePreviewModal,
-      indexSelectedItem: this.indexSelectedItem,
-      indexTvMazeSeries: indexTvMazeSeries,
-      indexTheMovieDb: indexTheMovieDb,
-      logoImageURL: logoImageURL,
-    });
+    const dialogPreviewModalContainer: DynamicDialogRef =
+      this.managePlayerService.openPreviewModalContainer({
+        randMatchScore: this.randMatchScore,
+        ratingNumberCover: this.ratingNumberCover,
+        coverImagePreviewModal: this.coverImagePreviewModal,
+        indexSelectedItem: this.indexSelectedItem,
+        indexTvMazeSeries: indexTvMazeSeries,
+        indexTheMovieDb: indexTheMovieDb,
+        logoImageURL: logoImageURL,
+      });
 
     /* On close dialogPreviewModalContainer, resume video */
-    dialogPreviewModalContainer.onClose.pipe(takeUntil(this.destroy$)).subscribe(() => {
-      this.playStopEvent.emit(false);
-    });
-  }
-
-  //Use prevision random algorithm with size
-  getWeightedRandomNumberInArr(
-    objWithWeight: RatingNumberObject,
-    size: number
-  ) {
-    const arrWeightedRand = [];
-    for (let i = 0; i < size; i++) {
-      arrWeightedRand.push(
-        this.utilitiesService.getWeightedRandomNumber(objWithWeight)
-      );
-    }
-
-    return arrWeightedRand;
+    dialogPreviewModalContainer.onClose
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.playStopEvent.emit(false);
+      });
   }
 
   ngAfterViewInit() {

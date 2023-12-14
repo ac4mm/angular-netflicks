@@ -39,6 +39,18 @@ export class UtilitiesService {
     return;
   }
 
+  getWeightedRandomNumberInArr(
+    objWithWeight: RatingNumberObject,
+    size: number
+  ) {
+    const arrWeightedRand = [];
+    for (let i = 0; i < size; i++) {
+      arrWeightedRand.push(this.getWeightedRandomNumber(objWithWeight));
+    }
+
+    return arrWeightedRand;
+  }
+
   /****** Data Structures Utilities*/
   /**
    * @description

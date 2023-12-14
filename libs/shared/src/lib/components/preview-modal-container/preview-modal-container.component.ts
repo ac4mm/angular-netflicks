@@ -1,9 +1,5 @@
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import {
-  DialogService,
-  DynamicDialogConfig,
-  DynamicDialogRef,
-} from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import {
   BehaviorSubject,
   Observable,
@@ -108,8 +104,7 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
     private tvmazeService: TvMazeService,
     private themovieDbService: TheMovieDBService,
     public utilitiesService: UtilitiesService,
-    private managePlayerService: ManagePlayerService,
-    public dialogService: DialogService
+    private managePlayerService: ManagePlayerService
   ) {}
 
   ngOnInit() {
@@ -168,9 +163,10 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
       this.player.pauseVideo();
     }
 
-    const dialogFullScreenPlayer: DynamicDialogRef = this.managePlayerService.openFullScreenPlayer({
-      indexTheMovieDb: this.config.data.indexTheMovieDb,
-    });
+    const dialogFullScreenPlayer: DynamicDialogRef =
+      this.managePlayerService.openFullScreenPlayer({
+        indexTheMovieDb: this.config.data.indexTheMovieDb,
+      });
   }
 
   getAllSeriesTvInfo$(
