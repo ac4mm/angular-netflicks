@@ -13,7 +13,6 @@ import {
   takeUntil,
 } from 'rxjs';
 
-import { NfFullscreenPlayerComponent } from '../fullscreen-player/nf-fullscreen-player.component';
 import { TvMazeService } from '../../services/tvmaze.service';
 import { UtilitiesService } from '../../services/utilities.service';
 import { TheMovieDBService } from '../../services/themoviedb.service';
@@ -169,23 +168,9 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
       this.player.pauseVideo();
     }
 
-    const dialogFullScreenPlayer: DynamicDialogRef = this.dialogService.open(
-      NfFullscreenPlayerComponent,
-      {
-        baseZIndex: 10000,
-        modal: true,
-        draggable: false,
-        dismissableMask: true,
-        showHeader: false,
-        closeOnEscape: true,
-        width: '100%',
-        height: '100%',
-        transitionOptions: '600ms',
-        data: {
-          indexTheMovieDb: this.config.data.indexTheMovieDb,
-        },
-      }
-    );
+    const dialogFullScreenPlayer: DynamicDialogRef = this.managePlayerService.openFullScreenPlayer({
+      indexTheMovieDb: this.config.data.indexTheMovieDb,
+    });
   }
 
   getAllSeriesTvInfo$(

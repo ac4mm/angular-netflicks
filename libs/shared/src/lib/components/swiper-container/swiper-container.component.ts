@@ -12,9 +12,6 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subject, takeUntil } from 'rxjs';
 import { Swiper, A11y, Mousewheel, Navigation, Pagination } from 'swiper';
 import { UtilitiesService } from '../../services/utilities.service';
-import { NfFullscreenLogoComponent } from '../fullscreen-logo/nf-fullscreen-logo.component';
-import { NfFullscreenPlayerComponent } from '../fullscreen-player/nf-fullscreen-player.component';
-import { PreviewModalContainerComponent } from '../preview-modal-container/preview-modal-container.component';
 import { YouTubePlayer } from '@angular/youtube-player';
 import { RatingNumberObject } from '../../model/shared-types.model';
 import { NfExpandButtonComponent } from '../buttons/nf-expand-button.component';
@@ -23,6 +20,7 @@ import { NfCheckButtonComponent } from '../buttons/nf-check-button.component';
 import { NfAddButtonComponent } from '../buttons/nf-add-button.component';
 import { NfPlayButtonComponent } from '../buttons/nf-play-button.component';
 import { NgFor, NgIf, NgOptimizedImage } from '@angular/common';
+import { ManagePlayerService } from "../../services/manage-player.service";
 
 @Component({
   selector: 'nf-swiper-container',
@@ -71,6 +69,7 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
   constructor(
     private utilitiesService: UtilitiesService,
     public dialogService: DialogService,
+    private managePlayerService: ManagePlayerService,
     private renderer: Renderer2
   ) {}
 
@@ -101,30 +100,16 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
 
     this.playStopEvent.emit(true);
 
-    const dialogFullScreenPlayer: DynamicDialogRef = this.dialogService.open(
-      NfFullscreenPlayerComponent,
-      {
-        baseZIndex: 10000,
-        modal: true,
-        draggable: false,
-        dismissableMask: true,
-        showHeader: false,
-        closeOnEscape: true,
-        width: '100%',
-        height: '100%',
-        transitionOptions: '600ms',
-        data: {
-          indexTheMovieDb: indexTheMovieDb,
-        },
-      }
-    );
+    const dialogFullScreenPlayer: DynamicDialogRef = this.managePlayerService.openFullScreenPlayer({
+      indexTheMovieDb: indexTheMovieDb,
+    });
 
     /* On close dialog, open FullScreenLogo and resume video */
     dialogFullScreenPlayer.onClose
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
         const dialogFullScreenLogo: DynamicDialogRef =
-          this.openFullScreenLogo();
+          this.managePlayerService.openFullScreenLogo();
 
         setTimeout(() => {
           dialogFullScreenLogo.close();
@@ -135,20 +120,6 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
           this.playStopEvent.emit(false);
         }, 3000);
       });
-  }
-
-  openFullScreenLogo() {
-    return this.dialogService.open(NfFullscreenLogoComponent, {
-      baseZIndex: 10001,
-      modal: true,
-      draggable: false,
-      dismissableMask: true,
-      showHeader: false,
-      closeOnEscape: true,
-      width: '100%',
-      height: '100%',
-      transitionOptions: '600ms',
-    });
   }
 
   onClickShowCheckIcon(event: Event) {
@@ -167,7 +138,7 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
     logoImageURL?: string,
     event?: Event
   ) {
-    //Used to avoid double open dialog, since there are two nested invocations function
+    //Used to avoid double open dialogPreviewModalContainer, since there are two nested invocations function
     if (event) {
       event.stopPropagation();
     }
@@ -177,30 +148,18 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
 
     this.playStopEvent.emit(true);
 
-    const dialog: DynamicDialogRef = this.dialogService.open(
-      PreviewModalContainerComponent,
-      {
-        baseZIndex: 10000,
-        modal: true,
-        draggable: false,
-        dismissableMask: true,
-        showHeader: false,
-        closeOnEscape: true,
-        keepInViewport: true,
-        data: {
-          randMatchScore: this.randMatchScore,
-          ratingNumberCover: this.ratingNumberCover,
-          coverImagePreviewModal: this.coverImagePreviewModal,
-          indexSelectedItem: this.indexSelectedItem,
-          indexTvMazeSeries: indexTvMazeSeries,
-          indexTheMovieDb: indexTheMovieDb,
-          logoImageURL: logoImageURL,
-        },
-      }
-    );
+    const dialogPreviewModalContainer: DynamicDialogRef = this.managePlayerService.openPreviewModalContainer({
+      randMatchScore: this.randMatchScore,
+      ratingNumberCover: this.ratingNumberCover,
+      coverImagePreviewModal: this.coverImagePreviewModal,
+      indexSelectedItem: this.indexSelectedItem,
+      indexTvMazeSeries: indexTvMazeSeries,
+      indexTheMovieDb: indexTheMovieDb,
+      logoImageURL: logoImageURL,
+    });
 
-    /* On close dialog, resume video */
-    dialog.onClose.pipe(takeUntil(this.destroy$)).subscribe(() => {
+    /* On close dialogPreviewModalContainer, resume video */
+    dialogPreviewModalContainer.onClose.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.playStopEvent.emit(false);
     });
   }

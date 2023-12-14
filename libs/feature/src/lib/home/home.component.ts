@@ -21,10 +21,7 @@ import {
 import { Swiper } from 'swiper';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import {
-  PreviewModalContainerComponent,
   ManagePlayerService,
-  NfFullscreenLogoComponent,
-  NfFullscreenPlayerComponent,
   SelectUserService,
   TheMovieDBService,
   TvMazeService,
@@ -299,49 +296,21 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.player.playVideo();
   }
 
-  openFullScreenLogo() {
-    return this.dialogService.open(NfFullscreenLogoComponent, {
-      baseZIndex: 10001,
-      modal: true,
-      draggable: false,
-      dismissableMask: true,
-      showHeader: false,
-      closeOnEscape: true,
-      width: '100%',
-      height: '100%',
-      transitionOptions: '600ms',
-    });
-  }
-
   playVideo(indexTheMovieDb: number) {
     if (this.player) {
       this.player.pauseVideo();
     }
 
-    const dialogFullScreenPlayer: DynamicDialogRef = this.dialogService.open(
-      NfFullscreenPlayerComponent,
-      {
-        baseZIndex: 10000,
-        modal: true,
-        draggable: false,
-        dismissableMask: true,
-        showHeader: false,
-        closeOnEscape: true,
-        width: '100%',
-        height: '100%',
-        transitionOptions: '600ms',
-        data: {
-          indexTheMovieDb: indexTheMovieDb,
-        },
-      }
-    );
+    const dialogFullScreenPlayer: DynamicDialogRef = this.managePlayerService.openFullScreenPlayer({
+      indexTheMovieDb: indexTheMovieDb,
+    });
 
     /* On close dialog, open FullScreenLogo and resume video */
     dialogFullScreenPlayer.onClose
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
         const dialogFullScreenLogo: DynamicDialogRef =
-          this.openFullScreenLogo();
+          this.managePlayerService.openFullScreenLogo();
 
         setTimeout(() => {
           dialogFullScreenLogo.close();
@@ -516,31 +485,19 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.player.pauseVideo();
     }
 
-    const dialog: DynamicDialogRef = this.dialogService.open(
-      PreviewModalContainerComponent,
-      {
-        baseZIndex: 10000,
-        modal: true,
-        draggable: false,
-        dismissableMask: true,
-        showHeader: false,
-        closeOnEscape: true,
-        keepInViewport: true,
-        data: {
-          randMatchScore: this.randMatchScore,
-          ratingNumberCover: this.ratingNumberCover,
-          numbersOfSeasonsKeepWatching$: this.numbersOfSeasonsKeepWatching$,
-          coverImagePreviewModal: this.coverImagePreviewModal,
-          indexSelectedItem: this.indexSelectedItem,
-          indexTvMazeSeries: indexTvMazeSeries,
-          indexTheMovieDb: indexTheMovieDb,
-          logoImageURL: logoImageURL,
-        },
-      }
-    );
+    const dialogPreviewModalContainer: DynamicDialogRef = this.managePlayerService.openPreviewModalContainer({
+      randMatchScore: this.randMatchScore,
+      ratingNumberCover: this.ratingNumberCover,
+      numbersOfSeasonsKeepWatching$: this.numbersOfSeasonsKeepWatching$,
+      coverImagePreviewModal: this.coverImagePreviewModal,
+      indexSelectedItem: this.indexSelectedItem,
+      indexTvMazeSeries: indexTvMazeSeries,
+      indexTheMovieDb: indexTheMovieDb,
+      logoImageURL: logoImageURL,
+    });
 
-    /* On close dialog, resume video */
-    dialog.onClose.pipe(takeUntil(this.destroy$)).subscribe(() => {
+    /* On close dialogPreviewModalContainer, resume video */
+    dialogPreviewModalContainer.onClose.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.player.playVideo();
     });
   }

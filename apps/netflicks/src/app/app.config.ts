@@ -1,4 +1,5 @@
 import { ApplicationConfig } from '@angular/core';
+import { DialogService } from "primeng/dynamicdialog";
 import { getAppConfigProvider } from '@config/netflicks';
 import { environment } from '../environments/environment';
 import {
@@ -85,6 +86,7 @@ export const appConfig: ApplicationConfig = {
     TheMovieDBService,
     SelectUserService,
     ManagePlayerService,
+    DialogService,
     provideHttpClient(withInterceptorsFromDi()),
     provideAnimations(),
   ],
