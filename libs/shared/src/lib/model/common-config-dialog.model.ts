@@ -4,6 +4,7 @@ export const COMMON_CONFIG_DIALOG = {
   dismissableMask: true,
   showHeader: false,
   closeOnEscape: true,
+  keepInViewport: true,
 };
 
 export const COMMON_CONFIG_FULLSCREEN = {
