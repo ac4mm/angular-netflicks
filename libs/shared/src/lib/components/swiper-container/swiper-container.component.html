@@ -47,33 +47,36 @@
           ></nf-play-button>
 
           <div (click)="onClickShowCheckIcon($event)">
-            <!-- Add button  -->
-            <nf-add-button *ngIf="showCheckIcon"></nf-add-button>
 
-            <!-- Hover text add button -->
-            <div class="container-hover-btn">
-              <h6 class="hover-text-add-btn">Add to My List</h6>
+            @if(showCheckIcon){
+              <!-- Add button  -->
+              <nf-add-button></nf-add-button>
 
-              <div class="container-triangle">
-                <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
-                  <polygon points="0 0, 100 0, 50 50" />
-                </svg>
+              <!-- Hover text add button -->
+              <div class="container-hover-btn">
+                <h6 class="hover-text-add-btn">Add to My List</h6>
+
+                <div class="container-triangle">
+                  <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
+                    <polygon points="0 0, 100 0, 50 50" />
+                  </svg>
+                </div>
               </div>
-            </div>
+            }@else {
+              <!-- Check -->
+              <nf-check-button></nf-check-button>
 
-            <!-- Check -->
-            <nf-check-button *ngIf="!showCheckIcon"></nf-check-button>
+              <!-- Hover text check button -->
+              <div class="container-hover-btn">
+                <h6 class="hover-text-check-btn">Remove from My List</h6>
 
-            <!-- Hover text check button -->
-            <div class="container-hover-btn">
-              <h6 class="hover-text-check-btn">Remove from My List</h6>
-
-              <div class="container-triangle">
-                <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
-                  <polygon points="0 0, 100 0, 50 50" />
-                </svg>
+                <div class="container-triangle">
+                  <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
+                    <polygon points="0 0, 100 0, 50 50" />
+                  </svg>
+                </div>
               </div>
-            </div>
+            }
           </div>
 
           <!-- Thumb up -->

@@ -5,74 +5,79 @@
 
   <div class="container-form">
     <div class="login-form-main">
-      <div class="alert alert-danger" *ngIf="error">
-        <span>{{ error }}</span>
-      </div>
-
-      <nf-loading-spinner *ngIf="isLoading"></nf-loading-spinner>
+      @if(error){
+        <div class="alert alert-danger">
+          <span>{{ error }}</span>
+        </div>
+      }
 
       <h2 class="login-form-text">
         {{ isLoginMode ? "Login" : "Sign up" }}
       </h2>
-      <form
-        #authForm="ngForm"
-        (ngSubmit)="onSubmit(authForm)"
-        *ngIf="!isLoading"
-      >
-        <div class="form-group">
-          <!-- <label for="email">Email</label> -->
-          <input
-            class="form-control"
-            type="email"
-            id="email"
-            ngModel
-            name="email"
-            required
-            email
-            placeholder=" "
-            aria-label="email"
-          />
-          <span class="placeholder-text pt-first">Email or phone number</span>
-        </div>
 
-        <div class="form-group">
-          <input
-            class="form-control"
-            type="{{ showPassword ? 'text' : 'password' }}"
-            id="password"
-            ngModel
-            name="password"
-            required
-            minlength="6"
-            placeholder=" "
-            aria-label="password"
-          />
-          <span class="placeholder-text">Password</span>
-          <span
-            class="show-password"
-            (click)="onShowPassword()"
-            type="button"
-            >{{ showPassword ? "HIDE" : "SHOW" }}</span
-          >
-        </div>
-
-        <button
-          class="btn btn-danger col-12"
-          type="submit"
-          [disabled]="!authForm.valid"
+      @if(isLoading){
+        <nf-loading-spinner></nf-loading-spinner>
+      } @else {
+        <form
+          #authForm="ngForm"
+          (ngSubmit)="onSubmit(authForm)"
         >
-          {{ isLoginMode ? "Login" : "Sign up" }}
-        </button>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="checkboxRememberMe"/>
-          <label class="form-check-label">
-            <label class="check-text" for="checkboxRememberMe">Remember me</label>
-            <a class="help" type="button">
-              Need help?
-            </a>
-          </label>
-        </div>
-      </form>
+          <div class="form-group">
+            <!-- <label for="email">Email</label> -->
+            <input
+              class="form-control"
+              type="email"
+              id="email"
+              ngModel
+              name="email"
+              required
+              email
+              placeholder=" "
+              aria-label="email"
+            />
+            <span class="placeholder-text pt-first">Email or phone number</span>
+          </div>
+
+          <div class="form-group">
+            <input
+              class="form-control"
+              type="{{ showPassword ? 'text' : 'password' }}"
+              id="password"
+              ngModel
+              name="password"
+              required
+              minlength="6"
+              placeholder=" "
+              aria-label="password"
+            />
+            <span class="placeholder-text">Password</span>
+            <span
+              class="show-password"
+              (click)="onShowPassword()"
+              type="button"
+            >{{ showPassword ? "HIDE" : "SHOW" }}</span
+            >
+          </div>
+
+          <button
+            class="btn btn-danger col-12"
+            type="submit"
+            [disabled]="!authForm.valid"
+          >
+            {{ isLoginMode ? "Login" : "Sign up" }}
+          </button>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="checkboxRememberMe"/>
+            <label class="form-check-label">
+              <label class="check-text" for="checkboxRememberMe">Remember me</label>
+              <a class="help" type="button">
+                Need help?
+              </a>
+            </label>
+          </div>
+        </form>
+      }
+
     </div>
 
     <div class="login-form-other">

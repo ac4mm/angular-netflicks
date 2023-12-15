@@ -11,7 +11,8 @@
 
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <!-- Browse dropdown menu -->
-      <li class="nav-item dropdown dropdown-left" *ngIf="isValidUser">
+      @if(isValidUser){
+      <li class="nav-item dropdown dropdown-left">
         <a
           class="btn nav-link dropdown-toggle browse"
           style="color: #fff"
@@ -32,74 +33,74 @@
         </div>
       </li>
 
-      <!--navbar left-->
-      <ul class="navbar-nav" id="leftNavbar" *ngIf="isValidUser">
-        <li
-          class="nav-item"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
-          <a
-            class="nav-link"
-            routerLink="/browse"
+        <!--navbar left-->
+        <ul class="navbar-nav" id="leftNavbar">
+          <li
+            class="nav-item"
             routerLinkActive="active"
-            data-toggle="collapse"
-            >Home</a
+            [routerLinkActiveOptions]="{ exact: true }"
           >
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="tv-shows">Tv Shows</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="movies">Movies</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="latest">Latest</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="my-list">My List</a>
-        </li>
-      </ul>
-
-      <!--navbar right-->
-      <ul class="navbar-nav ml-auto" id="rightNavbar" *ngIf="isValidUser">
-        <!-- Searchbar -->
-        <li class="nav-item search-box space-item">
-          <a class="nav-link">
-            <svg
-              class="bi bi-search search-box_icon"
-              width="1.4em"
-              height="1.4em"
-              viewBox="0 0 16 16"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-              (click)="activateSearchbar()"
+            <a
+              class="nav-link"
+              routerLink="/browse"
+              routerLinkActive="active"
+              data-toggle="collapse"
+            >Home</a
             >
-              <path
-                fill-rule="evenodd"
-                stroke-width="1"
-                d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
-              />
-              <path
-                fill-rule="evenodd"
-                d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
-              />
-            </svg>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="tv-shows">Tv Shows</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="movies">Movies</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="latest">Latest</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="my-list">My List</a>
+          </li>
+        </ul>
 
-            <input
-              class="search-box_input"
-              placeholder="Titles, people, genres"
-          /></a>
-        </li>
+        <!--navbar right-->
+        <ul class="navbar-nav ml-auto" id="rightNavbar">
+          <!-- Searchbar -->
+          <li class="nav-item search-box space-item">
+            <a class="nav-link">
+              <svg
+                class="bi bi-search search-box_icon"
+                width="1.4em"
+                height="1.4em"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+                (click)="activateSearchbar()"
+              >
+                <path
+                  fill-rule="evenodd"
+                  stroke-width="1"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
+                />
+              </svg>
 
-        <!--        Kids-->
-        <li class="nav-item space-item nav-kids" routerLinkActive="active">
-          <a class="nav-link" routerLink="Kids">{{ 'kids' | uppercase }}</a>
-        </li>
+              <input
+                class="search-box_input"
+                placeholder="Titles, people, genres"
+              /></a>
+          </li>
 
-        <!--        ReferFriends-->
-        <li class="nav-item space-item" routerLinkActive="active">
-          <a class="nav-link gift" routerLink="referfriends"
+          <!--        Kids-->
+          <li class="nav-item space-item nav-kids" routerLinkActive="active">
+            <a class="nav-link" routerLink="Kids">{{ 'kids' | uppercase }}</a>
+          </li>
+
+          <!--        ReferFriends-->
+          <li class="nav-item space-item" routerLinkActive="active">
+            <a class="nav-link gift" routerLink="referfriends"
             ><svg
               class="bi bi-gift"
               width="1.4em"
@@ -123,12 +124,12 @@
                 d="M15 4H1v1h14V4zM1 3a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H1z"
               />
             </svg>
-          </a>
-        </li>
+            </a>
+          </li>
 
-        <!--        Bell icon-->
-        <li class="nav-item space-item tooltip-bell" routerLinkActive="active">
-          <a class="nav-link"
+          <!--        Bell icon-->
+          <li class="nav-item space-item tooltip-bell" routerLinkActive="active">
+            <a class="nav-link"
             ><svg
               class="bi bi-bell-fill"
               width="1.4em"
@@ -141,19 +142,19 @@
               <path
                 d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"
               /></svg
-          ></a>
-          <p class="triangle-up"></p>
-          <span class="tooltiptext-bell">No recent notices</span>
-        </li>
+            ></a>
+            <p class="triangle-up"></p>
+            <span class="tooltiptext-bell">No recent notices</span>
+          </li>
 
-        <!--        Dropdown profiles-->
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link btn dropdown-toggle"
-            data-toggle="dropdown"
-            type="button"
-            aria-haspopup="true"
-            aria-expanded="false"
+          <!--        Dropdown profiles-->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link btn dropdown-toggle"
+              data-toggle="dropdown"
+              type="button"
+              aria-haspopup="true"
+              aria-expanded="false"
             ><img
               class="dropdown-img"
               ngSrc="{{ 'assets/img/' + 'account' + idUserMaster + '.png' }}"
@@ -161,16 +162,16 @@
               width="32"
               height="32"
             />
-          </a>
-          <p class="account-triangle-up"></p>
+            </a>
+            <p class="account-triangle-up"></p>
 
-          <ul class="dropdown-menu dropdown-menu-right">
-            <li
-              *ngFor="let indexUser of [1, 2, 3, 4, 5]"
-              (click)="onChangeUser(indexUser)"
-            >
-              <ng-container *ngIf="indexUser !== idUserMaster">
-                <a class="dropdown-item" href="/browse"
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li
+                *ngFor="let indexUser of [1, 2, 3, 4, 5]"
+                (click)="onChangeUser(indexUser)"
+              >
+                @if(indexUser !== idUserMaster) {
+                  <a class="dropdown-item" href="/browse"
                   ><img
                     class="dropdown-img-item"
                     alt="user{{ indexUser }}"
@@ -178,35 +179,36 @@
                     width="32"
                     height="32"
                   />User{{ indexUser }}</a
-                >
-              </ng-container>
-            </li>
-            <li>
-              <a class="dropdown-item" href="/ManageProfiles"
+                  >
+                }
+              </li>
+              <li>
+                <a class="dropdown-item" href="/ManageProfiles"
                 >Manage Profiles</a
-              >
-            </li>
-            <div class="dropdown-divider"></div>
-            <li class="kids-item">
-              <a class="dropdown-item" href="/Kids">Kids</a>
+                >
+              </li>
               <div class="dropdown-divider"></div>
-            </li>
-            <li>
-              <a class="dropdown-item" href="/YourAccount">Account</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="https://help.netflix.com/"
+              <li class="kids-item">
+                <a class="dropdown-item" href="/Kids">Kids</a>
+                <div class="dropdown-divider"></div>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/YourAccount">Account</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://help.netflix.com/"
                 >Help Center</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" routerLink="login" (click)="onLogout()"
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="login" (click)="onLogout()"
                 >Sign out of Netflix</a
-              >
-            </li>
-          </ul>
-        </li>
-      </ul>
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      }
     </div>
   </div>
 </nav>
