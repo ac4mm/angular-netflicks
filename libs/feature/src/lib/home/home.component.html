@@ -121,26 +121,9 @@
           class="previewModal-player-wrapper preview-audio-toggle"
           (click)="onClickSpeakerIcon()"
         >
-          @if (!showRefreshIcon){
-          <!-- Speaker up -->
-          <nf-speakerup-button
-            [mediumSize]="true"
-            *ngIf="showSpeakerUpIcon"
-          ></nf-speakerup-button>
-
-          <!-- Speaker down -->
-          <nf-speakerdown-button
-            [mediumSize]="true"
-            *ngIf="!showSpeakerUpIcon"
-          ></nf-speakerdown-button>
-          }
-
+          @if (showRefreshIcon){
           <!-- Refresh -->
-          <button
-            class="btn-circle svg-container"
-            *ngIf="showRefreshIcon"
-            (click)="onReplayVideo()"
-          >
+          <button class="btn-circle svg-container" (click)="onReplayVideo()">
             <svg viewBox="0 0 24 24" fill="#fff">
               <path
                 fill="#fff"
@@ -148,6 +131,13 @@
               ></path>
             </svg>
           </button>
+          }@else { @if(showSpeakerUpIcon){
+          <!-- Speaker up -->
+          <nf-speakerup-button [mediumSize]="true"></nf-speakerup-button>
+          }@else {
+          <!-- Speaker down -->
+          <nf-speakerdown-button [mediumSize]="true"></nf-speakerdown-button>
+          } }
         </span>
 
         <span class="maturity-rating-home"> {{ mainMaturityRating }}+ </span>
@@ -159,6 +149,7 @@
 <!-- Main content cover card -->
 @if (isValidUser) {
 <div class="container-fluid">
+  @defer (when isValidUser){
   <!-- User N, Keep watching -->
   <nf-swiper-container
     [titleSlide]="'User' + selectUser?.getIdUser() + ', keep watching :'"
@@ -210,6 +201,7 @@
 
   <!-- Footer -->
   <nf-footer></nf-footer>
+  }
 </div>
 }@else {
 <!--Choose your profile-->

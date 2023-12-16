@@ -55,7 +55,7 @@
     />
   </div>
 
-  <div class="duration" *ngIf="(this.isLoading$ | async)=== false">
+  <div class="duration" *ngIf="(this.isLoading$ | async) === false">
     <span class="duration-number" *ngIf="maxValueRange">{{
       this.formatTime(maxValueRange)
     }}</span>
@@ -199,8 +199,19 @@
       </div>
     </button>
 
+    <!-- Minimize Fullscreen -->
+    @if(isMaximixe){
+    <button class="btn font-weight-bold" (click)="minimizeFullscreen()">
+      <svg width="24" height="24" viewBox="0 0 24 24" class="svg-size">
+        <path
+          fill="#fff"
+          d="M24 8H19V3H17V9V10H18H24V8ZM0 16H5V21H7V15V14H6H0V16ZM7 10H6H0V8H5V3H7V9V10ZM19 21V16H24V14H18H17V15V21H19Z"
+        ></path>
+      </svg>
+    </button>
+    }@else {
     <!-- Maximixe Fullscreen -->
-    <button class="btn" *ngIf="!this.isMaximixe" (click)="maximizeFullscreen()">
+    <button class="btn" (click)="maximizeFullscreen()">
       <div class="icon-button">
         <svg width="24" height="24" viewBox="0 0 24 24" class="svg-size">
           <path
@@ -210,19 +221,6 @@
         </svg>
       </div>
     </button>
-
-    <!-- Minimize Fullscreen -->
-    <button
-      class="btn font-weight-bold"
-      *ngIf="this.isMaximixe"
-      (click)="minimizeFullscreen()"
-    >
-      <svg width="24" height="24" viewBox="0 0 24 24" class="svg-size">
-        <path
-          fill="#fff"
-          d="M24 8H19V3H17V9V10H18H24V8ZM0 16H5V21H7V15V14H6H0V16ZM7 10H6H0V8H5V3H7V9V10ZM19 21V16H24V14H18H17V15V21H19Z"
-        ></path>
-      </svg>
-    </button>
+    }
   </div>
 </div>

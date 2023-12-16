@@ -1,32 +1,36 @@
 <!-- Close dialog -->
 <div class="previewModal-container-close">
   <div class="previewModal-player-wrapper previewModal-close">
-    <nf-close-button [mediumSize]="true" (click)="onClickClose()"></nf-close-button>
+    <nf-close-button
+      [mediumSize]="true"
+      (click)="onClickClose()"
+    ></nf-close-button>
   </div>
 </div>
 
 <div class="previewModal-player-container">
   <!-- Cover image dialog -->
   <div class="previewModal-player-image">
+    @if(showVideoPreview){
+    <div class="youtube-container-dialog">
+      <youtube-player
+        *ngIf="this.config.data.indexSelectedItem"
+        #player
+        [videoId]="this.keyYTVideo"
+        [width]="'100%'"
+        [height]="'100%'"
+        [playerVars]="playerVars"
+      ></youtube-player>
+    </div>
+    }@else {
     <img
-      *ngIf="!showVideoPreview"
       alt="preview-modal-cover"
       [ngSrc]="this.config.data.coverImagePreviewModal"
       class="previewModal-cover-image"
       width="650"
       height="365"
     />
-
-    <div class="youtube-container-dialog" *ngIf="showVideoPreview">
-      <youtube-player
-      *ngIf="this.config.data.indexSelectedItem"
-      #player
-      [videoId]="this.keyYTVideo"
-      [width]="'100%'"
-      [height]="'100%'"
-      [playerVars]="playerVars"
-      ></youtube-player>
-    </div>
+    }
   </div>
 
   <!-- Wrapper cover image dialog -->
@@ -39,7 +43,7 @@
           'https://image.tmdb.org/t/p/w500' + this.config.data.logoImageURL
         "
         width="400"
-        height=100
+        height="100"
       />
     </div>
 
@@ -69,8 +73,9 @@
       </button>
 
       <div (click)="onClickShowCheckIcon()">
+        @if(showCheckIcon){
         <!-- Add button  -->
-        <nf-add-button [mediumSize]="true" *ngIf="showCheckIcon"></nf-add-button>
+        <nf-add-button [mediumSize]="true"></nf-add-button>
 
         <!-- Hover text add button -->
         <div class="container-hover-btn">
@@ -82,9 +87,9 @@
             </svg>
           </div>
         </div>
-
+        }@else {
         <!-- Check -->
-        <nf-check-button [mediumSize]="true" *ngIf="!showCheckIcon"></nf-check-button>
+        <nf-check-button [mediumSize]="true"></nf-check-button>
 
         <!-- Hover text check button -->
         <div class="container-hover-btn">
@@ -96,6 +101,7 @@
             </svg>
           </div>
         </div>
+        }
       </div>
 
       <!-- Thumb up -->
@@ -110,11 +116,13 @@
     class="previewModal-player-wrapper preview-audio-toggle"
     (click)="onClickSpeakerIcon()"
   >
+    @if(showSpeakerUpIcon){
     <!-- Speaker up -->
-    <nf-speakerup-button [mediumSize]="true" *ngIf="showSpeakerUpIcon"></nf-speakerup-button>
-
+    <nf-speakerup-button [mediumSize]="true"></nf-speakerup-button>
+    }@else {
     <!-- Speaker down -->
-    <nf-speakerdown-button [mediumSize]="true" *ngIf="!showSpeakerUpIcon"></nf-speakerdown-button>
+    <nf-speakerdown-button [mediumSize]="true"></nf-speakerdown-button>
+    }
   </div>
 
   <!-- Container Dialog -->
@@ -169,8 +177,8 @@
       <div class="previewModal-right">
         <div class="about-container">
           <div class="previewModal-tags">
-            <span class="previewModal-tags-label">Cast:</span
-            ><a
+            <span class="previewModal-tags-label">Cast:</span>
+            <a
               class="tag-item"
               *ngFor="
                 let personCast of peopleCastSeries$ | async;
@@ -192,8 +200,8 @@
               >{{ genre
               }}{{
                 i === (this.seriesTvMainInfoDetail$ | async)?.genres.length - 1
-                  ? ""
-                  : ","
+                  ? ''
+                  : ','
               }}</a
             >
           </div>
@@ -204,7 +212,7 @@
               class="tag-item"
               *ngFor="let randWord of selectedRandWords; let i = index"
             >
-              {{ randWord }}{{ i === selectedRandWords.length - 1 ? "" : "," }}
+              {{ randWord }}{{ i === selectedRandWords.length - 1 ? '' : ',' }}
             </a>
           </div>
         </div>
@@ -217,13 +225,16 @@
         <div class="title-selector">
           <h3>Episodes</h3>
 
-          <div class="title-selector-more-info" *ngIf="seasonSelected">
+          @if(seasonSelected){
+          <div class="title-selector-more-info">
             Season {{ seasonSelected }}
           </div>
+          }@else {
+          <div class="title-selector-more-info">No season selected</div>
+          }
         </div>
 
         <div class="dropdown-selector">
-
           <div class="dropdown">
             <button
               type="button"
@@ -265,7 +276,12 @@
           <div class="titleCard-title-index">{{ series.number }}</div>
 
           <div class="titleCard-image-wrapper">
-            <img [ngSrc]="series.image?.medium" width="130" height="74" alt="episode image"/>
+            <img
+              [ngSrc]="series.image?.medium"
+              width="130"
+              height="74"
+              alt="episode image"
+            />
             <div class="play-icon-img">
               <svg
                 width="24"
@@ -322,7 +338,7 @@
             *ngFor="let personCast of peopleCastSeries$ | async; let i = index"
             >{{ personCast
             }}{{
-              i === (peopleCastSeries$ | async)?.length - 1 ? "" : ",&nbsp;"
+              i === (peopleCastSeries$ | async)?.length - 1 ? '' : ',&nbsp;'
             }}</a
           >
         </div>

@@ -29,6 +29,7 @@ import {
   RatingNumberObject,
   CoverImage,
   INIT_RATING_NUMBER,
+  SkeletonCardComponent,
 } from '@shared/netflicks';
 import { AuthService } from '@core/auth';
 import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
@@ -57,6 +58,7 @@ import { NgIf, AsyncPipe, NgOptimizedImage } from '@angular/common';
     FooterComponent,
     AsyncPipe,
     NgOptimizedImage,
+    SkeletonCardComponent,
   ],
 })
 export class HomeComponent implements OnInit, OnDestroy {
