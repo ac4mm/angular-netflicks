@@ -8,7 +8,7 @@ import { AuthService } from '@core/auth';
 @Component({
   selector: 'nf-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrl: './app.component.scss',
   standalone: true,
   imports: [NavbarComponent, RouterOutlet],
 })

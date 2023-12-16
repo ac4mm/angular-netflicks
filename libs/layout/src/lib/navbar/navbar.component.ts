@@ -14,7 +14,7 @@ import { NgIf, NgFor, UpperCasePipe, NgOptimizedImage } from '@angular/common';
 @Component({
   selector: 'nf-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss'],
+  styleUrl: './navbar.component.scss',
   standalone: true,
   imports: [
     NgIf,

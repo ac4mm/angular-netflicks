@@ -26,7 +26,7 @@ import { NfCloseButtonComponent } from '../buttons/nf-close-button.component';
 @Component({
   selector: 'nf-preview-modal-container',
   templateUrl: './preview-modal-container.component.html',
-  styleUrls: ['./preview-modal-container.component.scss'],
+  styleUrl: './preview-modal-container.component.scss',
   standalone: true,
   imports: [
     NfCloseButtonComponent,

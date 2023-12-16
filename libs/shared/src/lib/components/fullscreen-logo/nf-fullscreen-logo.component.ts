@@ -1,8 +1,8 @@
 import { Component, Renderer2 } from '@angular/core';
 
 @Component({
-    selector: 'nf-fullscreen-logo',
-    template: `
+  selector: 'nf-fullscreen-logo',
+  template: `
     <div class="watch-video">
       <div class="watch-video-leaving-view">
         <div class="nf-screen-wrapper">
@@ -15,8 +15,8 @@ import { Component, Renderer2 } from '@angular/core';
       </div>
     </div>
   `,
-    styleUrls: ['nf-fullscreen-logo.component.scss'],
-    standalone: true,
+  styleUrl: 'nf-fullscreen-logo.component.scss',
+  standalone: true,
 })
 export class NfFullscreenLogoComponent {
   constructor(private renderer: Renderer2) {

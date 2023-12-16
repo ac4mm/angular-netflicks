@@ -45,7 +45,7 @@ import { NgIf, AsyncPipe, NgOptimizedImage } from '@angular/common';
 @Component({
   selector: 'nf-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  styleUrl: './home.component.scss',
   providers: [UtilitiesService],
   standalone: true,
   imports: [

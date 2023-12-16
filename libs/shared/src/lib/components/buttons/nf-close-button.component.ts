@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
-    selector: 'nf-close-button',
-    template: `<button
+  selector: 'nf-close-button',
+  template: `<button
     class="btn-circle btn-icon-cover btn-round-blk"
     [ngClass]="mediumSize ? 'btn-circle-medium' : 'btn-circle'"
   >
@@ -23,9 +23,9 @@ import { NgClass } from '@angular/common';
       ></path>
     </svg>
   </button> `,
-    styleUrls: ['./nf-buttons.component.scss'],
-    standalone: true,
-    imports: [NgClass],
+  styleUrl: './nf-buttons.component.scss',
+  standalone: true,
+  imports: [NgClass],
 })
 export class NfCloseButtonComponent {
   @Input() mediumSize = false;

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'nf-play-button',
-    template: `<button class="btn-circle-white btn-icon-cover">
+  selector: 'nf-play-button',
+  template: `<button class="btn-circle-white btn-icon-cover">
     <svg
       width="16"
       height="16"
@@ -16,7 +16,7 @@ import { Component } from '@angular/core';
       ></path>
     </svg>
   </button> `,
-    styleUrls: ['./nf-buttons.component.scss'],
-    standalone: true,
+  styleUrl: './nf-buttons.component.scss',
+  standalone: true,
 })
 export class NfPlayButtonComponent {}

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'nf-footer',
-    template: `
+  selector: 'nf-footer',
+  template: `
     <div class="member-footer">
       <!-- Social Links -->
       <div class="social-links">
@@ -176,8 +176,8 @@ import { Component } from '@angular/core';
       </div>
     </div>
   `,
-    styleUrls: ['./footer.component.scss'],
-    standalone: true,
+  styleUrl: './footer.component.scss',
+  standalone: true,
 })
 export class FooterComponent {
   servicesCode = 'Service code';

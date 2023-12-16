@@ -28,7 +28,7 @@ import {
 @Component({
   selector: 'nf-swiper-container',
   templateUrl: './swiper-container.component.html',
-  styleUrls: ['./swiper-container.component.scss'],
+  styleUrl: './swiper-container.component.scss',
   standalone: true,
   imports: [
     NgFor,

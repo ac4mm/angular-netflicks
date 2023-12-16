@@ -9,7 +9,7 @@ import { NgIf, NgOptimizedImage } from '@angular/common';
 @Component({
   selector: 'nf-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss'],
+  styleUrl: './auth.component.scss',
   standalone: true,
   imports: [NgIf, LoadingSpinnerComponent, FormsModule, NgOptimizedImage],
 })

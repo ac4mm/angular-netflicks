@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
-    selector: 'nf-check-button',
-    template: `<button
+  selector: 'nf-check-button',
+  template: `<button
     class="btn-circle btn-check btn-icon-cover"
     [ngClass]="mediumSize ? 'btn-circle-medium' : ''"
   >
@@ -22,9 +22,9 @@ import { NgClass } from '@angular/common';
       ></path>
     </svg>
   </button> `,
-    styleUrls: ['./nf-buttons.component.scss'],
-    standalone: true,
-    imports: [NgClass],
+  styleUrl: './nf-buttons.component.scss',
+  standalone: true,
+  imports: [NgClass],
 })
 export class NfCheckButtonComponent {
   @Input() mediumSize = false;

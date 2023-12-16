@@ -11,7 +11,7 @@ import { NgIf, NgFor, NgClass, NgStyle } from '@angular/common';
 @Component({
   selector: 'nf-profile-gate',
   templateUrl: './profile-gate.component.html',
-  styleUrls: ['./profile-gate.component.scss'],
+  styleUrl: './profile-gate.component.scss',
   standalone: true,
   imports: [
     NgIf,

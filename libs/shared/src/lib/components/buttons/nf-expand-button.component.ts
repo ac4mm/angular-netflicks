@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'nf-expand-button',
-    template: `<button class="btn-circle btn-icon-cover arrow-down">
+  selector: 'nf-expand-button',
+  template: `<button class="btn-circle btn-icon-cover arrow-down">
     <svg
       width="16"
       height="16"
@@ -18,7 +18,7 @@ import { Component } from '@angular/core';
       ></path>
     </svg>
   </button> `,
-    styleUrls: ['./nf-buttons.component.scss'],
-    standalone: true,
+  styleUrl: './nf-buttons.component.scss',
+  standalone: true,
 })
 export class NfExpandButtonComponent {}

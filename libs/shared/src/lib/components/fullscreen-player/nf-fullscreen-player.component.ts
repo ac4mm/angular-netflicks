@@ -10,7 +10,7 @@ import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.comp
 @Component({
   selector: 'nf-fullscreen-player',
   templateUrl: 'nf-fullscreen-player.component.html',
-  styleUrls: ['nf-fullscreen-player.component.scss'],
+  styleUrl: 'nf-fullscreen-player.component.scss',
   standalone: true,
   imports: [NgIf, LoadingSpinnerComponent, YouTubePlayerModule, AsyncPipe],
 })

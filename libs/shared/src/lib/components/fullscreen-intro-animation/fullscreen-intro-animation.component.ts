@@ -2,11 +2,11 @@ import { Component, EventEmitter, Output, Renderer2 } from '@angular/core';
 import { NgIf } from '@angular/common';
 
 @Component({
-    selector: 'nf-fullscreen-intro-animation',
-    templateUrl: './fullscreen-intro-animation.component.html',
-    styleUrls: ['./fullscreen-intro-animation.component.scss'],
-    standalone: true,
-    imports: [NgIf],
+  selector: 'nf-fullscreen-intro-animation',
+  templateUrl: './fullscreen-intro-animation.component.html',
+  styleUrl: './fullscreen-intro-animation.component.scss',
+  standalone: true,
+  imports: [NgIf],
 })
 export class FullscreenIntroAnimationComponent {
   showNetflicksLogo = false;

@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
-    selector: 'nf-add-button',
-    template: `<button
+  selector: 'nf-add-button',
+  template: `<button
     class="btn-circle btn-add btn-icon-cover"
     [ngClass]="mediumSize ? 'btn-circle-medium' : ''"
   >
@@ -19,9 +19,9 @@ import { NgClass } from '@angular/common';
       <path d="M11 2V11H2V13H11V22H13V13H22V11H13V2H11Z" fill="#fff"></path>
     </svg>
   </button> `,
-    styleUrls: ['./nf-buttons.component.scss'],
-    standalone: true,
-    imports: [NgClass],
+  styleUrl: './nf-buttons.component.scss',
+  standalone: true,
+  imports: [NgClass],
 })
 export class NfAddButtonComponent {
   @Input() mediumSize = false;
