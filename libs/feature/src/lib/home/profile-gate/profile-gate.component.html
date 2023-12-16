@@ -17,7 +17,8 @@
     <div class="list-profiles">
       <div class="profile-gate-label">{{ mainTitle }}</div>
       <ul class="choose-profile">
-        <li class="profile" *ngFor="let i of [1, 2, 3, 4, 5]">
+        @for(i of [1,2,3,4,5]; track $index){
+        <li class="profile">
           <div>
             <a class="profile-link" (click)="onChangeUser(i)">
               <div class="avatar-wrapper">
@@ -54,6 +55,7 @@
             </a>
           </div>
         </li>
+        }
       </ul>
 
       <span class="profile-button" *ngIf="!showManageProfile">

@@ -178,42 +178,43 @@
         <div class="about-container">
           <div class="previewModal-tags">
             <span class="previewModal-tags-label">Cast:</span>
-            <a
-              class="tag-item"
-              *ngFor="
-                let personCast of peopleCastSeries$ | async;
-                let i = index
-              "
-              >{{ getMoreCastPeople(personCast, i) }}</a
-            >
+            @for(personCast of peopleCastSeries$ | async; track $index){
+            <a class="tag-item">{{ getMoreCastPeople(personCast, $index) }}</a>
+            }@empty {
+            <a class="tag-item">There are no person</a>
+            }
+
             <a class="tag-more" (click)="onClickScrollToMore()"> more </a>
           </div>
 
           <div class="previewModal-tags">
-            <span class="previewModal-tags-label">Genres:</span
-            ><a
-              class="tag-item"
-              *ngFor="
-                let genre of (this.seriesTvMainInfoDetail$ | async)?.genres;
-                let i = index
-              "
+            <span class="previewModal-tags-label">Genres:</span>
+            @for(genre of (this.seriesTvMainInfoDetail$ | async)?.genres; track
+            $index){
+            <a class="tag-item"
               >{{ genre
               }}{{
-                i === (this.seriesTvMainInfoDetail$ | async)?.genres.length - 1
+                $index ===
+                (this.seriesTvMainInfoDetail$ | async)?.genres.length - 1
                   ? ''
                   : ','
               }}</a
             >
+            }@empty {
+            <a class="tag-item">There are no genre</a>
+            }
           </div>
 
           <div class="previewModal-tags">
-            <span class="previewModal-tags-label">This show is:</span
-            ><a
-              class="tag-item"
-              *ngFor="let randWord of selectedRandWords; let i = index"
-            >
-              {{ randWord }}{{ i === selectedRandWords.length - 1 ? '' : ',' }}
+            <span class="previewModal-tags-label">This show is:</span>
+            @for(randWord of selectedRandWords; track $index){
+            <a class="tag-item">
+              {{ randWord
+              }}{{ $index === selectedRandWords.length - 1 ? '' : ',' }}
             </a>
+            }@empty {
+            <a class="tag-item">Awesomeeee!</a>
+            }
           </div>
         </div>
       </div>
@@ -247,21 +248,19 @@
               Season {{ seasonSelected }}
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a
-                class="dropdown-item"
-                *ngFor="
-                  let index of this.definedArrayDropdownSeasons(
-                    (this.finalArrayTvInfo$ | async)?.length
-                  )
-                "
-                (click)="onSelectSeason(index)"
-                >Seasons {{ index }}
+              @for(item of this.definedArrayDropdownSeasons(
+              (this.finalArrayTvInfo$ | async)?.length ); track $index){
+              <a class="dropdown-item" (click)="onSelectSeason(item)"
+                >Seasons {{ item }}
                 <span class="episodes-dd"
                   >(
-                  {{(this.finalArrayTvInfo$ |async)?.[index - 1]?.value?.length}}
+                  {{(this.finalArrayTvInfo$ |async)?.[item - 1]?.value?.length}}
                   Episodes)</span
                 >
               </a>
+              }@empty {
+              <a class="dropdown-item">There are no episodes</a>
+              }
             </div>
           </div>
         </div>
@@ -269,10 +268,9 @@
 
       <!-- Container Episode selector -->
       <div class="episode-selector-container">
-        <div
-          class="titleCardList-container"
-          *ngFor="let series of (seriesTvInfo$ | async)?.[(seriesSelectedDropdown$ | async )]?.value;"
-        >
+        @for(series of (seriesTvInfo$ | async)?.[(seriesSelectedDropdown$ |
+        async )]?.value; track $index){
+        <div class="titleCardList-container">
           <div class="titleCard-title-index">{{ series.number }}</div>
 
           <div class="titleCard-image-wrapper">
@@ -312,6 +310,7 @@
             ></div>
           </div>
         </div>
+        }
       </div>
     </div>
 
@@ -332,15 +331,19 @@
           }}</a>
         </div>
         <div class="previewModal-tags">
-          <span class="previewModal-tags-label" id="more">Cast:</span
-          ><a
-            class="tag-item"
-            *ngFor="let personCast of peopleCastSeries$ | async; let i = index"
+          <span class="previewModal-tags-label" id="more">Cast:</span>
+          @for(personCast of peopleCastSeries$ | async; track $index){
+          <a class="tag-item"
             >{{ personCast
             }}{{
-              i === (peopleCastSeries$ | async)?.length - 1 ? '' : ',&nbsp;'
+              $index === (peopleCastSeries$ | async)?.length - 1
+                ? ''
+                : ',&nbsp;'
             }}</a
           >
+          } @empty {
+            <a class="tag-item">There are no person</a>
+          }
         </div>
         <div class="previewModal-tags">
           <span class="previewModal-tags-label">Genres:</span
