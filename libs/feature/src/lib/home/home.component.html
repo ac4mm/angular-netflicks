@@ -1,5 +1,5 @@
 <div class="cover-image-wrapper">
-  @if(showVideoPreview){
+  @if(showVideoPreview){ @defer(when showVideoPreview){
   <div class="youtube-container">
     <youtube-player
       #player
@@ -11,7 +11,7 @@
       (ready)="onPlayerReady()"
     ></youtube-player>
   </div>
-  }@else {
+  } }@else {
   <!-- Static Cover Image -->
   <img
     class="static-image"

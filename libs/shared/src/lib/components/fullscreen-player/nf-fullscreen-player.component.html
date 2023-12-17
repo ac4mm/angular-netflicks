@@ -1,9 +1,9 @@
-<div class="black-screen-preload" *ngIf="this.isLoading$ | async">
+<div class="black-screen-preload" *ngIf="isLoading$ | async">
   <nf-loading-spinner></nf-loading-spinner>
 </div>
 
 <!-- Top player -->
-<div class="top-player-bar" [hidden]="this.isLoading$ | async">
+<div class="top-player-bar" [hidden]="isLoading$ | async">
   <!-- Come back -->
   <button
     class="btn btn-sm font-weight-bold btn-block custom-btn"
@@ -33,7 +33,7 @@
 </div>
 
 <!-- YT Player -->
-<div class="youtube-container-dialog" [hidden]="this.isLoading$ | async">
+<div class="youtube-container-dialog" [hidden]="isLoading$ | async">
   <youtube-player
     #player
     [videoId]="this.seriesTvVideoKey$ | async"
@@ -45,7 +45,7 @@
   ></youtube-player>
 </div>
 
-<div class="player-bar" [hidden]="this.isLoading$ | async">
+<div class="player-bar" [hidden]="isLoading$ | async">
   <div class="progress-range-bar">
     <input
       type="range"
@@ -55,7 +55,7 @@
     />
   </div>
 
-  <div class="duration" *ngIf="(this.isLoading$ | async) === false">
+  <div class="duration" *ngIf="(isLoading$ | async) === false">
     <span class="duration-number" *ngIf="maxValueRange">{{
       this.formatTime(maxValueRange)
     }}</span>
@@ -63,10 +63,11 @@
 </div>
 
 <!-- Bottom player -->
-<div class="bottom-player-bar" [hidden]="this.isLoading$ | async">
+<div class="bottom-player-bar" [hidden]="isLoading$ | async">
   <div class="player-controller">
+    @if(showPlayIcon){
     <!-- Play -->
-    <button class="btn" *ngIf="showPlayIcon" (click)="changeStatusPlay()">
+    <button class="btn" (click)="changeStatusPlay()">
       <div class="icon-button">
         <svg width="24" height="24" viewBox="0 0 24 24" class="svg-size">
           <path
@@ -76,9 +77,9 @@
         </svg>
       </div>
     </button>
-
+    }@else {
     <!-- Pause -->
-    <button class="btn" *ngIf="!showPlayIcon" (click)="changeStatusPlay()">
+    <button class="btn" (click)="changeStatusPlay()">
       <div class="icon-button">
         <svg width="24" height="24" viewBox="0 0 24 24" class="svg-size">
           <path
@@ -88,6 +89,7 @@
         </svg>
       </div>
     </button>
+    }
 
     <!-- 10prev -->
     <button class="btn" (click)="comeBack10sPrev()">
@@ -113,12 +115,9 @@
       </div>
     </button>
 
+    @if(showSpeakerUpIcon){
     <!-- speakerUp -->
-    <button
-      class="btn"
-      *ngIf="this.showSpeakerUpIcon"
-      (click)="changeStatusSpeaker()"
-    >
+    <button class="btn" (click)="changeStatusSpeaker()">
       <div class="icon-button">
         <svg width="24" height="24" viewBox="0 0 24 24" class="svg-size">
           <path
@@ -128,13 +127,9 @@
         </svg>
       </div>
     </button>
-
+    }@else {
     <!-- speakerDown -->
-    <button
-      class="btn"
-      *ngIf="!this.showSpeakerUpIcon"
-      (click)="changeStatusSpeaker()"
-    >
+    <button class="btn" (click)="changeStatusSpeaker()">
       <div class="icon-button">
         <svg width="24" height="24" viewBox="0 0 24 24" class="svg-size">
           <path
@@ -144,6 +139,7 @@
         </svg>
       </div>
     </button>
+    }
 
     <!-- Title episode -->
     <div class="title-player">

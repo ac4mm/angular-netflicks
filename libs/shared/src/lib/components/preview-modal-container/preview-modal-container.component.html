@@ -11,7 +11,7 @@
 <div class="previewModal-player-container">
   <!-- Cover image dialog -->
   <div class="previewModal-player-image">
-    @if(showVideoPreview){
+    @if(showVideoPreview){ @defer (when showVideoPreview){
     <div class="youtube-container-dialog">
       <youtube-player
         *ngIf="this.config.data.indexSelectedItem"
@@ -22,7 +22,7 @@
         [playerVars]="playerVars"
       ></youtube-player>
     </div>
-    }@else {
+    } }@else {
     <img
       alt="preview-modal-cover"
       [ngSrc]="this.config.data.coverImagePreviewModal"
@@ -273,6 +273,7 @@
         <div class="titleCardList-container">
           <div class="titleCard-title-index">{{ series.number }}</div>
 
+          @defer (when series.image?.medium){
           <div class="titleCard-image-wrapper">
             <img
               [ngSrc]="series.image?.medium"
@@ -297,6 +298,7 @@
               </svg>
             </div>
           </div>
+          }
 
           <div class="titleCardList-metadataWrapper">
             <div class="titleCardList-title">
@@ -342,7 +344,7 @@
             }}</a
           >
           } @empty {
-            <a class="tag-item">There are no person</a>
+          <a class="tag-item">There are no person</a>
           }
         </div>
         <div class="previewModal-tags">

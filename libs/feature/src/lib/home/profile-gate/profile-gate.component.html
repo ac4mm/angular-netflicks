@@ -58,16 +58,8 @@
         }
       </ul>
 
-      <span class="profile-button" *ngIf="!showManageProfile">
-        <a
-          aria-label="Manage Profiles"
-          class="manage-profiles"
-          routerLink="/ManageProfiles"
-          >{{ 'Manage profiles' }}</a
-        >
-      </span>
-
-      <span class="profile-button-done" *ngIf="showManageProfile">
+      @if(showManageProfile){
+      <span class="profile-button-done">
         <div class="container">
           <div class="row">
             <div class="col text-center">
@@ -81,6 +73,16 @@
           </div>
         </div>
       </span>
+      }@else {
+      <span class="profile-button">
+        <a
+          aria-label="Manage Profiles"
+          class="manage-profiles"
+          routerLink="/ManageProfiles"
+          >{{ 'Manage profiles' }}</a
+        >
+      </span>
+      }
     </div>
   </div>
 </div>
