@@ -7,6 +7,7 @@ import {
   concatMap,
   of,
   takeUntil,
+  shareReplay,
 } from 'rxjs';
 
 import { TvMazeService } from '../../services/tvmaze.service';
@@ -116,9 +117,9 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
     this.seriesTvInfo$ = this.getAllSeriesTvInfo$(
       this.config.data.indexTvMazeSeries
     );
-    this.seriesTvMainInfoDetail$ = this.tvmazeService.searchMainInfoMovie(
-      this.config.data.indexTvMazeSeries
-    );
+    this.seriesTvMainInfoDetail$ = this.tvmazeService
+      .searchMainInfoMovie(this.config.data.indexTvMazeSeries)
+      .pipe(shareReplay(1));
 
     this.peopleCastSeries$ = this.getAllPeopleCastById$(
       this.config.data.indexTvMazeSeries
@@ -213,7 +214,8 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
             items.map((item: { person: { name: any } }) => item.person.name)
           ),
         ] as string[]);
-      })
+      }),
+      shareReplay(1)
     );
   }
 

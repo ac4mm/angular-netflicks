@@ -360,7 +360,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
 
         return finalCoverTypoImage;
-      })
+      }),
+      shareReplay(1)
     );
   }
 
@@ -387,7 +388,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     const finalCoverImages: string[] = [];
 
     return from(coverIndexImg).pipe(
-      concatMap((item) => this.tvmazeService.searchImagesMovie(item)),
+      concatMap((item) =>
+        this.tvmazeService.searchImagesMovie(item).pipe(shareReplay(1))
+      ),
       switchMap((images) => {
         const backgroundImages: CoverImage[] = images.filter(
           (image) => image.type === 'background'
