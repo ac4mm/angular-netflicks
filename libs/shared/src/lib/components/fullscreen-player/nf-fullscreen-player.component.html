@@ -1,6 +1,8 @@
-<div class="black-screen-preload" *ngIf="isLoading$ | async">
+@if(isLoading$ | async){
+<div class="black-screen-preload">
   <nf-loading-spinner></nf-loading-spinner>
 </div>
+}
 
 <!-- Top player -->
 <div class="top-player-bar" [hidden]="isLoading$ | async">

@@ -13,14 +13,15 @@
   <div class="previewModal-player-image">
     @if(showVideoPreview){ @defer (when showVideoPreview){
     <div class="youtube-container-dialog">
+      @if(config.data.indexSelectedItem){
       <youtube-player
-        *ngIf="this.config.data.indexSelectedItem"
         #player
         [videoId]="this.keyYTVideo"
         [width]="'100%'"
         [height]="'100%'"
         [playerVars]="playerVars"
       ></youtube-player>
+      }
     </div>
     } }@else {
     <img
@@ -36,8 +37,8 @@
   <!-- Wrapper cover image dialog -->
   <div class="previewModal-player-wrapper">
     <div class="wrapper-logo-img">
+      @if(config.data.logoImageURL !== null){
       <img
-        *ngIf="this.config.data.logoImageURL !== null"
         alt="logo image"
         [ngSrc]="
           'https://image.tmdb.org/t/p/w500' + this.config.data.logoImageURL
@@ -45,6 +46,7 @@
         width="400"
         height="100"
       />
+      }
     </div>
 
     <div class="buttons-controls-container">
@@ -130,24 +132,28 @@
     <div class="detail-modal">
       <div class="previewModal-left">
         <div class="first-line-info">
-          <span class="match-score" *ngIf="this.config.data.randMatchScore"
+          @if(config.data.randMatchScore){
+          <span class="match-score"
             >{{
               this.config.data.randMatchScore[
                 this.config.data.indexSelectedItem
               ]
             }}% Match</span
           >
+          }
+
           <span class="year">2022</span>
-          <span
-            class="seasons"
-            *ngIf="this.config.data.numbersOfSeasonsKeepWatching$$ | async"
+          @if(config.data.numbersOfSeasonsKeepWatching$){
+          <span class="seasons"
             >{{
-              (this.config.data.numbersOfSeasonsKeepWatching$ | async)[
-                this.config.data.indexSelectedItem
+              (config.data.numbersOfSeasonsKeepWatching$ | async)[
+                config.data.indexSelectedItem
               ]
             }}
             seasons</span
           >
+          }
+
           <div class="player-feature-badge">
             <span>HD</span>
           </div>
@@ -155,15 +161,15 @@
 
         <div class="second-line-info">
           <div class="maturity-rating">
-            <span
-              class="rating-number"
-              *ngIf="this.config.data.ratingNumberCover"
+            @if(config.data.ratingNumberCover){
+            <span class="rating-number"
               >{{
                 this.config.data.ratingNumberCover[
                   this.config.data.indexSelectedItem
                 ]
               }}+</span
             >
+            }
           </div>
         </div>
 
@@ -355,17 +361,17 @@
         </div>
         <div class="previewModal-tags">
           <span class="previewModal-tags-label">Maturity Rating:</span
-          ><a class="tag-item maturity-rating"
-            ><span
-              class="rating-number"
-              *ngIf="this.config.data.ratingNumberCover"
+          ><a class="tag-item maturity-rating">
+            @if(config.data.ratingNumberCover){
+            <span class="rating-number"
               >{{
                 this.config.data.ratingNumberCover[
                   this.config.data.indexSelectedItem
                 ]
               }}+</span
-            ></a
-          >
+            >
+            }
+          </a>
         </div>
       </div>
     </div>

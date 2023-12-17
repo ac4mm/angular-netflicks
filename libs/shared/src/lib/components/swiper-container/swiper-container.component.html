@@ -8,29 +8,33 @@
   <div class="swiper-wrapper">
     <!-- Slides -->
     @for(coverImage of coverImages; track $index){
-      <div
-        class="swiper-slide"
-        #swiperSlides
-      >
-        <div (click)="playVideo(coverIndexImagesTMDB[$index], $event)">
-          <img class="card-img" alt="Card image" [ngSrc]="coverImage" width="214" height="120"/>
-          <div class="container-logo-img">
-            <img
-              class="logo-img"
-              alt="Logo image"
-              *ngIf="logoImages?.[$index] as logo"
-              [ngSrc]="'https://image.tmdb.org/t/p/w500' + logo"
-              width="87"
-              height="32"
-            />
-          </div>
+    <div class="swiper-slide" #swiperSlides>
+      <div (click)="playVideo(coverIndexImagesTMDB[$index], $event)">
+        <img
+          class="card-img"
+          alt="Card image"
+          [ngSrc]="coverImage"
+          width="214"
+          height="120"
+        />
+        <div class="container-logo-img">
+          @if(logoImages?.[$index]; as logo){
+          <img
+            class="logo-img"
+            alt="Logo image"
+            [ngSrc]="'https://image.tmdb.org/t/p/w500' + logo"
+            width="87"
+            height="32"
+          />
+          }
         </div>
+      </div>
 
-        <!-- Detail Card -->
-        <div
-          class="card-details"
-          *ngIf="logoImages?.[$index] as logo"
-          (click)="
+      <!-- Detail Card -->
+      @if(logoImages?.[$index]; as logo){
+      <div
+        class="card-details"
+        (click)="
           openDialogCoverImage(
             coverImage,
             $index,
@@ -39,54 +43,55 @@
             logo
           )
         "
-        >
-          <div class="card-icons">
-            <!-- Play button -->
-            <nf-play-button
-              (click)="playVideo(coverIndexImagesTMDB[$index], $event)"
-            ></nf-play-button>
+      >
+        <div class="card-icons">
+          <!-- Play button -->
+          <nf-play-button
+            (click)="playVideo(coverIndexImagesTMDB[$index], $event)"
+          ></nf-play-button>
 
-            <div (click)="onClickShowCheckIcon($event)">
+          <div (click)="onClickShowCheckIcon($event)">
+            @if(showCheckIcon){
+            <!-- Add button  -->
+            <nf-add-button></nf-add-button>
 
-              @if(showCheckIcon){
-                <!-- Add button  -->
-                <nf-add-button></nf-add-button>
+            <!-- Hover text add button -->
+            <div class="container-hover-btn">
+              <h6 class="hover-text-add-btn">Add to My List</h6>
 
-                <!-- Hover text add button -->
-                <div class="container-hover-btn">
-                  <h6 class="hover-text-add-btn">Add to My List</h6>
-
-                  <div class="container-triangle">
-                    <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
-                      <polygon points="0 0, 100 0, 50 50" />
-                    </svg>
-                  </div>
-                </div>
-              }@else {
-                <!-- Check -->
-                <nf-check-button></nf-check-button>
-
-                <!-- Hover text check button -->
-                <div class="container-hover-btn">
-                  <h6 class="hover-text-check-btn">Remove from My List</h6>
-
-                  <div class="container-triangle">
-                    <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
-                      <polygon points="0 0, 100 0, 50 50" />
-                    </svg>
-                  </div>
-                </div>
-              }
+              <div class="container-triangle">
+                <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
+                  <polygon points="0 0, 100 0, 50 50" />
+                </svg>
+              </div>
             </div>
+            }@else {
+            <!-- Check -->
+            <nf-check-button></nf-check-button>
 
-            <!-- Thumb up -->
-            <nf-thumb-up-button (click)="$event.stopPropagation()"></nf-thumb-up-button>
+            <!-- Hover text check button -->
+            <div class="container-hover-btn">
+              <h6 class="hover-text-check-btn">Remove from My List</h6>
 
-            <!-- expand -->
-            <nf-expand-button
-              *ngIf="logoImages?.[$index] as logo"
-              style="margin-left: auto"
-              (click)="
+              <div class="container-triangle">
+                <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
+                  <polygon points="0 0, 100 0, 50 50" />
+                </svg>
+              </div>
+            </div>
+            }
+          </div>
+
+          <!-- Thumb up -->
+          <nf-thumb-up-button
+            (click)="$event.stopPropagation()"
+          ></nf-thumb-up-button>
+
+          @if(logoImages?.[$index]; as logo){
+          <!-- expand -->
+          <nf-expand-button
+            style="margin-left: auto"
+            (click)="
               openDialogCoverImage(
                 coverImage,
                 $index,
@@ -96,41 +101,51 @@
                 $event
               )
             "
-            ></nf-expand-button>
+          ></nf-expand-button>
+          }
+        </div>
+        <div class="video-metadata-container-info">
+          <div class="first-line-info">
+            <span class="match-score"
+              >{{ randMatchScore?.[$index] }}% Match</span
+            >
           </div>
-          <div class="video-metadata-container-info">
-            <div class="first-line-info">
-              <span class="match-score">{{ randMatchScore?.[$index] }}% Match</span>
+          <div class="second-line-info">
+            <div class="maturity-rating">
+              <span class="rating-number"
+                >{{ ratingNumberCover?.[$index] }}+</span
+              >
             </div>
-            <div class="second-line-info">
-              <div class="maturity-rating">
-                <span class="rating-number">{{ ratingNumberCover?.[$index] }}+</span>
-              </div>
 
-              <div class="duration" *ngFor="let season of numbersOfSeasons?.[$index]">
-                <span>{{ season }} seasons</span>
-              </div>
-              <div class="player-feature-badge">
-                <span>HD</span>
-              </div>
+            @for(season of numbersOfSeasons?.[$index]; track season; let
+            indexSeason=$index){
+            <div class="duration">
+              <span>{{ season }} seasons</span>
             </div>
-          </div>
-          <div class="video-metadata-container-tags">
-            <div class="evidence-tags">
-              <div class="evidence-list" *ngIf="$index">
-                <div
-                  class="evidence-item"
-                  *ngFor="let genre of genresCoverImages[$index]"
-                >
-                  <span class="evidence-text">{{ genre }}</span>
-                </div>
-              </div>
+            }
+            <div class="player-feature-badge">
+              <span>HD</span>
             </div>
           </div>
         </div>
+        <div class="video-metadata-container-tags">
+          <div class="evidence-tags">
+            @if($index){
+            <div class="evidence-list">
+              @for(genre of genresCoverImages?.[$index]; track genre; let
+              indexGenre=$index){
+              <div class="evidence-item">
+                <span class="evidence-text">{{ genre }}</span>
+              </div>
+              }
+            </div>
+            }
+          </div>
+        </div>
       </div>
+      }
+    </div>
     }
-
   </div>
 
   <!-- If we need pagination -->
