@@ -18,10 +18,10 @@
       "@env/*": ["apps/netflicks/src/environments/*"],
       "@feature/*": ["libs/feature/src/lib/*"],
       "@feature/netflicks": ["libs/feature/src/index.ts"],
-      "@shared/netflicks": ["libs/shared/src/index.ts"],
       "@layout/netflicks": ["libs/layout/src/index.ts"],
       "@material/module": ["src/app/material.module"],
-      "@shared/styles": ["libs/styles/src/index.ts"],
+      "@shared/netflicks": ["libs/shared/src/index.ts"],
+      "@shared/styles": ["libs/styles/src/index.ts"]
     }
   }
 }
