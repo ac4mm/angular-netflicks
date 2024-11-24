@@ -4,7 +4,7 @@
   <img alt="angular-netflicks-logo" src="meta-assets/angular_netflicks_logo.png" width="160" height="160" />
 </p>
 
-A case study of **Netflix Clone**, using Angular 17 framework, 
+A case study of **Netflix Clone**, using Angular framework, 
 [RxJS](https://rxjs.dev/) library for manage state with Observable, 
 [Nx](https://nx.dev/) for manage library and shared component in monorepo, 
 Bootstrap for style (Scss), [Swipe.js](https://swiperjs.com/) for animation carousel, 
@@ -49,7 +49,7 @@ yarn start
 
 ## Goals
 Tha main goal of this simple repository is to learn how to use reactive programming (with RxJS) 
-and Angular 17 with routing, lazy loading and the main feature of framework.
+and Angular with routing, lazy loading and the main feature of framework.
 
 The project has evolved over time, starting from a situation in which I started to learn the framework and library, 
 up to today, with all the best practices and evolutions of the monorepo, with the addition of the API for images and video trailers of Youtube.
