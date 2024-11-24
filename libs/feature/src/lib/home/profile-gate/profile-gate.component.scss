@@ -142,8 +142,7 @@ a {
 .profile-button a,
 .profile-button span {
   border: 1px solid grey;
-  color: grey;
-  /* text-transform: uppercase; */
+  color: grey !important;
   padding: 0.5em 1.5em;
   letter-spacing: 2px;
   cursor: pointer;
@@ -151,7 +150,7 @@ a {
 
 .profile-button:hover a,
 .profile-button:hover span {
-  color: #eaeaea;
+  color: #eaeaea !important;
   border: 1px solid #eaeaea;
 }
 

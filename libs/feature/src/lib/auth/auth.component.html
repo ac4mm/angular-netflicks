@@ -1,29 +1,33 @@
 <div class="login-wrapper-background">
-  <nav class="navbar navbar-expand-lg">
-    <img class="navbar-brand" alt="netflicks logo" ngSrc="assets/svg/netflicks.svg" width="215" height="63.2" priority />
+  <nav class="navbar navbar-expand-lg p-3">
+    <img class="navbar-brand img-fluid" alt="netflicks logo" ngSrc="assets/svg/netflicks.svg" width="215" height="63.2" priority />
   </nav>
 
   <div class="container-form">
     <div class="login-form-main">
+      <!-- Error message -->
       @if(error){
         <div class="alert alert-danger">
           <span>{{ error }}</span>
         </div>
       }
 
+      <!-- Heading -->
       <h2 class="login-form-text">
         {{ isLoginMode ? "Login" : "Sign up" }}
       </h2>
 
+      <!-- Loading spinner -->
       @if(isLoading){
         <nf-loading-spinner></nf-loading-spinner>
       } @else {
+        <!-- Login Form -->
         <form
           #authForm="ngForm"
           (ngSubmit)="onSubmit(authForm)"
         >
-          <div class="form-group">
-            <!-- <label for="email">Email</label> -->
+          <div class="mb-3 position-relative">
+            <!-- Email -->
             <input
               class="form-control"
               type="email"
@@ -35,10 +39,11 @@
               placeholder=" "
               aria-label="email"
             />
-            <span class="placeholder-text pt-first">Email or phone number</span>
+            <span class="placeholder-text">Email or phone number</span>
           </div>
 
-          <div class="form-group">
+          <!-- Password -->
+          <div class="mb-3 position-relative">
             <input
               class="form-control"
               type="{{ showPassword ? 'text' : 'password' }}"
@@ -59,14 +64,17 @@
             >
           </div>
 
+          <!-- Submit Button -->
           <button
-            class="btn btn-danger col-12"
+            class="btn btn-danger col-12 w-100"
             type="submit"
             [disabled]="!authForm.valid"
           >
             {{ isLoginMode ? "Login" : "Sign up" }}
           </button>
-          <div class="form-check">
+
+          <!-- Remember Me and Help -->
+          <div class="form-check mb-3">
             <input type="checkbox" class="form-check-input" id="checkboxRememberMe"/>
             <label class="form-check-label">
               <label class="check-text" for="checkboxRememberMe">Remember me</label>
@@ -80,6 +88,7 @@
 
     </div>
 
+    <!-- Switch Mode -->
     <div class="login-form-other">
       <p class="text-form-other">
         New to Netflicks?

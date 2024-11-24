@@ -34,7 +34,7 @@
       </li>
 
       <!--navbar left-->
-      <ul class="navbar-nav" id="leftNavbar">
+      <ul class="navbar-nav me-auto" id="leftNavbar">
         <li
           class="nav-item"
           routerLinkActive="active"
@@ -63,7 +63,7 @@
       </ul>
 
       <!--navbar right-->
-      <ul class="navbar-nav ml-auto" id="rightNavbar">
+      <ul class="navbar-nav ms-auto" id="rightNavbar">
         <!-- Searchbar -->
         <li class="nav-item search-box space-item">
           <a class="nav-link">
@@ -165,7 +165,7 @@
           </a>
           <p class="account-triangle-up"></p>
 
-          <ul class="dropdown-menu dropdown-menu-right">
+          <ul class="dropdown-menu end-0 start-auto mt-3n-dropdown">
             @for(indexUser of [1,2,3,4,5]; track $index){
             <li (click)="onChangeUser(indexUser)">
               @if(indexUser !== idUserMaster) {

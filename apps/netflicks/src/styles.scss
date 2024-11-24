@@ -9,11 +9,16 @@ body {
   overflow-x: hidden !important;
 }
 
+h1,
 h2,
 h3,
 p,
 a {
-  color: #e5e5e5;
+  color: #e5e5e5 !important;
+}
+
+a {
+  text-decoration: none !important;
 }
 
 /**For Chrome and Safari you can change the scrollbar style using this code*/
