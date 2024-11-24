@@ -47,7 +47,7 @@
 }
 
 .text-form-other {
-  color: #737373;
+  color: #737373 !important;
   font-size: 16px;
   font-weight: 500;
 }
@@ -85,6 +85,7 @@ input:-webkit-autofill:focus {
 
 .form-group {
   position: relative;
+  margin-bottom: 1rem;
 }
 
 .placeholder-text {
@@ -134,7 +135,10 @@ input:not(:placeholder-shown) ~ .show-password {
 }
 
 .form-check {
+  position: relative;
+  display: block;
   padding-top: 8px;
+  padding-left: 1.25rem;
 }
 
 .form-check-input {
@@ -157,7 +161,7 @@ input:not(:placeholder-shown) ~ .show-password {
 .help {
   position: absolute;
   right: 0;
-  color: #b3b3b3;
+  color: #b3b3b3 !important;
 }
 
 .help:hover {
