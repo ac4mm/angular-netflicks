@@ -74,17 +74,13 @@
   transition-delay: 500ms;
 }
 
-.navbar-dark .navbar-nav .nav-link {
-  color: #ffffff80;
-}
-
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link:hover {
   color: #fff !important;
 }
 
 .nav-link {
-  color: #ffffffbf !important;
+  color: #ffffff80 !important;
 
   ::placeholder {
     color: #7d7d7d;
