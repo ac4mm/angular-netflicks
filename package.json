@@ -1,6 +1,6 @@
 {
   "name": "netflicks",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "scripts": {
     "nx": "nx",
     "start": "nx run netflicks:serve",
