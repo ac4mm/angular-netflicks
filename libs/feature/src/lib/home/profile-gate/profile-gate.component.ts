@@ -6,7 +6,7 @@ import {
   LoadingSpinnerComponent,
   FullscreenIntroAnimationComponent,
 } from '@shared/netflicks';
-import { NgIf, NgFor, NgClass, NgStyle } from '@angular/common';
+import { NgClass, NgStyle } from '@angular/common';
 
 @Component({
   selector: 'nf-profile-gate',
@@ -14,10 +14,8 @@ import { NgIf, NgFor, NgClass, NgStyle } from '@angular/common';
   styleUrl: './profile-gate.component.scss',
   standalone: true,
   imports: [
-    NgIf,
     FullscreenIntroAnimationComponent,
     LoadingSpinnerComponent,
-    NgFor,
     NgClass,
     NgStyle,
     RouterLink,

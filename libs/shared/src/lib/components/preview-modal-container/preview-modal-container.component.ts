@@ -21,7 +21,7 @@ import { NfSpeakerupButtonComponent } from '../buttons/nf-speakerup-button.compo
 import { NfThumbUpButtonComponent } from '../buttons/nf-thumb-up-button.component';
 import { NfCheckButtonComponent } from '../buttons/nf-check-button.component';
 import { NfAddButtonComponent } from '../buttons/nf-add-button.component';
-import { NgIf, NgFor, AsyncPipe, NgOptimizedImage } from '@angular/common';
+import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { NfCloseButtonComponent } from '../buttons/nf-close-button.component';
 
 @Component({
@@ -31,14 +31,12 @@ import { NfCloseButtonComponent } from '../buttons/nf-close-button.component';
   standalone: true,
   imports: [
     NfCloseButtonComponent,
-    NgIf,
     YouTubePlayerModule,
     NfAddButtonComponent,
     NfCheckButtonComponent,
     NfThumbUpButtonComponent,
     NfSpeakerupButtonComponent,
     NfSpeakerdownButtonComponent,
-    NgFor,
     AsyncPipe,
     NgOptimizedImage,
   ],

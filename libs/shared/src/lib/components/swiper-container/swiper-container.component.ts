@@ -8,7 +8,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subject, takeUntil } from 'rxjs';
 import { Swiper, A11y, Mousewheel, Navigation, Pagination } from 'swiper';
 import { UtilitiesService } from '../../services/utilities.service';
@@ -18,7 +18,7 @@ import { NfThumbUpButtonComponent } from '../buttons/nf-thumb-up-button.componen
 import { NfCheckButtonComponent } from '../buttons/nf-check-button.component';
 import { NfAddButtonComponent } from '../buttons/nf-add-button.component';
 import { NfPlayButtonComponent } from '../buttons/nf-play-button.component';
-import { NgFor, NgIf, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { ManagePlayerService } from '../../services/manage-player.service';
 import {
   INIT_RATING_NUMBER,
@@ -31,8 +31,6 @@ import {
   styleUrl: './swiper-container.component.scss',
   standalone: true,
   imports: [
-    NgFor,
-    NgIf,
     NfPlayButtonComponent,
     NfAddButtonComponent,
     NfCheckButtonComponent,
@@ -69,7 +67,6 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
 
   constructor(
     private utilitiesService: UtilitiesService,
-    public dialogService: DialogService,
     private managePlayerService: ManagePlayerService,
     private renderer: Renderer2
   ) {}

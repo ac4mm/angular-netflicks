@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { NgClass, NgIf, NgStyle } from '@angular/common';
+import { NgClass, NgStyle } from '@angular/common';
 
 @Component({
   selector: 'nf-loading-spinner',
@@ -108,7 +108,7 @@ import { NgClass, NgIf, NgStyle } from '@angular/common';
     `,
   ],
   standalone: true,
-  imports: [NgClass, NgIf, NgStyle],
+  imports: [NgClass, NgStyle],
 })
 export class LoadingSpinnerComponent {
   @Input() profileImg = false;
