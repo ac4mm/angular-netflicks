@@ -8,7 +8,7 @@ import { SkeletonModule } from 'primeng/skeleton';
       <div class="row row-skeleton">
         <div class="row">
           <div class="col-12">
-            <p-skeleton width="20rem" styleClass="mb-2"></p-skeleton>
+            <p-skeleton width="20rem" class="mb-2"></p-skeleton>
           </div>
         </div>
 
@@ -37,7 +37,7 @@ import { SkeletonModule } from 'primeng/skeleton';
       <div class="row row-skeleton">
         <div class="row">
           <div class="col-12">
-            <p-skeleton width="20rem" styleClass="mb-2"></p-skeleton>
+            <p-skeleton width="20rem" class="mb-2"></p-skeleton>
           </div>
         </div>
 
@@ -66,7 +66,7 @@ import { SkeletonModule } from 'primeng/skeleton';
       <div class="row row-skeleton">
         <div class="row">
           <div class="col-12">
-            <p-skeleton width="20rem" styleClass="mb-2"></p-skeleton>
+            <p-skeleton width="20rem" class="mb-2"></p-skeleton>
           </div>
         </div>
 
@@ -95,7 +95,7 @@ import { SkeletonModule } from 'primeng/skeleton';
       <div class="row row-skeleton">
         <div class="row">
           <div class="col-12">
-            <p-skeleton width="20rem" styleClass="mb-2"></p-skeleton>
+            <p-skeleton width="20rem" class="mb-2"></p-skeleton>
           </div>
         </div>
 

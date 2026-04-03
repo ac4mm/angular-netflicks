@@ -29,8 +29,6 @@
           "apps/netflicks/src/styles.scss",
           "node_modules/bootstrap/scss/bootstrap.scss",
           "node_modules/swiper/swiper.scss",
-          "node_modules/primeng/resources/themes/md-light-indigo/theme.css",
-          "node_modules/primeng/resources/primeng.min.css",
           "node_modules/primeicons/primeicons.css"
         ],
         "scripts": [
@@ -75,9 +73,7 @@
         }
       },
       "defaultConfiguration": "",
-      "outputs": [
-        "{options.outputPath}"
-      ]
+      "outputs": ["{options.outputPath}"]
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
@@ -119,9 +115,7 @@
         }
       },
       "defaultConfiguration": "",
-      "outputs": [
-        "{options.outputPath}"
-      ]
+      "outputs": ["{options.outputPath}"]
     },
     "serve-ssr": {
       "executor": "@nguniversal/builders:ssr-dev-server",
@@ -141,9 +135,7 @@
       "options": {
         "buildTarget": "netflicks:build:production",
         "serverTarget": "netflicks:server:production",
-        "routes": [
-          "/"
-        ]
+        "routes": ["/"]
       },
       "configurations": {
         "production": {}

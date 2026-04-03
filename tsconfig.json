@@ -5,6 +5,8 @@
     "esModuleInterop": true,
     "useDefineForClassFields": false,
     "strictPropertyInitialization": false,
+    "skipLibCheck": true,
+    "moduleResolution": "bundler"
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
