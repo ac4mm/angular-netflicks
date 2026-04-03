@@ -58,5 +58,6 @@
       "style": "css"
     }
   },
-  "useLegacyCache": true
+  "useLegacyCache": true,
+  "analytics": false
 }

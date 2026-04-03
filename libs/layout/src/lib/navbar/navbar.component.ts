@@ -74,7 +74,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
   }
 
-  @HostListener('window:scroll', ['$event'])
+  @HostListener('window:scroll')
   scrollNavBarEffect() {
     const navbarElement = document.querySelector('.navbar');
     if (!!navbarElement && window.pageYOffset > navbarElement.clientHeight) {
