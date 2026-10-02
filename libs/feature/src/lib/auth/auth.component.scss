@@ -68,9 +68,6 @@
 }
 
 /* Fixed overlap text problem autocompile form in browser when is the first load */
-input:-webkit-autofill + input {
-}
-
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {

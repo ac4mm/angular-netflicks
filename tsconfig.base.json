@@ -10,6 +10,7 @@
     "module": "esnext",
     "lib": ["es2015", "dom"],
     "baseUrl": "./",
+    "ignoreDeprecations": "5.0",
     "strictPropertyInitialization": false,
     "paths": {
       "@config/netflicks": ["libs/config/src/index.ts"],

@@ -13,7 +13,6 @@ import { PreviewModalContainerComponent } from '@shared/netflicks';
 import { DialogModule } from 'primeng/dialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ButtonModule } from 'primeng/button';
-import { DropdownModule } from 'primeng/dropdown';
 import { SkeletonModule } from 'primeng/skeleton';
 import { AsyncPipe, NgClass, NgOptimizedImage, NgStyle } from '@angular/common';
 
@@ -28,7 +27,6 @@ import { AsyncPipe, NgClass, NgOptimizedImage, NgStyle } from '@angular/common';
     DialogModule,
     DynamicDialogModule,
     ButtonModule,
-    DropdownModule,
     SkeletonModule,
     YouTubePlayerModule,
     AsyncPipe,

@@ -33,7 +33,7 @@ export class ManagePlayerService {
       ...COMMON_CONFIG_DIALOG,
       ...COMMON_CONFIG_FULLSCREEN,
       baseZIndex: 10001,
-    });
+    }) as DynamicDialogRef;
   }
 
   openFullScreenPlayer(data: any): DynamicDialogRef {
@@ -42,7 +42,7 @@ export class ManagePlayerService {
       ...COMMON_CONFIG_FULLSCREEN,
       baseZIndex: 10000,
       data: data,
-    });
+    }) as DynamicDialogRef;
   }
 
   openPreviewModalContainer(data: any): DynamicDialogRef {
@@ -50,6 +50,6 @@ export class ManagePlayerService {
       ...COMMON_CONFIG_DIALOG,
       baseZIndex: 10000,
       data: data,
-    });
+    }) as DynamicDialogRef;
   }
 }
