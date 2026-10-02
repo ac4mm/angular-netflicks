@@ -99,8 +99,9 @@ input:-webkit-autofill:focus {
   pointer-events: none;
 }
 
-input:focus + span,
-input:not(:placeholder-shown) + span {
+input:focus + .placeholder-text,
+input:not(:placeholder-shown) + .placeholder-text,
+input:-webkit-autofill + .placeholder-text {
   transform: translateY(-40%) translateX(2px);
   font-size: 11px;
 }
@@ -121,7 +122,8 @@ input:focus {
 }
 
 input:focus ~ .show-password,
-input:not(:placeholder-shown) ~ .show-password {
+input:not(:placeholder-shown) ~ .show-password,
+input:-webkit-autofill ~ .show-password {
   visibility: visible;
 }
 
