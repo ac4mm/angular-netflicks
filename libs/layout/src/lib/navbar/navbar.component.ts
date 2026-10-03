@@ -8,7 +8,7 @@ import {
 import { Subject, Subscription, takeUntil } from 'rxjs';
 import { AuthService } from '@core/auth';
 import { SelectUserService } from '@shared/netflicks';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { UpperCasePipe, NgOptimizedImage, CommonModule } from '@angular/common';
 
 @Component({
@@ -41,7 +41,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   constructor(
     private elRef: ElementRef,
     private authService: AuthService,
-    private selectUser: SelectUserService
+    private selectUser: SelectUserService,
+    public router: Router
   ) {}
 
   ngOnInit(): void {

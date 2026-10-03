@@ -35,30 +35,27 @@
 
       <!--navbar left-->
       <ul class="navbar-nav me-auto" id="leftNavbar">
-        <li
-          class="nav-item"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
+        <li class="nav-item" [class.active]="router.isActive('/browse', true)">
           <a
             class="nav-link"
             routerLink="/browse"
             routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
             data-toggle="collapse"
             >Home</a
           >
         </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="tv-shows">Tv Shows</a>
+        <li class="nav-item" [class.active]="router.isActive('/tv-shows', true)">
+          <a class="nav-link" routerLink="tv-shows" routerLinkActive="active">Tv Shows</a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="movies">Movies</a>
+        <li class="nav-item" [class.active]="router.isActive('/movies', true)">
+          <a class="nav-link" routerLink="movies" routerLinkActive="active">Movies</a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="latest">Latest</a>
+        <li class="nav-item" [class.active]="router.isActive('/latest', true)">
+          <a class="nav-link" routerLink="latest" routerLinkActive="active">Latest</a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="my-list">My List</a>
+        <li class="nav-item" [class.active]="router.isActive('/my-list', true)">
+          <a class="nav-link" routerLink="my-list" routerLinkActive="active">My List</a>
         </li>
       </ul>
 

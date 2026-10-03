@@ -75,8 +75,14 @@
 }
 
 .navbar-nav .nav-link.active,
+.navbar-nav .nav-item.active > .nav-link,
 .navbar-nav .nav-link:hover {
   color: #fff !important;
+}
+
+.nav-item.active > .nav-link {
+  color: #fff !important;
+  font-weight: 600;
 }
 
 .nav-link {
