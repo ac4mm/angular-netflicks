@@ -312,6 +312,26 @@
   color: white !important;
 }
 
+.dropdown-selector .dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  min-width: 220px;
+  margin-top: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: rgb(36, 36, 36);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 10;
+}
+
+.dropdown-selector .dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-selector .dropdown {
+  position: relative;
+}
+
 .dropdown-nf {
   display: flex;
   -webkit-box-align: center;

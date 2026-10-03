@@ -242,18 +242,22 @@
         </div>
 
         <div class="dropdown-selector">
-          <div class="dropdown">
+          <div class="dropdown" [class.show]="isSeasonDropdownOpen">
             <button
               type="button"
               class="btn btn-secondary dropdown-toggle dropdown-nf"
               id="dropdownMenuButton"
-              data-toggle="dropdown"
               aria-haspopup="true"
-              aria-expanded="false"
+              [attr.aria-expanded]="isSeasonDropdownOpen"
+              (click)="toggleSeasonDropdown($event)"
             >
               Season {{ seasonSelected }}
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div
+              class="dropdown-menu"
+              [class.show]="isSeasonDropdownOpen"
+              aria-labelledby="dropdownMenuButton"
+            >
               @for(item of this.definedArrayDropdownSeasons(
               (this.finalArrayTvInfo$ | async)?.length ); track $index){
               <a class="dropdown-item" (click)="onSelectSeason(item)"

@@ -1,4 +1,12 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import {
   BehaviorSubject,
@@ -75,6 +83,8 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
   ];
   selectedRandWords: string[];
 
+  isSeasonDropdownOpen = false;
+
   showVideoPreview = false;
 
   keyYTVideo: string;
@@ -103,7 +113,8 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
     private tvmazeService: TvMazeService,
     private themovieDbService: TheMovieDBService,
     public utilitiesService: UtilitiesService,
-    private managePlayerService: ManagePlayerService
+    private managePlayerService: ManagePlayerService,
+    private elementRef: ElementRef<HTMLElement>
   ) {}
 
   ngOnInit() {
@@ -139,6 +150,22 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    if (!this.elementRef.nativeElement.contains(event.target as Node)) {
+      this.closeSeasonDropdown();
+    }
+  }
+
+  toggleSeasonDropdown(event?: Event) {
+    event?.stopPropagation();
+    this.isSeasonDropdownOpen = !this.isSeasonDropdownOpen;
+  }
+
+  closeSeasonDropdown() {
+    this.isSeasonDropdownOpen = false;
   }
 
   onClickClose() {
@@ -234,6 +261,7 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
 
   onSelectSeason(index: number) {
     this.seasonSelected = index;
+    this.closeSeasonDropdown();
 
     //Index start from 0
     this.seriesSelectedDropdown$.next(index - 1);
