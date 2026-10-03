@@ -122,11 +122,9 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
   }
 
   onClickShowCheckIcon(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
     this.showCheckIcon = !this.showCheckIcon;
-
-    if (event) {
-      event.stopPropagation();
-    }
   }
 
   openDialogCoverImage(

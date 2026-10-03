@@ -71,6 +71,27 @@ img {
   position: relative;
 }
 
+.my-list-toggle {
+  position: relative;
+}
+
+.my-list-toggle .hover-text-add-btn::after,
+.my-list-toggle .hover-text-check-btn::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0.45em 0.45em 0;
+  border-style: solid;
+  border-color: #e6e6e6 transparent transparent;
+}
+
+.my-list-toggle nf-add-button:hover + .hover-text-add-btn,
+.my-list-toggle nf-check-button:hover + .hover-text-check-btn {
+  display: block;
+}
+
 .hover-text-add-btn,
 .hover-text-check-btn {
   display: none;
@@ -102,10 +123,6 @@ img {
   font-size: 13px;
   bottom: 2.5em;
   padding-left: 0.7em;
-}
-
-.card-details .hover-text-check-btn {
-  left: -4.2em;
 }
 
 .container-triangle {

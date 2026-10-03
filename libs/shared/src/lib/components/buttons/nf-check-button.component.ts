@@ -4,7 +4,7 @@ import { NgClass } from '@angular/common';
 @Component({
   selector: 'nf-check-button',
   template: `<button
-    class="btn-circle btn-check btn-icon-cover"
+    class="btn-circle btn-check-icon btn-icon-cover"
     [ngClass]="mediumSize ? 'btn-circle-medium' : ''"
   >
     <svg

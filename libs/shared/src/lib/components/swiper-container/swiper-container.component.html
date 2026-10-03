@@ -50,35 +50,20 @@
             (click)="playVideo(coverIndexImagesTMDB[$index], $event)"
           ></nf-play-button>
 
-          <div (click)="onClickShowCheckIcon($event)">
+          <div
+            class="my-list-toggle"
+            role="button"
+            tabindex="0"
+            (click)="onClickShowCheckIcon($event)"
+            (keydown.enter)="onClickShowCheckIcon($event)"
+            (keydown.space)="onClickShowCheckIcon($event)"
+          >
             @if(showCheckIcon){
-            <!-- Add button  -->
             <nf-add-button></nf-add-button>
-
-            <!-- Hover text add button -->
-            <div class="container-hover-btn">
-              <h6 class="hover-text-add-btn">Add to My List</h6>
-
-              <div class="container-triangle">
-                <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
-                  <polygon points="0 0, 100 0, 50 50" />
-                </svg>
-              </div>
-            </div>
+            <span class="hover-text-add-btn">Add to My List</span>
             }@else {
-            <!-- Check -->
             <nf-check-button></nf-check-button>
-
-            <!-- Hover text check button -->
-            <div class="container-hover-btn">
-              <h6 class="hover-text-check-btn">Remove from My List</h6>
-
-              <div class="container-triangle">
-                <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
-                  <polygon points="0 0, 100 0, 50 50" />
-                </svg>
-              </div>
-            </div>
+            <span class="hover-text-check-btn">Remove from My List</span>
             }
           </div>
 

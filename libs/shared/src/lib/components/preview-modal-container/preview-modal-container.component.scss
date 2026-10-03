@@ -239,6 +239,48 @@
   }
 }
 
+.my-list-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 0.5rem;
+}
+
+.my-list-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: #e6e6e6;
+  color: #000;
+  font-weight: 700;
+  font-size: 1.25rem;
+  border-radius: 7px;
+  padding: 0.45em 0.8em;
+  display: none;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.my-list-tooltip::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  border-width: 6px 6px 0 6px;
+  border-style: solid;
+  border-color: #e6e6e6 transparent transparent transparent;
+}
+
+.my-list-toggle nf-add-button:hover + .add-tooltip,
+.my-list-toggle nf-check-button:hover + .remove-tooltip {
+  display: block;
+}
+
 .previewModal-tags {
   font-size: 14px;
   line-height: 20px;

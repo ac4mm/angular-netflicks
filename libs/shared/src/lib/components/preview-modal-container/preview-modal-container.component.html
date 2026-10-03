@@ -74,35 +74,20 @@
         <span class="text-btn">Play</span>
       </button>
 
-      <div (click)="onClickShowCheckIcon()">
+      <div
+        class="my-list-toggle"
+        role="button"
+        tabindex="0"
+        (click)="onClickShowCheckIcon($event)"
+        (keydown.enter)="onClickShowCheckIcon($event)"
+        (keydown.space)="onClickShowCheckIcon($event)"
+      >
         @if(showCheckIcon){
-        <!-- Add button  -->
         <nf-add-button [mediumSize]="true"></nf-add-button>
-
-        <!-- Hover text add button -->
-        <div class="container-hover-btn">
-          <h5 class="hover-text-add-btn">Add to My List</h5>
-
-          <div class="container-triangle">
-            <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
-              <polygon points="0 0, 100 0, 50 50" />
-            </svg>
-          </div>
-        </div>
+        <span class="my-list-tooltip add-tooltip">Add to My List</span>
         }@else {
-        <!-- Check -->
         <nf-check-button [mediumSize]="true"></nf-check-button>
-
-        <!-- Hover text check button -->
-        <div class="container-hover-btn">
-          <h5 class="hover-text-check-btn">Remove from My List</h5>
-
-          <div class="container-triangle">
-            <svg id="triangle" viewBox="0 0 100 100" fill="#e6e6e6">
-              <polygon points="0 0, 100 0, 50 50" />
-            </svg>
-          </div>
-        </div>
+        <span class="my-list-tooltip remove-tooltip">Remove from My List</span>
         }
       </div>
 

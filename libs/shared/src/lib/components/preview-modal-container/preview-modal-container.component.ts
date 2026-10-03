@@ -180,7 +180,9 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
     }
   }
 
-  onClickShowCheckIcon() {
+  onClickShowCheckIcon(event?: Event) {
+    event?.preventDefault();
+    event?.stopPropagation();
     this.showCheckIcon = !this.showCheckIcon;
   }
 
