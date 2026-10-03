@@ -1,15 +1,15 @@
 import { UrlTree } from '@angular/router';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { takeUntil } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard {
+  private authService = inject(AuthService);
+
   isAuthenticated = false;
   private destroy$ = new Subject<void>();
-
-  constructor(private authService: AuthService) {}
 
   canActivate():
     | boolean

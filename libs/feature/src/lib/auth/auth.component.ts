@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { NgForm, FormsModule } from '@angular/forms';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
@@ -14,6 +14,9 @@ import { NgOptimizedImage } from '@angular/common';
   imports: [LoadingSpinnerComponent, FormsModule, NgOptimizedImage],
 })
 export class AuthComponent implements OnDestroy {
+  private authService = inject(AuthService);
+  private router = inject(Router);
+
   isLoginMode = true;
   isLoading = false;
   showPassword = false;
@@ -21,8 +24,6 @@ export class AuthComponent implements OnDestroy {
 
   authObs: Observable<AuthResponseData>;
   private destroy$ = new Subject<void>();
-
-  constructor(private authService: AuthService, private router: Router) {}
 
   onShowPassword() {
     this.showPassword = !this.showPassword;

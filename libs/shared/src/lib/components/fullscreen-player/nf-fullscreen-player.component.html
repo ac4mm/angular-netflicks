@@ -57,11 +57,15 @@
     />
   </div>
 
-  <div class="duration" *ngIf="(isLoading$ | async) === false">
-    <span class="duration-number" *ngIf="maxValueRange">{{
+  @if ((isLoading$ | async) === false) {
+  <div class="duration">
+    @if (maxValueRange) {
+    <span class="duration-number">{{
       this.formatTime(maxValueRange)
     }}</span>
+    }
   </div>
+  }
 </div>
 
 <!-- Bottom player -->

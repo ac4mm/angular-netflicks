@@ -1,19 +1,18 @@
 <!--Tudum logo animation-->
-<nf-fullscreen-intro-animation
-  *ngIf="isLoading && this.showFullScreenIntroAnimation"
-></nf-fullscreen-intro-animation>
+@if (isLoading && this.showFullScreenIntroAnimation) {
+<nf-fullscreen-intro-animation></nf-fullscreen-intro-animation>
+}
 
 <div class="profile-gate-container">
   <!--Loading spinner-->
+  @if (isLoading) {
   <nf-loading-spinner
-    *ngIf="isLoading"
     [profileId]="this.statusUser.getIdUser()"
   ></nf-loading-spinner>
+  }
 
-  <div
-    class="centered-div list-profiles-container"
-    *ngIf="!isLoading && !this.showFullScreenIntroAnimation"
-  >
+  @if (!isLoading && !this.showFullScreenIntroAnimation) {
+  <div class="centered-div list-profiles-container">
     <div class="list-profiles">
       <div class="profile-gate-label">{{ mainTitle }}</div>
       <ul class="choose-profile">
@@ -34,7 +33,8 @@
                   }"
                 ></div>
 
-                <div class="svg-edit-overlay" *ngIf="showManageProfile">
+                @if (showManageProfile) {
+                <div class="svg-edit-overlay">
                   <svg
                     width="24"
                     height="24"
@@ -50,6 +50,7 @@
                     ></path>
                   </svg>
                 </div>
+                }
               </div>
               <span class="profile-name">User{{ i }}</span>
             </a>
@@ -85,4 +86,5 @@
       }
     </div>
   </div>
+  }
 </div>

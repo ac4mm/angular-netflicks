@@ -1,4 +1,4 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component, Renderer2, inject } from '@angular/core';
 
 @Component({
   selector: 'nf-fullscreen-logo',
@@ -19,7 +19,9 @@ import { Component, Renderer2 } from '@angular/core';
   standalone: true,
 })
 export class NfFullscreenLogoComponent {
-  constructor(private renderer: Renderer2) {
+  private renderer = inject(Renderer2);
+
+  constructor() {
     //Hide Scrollbar
     this.renderer.setStyle(document.body, 'overflow-y', 'hidden');
   }

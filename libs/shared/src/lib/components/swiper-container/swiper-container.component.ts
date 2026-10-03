@@ -1,13 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild, inject } from '@angular/core';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subject, takeUntil } from 'rxjs';
 import { Swiper, A11y, Mousewheel, Navigation, Pagination } from 'swiper';
@@ -40,6 +31,10 @@ import {
   ],
 })
 export class SwiperContainerComponent implements OnInit, AfterViewInit {
+  private utilitiesService = inject(UtilitiesService);
+  private managePlayerService = inject(ManagePlayerService);
+  private renderer = inject(Renderer2);
+
   @Input() titleSlide: string;
   @Input() coverImages: string[] = [];
   @Input() logoImages: string[] = [];
@@ -64,12 +59,6 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
   coverImagePreviewModal: string;
 
   private destroy$ = new Subject<void>();
-
-  constructor(
-    private utilitiesService: UtilitiesService,
-    private managePlayerService: ManagePlayerService,
-    private renderer: Renderer2
-  ) {}
 
   ngOnInit() {
     //Setting with random number, the match score

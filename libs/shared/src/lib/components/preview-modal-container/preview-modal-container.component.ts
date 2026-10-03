@@ -1,12 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  Input,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import {
   BehaviorSubject,
@@ -50,6 +42,14 @@ import { NfCloseButtonComponent } from '../buttons/nf-close-button.component';
   ],
 })
 export class PreviewModalContainerComponent implements OnInit, OnDestroy {
+  config = inject(DynamicDialogConfig);
+  ref = inject(DynamicDialogRef);
+  private tvmazeService = inject(TvMazeService);
+  private themovieDbService = inject(TheMovieDBService);
+  utilitiesService = inject(UtilitiesService);
+  private managePlayerService = inject(ManagePlayerService);
+  private elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+
   @ViewChild('player') player: YouTubePlayer;
 
   @Input() seasonSelected = 1;
@@ -106,16 +106,6 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
   };
 
   private destroy$ = new Subject<void>();
-
-  constructor(
-    public config: DynamicDialogConfig,
-    public ref: DynamicDialogRef,
-    private tvmazeService: TvMazeService,
-    private themovieDbService: TheMovieDBService,
-    public utilitiesService: UtilitiesService,
-    private managePlayerService: ManagePlayerService,
-    private elementRef: ElementRef<HTMLElement>
-  ) {}
 
   ngOnInit() {
     this.selectedRandWords = this.utilitiesService.getMultipleRandItem(

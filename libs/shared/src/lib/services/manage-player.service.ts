@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { YouTubePlayer } from '@angular/youtube-player';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { NfFullscreenLogoComponent } from '../components/fullscreen-logo/nf-fullscreen-logo.component';
@@ -11,7 +11,8 @@ import {
 
 @Injectable()
 export class ManagePlayerService {
-  constructor(public dialogService: DialogService) {}
+  dialogService = inject(DialogService);
+
 
   changeMuteState(player: YouTubePlayer) {
     if (player.isMuted()) {

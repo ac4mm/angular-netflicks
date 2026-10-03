@@ -13,26 +13,26 @@ export class AuthServiceMock {
   }
 
   //TODO to implement
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   autologin() {}
 
   //TODO to implement
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   logout() {}
 
   //TODO to implement
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   autoLogout(expirationDuration: number) {}
 
   //TODO to implement
-  handleAuthentication(
-    email: string,
-    userId: string,
-    token: string,
-    expiresIn: number
-  ) {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {}
 
   //TODO to implement
   handleError(error: HttpErrorResponse) {
     return of(null);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   checkCookieUserData() {}
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { SelectUserService } from '@shared/netflicks';
@@ -13,12 +13,10 @@ import { AuthService } from '@core/auth';
   imports: [NavbarComponent, RouterOutlet],
 })
 export class AppComponent implements OnInit {
-  title = 'netflicks';
+  private authService = inject(AuthService);
+  private selectUser = inject(SelectUserService);
 
-  constructor(
-    private authService: AuthService,
-    private selectUser: SelectUserService
-  ) {}
+  title = 'netflicks';
 
   ngOnInit() {
     this.authService.autoLogin();

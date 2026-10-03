@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import {
   CastDetail,
@@ -11,8 +11,9 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class TvMazeService {
+  private httpClient = inject(HttpClient);
+
   private basePath = 'https://api.tvmaze.com';
-  constructor(private httpClient: HttpClient) {}
 
   getMovies(id: string) {
     return this.httpClient.get(`${this.basePath}/shows/${id}`);

@@ -1,4 +1,5 @@
-<nav class="navbar fixed-top navbar-expand navbar-dark" *ngIf="isAuthenticated">
+@if (isAuthenticated) {
+<nav class="navbar fixed-top navbar-expand navbar-dark">
   <div class="container-fluid">
     <img
       class="navbar-brand"
@@ -210,4 +211,5 @@
     </div>
   </div>
 </nav>
+}
 <br />

@@ -1,6 +1,7 @@
 <!--Developed by Angelo W Sonah https://codepen.io/Angelo-W-Sonah/pen/XWxgKPp-->
 
-<div id="container" *ngIf="showNetflicksLogo">
+@if (showNetflicksLogo) {
+<div id="container">
 
   <netflixintro letter="N">
     <div class="helper-1">
@@ -175,3 +176,4 @@
     </div>
   </netflixintro>
 </div>
+}

@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  HostListener,
-  OnDestroy,
-  ElementRef,
-} from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy, ElementRef, inject } from '@angular/core';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 import { AuthService } from '@core/auth';
 import { SelectUserService } from '@shared/netflicks';
@@ -25,6 +19,11 @@ import { UpperCasePipe, NgOptimizedImage, CommonModule } from '@angular/common';
   ],
 })
 export class NavbarComponent implements OnInit, OnDestroy {
+  private elRef = inject(ElementRef);
+  private authService = inject(AuthService);
+  private selectUser = inject(SelectUserService);
+  router = inject(Router);
+
   isAuthenticated = false;
   public isValidUser = false;
   public idUserMaster: number | undefined;
@@ -37,13 +36,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   searchBox: HTMLCollectionOf<Element> =
     document.getElementsByClassName('search-box');
-
-  constructor(
-    private elRef: ElementRef,
-    private authService: AuthService,
-    private selectUser: SelectUserService,
-    public router: Router
-  ) {}
 
   ngOnInit(): void {
     this.userSub = this.authService.user$

@@ -1,11 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  OnDestroy,
-  OnInit,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, Renderer2, ViewChild, inject } from '@angular/core';
 import {
   concatMap,
   from,
@@ -58,6 +51,15 @@ import { AsyncPipe, NgOptimizedImage } from '@angular/common';
   ],
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  private authService = inject(AuthService);
+  selectUser = inject(SelectUserService);
+  private tvmazeService = inject(TvMazeService);
+  private utilitiesService = inject(UtilitiesService);
+  themoviedbService = inject(TheMovieDBService);
+  private managePlayerService = inject(ManagePlayerService);
+  private renderer = inject(Renderer2);
+  private cdr = inject(ChangeDetectorRef);
+
   public isValidUser = false;
   private selectUserSub: Subscription;
 
@@ -157,16 +159,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     frameBorder: 0;
   };
 
-  constructor(
-    private authService: AuthService,
-    public selectUser: SelectUserService,
-    private tvmazeService: TvMazeService,
-    private utilitiesService: UtilitiesService,
-    public themoviedbService: TheMovieDBService,
-    private managePlayerService: ManagePlayerService,
-    private renderer: Renderer2,
-    private cdr: ChangeDetectorRef
-  ) {
+  constructor() {
     //id YT video Stranger Things
     this.keyYTVideo = 'b9EkMc79ZSU';
   }

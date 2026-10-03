@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {
@@ -15,12 +15,10 @@ export type TypeShow = 'movie' | 'tv';
   providedIn: 'root',
 })
 export class TheMovieDBService {
-  BASEPATH = 'https://api.themoviedb.org/3';
+  http = inject(HttpClient);
+  private appConfig = inject<AppConfig>(APP_CONFIG);
 
-  constructor(
-    public http: HttpClient,
-    @Inject(APP_CONFIG) private appConfig: AppConfig
-  ) {}
+  BASEPATH = 'https://api.themoviedb.org/3';
 
   getTvMovieDetailById(
     movieId: number,

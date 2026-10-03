@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, Renderer2 } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Renderer2, inject } from '@angular/core';
 import { SelectUserService } from '@shared/netflicks';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 import { RouterLink } from '@angular/router';
@@ -23,6 +23,9 @@ import { CommonModule, NgClass, NgStyle } from '@angular/common';
   ],
 })
 export class ProfileGateComponent implements OnInit, OnDestroy {
+  statusUser = inject(SelectUserService);
+  private renderer = inject(Renderer2);
+
   @Input() mainTitle = "Who's watching?";
   @Input() showManageProfile = false;
 
@@ -36,11 +39,6 @@ export class ProfileGateComponent implements OnInit, OnDestroy {
   private idUserSub: Subscription;
 
   private destroy$ = new Subject<void>();
-
-  constructor(
-    public statusUser: SelectUserService,
-    private renderer: Renderer2
-  ) {}
 
   ngOnInit(): void {
     this.statusUserSub = this.statusUser.currentState$

@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
@@ -18,14 +18,12 @@ export interface AuthResponseData {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  private http = inject(HttpClient);
+  private router = inject(Router);
+  private appConfig = inject<AppConfig>(APP_CONFIG);
+
   user$ = new BehaviorSubject<User | null>(null);
   private tokenExpirationTimer: number | null;
-
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-    @Inject(APP_CONFIG) private appConfig: AppConfig
-  ) {}
 
   signup(email: string, password: string) {
     return this.http

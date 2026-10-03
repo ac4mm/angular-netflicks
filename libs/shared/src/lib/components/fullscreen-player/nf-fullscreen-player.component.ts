@@ -1,5 +1,5 @@
-import { DOCUMENT, NgIf, AsyncPipe } from '@angular/common';
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { DOCUMENT, AsyncPipe } from '@angular/common';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { TheMovieDBService } from '../../services/themoviedb.service';
 import { ManagePlayerService } from '../../services/manage-player.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -12,9 +12,15 @@ import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.comp
   templateUrl: 'nf-fullscreen-player.component.html',
   styleUrl: 'nf-fullscreen-player.component.scss',
   standalone: true,
-  imports: [NgIf, LoadingSpinnerComponent, YouTubePlayerModule, AsyncPipe],
+  imports: [LoadingSpinnerComponent, YouTubePlayerModule, AsyncPipe],
 })
 export class NfFullscreenPlayerComponent implements OnInit {
+  config = inject(DynamicDialogConfig);
+  ref = inject(DynamicDialogRef);
+  themoviedbService = inject(TheMovieDBService);
+  private document: any = inject(DOCUMENT);
+  private managePlayerService = inject(ManagePlayerService);
+
   @ViewChild('player') player: YouTubePlayer;
 
   playerVars = {
@@ -49,15 +55,6 @@ export class NfFullscreenPlayerComponent implements OnInit {
   seriesTvMainTitle$: Observable<string>;
   seriesTvVideoKey$: Observable<string>;
   isLoading$ = new BehaviorSubject<boolean>(true);
-
-  constructor(
-    public config: DynamicDialogConfig,
-    public ref: DynamicDialogRef,
-    public themoviedbService: TheMovieDBService,
-    // eslint-disable-next-line
-    @Inject(DOCUMENT) private document: any,
-    private managePlayerService: ManagePlayerService
-  ) {}
 
   ngOnInit() {
     this.rootElem = document.documentElement;

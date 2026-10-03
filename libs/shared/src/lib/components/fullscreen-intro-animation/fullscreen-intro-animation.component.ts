@@ -1,19 +1,20 @@
-import { Component, EventEmitter, Output, Renderer2 } from '@angular/core';
-import { NgIf } from '@angular/common';
+import { Component, EventEmitter, Output, Renderer2, inject } from '@angular/core';
 
 @Component({
   selector: 'nf-fullscreen-intro-animation',
   templateUrl: './fullscreen-intro-animation.component.html',
   styleUrl: './fullscreen-intro-animation.component.scss',
   standalone: true,
-  imports: [NgIf],
+  imports: [],
 })
 export class FullscreenIntroAnimationComponent {
+  private renderer = inject(Renderer2);
+
   showNetflicksLogo = false;
 
   @Output() emitAudioEnded = new EventEmitter<boolean>();
 
-  constructor(private renderer: Renderer2) {
+  constructor() {
     //Hide Scrollbar
     this.renderer.setStyle(document.body, 'overflow-y', 'hidden');
 
