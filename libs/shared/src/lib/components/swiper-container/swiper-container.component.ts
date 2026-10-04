@@ -1,6 +1,8 @@
+/// <reference path="../../../types/swiper.d.ts" />
+
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild, inject } from '@angular/core';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, of, takeUntil } from 'rxjs';
 import { Swiper, A11y, Mousewheel, Navigation, Pagination } from 'swiper';
 import { UtilitiesService } from '../../services/utilities.service';
 import { YouTubePlayer } from '@angular/youtube-player';
@@ -120,7 +122,7 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
     coverImage: string,
     index: number,
     indexTvMazeSeries: number,
-    indexTheMovieDb?: number,
+    indexTheMovieDb: number,
     logoImageURL?: string,
     event?: Event
   ) {
@@ -138,6 +140,7 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
       this.managePlayerService.openPreviewModalContainer({
         randMatchScore: this.randMatchScore,
         ratingNumberCover: this.ratingNumberCover,
+        numbersOfSeasonsKeepWatching$: of(this.numbersOfSeasons),
         coverImagePreviewModal: this.coverImagePreviewModal,
         indexSelectedItem: this.indexSelectedItem,
         indexTvMazeSeries: indexTvMazeSeries,
@@ -161,6 +164,9 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const swiper = new Swiper('.swiper', {
       modules: [Navigation, Pagination, A11y, Mousewheel],
+      observer: true,
+      observeParents: true,
+      observeSlideChildren: true,
       autoHeight: true,
       slidesOffsetBefore: 40,
       slidesOffsetAfter: 130,

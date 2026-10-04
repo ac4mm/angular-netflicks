@@ -17,8 +17,8 @@
       <youtube-player
         #player
         [videoId]="this.keyYTVideo"
-        [width]="'100%'"
-        [height]="'100%'"
+        [width]="1920"
+        [height]="1080"
         [playerVars]="playerVars"
       ></youtube-player>
       }
@@ -128,16 +128,14 @@
           }
 
           <span class="year">2022</span>
-          @if(config.data.numbersOfSeasonsKeepWatching$){
           <span class="seasons"
             >{{
-              (config.data.numbersOfSeasonsKeepWatching$ | async)[
+              ((numbersOfSeasonsKeepWatching$ | async) ?? [])[
                 config.data.indexSelectedItem
               ]
             }}
             seasons</span
           >
-          }
 
           <div class="player-feature-badge">
             <span>HD</span>
@@ -186,7 +184,8 @@
               >{{ genre
               }}{{
                 $index ===
-                (this.seriesTvMainInfoDetail$ | async)?.genres.length - 1
+                ((this.seriesTvMainInfoDetail$ | async)?.genres?.length ?? 0) -
+                1
                   ? ''
                   : ','
               }}</a
@@ -244,7 +243,7 @@
               aria-labelledby="dropdownMenuButton"
             >
               @for(item of this.definedArrayDropdownSeasons(
-              (this.finalArrayTvInfo$ | async)?.length ); track $index){
+              ((this.finalArrayTvInfo$ | async)?.length ?? 0) ); track $index){
               <a class="dropdown-item" (click)="onSelectSeason(item)"
                 >Seasons {{ item }}
                 <span class="episodes-dd"
@@ -263,15 +262,16 @@
 
       <!-- Container Episode selector -->
       <div class="episode-selector-container">
-        @for(series of (seriesTvInfo$ | async)?.[(seriesSelectedDropdown$ |
-        async )]?.value; track $index){
+        @for(series of (seriesTvInfo$ | async)?.[
+        (seriesSelectedDropdown$ | async) ?? 0]?.value; track $index){
         <div class="titleCardList-container">
           <div class="titleCard-title-index">{{ series.number }}</div>
 
-          @defer (when series.image?.medium){
+          @if (series.image?.medium; as imageUrl) {
+          @defer (when imageUrl) {
           <div class="titleCard-image-wrapper">
             <img
-              [ngSrc]="series.image?.medium"
+              [ngSrc]="imageUrl"
               width="130"
               height="74"
               alt="episode image"
@@ -293,6 +293,7 @@
               </svg>
             </div>
           </div>
+          }
           }
 
           <div class="titleCardList-metadataWrapper">
@@ -333,7 +334,7 @@
           <a class="tag-item"
             >{{ personCast
             }}{{
-              $index === (peopleCastSeries$ | async)?.length - 1
+              $index === ((peopleCastSeries$ | async)?.length ?? 0) - 1
                 ? ''
                 : ',&nbsp;'
             }}</a

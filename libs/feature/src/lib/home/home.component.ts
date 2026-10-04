@@ -4,12 +4,11 @@ import {
   from,
   map,
   Observable,
-  of,
   shareReplay,
   Subject,
   Subscription,
-  switchMap,
   takeUntil,
+  toArray,
 } from 'rxjs';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import {
@@ -374,53 +373,41 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getAllCoverImagesById$(coverIndexImg: number[]): Observable<string[]> {
-    const finalCoverImages: string[] = [];
-
     return from(coverIndexImg).pipe(
-      concatMap((item) =>
-        this.tvmazeService.searchImagesMovie(item).pipe(shareReplay(1))
-      ),
-      switchMap((images) => {
+      concatMap((item) => this.tvmazeService.searchImagesMovie(item)),
+      map((images) => {
         const backgroundImages: CoverImage[] = images.filter(
           (image) => image.type === 'background'
         );
         const bannerImages = images.filter((image) => image.type === 'banner');
         const posterImages = images.filter((image) => image.type === 'poster');
 
-        //defined rand number in the range of background images
-        let randNumbBackgroundImg;
         if (backgroundImages.length > 0) {
-          randNumbBackgroundImg = this.utilitiesService.getRandomInt(
+          const randomIndex = this.utilitiesService.getRandomInt(
             backgroundImages.length
           );
-          //Assign first background image to array
-          finalCoverImages.push(
-            backgroundImages[randNumbBackgroundImg]?.resolutions?.original?.url
-          );
+          return backgroundImages[randomIndex]?.resolutions?.original?.url;
         }
 
-        if (finalCoverImages.length == 0 && bannerImages.length > 0) {
-          randNumbBackgroundImg = this.utilitiesService.getRandomInt(
+        if (bannerImages.length > 0) {
+          const randomIndex = this.utilitiesService.getRandomInt(
             bannerImages.length
           );
-          //Assign first background image to array
-          finalCoverImages.push(
-            bannerImages[randNumbBackgroundImg]?.resolutions?.original?.url
-          );
+          return bannerImages[randomIndex]?.resolutions?.original?.url;
         }
 
-        if (finalCoverImages.length == 0 && posterImages.length > 0) {
-          randNumbBackgroundImg = this.utilitiesService.getRandomInt(
+        if (posterImages.length > 0) {
+          const randomIndex = this.utilitiesService.getRandomInt(
             posterImages.length
           );
-          //Assign first background image to array
-          finalCoverImages.push(
-            posterImages[randNumbBackgroundImg]?.resolutions?.original?.url
-          );
+          return posterImages[randomIndex]?.resolutions?.original?.url;
         }
 
-        return of(finalCoverImages);
-      })
+        return undefined;
+      }),
+      toArray(),
+      map((images) => images.filter((image): image is string => !!image)),
+      shareReplay(1)
     );
   }
 
@@ -460,7 +447,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     coverImage: string,
     index: number,
     indexTvMazeSeries: number,
-    indexTheMovieDb?: number,
+    indexTheMovieDb: number,
     logoImageURL?: string
   ) {
     this.indexSelectedItem = index;

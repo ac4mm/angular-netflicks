@@ -23,6 +23,7 @@ import { NfCheckButtonComponent } from '../buttons/nf-check-button.component';
 import { NfAddButtonComponent } from '../buttons/nf-add-button.component';
 import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { NfCloseButtonComponent } from '../buttons/nf-close-button.component';
+import { PreviewModalDialogData } from '../../model/common-config-dialog.model';
 
 @Component({
   selector: 'nf-preview-modal-container',
@@ -42,7 +43,7 @@ import { NfCloseButtonComponent } from '../buttons/nf-close-button.component';
   ],
 })
 export class PreviewModalContainerComponent implements OnInit, OnDestroy {
-  config = inject(DynamicDialogConfig);
+  config = inject(DynamicDialogConfig<PreviewModalDialogData>);
   ref = inject(DynamicDialogRef);
   private tvmazeService = inject(TvMazeService);
   private themovieDbService = inject(TheMovieDBService);
@@ -58,6 +59,7 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
 
   seriesTvInfo$: Observable<{ key: number; value: ValueEpisode[] }[]>;
   seriesTvMainInfoDetail$: Observable<MainInfo>;
+  numbersOfSeasonsKeepWatching$: Observable<number[][]>;
   finalArrayTvInfo$ = new BehaviorSubject<
     { key: number; value: ValueEpisode[] }[]
   >([]);
@@ -108,6 +110,9 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
   ngOnInit() {
+    this.numbersOfSeasonsKeepWatching$ =
+      this.config.data.numbersOfSeasonsKeepWatching$;
+
     this.selectedRandWords = this.utilitiesService.getMultipleRandItem(
       this.showWords,
       this.utilitiesService.getRandomIntBetweenRange(2, 3)

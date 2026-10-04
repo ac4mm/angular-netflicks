@@ -97,7 +97,7 @@ body {
   background-color: $background-color_1;
   overflow: hidden;
   z-index: 12;
-  netflixintro {
+  .netflixintro {
     display: block;
     position: relative;
     width: 300px;
@@ -919,7 +919,7 @@ body {
       }
     }
   }
-  netflixintro[letter='N'] {
+  .netflixintro[letter='N'] {
     transform-origin: 30% center;
     .helper-1 {
       width: 19.5%;
@@ -973,7 +973,7 @@ body {
       }
     }
   }
-  netflixintro[letter='E'] {
+  .netflixintro[letter='E'] {
     transform-origin: 30% center;
     .helper-1 {
       width: 19.5%;
@@ -1045,7 +1045,7 @@ body {
       }
     }
   }
-  netflixintro[letter='T'] {
+  .netflixintro[letter='T'] {
     transform-origin: center center;
     .helper-1 {
       width: 19.5%;
@@ -1084,7 +1084,7 @@ body {
       }
     }
   }
-  netflixintro[letter='F'] {
+  .netflixintro[letter='F'] {
     transform-origin: 30% center;
     .helper-1 {
       width: 19.5%;
@@ -1142,7 +1142,7 @@ body {
       }
     }
   }
-  netflixintro[letter='L'] {
+  .netflixintro[letter='L'] {
     transform-origin: 30% center;
     .helper-1 {
       width: 19.5%;
@@ -1181,7 +1181,7 @@ body {
       }
     }
   }
-  netflixintro[letter='I'] {
+  .netflixintro[letter='I'] {
     transform-origin: center center;
     .helper-1 {
       width: 19.5%;
@@ -1206,7 +1206,7 @@ body {
       }
     }
   }
-  netflixintro[letter='X'] {
+  .netflixintro[letter='X'] {
     transform-origin: center center;
     .helper-1 {
       width: 19%;

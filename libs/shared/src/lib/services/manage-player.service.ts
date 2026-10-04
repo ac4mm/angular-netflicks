@@ -7,6 +7,7 @@ import { PreviewModalContainerComponent } from '../components/preview-modal-cont
 import {
   COMMON_CONFIG_DIALOG,
   COMMON_CONFIG_FULLSCREEN,
+  PreviewModalDialogData,
 } from '../model/common-config-dialog.model';
 
 @Injectable()
@@ -46,7 +47,7 @@ export class ManagePlayerService {
     }) as DynamicDialogRef;
   }
 
-  openPreviewModalContainer(data: any): DynamicDialogRef {
+  openPreviewModalContainer(data: PreviewModalDialogData): DynamicDialogRef {
     return this.dialogService.open(PreviewModalContainerComponent, {
       ...COMMON_CONFIG_DIALOG,
       baseZIndex: 10000,

@@ -1,11 +1,14 @@
-<div class="cover-image-wrapper">
+<div
+  class="cover-image-wrapper"
+  [class.home-video-hero]="showVideoPreview"
+>
   @if(showVideoPreview){ @defer(when showVideoPreview){
-  <div class="youtube-container">
+  <div class="youtube-container home-hero-video">
     <youtube-player
       #player
       [videoId]="keyYTVideo"
-      [width]="'100%'"
-      [height]="'100%'"
+      [width]="1920"
+      [height]="1080"
       [playerVars]="playerVars"
       (stateChange)="onStateChange()"
       (ready)="onPlayerReady()"
@@ -152,12 +155,12 @@
   <!-- User N, Keep watching -->
   <nf-swiper-container
     [titleSlide]="'User' + selectUser?.getIdUser() + ', keep watching :'"
-    [coverImages]="coverImgKeepWatching$ | async"
-    [logoImages]="logoImagesKeepWatching$ | async"
+    [coverImages]="(coverImgKeepWatching$ | async) ?? []"
+    [logoImages]="(logoImagesKeepWatching$ | async) ?? []"
     [coverIndexImages]="coverIndexImgKeepWatching"
     [coverIndexImagesTMDB]="coverIndexImgKeepWatchingTMDB"
-    [numbersOfSeasons]="numbersOfSeasonsKeepWatching$ | async"
-    [genresCoverImages]="genresCoverImagesKeepWatching$ | async"
+    [numbersOfSeasons]="(numbersOfSeasonsKeepWatching$ | async) ?? []"
+    [genresCoverImages]="(genresCoverImagesKeepWatching$ | async) ?? []"
     (playStopEvent)="onPlayStopEvent($event)"
     (emitRatingNumber)="onEmitRatingNumber($event)"
   ></nf-swiper-container>
@@ -165,36 +168,36 @@
   <!--  My list-->
   <nf-swiper-container
     [titleSlide]="'My List'"
-    [coverImages]="coverImgMyList$ | async"
-    [logoImages]="logoImagesMyList$ | async"
+    [coverImages]="(coverImgMyList$ | async) ?? []"
+    [logoImages]="(logoImagesMyList$ | async) ?? []"
     [coverIndexImages]="coverIndexImgMyList"
     [coverIndexImagesTMDB]="coverIndexImgMyListTMDB"
-    [numbersOfSeasons]="numbersOfSeasonsMyList$ | async"
-    [genresCoverImages]="genresCoverImagesMyList$ | async"
+    [numbersOfSeasons]="(numbersOfSeasonsMyList$ | async) ?? []"
+    [genresCoverImages]="(genresCoverImagesMyList$ | async) ?? []"
     (playStopEvent)="onPlayStopEvent($event)"
   ></nf-swiper-container>
 
   <!--  Top rated-->
   <nf-swiper-container
     [titleSlide]="'Top rated Movies'"
-    [coverImages]="coverImgTopRatedMovies$ | async"
-    [logoImages]="logoImagesTopRatedMovies$ | async"
+    [coverImages]="(coverImgTopRatedMovies$ | async) ?? []"
+    [logoImages]="(logoImagesTopRatedMovies$ | async) ?? []"
     [coverIndexImages]="coverIndexTopRatedMovies"
     [coverIndexImagesTMDB]="coverIndexTopRatedMoviesTMDB"
-    [numbersOfSeasons]="numbersOfSeasonsTopRatedMovies$ | async"
-    [genresCoverImages]="genresCoverImagesTopRatedMovies$ | async"
+    [numbersOfSeasons]="(numbersOfSeasonsTopRatedMovies$ | async) ?? []"
+    [genresCoverImages]="(genresCoverImagesTopRatedMovies$ | async) ?? []"
     (playStopEvent)="onPlayStopEvent($event)"
   ></nf-swiper-container>
 
   <!-- Tv Shows -->
   <nf-swiper-container
     [titleSlide]="'Tv Shows'"
-    [coverImages]="coverImgTvShows$ | async"
-    [logoImages]="logoImagesTvShows$ | async"
+    [coverImages]="(coverImgTvShows$ | async) ?? []"
+    [logoImages]="(logoImagesTvShows$ | async) ?? []"
     [coverIndexImages]="coverIndexTvShows"
     [coverIndexImagesTMDB]="coverIndexTvShowsTMDB"
-    [numbersOfSeasons]="numbersOfSeasonsTvShows$ | async"
-    [genresCoverImages]="genresCoverImagesTvShows$ | async"
+    [numbersOfSeasons]="(numbersOfSeasonsTvShows$ | async) ?? []"
+    [genresCoverImages]="(genresCoverImagesTvShows$ | async) ?? []"
     (playStopEvent)="onPlayStopEvent($event)"
   ></nf-swiper-container>
 

@@ -38,9 +38,9 @@
 <div class="youtube-container-dialog" [hidden]="isLoading$ | async">
   <youtube-player
     #player
-    [videoId]="this.seriesTvVideoKey$ | async"
-    [width]="'100%'"
-    [height]="'100%'"
+    [videoId]="(this.seriesTvVideoKey$ | async) ?? undefined"
+    [width]="1920"
+    [height]="1080"
     [playerVars]="playerVars"
     (ready)="onReadyPlayer()"
     (apiChange)="onApiChange()"
