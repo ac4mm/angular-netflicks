@@ -1,5 +1,5 @@
 import { DOCUMENT, AsyncPipe } from '@angular/common';
-import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild, inject } from '@angular/core';
 import { TheMovieDBService } from '../../services/themoviedb.service';
 import { ManagePlayerService } from '../../services/manage-player.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -22,6 +22,9 @@ export class NfFullscreenPlayerComponent implements OnInit {
   private managePlayerService = inject(ManagePlayerService);
 
   @ViewChild('player') player: YouTubePlayer;
+
+  playerWidth = 0;
+  playerHeight = 0;
 
   playerVars = {
     autoHide: 1,
@@ -57,6 +60,7 @@ export class NfFullscreenPlayerComponent implements OnInit {
   isLoading$ = new BehaviorSubject<boolean>(true);
 
   ngOnInit() {
+    this.updatePlayerDimensions();
     this.rootElem = document.documentElement;
 
     this.seriesTvMainTitle$ = this.themoviedbService
@@ -69,6 +73,12 @@ export class NfFullscreenPlayerComponent implements OnInit {
     setTimeout(() => {
       this.managePlayerService.initScriptIFrame();
     }, 3000);
+  }
+
+  @HostListener('window:resize')
+  updatePlayerDimensions(): void {
+    this.playerWidth = Math.max(window.innerWidth, 1920);
+    this.playerHeight = Math.max(window.innerHeight, 1080);
   }
 
   onReadyPlayer() {

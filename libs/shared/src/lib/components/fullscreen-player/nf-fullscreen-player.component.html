@@ -39,9 +39,10 @@
   <youtube-player
     #player
     [videoId]="(this.seriesTvVideoKey$ | async) ?? undefined"
-    [width]="1920"
-    [height]="1080"
+    [width]="playerWidth"
+    [height]="playerHeight"
     [playerVars]="playerVars"
+    [disablePlaceholder]="true"
     (ready)="onReadyPlayer()"
     (apiChange)="onApiChange()"
   ></youtube-player>

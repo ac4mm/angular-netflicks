@@ -40,6 +40,51 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('uses at least 1920x1080 for the preview player', () => {
+    expect(component.playerWidth).toBe(Math.max(window.innerWidth, 1920));
+    expect(component.playerHeight).toBe(Math.max(window.innerHeight, 1080));
+
+    const originalWidth = window.innerWidth;
+    const originalHeight = window.innerHeight;
+
+    try {
+      Object.defineProperty(window, 'innerWidth', {
+        configurable: true,
+        value: 1280,
+      });
+      Object.defineProperty(window, 'innerHeight', {
+        configurable: true,
+        value: 720,
+      });
+      window.dispatchEvent(new Event('resize'));
+
+      expect(component.playerWidth).toBe(1920);
+      expect(component.playerHeight).toBe(1080);
+
+      Object.defineProperty(window, 'innerWidth', {
+        configurable: true,
+        value: 2560,
+      });
+      Object.defineProperty(window, 'innerHeight', {
+        configurable: true,
+        value: 1440,
+      });
+      window.dispatchEvent(new Event('resize'));
+
+      expect(component.playerWidth).toBe(2560);
+      expect(component.playerHeight).toBe(1440);
+    } finally {
+      Object.defineProperty(window, 'innerWidth', {
+        configurable: true,
+        value: originalWidth,
+      });
+      Object.defineProperty(window, 'innerHeight', {
+        configurable: true,
+        value: originalHeight,
+      });
+    }
+  });
+
   it('loads a cover image for each show', async () => {
     const imageFor = (id: number): CoverImage => ({
       id: String(id),

@@ -1,4 +1,13 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, Renderer2, ViewChild, inject } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import {
   concatMap,
   from,
@@ -140,22 +149,20 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   //Utils player Youtube video
   showVideoPreview = false;
+  playerWidth = 0;
+  playerHeight = 0;
 
   @ViewChild('player') player: YouTubePlayer;
   keyYTVideo: string;
-  playerVars: {
-    autohide: 1;
-    controls: 0;
-    showinfo: 0;
-    autoplay: 1;
-    modestbranding: 1;
-    disablekb: 1;
-    rel: 0;
-    fs: 0;
-    playsinline: 1;
-    loop: 1;
-    allowfullscreen: 1;
-    frameBorder: 0;
+  playerVars = {
+    autoplay: 1,
+    controls: 0,
+    modestbranding: 1,
+    disablekb: 1,
+    rel: 0,
+    fs: 0,
+    playsinline: 1,
+    loop: 1,
   };
 
   constructor() {
@@ -164,6 +171,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.updatePlayerDimensions();
     this.authService.checkCookieUserData();
 
     this.selectUserSub = this.selectUser.currentState$
@@ -251,6 +259,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.numbersOfSeasonsTvShows$ = this.getAllNumbersOfSeasonsById$(
       this.coverIndexTvShows
     );
+  }
+
+  @HostListener('window:resize')
+  updatePlayerDimensions(): void {
+    this.playerWidth = Math.max(window.innerWidth, 1920);
+    this.playerHeight = Math.max(window.innerHeight, 1080);
   }
 
   onPlayerReady() {

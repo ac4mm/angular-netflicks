@@ -53,6 +53,9 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
 
   @ViewChild('player') player: YouTubePlayer;
 
+  playerWidth = 0;
+  playerHeight = 0;
+
   @Input() seasonSelected = 1;
   @Input() showSpeakerUpIcon = true;
   @Input() showCheckIcon = true;
@@ -95,7 +98,7 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
     autoHide: 1,
     controls: 0,
     showInfo: 0,
-    autoPlay: 1,
+    autoplay: 1,
     modestbranding: 1,
     disablekb: 1,
     rel: 0,
@@ -110,6 +113,7 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
   ngOnInit() {
+    this.updatePlayerDimensions();
     this.numbersOfSeasonsKeepWatching$ =
       this.config.data.numbersOfSeasonsKeepWatching$;
 
@@ -140,6 +144,12 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
           this.managePlayerService.initScriptIFrame();
         }, 3000);
       });
+  }
+
+  @HostListener('window:resize')
+  updatePlayerDimensions(): void {
+      this.playerWidth = Math.max(window.innerWidth, 1920);
+      this.playerHeight = Math.max(window.innerHeight, 1080);
   }
 
   ngOnDestroy() {
