@@ -11,15 +11,15 @@
   "prefix": "nf",
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@angular/build:application",
       "options": {
-        "outputPath": "dist/apps/netflicks",
+        "outputPath": { "base": "dist/apps/netflicks", "browser": "" },
         "index": {
           "input": "apps/netflicks/src/index.html",
           "output": "index.html"
         },
-        "main": "apps/netflicks/src/main.ts",
-        "polyfills": "apps/netflicks/src/polyfills.ts",
+        "browser": "apps/netflicks/src/main.ts",
+        "polyfills": ["apps/netflicks/src/polyfills.ts"],
         "tsConfig": "apps/netflicks/tsconfig.app.json",
         "assets": [
           "apps/netflicks/src/fevicon.ico",
@@ -31,14 +31,13 @@
           "node_modules/swiper/swiper.scss",
           "node_modules/primeicons/primeicons.css"
         ],
+        "stylePreprocessorOptions": { "includePaths": ["."] },
         "scripts": [
           "./node_modules/jquery/dist/jquery.min.js",
           "./node_modules/popper.js/dist/umd/popper.min.js",
           "./node_modules/bootstrap/dist/js/bootstrap.min.js"
         ],
-        "vendorChunk": true,
         "extractLicenses": false,
-        "buildOptimizer": false,
         "sourceMap": true,
         "optimization": false,
         "namedChunks": true
@@ -56,8 +55,6 @@
           "sourceMap": false,
           "namedChunks": false,
           "extractLicenses": true,
-          "vendorChunk": false,
-          "buildOptimizer": true,
           "budgets": [
             {
               "type": "initial",
@@ -73,10 +70,10 @@
         }
       },
       "defaultConfiguration": "",
-      "outputs": ["{options.outputPath}"]
+      "outputs": ["{options.outputPath.base}"]
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@angular/build:dev-server",
       "options": {
         "buildTarget": "netflicks:build"
       },
