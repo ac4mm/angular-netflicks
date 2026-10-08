@@ -11,7 +11,7 @@ Bootstrap for style (Scss), [Swipe.js](https://swiperjs.com/) for animation caro
 [Tv Maze API](https://www.tvmaze.com/api) and The [Movie DB API](https://developer.themoviedb.org/reference/intro/getting-started) for the data and [Youtube player](https://github.com/angular/components/blob/main/src/youtube-player/README.md), 
 that wrap the embed Youtube player API.
 
-
+> **Disclaimer:** this project was created **for educational purposes only** and is not affiliated with, sponsored by, or endorsed by Netflix, TV Maze, or TMDB. Netflix and its logos are trademarks of their respective owners. Images, logos, and data belong to their respective owners and are used in compliance with their licenses and terms of use. The author assumes no responsibility for how this code or project may be used by others.
 
 ## Preview
 
@@ -36,6 +36,7 @@ that wrap the embed Youtube player API.
 - [Linting](#linting-with-eslint)
 - [Thinks to know](#thinks-to-know)
 - [Support](#support)
+- [License](#license)
 
 
 ## Getting Started
@@ -148,7 +149,8 @@ by [@_ac4mm](https://twitter.com/_ac4mm)
 
 <a href="https://www.buymeacoffee.com/ac4mm" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-red.png" alt="Buy Me A Coffee" height="34" ></a>
 
+## License
 
+Distributed under the [MIT License](LICENSE). See the `LICENSE` file for more details.
 
-
-
+This product uses the TMDB API but is not endorsed or certified by TMDB. Data from [TV Maze](https://www.tvmaze.com/api) is licensed under CC BY-SA.
