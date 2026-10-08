@@ -1,6 +1,6 @@
 /// <reference path="../../../types/swiper.d.ts" />
 
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild, inject } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild, inject } from '@angular/core';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subject, of, takeUntil } from 'rxjs';
 import { Swiper, A11y, Mousewheel, Navigation, Pagination } from 'swiper';
@@ -19,6 +19,7 @@ import {
 } from '../../model/shared-types.model';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   selector: 'nf-swiper-container',
   templateUrl: './swiper-container.component.html',
   styleUrl: './swiper-container.component.scss',

@@ -1,7 +1,9 @@
+import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
 import { ProfileGateComponent } from '../home/profile-gate/profile-gate.component';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
     selector: 'nf-manage-profiles',
     template: `
     <nf-profile-gate

@@ -1,3 +1,4 @@
+import { ChangeDetectionStrategy } from '@angular/core';
 import { Component, OnInit, HostListener, OnDestroy, ElementRef, inject } from '@angular/core';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 import { AuthService } from '@core/auth';
@@ -6,6 +7,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { UpperCasePipe, NgOptimizedImage, CommonModule } from '@angular/common';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   selector: 'nf-navbar',
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',

@@ -1,4 +1,4 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { DialogService } from "primeng/dynamicdialog";
 import { getAppConfigProvider } from '@config/netflicks';
 import { environment } from '../environments/environment';
@@ -13,6 +13,7 @@ import { provideRouter } from '@angular/router';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideZoneChangeDetection(),
     provideRouter([
       { path: '', redirectTo: '/login', pathMatch: 'full' },
       {

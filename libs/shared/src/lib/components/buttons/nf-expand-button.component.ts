@@ -1,6 +1,8 @@
+import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   selector: 'nf-expand-button',
   template: `<button class="btn-circle btn-icon-cover arrow-down">
     <svg

@@ -1,6 +1,8 @@
+import { ChangeDetectionStrategy } from '@angular/core';
 import { Component, EventEmitter, Output, Renderer2, inject } from '@angular/core';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   selector: 'nf-fullscreen-intro-animation',
   templateUrl: './fullscreen-intro-animation.component.html',
   styleUrl: './fullscreen-intro-animation.component.scss',

@@ -369,12 +369,12 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/youtube-player@21.2.14":
-  version "21.2.14"
-  resolved "https://registry.yarnpkg.com/@angular/youtube-player/-/youtube-player-21.2.14.tgz#99412895e4cfc2b5b2a83b5b69329df161bbf78d"
-  integrity sha512-0taatV4rpcWdFukaePbcjQplz/M2QqvtXCZoak3nf61c/Vw248M0uKDYylLUqXfS+BtMz+qYHYxcsZhTpaxxIQ==
+"@angular/youtube-player@22.2.1":
+  version "22.2.1"
+  resolved "https://registry.yarnpkg.com/@angular/youtube-player/-/youtube-player-22.2.1.tgz#67a608ece64efb4c5013311163f13437cbcc95de"
+  integrity sha512-0poGUyTCsG2UbZ51WA2o5Af/KKESzTC+qUlM78IkF6JbtgWlZ5pxgfiMn7Pb+qc2jOJhlH2hCIAjgkA/C3zs1Q==
   dependencies:
-    "@types/youtube" "0.1.2"
+    "@types/youtube" "0.3.0"
     safevalues "^1.2.0"
     tslib "^2.3.0"
 
@@ -6189,10 +6189,10 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@types/youtube@0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@types/youtube/-/youtube-0.1.2.tgz#e87d9ceeb8a00b3ac6d7325cc5217995a0cedfcc"
-  integrity sha512-n1/KqusanheyQRWHamNZv8K3kydlRqyEsZEKxMTeNWXQTC15lZprITCUt+WgL1vAIvKHCjPBIWz/gf/KQLsB3g==
+"@types/youtube@0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@types/youtube/-/youtube-0.3.0.tgz#e4456cdde9804a92a6447602399bd87d97ac102a"
+  integrity sha512-a+JnwvmYfCShUv2fPs9JL/rUr9JGx5BPjSn7sp3V5UEyyj2AIVkSCRlVoe4CjFBrkBIv9jMpOPakfitMq7tegA==
 
 "@typescript-eslint/eslint-plugin@8.58.0":
   version "8.58.0"

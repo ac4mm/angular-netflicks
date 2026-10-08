@@ -1,3 +1,4 @@
+import { ChangeDetectionStrategy } from '@angular/core';
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
@@ -6,6 +7,7 @@ import { NavbarComponent } from '@layout/netflicks';
 import { AuthService } from '@core/auth';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   selector: 'nf-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

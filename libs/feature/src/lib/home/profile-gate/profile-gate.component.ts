@@ -1,3 +1,4 @@
+import { ChangeDetectionStrategy } from '@angular/core';
 import { Component, OnInit, OnDestroy, Input, Renderer2, inject } from '@angular/core';
 import { SelectUserService } from '@shared/netflicks';
 import { Subject, Subscription, takeUntil } from 'rxjs';
@@ -9,6 +10,7 @@ import {
 import { CommonModule, NgClass, NgStyle } from '@angular/common';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   selector: 'nf-profile-gate',
   templateUrl: './profile-gate.component.html',
   styleUrl: './profile-gate.component.scss',

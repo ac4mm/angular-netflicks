@@ -1,3 +1,4 @@
+import { ChangeDetectionStrategy } from '@angular/core';
 import {
   ChangeDetectorRef,
   Component,
@@ -42,6 +43,7 @@ import { ProfileGateComponent } from './profile-gate/profile-gate.component';
 import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   selector: 'nf-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
