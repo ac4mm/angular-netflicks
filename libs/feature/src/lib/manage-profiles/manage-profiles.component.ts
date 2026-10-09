@@ -1,9 +1,7 @@
-import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
 import { ProfileGateComponent } from '../home/profile-gate/profile-gate.component';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'nf-manage-profiles',
     template: `
     <nf-profile-gate

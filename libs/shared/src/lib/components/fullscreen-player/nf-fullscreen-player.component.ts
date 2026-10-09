@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, signal } from '@angular/core';
+import { signal } from '@angular/core';
 import { DOCUMENT, AsyncPipe } from '@angular/common';
 import { Component, HostListener, OnInit, ViewChild, inject } from '@angular/core';
 import { TheMovieDBService } from '../../services/themoviedb.service';
@@ -9,7 +9,6 @@ import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
 import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.component';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-fullscreen-player',
   templateUrl: 'nf-fullscreen-player.component.html',
   styleUrl: 'nf-fullscreen-player.component.scss',

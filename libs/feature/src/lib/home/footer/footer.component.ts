@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, signal } from '@angular/core';
+import { signal } from '@angular/core';
 import { Component } from '@angular/core';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-footer',
   template: `
     <div class="member-footer">

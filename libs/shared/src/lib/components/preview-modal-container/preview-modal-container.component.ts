@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, model, signal } from '@angular/core';
+import { model, signal } from '@angular/core';
 import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import {
@@ -26,7 +26,6 @@ import { NfCloseButtonComponent } from '../buttons/nf-close-button.component';
 import { PreviewModalDialogData } from '../../model/common-config-dialog.model';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-preview-modal-container',
   templateUrl: './preview-modal-container.component.html',
   styleUrl: './preview-modal-container.component.scss',

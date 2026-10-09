@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Service, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {
@@ -11,9 +11,7 @@ import { APP_CONFIG, AppConfig } from '@config/netflicks';
 
 export type TypeShow = 'movie' | 'tv';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class TheMovieDBService {
   http = inject(HttpClient);
   private appConfig = inject<AppConfig>(APP_CONFIG);

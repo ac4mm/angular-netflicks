@@ -1,9 +1,7 @@
-import { ChangeDetectionStrategy } from '@angular/core';
 import { Component, Input } from '@angular/core';
 import { NgClass, NgStyle } from '@angular/common';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-loading-spinner',
   template: `<div
       id="loader"

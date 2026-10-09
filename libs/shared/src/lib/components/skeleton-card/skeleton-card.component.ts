@@ -1,8 +1,6 @@
-import { ChangeDetectionStrategy } from '@angular/core';
 import { Component, Input } from '@angular/core';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-skeleton-card',
   template: `
     <div class="container-sm">

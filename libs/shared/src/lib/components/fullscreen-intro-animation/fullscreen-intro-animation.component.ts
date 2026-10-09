@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, signal } from '@angular/core';
+import { signal } from '@angular/core';
 import { Component, EventEmitter, Output, Renderer2, inject } from '@angular/core';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-fullscreen-intro-animation',
   templateUrl: './fullscreen-intro-animation.component.html',
   styleUrl: './fullscreen-intro-animation.component.scss',

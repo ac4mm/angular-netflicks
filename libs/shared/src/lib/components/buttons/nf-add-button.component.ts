@@ -1,9 +1,7 @@
-import { ChangeDetectionStrategy } from '@angular/core';
 import { Component, Input } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-add-button',
   template: `<button
     class="btn-circle btn-add btn-icon-cover"

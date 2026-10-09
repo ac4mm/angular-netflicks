@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, signal } from '@angular/core';
+import { signal } from '@angular/core';
 import { Component, OnDestroy, inject } from '@angular/core';
 import { NgForm, FormsModule } from '@angular/forms';
 import { Observable, Subject, takeUntil } from 'rxjs';
@@ -8,7 +8,6 @@ import { LoadingSpinnerComponent } from '@shared/netflicks';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-auth',
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss',

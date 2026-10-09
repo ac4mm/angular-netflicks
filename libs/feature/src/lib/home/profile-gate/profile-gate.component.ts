@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, signal } from '@angular/core';
+import { signal } from '@angular/core';
 import { Component, Input, Renderer2, inject } from '@angular/core';
 import { SelectUserService } from '@shared/netflicks';
 import { RouterLink } from '@angular/router';
@@ -9,7 +9,6 @@ import {
 import { CommonModule, NgClass, NgStyle } from '@angular/common';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-profile-gate',
   templateUrl: './profile-gate.component.html',
   styleUrl: './profile-gate.component.scss',

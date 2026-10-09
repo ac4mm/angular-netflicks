@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   effect,
   HostListener,
@@ -43,7 +42,6 @@ import { ProfileGateComponent } from './profile-gate/profile-gate.component';
 import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

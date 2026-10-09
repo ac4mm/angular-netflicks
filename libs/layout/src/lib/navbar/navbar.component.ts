@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, computed } from '@angular/core';
+import { computed } from '@angular/core';
 import { Component, HostListener, ElementRef, inject } from '@angular/core';
 import { AuthService } from '@core/auth';
 import { SelectUserService } from '@shared/netflicks';
@@ -6,7 +6,6 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { UpperCasePipe, NgOptimizedImage, CommonModule } from '@angular/common';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-navbar',
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',

@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 import { RatingNumberObject } from '../model/shared-types.model';
 import { EpisodeDetail } from '../model/tvmaze.model';
 
-@Injectable({ providedIn: 'root' })
+@Service()
 export class UtilitiesService {
   /****** Math operator Utilities*/
 

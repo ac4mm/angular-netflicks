@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Service, inject } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import {
   CastDetail,
@@ -9,7 +9,7 @@ import {
   NumberSeasonDetail,
 } from '../model/tvmaze.model';
 
-@Injectable({ providedIn: 'root' })
+@Service()
 export class TvMazeService {
   private httpClient = inject(HttpClient);
 
