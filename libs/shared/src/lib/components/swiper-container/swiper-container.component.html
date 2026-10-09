@@ -58,7 +58,7 @@
             (keydown.enter)="onClickShowCheckIcon($event)"
             (keydown.space)="onClickShowCheckIcon($event)"
           >
-            @if(showCheckIcon){
+            @if(showCheckIcon()){
             <nf-add-button></nf-add-button>
             <span class="hover-text-add-btn">Add to My List</span>
             }@else {

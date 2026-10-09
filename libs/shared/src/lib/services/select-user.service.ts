@@ -1,52 +1,44 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
 
 @Injectable()
 export class SelectUserService {
-  selectUser = new BehaviorSubject<boolean>(false);
-  private idUserSubject = new BehaviorSubject<number>(0);
-
-  currentState$ = this.selectUser.asObservable();
-  currentId$ = this.idUserSubject.asObservable();
+  isSelected = signal(false);
+  selectedUserId = signal(0);
 
   changeState(state: boolean) {
-    this.selectUser.next(state);
+    this.isSelected.set(state);
   }
 
   logoutState() {
-    this.selectUser.next(false);
+    this.isSelected.set(false);
     localStorage.removeItem('saveState');
     localStorage.removeItem('idUser');
-  }
-
-  currState() {
-    console.log('current state:' + this.selectUser.getValue());
   }
 
   setStateUser() {
     localStorage.setItem(
       'saveState',
-      JSON.stringify(this.selectUser.getValue())
+      JSON.stringify(this.isSelected())
     );
     localStorage.setItem(
       'idUser',
-      JSON.stringify(this.idUserSubject.getValue())
+      JSON.stringify(this.selectedUserId())
     );
   }
 
   getStateUser() {
     const saveState = localStorage.getItem('saveState');
-    if (saveState) this.selectUser.next(JSON.parse(saveState));
+    if (saveState) this.isSelected.set(JSON.parse(saveState));
 
     const saveId = localStorage.getItem('idUser');
-    if (saveId) this.idUserSubject.next(JSON.parse(saveId));
+    if (saveId) this.selectedUserId.set(JSON.parse(saveId));
   }
 
   getIdUser() {
-    return this.idUserSubject.getValue();
+    return this.selectedUserId();
   }
 
   changeIdUser(idUser: number) {
-    this.idUserSubject.next(idUser);
+    this.selectedUserId.set(idUser);
   }
 }

@@ -1,7 +1,11 @@
 import { of } from 'rxjs';
+import { signal } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { User } from '../model/user.model';
 
 export class AuthServiceMock {
+  user = signal<User | null>(null).asReadonly();
+
   //TODO to implement
   signup(email: string, password: string) {
     return of(null);

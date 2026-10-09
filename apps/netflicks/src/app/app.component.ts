@@ -7,7 +7,7 @@ import { NavbarComponent } from '@layout/netflicks';
 import { AuthService } from '@core/auth';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -23,6 +23,5 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.authService.autoLogin();
     this.selectUser.getStateUser();
-    this.selectUser.currState();
   }
 }

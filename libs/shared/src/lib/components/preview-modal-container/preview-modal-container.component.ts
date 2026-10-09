@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy } from '@angular/core';
-import { Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
+import { ChangeDetectionStrategy, model, signal } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import {
-  BehaviorSubject,
   Observable,
   Subject,
   concatMap,
@@ -27,7 +26,7 @@ import { NfCloseButtonComponent } from '../buttons/nf-close-button.component';
 import { PreviewModalDialogData } from '../../model/common-config-dialog.model';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-preview-modal-container',
   templateUrl: './preview-modal-container.component.html',
   styleUrl: './preview-modal-container.component.scss',
@@ -55,20 +54,18 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
 
   @ViewChild('player') player: YouTubePlayer;
 
-  playerWidth = 0;
-  playerHeight = 0;
+  playerWidth = signal(0);
+  playerHeight = signal(0);
 
-  @Input() seasonSelected = 1;
-  @Input() showSpeakerUpIcon = true;
-  @Input() showCheckIcon = true;
+  seasonSelected = model(1);
+  showSpeakerUpIcon = model(true);
+  showCheckIcon = model(true);
 
   seriesTvInfo$: Observable<{ key: number; value: ValueEpisode[] }[]>;
   seriesTvMainInfoDetail$: Observable<MainInfo>;
   numbersOfSeasonsKeepWatching$: Observable<number[][]>;
-  finalArrayTvInfo$ = new BehaviorSubject<
-    { key: number; value: ValueEpisode[] }[]
-  >([]);
-  seriesSelectedDropdown$ = new BehaviorSubject<number>(0);
+  finalArrayTvInfo = signal<{ key: number; value: ValueEpisode[] }[]>([]);
+  seriesSelectedDropdown = signal(0);
   peopleCastSeries$: Observable<string[]>;
 
   showWords = [
@@ -90,11 +87,11 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
   ];
   selectedRandWords: string[];
 
-  isSeasonDropdownOpen = false;
+  isSeasonDropdownOpen = signal(false);
 
-  showVideoPreview = false;
+  showVideoPreview = signal(false);
 
-  keyYTVideo: string;
+  keyYTVideo = signal<string | undefined>(undefined);
 
   playerVars = {
     autoHide: 1,
@@ -139,10 +136,10 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
       .getVideosById(this.config.data.indexTheMovieDb, 'tv')
       .pipe(takeUntil(this.destroy$))
       .subscribe((item) => {
-        this.keyYTVideo = item?.['results'][0].key;
+        this.keyYTVideo.set(item?.['results'][0].key);
 
         setTimeout(() => {
-          this.showVideoPreview = true;
+          this.showVideoPreview.set(true);
           this.managePlayerService.initScriptIFrame();
         }, 3000);
       });
@@ -150,8 +147,8 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
 
   @HostListener('window:resize')
   updatePlayerDimensions(): void {
-      this.playerWidth = Math.max(window.innerWidth, 1920);
-      this.playerHeight = Math.max(window.innerHeight, 1080);
+      this.playerWidth.set(Math.max(window.innerWidth, 1920));
+      this.playerHeight.set(Math.max(window.innerHeight, 1080));
   }
 
   ngOnDestroy() {
@@ -168,11 +165,11 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
 
   toggleSeasonDropdown(event?: Event) {
     event?.stopPropagation();
-    this.isSeasonDropdownOpen = !this.isSeasonDropdownOpen;
+    this.isSeasonDropdownOpen.update((isOpen) => !isOpen);
   }
 
   closeSeasonDropdown() {
-    this.isSeasonDropdownOpen = false;
+    this.isSeasonDropdownOpen.set(false);
   }
 
   onClickClose() {
@@ -181,7 +178,7 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
 
   onClickSpeakerIcon() {
     if (!!this.player && this.player?.getPlayerState() === 1) {
-      this.showSpeakerUpIcon = !this.showSpeakerUpIcon;
+      this.showSpeakerUpIcon.update((show) => !show);
 
       this.managePlayerService.changeMuteState(this.player);
     }
@@ -190,7 +187,7 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
   onClickShowCheckIcon(event?: Event) {
     event?.preventDefault();
     event?.stopPropagation();
-    this.showCheckIcon = !this.showCheckIcon;
+    this.showCheckIcon.update((show) => !show);
   }
 
   playVideo() {
@@ -222,7 +219,7 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
           ([key, value]) => ({ key, value })
         );
 
-        this.finalArrayTvInfo$.next(
+        this.finalArrayTvInfo.set(
           finalArrayTvInfo as { key: number; value: ValueEpisode[] }[]
         );
 
@@ -269,10 +266,10 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
   }
 
   onSelectSeason(index: number) {
-    this.seasonSelected = index;
+    this.seasonSelected.set(index);
     this.closeSeasonDropdown();
 
     //Index start from 0
-    this.seriesSelectedDropdown$.next(index - 1);
+    this.seriesSelectedDropdown.set(index - 1);
   }
 }

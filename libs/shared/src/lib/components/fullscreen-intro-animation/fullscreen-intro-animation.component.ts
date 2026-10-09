@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, signal } from '@angular/core';
 import { Component, EventEmitter, Output, Renderer2, inject } from '@angular/core';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-fullscreen-intro-animation',
   templateUrl: './fullscreen-intro-animation.component.html',
   styleUrl: './fullscreen-intro-animation.component.scss',
@@ -12,7 +12,7 @@ import { Component, EventEmitter, Output, Renderer2, inject } from '@angular/cor
 export class FullscreenIntroAnimationComponent {
   private renderer = inject(Renderer2);
 
-  showNetflicksLogo = false;
+  showNetflicksLogo = signal(false);
 
   @Output() emitAudioEnded = new EventEmitter<boolean>();
 
@@ -28,7 +28,7 @@ export class FullscreenIntroAnimationComponent {
     audio.play();
 
     setTimeout(() => {
-      this.showNetflicksLogo = true;
+      this.showNetflicksLogo.set(true);
     }, 300);
 
     audio.addEventListener('ended', () => {

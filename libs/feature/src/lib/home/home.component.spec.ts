@@ -41,8 +41,8 @@ describe('HomeComponent', () => {
   });
 
   it('uses at least 1920x1080 for the preview player', () => {
-    expect(component.playerWidth).toBe(Math.max(window.innerWidth, 1920));
-    expect(component.playerHeight).toBe(Math.max(window.innerHeight, 1080));
+    expect(component.playerWidth()).toBe(Math.max(window.innerWidth, 1920));
+    expect(component.playerHeight()).toBe(Math.max(window.innerHeight, 1080));
 
     const originalWidth = window.innerWidth;
     const originalHeight = window.innerHeight;
@@ -58,8 +58,8 @@ describe('HomeComponent', () => {
       });
       window.dispatchEvent(new Event('resize'));
 
-      expect(component.playerWidth).toBe(1920);
-      expect(component.playerHeight).toBe(1080);
+      expect(component.playerWidth()).toBe(1920);
+      expect(component.playerHeight()).toBe(1080);
 
       Object.defineProperty(window, 'innerWidth', {
         configurable: true,
@@ -71,8 +71,8 @@ describe('HomeComponent', () => {
       });
       window.dispatchEvent(new Event('resize'));
 
-      expect(component.playerWidth).toBe(2560);
-      expect(component.playerHeight).toBe(1440);
+      expect(component.playerWidth()).toBe(2560);
+      expect(component.playerHeight()).toBe(1440);
     } finally {
       Object.defineProperty(window, 'innerWidth', {
         configurable: true,

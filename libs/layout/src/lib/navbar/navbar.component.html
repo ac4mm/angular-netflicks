@@ -1,4 +1,4 @@
-@if (isAuthenticated) {
+@if (isAuthenticated()) {
 <nav class="navbar fixed-top navbar-expand navbar-dark">
   <div class="container-fluid">
     <img
@@ -12,7 +12,7 @@
 
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <!-- Browse dropdown menu -->
-      @if(isValidUser){
+      @if(isValidUser()){
       <li class="nav-item dropdown dropdown-left">
         <a
           class="btn nav-link dropdown-toggle browse"
@@ -155,7 +155,7 @@
             aria-expanded="false"
             ><img
               class="dropdown-img"
-              ngSrc="{{ 'assets/img/' + 'account' + idUserMaster + '.png' }}"
+              ngSrc="{{ 'assets/img/' + 'account' + idUserMaster() + '.png' }}"
               alt="logo user"
               width="32"
               height="32"
@@ -166,7 +166,7 @@
           <ul class="dropdown-menu end-0 start-auto mt-3n-dropdown">
             @for(indexUser of [1,2,3,4,5]; track $index){
             <li (click)="onChangeUser(indexUser)">
-              @if(indexUser !== idUserMaster) {
+              @if(indexUser !== idUserMaster()) {
               <a class="dropdown-item" href="/browse"
                 ><img
                   class="dropdown-img-item"

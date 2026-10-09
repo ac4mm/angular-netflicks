@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, signal } from '@angular/core';
 import { Component } from '@angular/core';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-footer',
   template: `
     <div class="member-footer">
@@ -168,7 +168,7 @@ import { Component } from '@angular/core';
       <!-- Member footer services -->
       <div class="member-footer-service">
         <button class="service-code" (click)="itemServiceCodeClicked()">
-          {{ servicesCode }}
+          {{ servicesCode() }}
         </button>
       </div>
 
@@ -182,11 +182,11 @@ import { Component } from '@angular/core';
   standalone: true,
 })
 export class FooterComponent {
-  servicesCode = 'Service code';
+  servicesCode = signal('Service code');
 
   //Services code
   itemServiceCodeClicked() {
-    this.servicesCode = '079-255';
+    this.servicesCode.set('079-255');
   }
 
   getCurrentYear() {

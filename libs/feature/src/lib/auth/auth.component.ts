@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, signal } from '@angular/core';
 import { Component, OnDestroy, inject } from '@angular/core';
 import { NgForm, FormsModule } from '@angular/forms';
 import { Observable, Subject, takeUntil } from 'rxjs';
@@ -8,7 +8,7 @@ import { LoadingSpinnerComponent } from '@shared/netflicks';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-auth',
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss',
@@ -19,20 +19,20 @@ export class AuthComponent implements OnDestroy {
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  isLoginMode = true;
-  isLoading = false;
-  showPassword = false;
-  error: string;
+  isLoginMode = signal(true);
+  isLoading = signal(false);
+  showPassword = signal(false);
+  error = signal<string | undefined>(undefined);
 
   authObs: Observable<AuthResponseData>;
   private destroy$ = new Subject<void>();
 
   onShowPassword() {
-    this.showPassword = !this.showPassword;
+    this.showPassword.update((show) => !show);
   }
 
   onSwitchMode() {
-    this.isLoginMode = !this.isLoginMode;
+    this.isLoginMode.update((loginMode) => !loginMode);
   }
 
   onSubmit(form: NgForm) {
@@ -42,8 +42,8 @@ export class AuthComponent implements OnDestroy {
     const email = form.value.email;
     const password = form.value.password;
 
-    this.isLoading = true;
-    if (this.isLoginMode) {
+    this.isLoading.set(true);
+    if (this.isLoginMode()) {
       this.authObs = this.authService.login(email, password);
     } else {
       this.authObs = this.authService.signup(email, password);
@@ -53,11 +53,11 @@ export class AuthComponent implements OnDestroy {
       next: () => undefined,
       error: (errorMessage) => {
         console.error(errorMessage);
-        this.error = errorMessage;
-        this.isLoading = false;
+        this.error.set(errorMessage);
+        this.isLoading.set(false);
       },
       complete: () => {
-        this.isLoading = false;
+        this.isLoading.set(false);
         this.router.navigate(['/browse']);
       },
     });

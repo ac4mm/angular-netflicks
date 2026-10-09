@@ -11,14 +11,14 @@
 <div class="previewModal-player-container">
   <!-- Cover image dialog -->
   <div class="previewModal-player-image">
-    @if(showVideoPreview){ @defer (when showVideoPreview){
+    @if(showVideoPreview()){ @defer (when showVideoPreview()){
     <div class="youtube-container-dialog">
       @if(config.data.indexSelectedItem){
       <youtube-player
         #player
-        [videoId]="this.keyYTVideo"
-        [width]="playerWidth"
-        [height]="playerHeight"
+        [videoId]="keyYTVideo()"
+        [width]="playerWidth()"
+        [height]="playerHeight()"
         [playerVars]="playerVars"
         [disablePlaceholder]="true"
       ></youtube-player>
@@ -83,7 +83,7 @@
         (keydown.enter)="onClickShowCheckIcon($event)"
         (keydown.space)="onClickShowCheckIcon($event)"
       >
-        @if(showCheckIcon){
+        @if(showCheckIcon()){
         <nf-add-button [mediumSize]="true"></nf-add-button>
         <span class="my-list-tooltip add-tooltip">Add to My List</span>
         }@else {
@@ -104,7 +104,7 @@
     class="previewModal-player-wrapper preview-audio-toggle"
     (click)="onClickSpeakerIcon()"
   >
-    @if(showSpeakerUpIcon){
+    @if(showSpeakerUpIcon()){
     <!-- Speaker up -->
     <nf-speakerup-button [mediumSize]="true"></nf-speakerup-button>
     }@else {
@@ -217,9 +217,9 @@
         <div class="title-selector">
           <h3>Episodes</h3>
 
-          @if(seasonSelected){
+          @if(seasonSelected()){
           <div class="title-selector-more-info">
-            Season {{ seasonSelected }}
+            Season {{ seasonSelected() }}
           </div>
           }@else {
           <div class="title-selector-more-info">No season selected</div>
@@ -227,29 +227,29 @@
         </div>
 
         <div class="dropdown-selector">
-          <div class="dropdown" [class.show]="isSeasonDropdownOpen">
+          <div class="dropdown" [class.show]="isSeasonDropdownOpen()">
             <button
               type="button"
               class="btn btn-secondary dropdown-toggle dropdown-nf"
               id="dropdownMenuButton"
               aria-haspopup="true"
-              [attr.aria-expanded]="isSeasonDropdownOpen"
+              [attr.aria-expanded]="isSeasonDropdownOpen()"
               (click)="toggleSeasonDropdown($event)"
             >
-              Season {{ seasonSelected }}
+              Season {{ seasonSelected() }}
             </button>
             <div
               class="dropdown-menu"
-              [class.show]="isSeasonDropdownOpen"
+              [class.show]="isSeasonDropdownOpen()"
               aria-labelledby="dropdownMenuButton"
             >
               @for(item of this.definedArrayDropdownSeasons(
-              ((this.finalArrayTvInfo$ | async)?.length ?? 0) ); track $index){
+              this.finalArrayTvInfo().length ); track $index){
               <a class="dropdown-item" (click)="onSelectSeason(item)"
                 >Seasons {{ item }}
                 <span class="episodes-dd"
                   >(
-                  {{(this.finalArrayTvInfo$ |async)?.[item - 1]?.value?.length}}
+                  {{this.finalArrayTvInfo()[item - 1]?.value?.length}}
                   Episodes)</span
                 >
               </a>
@@ -264,7 +264,7 @@
       <!-- Container Episode selector -->
       <div class="episode-selector-container">
         @for(series of (seriesTvInfo$ | async)?.[
-        (seriesSelectedDropdown$ | async) ?? 0]?.value; track $index){
+        seriesSelectedDropdown()]?.value; track $index){
         <div class="titleCardList-container">
           <div class="titleCard-title-index">{{ series.number }}</div>
 

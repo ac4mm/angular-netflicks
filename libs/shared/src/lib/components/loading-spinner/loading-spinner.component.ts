@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { NgClass, NgStyle } from '@angular/common';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-loading-spinner',
   template: `<div
       id="loader"

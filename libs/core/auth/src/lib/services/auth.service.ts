@@ -1,8 +1,8 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
-import { throwError, BehaviorSubject } from 'rxjs';
+import { throwError } from 'rxjs';
 import { User } from '../model/user.model';
 import { APP_CONFIG, AppConfig } from '@config/netflicks';
 
@@ -22,7 +22,8 @@ export class AuthService {
   private router = inject(Router);
   private appConfig = inject<AppConfig>(APP_CONFIG);
 
-  user$ = new BehaviorSubject<User | null>(null);
+  private userState = signal<User | null>(null);
+  user = this.userState.asReadonly();
   private tokenExpirationTimer: number | null;
 
   signup(email: string, password: string) {
@@ -96,7 +97,7 @@ export class AuthService {
       );
 
       if (loadedUser.token) {
-        this.user$.next(loadedUser);
+        this.userState.set(loadedUser);
         const expirationDuration =
           new Date(userData._tokenExpirationDate).getTime() -
           new Date().getTime();
@@ -106,7 +107,7 @@ export class AuthService {
   }
 
   logout() {
-    this.user$.next(null);
+    this.userState.set(null);
     this.router.navigate(['/login']);
     localStorage.removeItem('userData');
     if (this.tokenExpirationTimer) {
@@ -129,7 +130,7 @@ export class AuthService {
   ) {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
     const user = new User(email, userId, token, expirationDate);
-    this.user$.next(user);
+    this.userState.set(user);
     this.autoLogout(expiresIn * 1000);
     localStorage.setItem('userData', JSON.stringify(user));
   }

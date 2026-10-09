@@ -1,13 +1,12 @@
-import { ChangeDetectionStrategy } from '@angular/core';
-import { Component, OnInit, HostListener, OnDestroy, ElementRef, inject } from '@angular/core';
-import { Subject, Subscription, takeUntil } from 'rxjs';
+import { ChangeDetectionStrategy, computed } from '@angular/core';
+import { Component, HostListener, ElementRef, inject } from '@angular/core';
 import { AuthService } from '@core/auth';
 import { SelectUserService } from '@shared/netflicks';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { UpperCasePipe, NgOptimizedImage, CommonModule } from '@angular/common';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-navbar',
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
@@ -20,40 +19,18 @@ import { UpperCasePipe, NgOptimizedImage, CommonModule } from '@angular/common';
     NgOptimizedImage,
   ],
 })
-export class NavbarComponent implements OnInit, OnDestroy {
+export class NavbarComponent {
   private elRef = inject(ElementRef);
   private authService = inject(AuthService);
   private selectUser = inject(SelectUserService);
   router = inject(Router);
 
-  isAuthenticated = false;
-  public isValidUser = false;
-  public idUserMaster: number | undefined;
-
-  private userSub: Subscription | undefined;
-  private statusUserSub: Subscription | undefined;
-  private idUserSub: Subscription | undefined;
-
-  private destroy$ = new Subject<void>();
+  isAuthenticated = computed(() => !!this.authService.user());
+  isValidUser = this.selectUser.isSelected;
+  idUserMaster = this.selectUser.selectedUserId;
 
   searchBox: HTMLCollectionOf<Element> =
     document.getElementsByClassName('search-box');
-
-  ngOnInit(): void {
-    this.userSub = this.authService.user$
-      ?.pipe(takeUntil(this.destroy$))
-      .subscribe((user) => {
-        this.isAuthenticated = !!user;
-      });
-
-    this.statusUserSub = this.selectUser.currentState$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((state) => (this.isValidUser = !!state));
-
-    this.idUserSub = this.selectUser.currentId$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((id) => (this.idUserMaster = id));
-  }
 
   activateSearchbar() {
     this.searchBox[0].classList.toggle('active');
@@ -87,16 +64,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   onLogout() {
     this.authService.logout();
     this.selectUser.logoutState();
-  }
-
-  ngOnDestroy() {
-    this.userSub?.unsubscribe();
-    this.statusUserSub?.unsubscribe();
-    this.selectUser.currState();
-    this.idUserSub?.unsubscribe();
-
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 
   onChangeUser(idUser: number) {

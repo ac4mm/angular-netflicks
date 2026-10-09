@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { ProfileGateComponent } from '../home/profile-gate/profile-gate.component';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'nf-manage-profiles',
     template: `
     <nf-profile-gate

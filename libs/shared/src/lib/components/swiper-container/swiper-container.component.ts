@@ -1,6 +1,6 @@
 /// <reference path="../../../types/swiper.d.ts" />
 
-import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild, inject } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild, inject, signal } from '@angular/core';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subject, of, takeUntil } from 'rxjs';
 import { Swiper, A11y, Mousewheel, Navigation, Pagination } from 'swiper';
@@ -19,7 +19,7 @@ import {
 } from '../../model/shared-types.model';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-swiper-container',
   templateUrl: './swiper-container.component.html',
   styleUrl: './swiper-container.component.scss',
@@ -54,7 +54,7 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
 
   ratingNumberObject: RatingNumberObject = INIT_RATING_NUMBER;
 
-  showCheckIcon = true;
+  showCheckIcon = signal(true);
 
   @ViewChild('player') player: YouTubePlayer;
 
@@ -116,7 +116,7 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
   onClickShowCheckIcon(event: Event) {
     event.preventDefault();
     event.stopPropagation();
-    this.showCheckIcon = !this.showCheckIcon;
+    this.showCheckIcon.update((show) => !show);
   }
 
   openDialogCoverImage(

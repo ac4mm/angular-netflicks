@@ -1,13 +1,14 @@
-import { ChangeDetectionStrategy } from '@angular/core';
 import {
-  ChangeDetectorRef,
+  ChangeDetectionStrategy,
   Component,
+  effect,
   HostListener,
   OnDestroy,
   OnInit,
   Renderer2,
   ViewChild,
   inject,
+  signal,
 } from '@angular/core';
 import {
   concatMap,
@@ -16,7 +17,6 @@ import {
   Observable,
   shareReplay,
   Subject,
-  Subscription,
   takeUntil,
   toArray,
 } from 'rxjs';
@@ -43,7 +43,7 @@ import { ProfileGateComponent } from './profile-gate/profile-gate.component';
 import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -68,10 +68,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   themoviedbService = inject(TheMovieDBService);
   private managePlayerService = inject(ManagePlayerService);
   private renderer = inject(Renderer2);
-  private cdr = inject(ChangeDetectorRef);
-
-  public isValidUser = false;
-  private selectUserSub: Subscription;
+  public isValidUser = this.selectUser.isSelected;
 
   indexSelectedItem: number;
   coverImagePreviewModal: string;
@@ -142,17 +139,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   numbersOfSeasonsTopRatedMovies$: Observable<number[][]>;
   numbersOfSeasonsTvShows$: Observable<number[][]>;
 
-  showSpeakerUpIcon = true;
-  showRefreshIcon = false;
+  showSpeakerUpIcon = signal(true);
+  showRefreshIcon = signal(false);
 
-  mainMaturityRating: number;
+  mainMaturityRating = signal<number | undefined>(undefined);
 
   private destroy$ = new Subject<void>();
 
   //Utils player Youtube video
-  showVideoPreview = false;
-  playerWidth = 0;
-  playerHeight = 0;
+  showVideoPreview = signal(false);
+  playerWidth = signal(0);
+  playerHeight = signal(0);
 
   @ViewChild('player') player: YouTubePlayer;
   keyYTVideo: string;
@@ -170,22 +167,18 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor() {
     //id YT video Stranger Things
     this.keyYTVideo = 'b9EkMc79ZSU';
+
+    effect(() => {
+      if (this.isValidUser()) {
+        this.renderer.removeStyle(document.body, 'overflow-y');
+        this.autoplayVideo();
+      }
+    });
   }
 
   ngOnInit(): void {
     this.updatePlayerDimensions();
     this.authService.checkCookieUserData();
-
-    this.selectUserSub = this.selectUser.currentState$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((state) => {
-        this.isValidUser = state;
-
-        if (this.isValidUser) {
-          this.renderer.removeStyle(document.body, 'overflow-y');
-          this.autoplayVideo();
-        }
-      });
 
     //Index Stranger Things
     this.selectedIdMainTvMaze = 2993;
@@ -265,8 +258,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   @HostListener('window:resize')
   updatePlayerDimensions(): void {
-    this.playerWidth = Math.max(window.innerWidth, 1920);
-    this.playerHeight = Math.max(window.innerHeight, 1080);
+    this.playerWidth.set(Math.max(window.innerWidth, 1920));
+    this.playerHeight.set(Math.max(window.innerHeight, 1080));
   }
 
   onPlayerReady() {
@@ -280,14 +273,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     if (this.player.getPlayerState() === 0) {
-      this.showRefreshIcon = true;
+      this.showRefreshIcon.set(true);
       this.onClickSpeakerIcon();
       console.info('video completed');
     }
   }
 
   onReplayVideo() {
-    this.showRefreshIcon = false;
+    this.showRefreshIcon.set(false);
     this.player.seekTo(0, true);
     this.player.playVideo();
   }
@@ -321,23 +314,20 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   autoplayVideo() {
     setTimeout(() => {
-      this.showVideoPreview = true;
+      this.showVideoPreview.set(true);
       this.managePlayerService.initScriptIFrame();
     }, 3000);
   }
 
   onClickSpeakerIcon() {
     if (!!this.player && this.player?.getPlayerState() === 1) {
-      this.showSpeakerUpIcon = !this.showSpeakerUpIcon;
+      this.showSpeakerUpIcon.update((show) => !show);
 
       this.managePlayerService.changeMuteState(this.player);
     }
   }
 
   ngOnDestroy() {
-    this.selectUserSub.unsubscribe();
-    this.selectUser.currState();
-
     this.destroy$.next();
     this.destroy$.complete();
   }
@@ -508,7 +498,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   onEmitRatingNumber(ratingNumber: number) {
-    this.mainMaturityRating = ratingNumber;
-    this.cdr.detectChanges();
+    this.mainMaturityRating.set(ratingNumber);
   }
 }

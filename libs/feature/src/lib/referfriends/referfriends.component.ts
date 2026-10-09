@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { SkeletonCardComponent } from '@shared/netflicks';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-referfriends',
   template: `<nf-skeleton-card></nf-skeleton-card>`,
   standalone: true,

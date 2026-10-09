@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy } from '@angular/core';
-import { Component, OnInit, OnDestroy, Input, Renderer2, inject } from '@angular/core';
+import { ChangeDetectionStrategy, signal } from '@angular/core';
+import { Component, Input, Renderer2, inject } from '@angular/core';
 import { SelectUserService } from '@shared/netflicks';
-import { Subject, Subscription, takeUntil } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import {
   LoadingSpinnerComponent,
@@ -10,7 +9,7 @@ import {
 import { CommonModule, NgClass, NgStyle } from '@angular/common';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-profile-gate',
   templateUrl: './profile-gate.component.html',
   styleUrl: './profile-gate.component.scss',
@@ -24,57 +23,38 @@ import { CommonModule, NgClass, NgStyle } from '@angular/common';
     RouterLink,
   ],
 })
-export class ProfileGateComponent implements OnInit, OnDestroy {
+export class ProfileGateComponent {
   statusUser = inject(SelectUserService);
   private renderer = inject(Renderer2);
 
   @Input() mainTitle = "Who's watching?";
   @Input() showManageProfile = false;
 
-  idUser: number;
-  isValidStatus = false;
-  isLoading = false;
+  isValidStatus = this.statusUser.isSelected;
+  idUser = this.statusUser.selectedUserId;
+  isLoading = signal(false);
+  showFullScreenIntroAnimation = signal(false);
 
-  showFullScreenIntroAnimation = false;
-
-  private statusUserSub: Subscription;
-  private idUserSub: Subscription;
-
-  private destroy$ = new Subject<void>();
-
-  ngOnInit(): void {
-    this.statusUserSub = this.statusUser.currentState$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((state) => (this.isValidStatus = !!state));
-
-    this.idUserSub = this.statusUser.currentId$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((id) => (this.idUser = id));
-
+  constructor() {
     //Hide Scrollbar
     this.renderer.setStyle(document.body, 'overflow-y', 'hidden');
   }
 
   onChangeUser(idUser: number) {
     this.statusUser.changeIdUser(idUser);
-    this.isLoading = !this.isLoading;
+    this.isLoading.update((loading) => !loading);
 
     setTimeout(() => {
-      this.showFullScreenIntroAnimation = !this.showFullScreenIntroAnimation;
+      this.showFullScreenIntroAnimation.update((show) => !show);
     }, 2000);
 
     //Change state user and remove scrollbar hidden
     setTimeout(() => {
-      this.statusUser.changeState(!this.isValidStatus);
-      this.statusUser.currState();
+      this.statusUser.changeState(!this.isValidStatus());
       this.statusUser.setStateUser();
 
       this.renderer.removeStyle(document.body, 'overflow-y');
     }, 5000);
   }
 
-  ngOnDestroy() {
-    this.statusUserSub.unsubscribe();
-    this.idUserSub.unsubscribe();
-  }
 }

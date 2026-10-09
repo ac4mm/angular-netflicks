@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-thumb-up-button',
   template: `<button
     class="btn-circle btn-icon-cover"

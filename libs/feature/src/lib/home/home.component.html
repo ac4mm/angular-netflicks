@@ -1,14 +1,14 @@
 <div
   class="cover-image-wrapper"
-  [class.home-video-hero]="showVideoPreview"
+  [class.home-video-hero]="showVideoPreview()"
 >
-  @if(showVideoPreview){ @defer(when showVideoPreview){
+  @if(showVideoPreview()){ @defer(when showVideoPreview()){
   <div class="youtube-container home-hero-video">
     <youtube-player
       #player
       [videoId]="keyYTVideo"
-      [width]="playerWidth"
-      [height]="playerHeight"
+      [width]="playerWidth()"
+      [height]="playerHeight()"
       [playerVars]="playerVars"
       [disablePlaceholder]="true"
       (stateChange)="onStateChange()"
@@ -124,7 +124,7 @@
           class="previewModal-player-wrapper preview-audio-toggle"
           (click)="onClickSpeakerIcon()"
         >
-          @if (showRefreshIcon){
+          @if (showRefreshIcon()){
           <!-- Refresh -->
           <button class="btn-circle svg-container" (click)="onReplayVideo()">
             <svg viewBox="0 0 24 24" fill="#fff">
@@ -134,7 +134,7 @@
               ></path>
             </svg>
           </button>
-          }@else { @if(showSpeakerUpIcon){
+          }@else { @if(showSpeakerUpIcon()){
           <!-- Speaker up -->
           <nf-speakerup-button [mediumSize]="true"></nf-speakerup-button>
           }@else {
@@ -143,16 +143,16 @@
           } }
         </span>
 
-        <span class="maturity-rating-home"> {{ mainMaturityRating }}+ </span>
+        <span class="maturity-rating-home"> {{ mainMaturityRating() }}+ </span>
       </div>
     </div>
   </div>
 </div>
 
 <!-- Main content cover card -->
-@if (isValidUser) {
+@if (isValidUser()) {
 <div class="container-fluid">
-  @defer (when isValidUser){
+  @defer (when isValidUser()){
   <!-- User N, Keep watching -->
   <nf-swiper-container
     [titleSlide]="'User' + selectUser?.getIdUser() + ', keep watching :'"

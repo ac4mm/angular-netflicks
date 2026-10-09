@@ -1,15 +1,15 @@
-import { ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, signal } from '@angular/core';
 import { DOCUMENT, AsyncPipe } from '@angular/common';
 import { Component, HostListener, OnInit, ViewChild, inject } from '@angular/core';
 import { TheMovieDBService } from '../../services/themoviedb.service';
 import { ManagePlayerService } from '../../services/manage-player.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
 import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.component';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nf-fullscreen-player',
   templateUrl: 'nf-fullscreen-player.component.html',
   styleUrl: 'nf-fullscreen-player.component.scss',
@@ -25,8 +25,8 @@ export class NfFullscreenPlayerComponent implements OnInit {
 
   @ViewChild('player') player: YouTubePlayer;
 
-  playerWidth = 0;
-  playerHeight = 0;
+  playerWidth = signal(0);
+  playerHeight = signal(0);
 
   playerVars = {
     autoHide: 1,
@@ -51,15 +51,15 @@ export class NfFullscreenPlayerComponent implements OnInit {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   rootElem: HTMLElement | any;
-  isMaximixe = false;
-  showSpeakerUpIcon = true;
-  showPlayIcon = true;
-  valuePlayerBar = 0;
-  maxValueRange: number;
+  isMaximixe = signal(false);
+  showSpeakerUpIcon = signal(true);
+  showPlayIcon = signal(true);
+  valuePlayerBar = signal(0);
+  maxValueRange = signal<number | undefined>(undefined);
 
   seriesTvMainTitle$: Observable<string>;
   seriesTvVideoKey$: Observable<string>;
-  isLoading$ = new BehaviorSubject<boolean>(true);
+  isLoading = signal(true);
 
   ngOnInit() {
     this.updatePlayerDimensions();
@@ -79,20 +79,20 @@ export class NfFullscreenPlayerComponent implements OnInit {
 
   @HostListener('window:resize')
   updatePlayerDimensions(): void {
-    this.playerWidth = Math.max(window.innerWidth, 1920);
-    this.playerHeight = Math.max(window.innerHeight, 1080);
+    this.playerWidth.set(Math.max(window.innerWidth, 1920));
+    this.playerHeight.set(Math.max(window.innerHeight, 1080));
   }
 
   onReadyPlayer() {
-    this.showPlayIcon = !this.showPlayIcon;
-    this.isLoading$.next(false);
+    this.showPlayIcon.update((show) => !show);
+    this.isLoading.set(false);
   }
 
   onApiChange() {
     // Update the controls on load
     this.updateProgressBar();
 
-    this.maxValueRange = this.player.getDuration();
+    this.maxValueRange.set(this.player.getDuration());
 
     setInterval(() => {
       this.updateProgressBar();
@@ -100,8 +100,9 @@ export class NfFullscreenPlayerComponent implements OnInit {
   }
 
   updateProgressBar() {
-    this.valuePlayerBar =
-      (this.player.getCurrentTime() / this.player.getDuration()) * 100;
+    this.valuePlayerBar.set(
+      (this.player.getCurrentTime() / this.player.getDuration()) * 100
+    );
   }
 
   formatTime(time: number) {
@@ -132,7 +133,7 @@ export class NfFullscreenPlayerComponent implements OnInit {
   }
 
   changeStatusSpeaker() {
-    this.showSpeakerUpIcon = !this.showSpeakerUpIcon;
+    this.showSpeakerUpIcon.update((show) => !show);
 
     this.managePlayerService.changeMuteState(this.player);
   }
@@ -169,7 +170,7 @@ export class NfFullscreenPlayerComponent implements OnInit {
       /* IE/Edge */
       this.rootElem.msRequestFullscreen();
     }
-    this.isMaximixe = !this.isMaximixe;
+    this.isMaximixe.update((maximized) => !maximized);
   }
 
   minimizeFullscreen() {
@@ -185,6 +186,6 @@ export class NfFullscreenPlayerComponent implements OnInit {
       /* IE/Edge */
       this.document.msExitFullscreen();
     }
-    this.isMaximixe = !this.isMaximixe;
+    this.isMaximixe.update((maximized) => !maximized);
   }
 }
