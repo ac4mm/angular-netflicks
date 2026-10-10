@@ -111,7 +111,6 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
   ngOnInit() {
-    this.updatePlayerDimensions();
     this.numbersOfSeasonsKeepWatching$ =
       this.config.data.numbersOfSeasonsKeepWatching$;
 
@@ -138,6 +137,7 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
         this.keyYTVideo.set(item?.['results'][0].key);
 
         setTimeout(() => {
+          this.updatePlayerDimensions();
           this.showVideoPreview.set(true);
           this.managePlayerService.initScriptIFrame();
         }, 3000);
@@ -146,8 +146,12 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
 
   @HostListener('window:resize')
   updatePlayerDimensions(): void {
-      this.playerWidth.set(Math.max(window.innerWidth, 1920));
-      this.playerHeight.set(Math.max(window.innerHeight, 1080));
+    const container = this.elementRef.nativeElement.querySelector<HTMLElement>(
+      '.previewModal-player-image'
+    );
+    const width = container?.clientWidth || 650;
+    this.playerWidth.set(width);
+    this.playerHeight.set(Math.round((width * 9) / 16));
   }
 
   ngOnDestroy() {
