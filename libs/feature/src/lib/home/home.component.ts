@@ -6,7 +6,9 @@ import {
   OnInit,
   Renderer2,
   ViewChild,
+  Injector,
   inject,
+  resource,
   signal,
 } from '@angular/core';
 import {
@@ -17,6 +19,7 @@ import {
   forkJoin,
   shareReplay,
   Subject,
+  firstValueFrom,
   takeUntil,
   toArray,
 } from 'rxjs';
@@ -67,6 +70,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   themoviedbService = inject(TheMovieDBService);
   private managePlayerService = inject(ManagePlayerService);
   private renderer = inject(Renderer2);
+  private injector = inject(Injector);
   public isValidUser = this.selectUser.isSelected;
   homeLoading = signal(true);
   homeLoadingError = signal<string | null>(null);
@@ -256,21 +260,36 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.coverIndexTvShows
     );
 
-    forkJoin([
-      this.coverMainImageAndTypography$,
-      this.logoImagesKeepWatching$,
-    ])
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: () => this.homeLoading.set(false),
-        error: (error: unknown) => {
+    const heroContentResource = resource({
+      loader: async () => {
+        await firstValueFrom(
+          forkJoin([
+            this.coverMainImageAndTypography$,
+            this.logoImagesKeepWatching$,
+          ])
+        );
+        return true;
+      },
+      injector: this.injector,
+    });
+
+    effect(
+      () => {
+        if (heroContentResource.isLoading()) {
+          return;
+        }
+
+        const error = heroContentResource.error();
+        if (error) {
           console.error('Failed to load the home hero content', error);
           this.homeLoadingError.set(
             'Some home content could not be loaded. Please refresh and try again.'
           );
-          this.homeLoading.set(false);
-        },
-      });
+        }
+        this.homeLoading.set(false);
+      },
+      { injector: this.injector }
+    );
   }
 
   @HostListener('window:resize')

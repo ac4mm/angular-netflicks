@@ -3,6 +3,9 @@
   <nf-loading-spinner></nf-loading-spinner>
 </div>
 }
+@if (seriesTvDetail.error() || seriesTvVideo.error()) {
+<div role="alert">The video details could not be loaded.</div>
+}
 
 <!-- Top player -->
 <div class="top-player-bar" [hidden]="isLoading()">
@@ -38,7 +41,7 @@
 <div class="youtube-container-dialog" [hidden]="isLoading()">
   <youtube-player
     #player
-    [videoId]="(this.seriesTvVideoKey$ | async) ?? undefined"
+    [videoId]="seriesTvVideoKey() ?? undefined"
     [width]="playerWidth()"
     [height]="playerHeight()"
     [playerVars]="playerVars"
@@ -150,7 +153,7 @@
 
     <!-- Title episode -->
     <div class="title-player">
-      <h4>{{ this.seriesTvMainTitle$ | async }}</h4>
+      <h4>{{ seriesTvMainTitle() }}</h4>
       <span>{{ episodeTitle }}</span>
     </div>
 

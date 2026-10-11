@@ -1,21 +1,31 @@
-import { model, signal } from '@angular/core';
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import {
-  Observable,
-  Subject,
-  concatMap,
-  of,
-  takeUntil,
-  shareReplay,
-} from 'rxjs';
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  ViewChild,
+  computed,
+  effect,
+  inject,
+  model,
+  resource,
+  signal,
+} from '@angular/core';
+import { httpResource } from '@angular/common/http';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Observable, firstValueFrom } from 'rxjs';
 
 import { TvMazeService } from '../../services/tvmaze.service';
 import { UtilitiesService } from '../../services/utilities.service';
 import { TheMovieDBService } from '../../services/themoviedb.service';
 import { ManagePlayerService } from '../../services/manage-player.service';
 import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
-import { MainInfo, ValueEpisode } from '../../model/tvmaze.model';
+import {
+  CastDetail,
+  EpisodeDetail,
+  MainInfo,
+} from '../../model/tvmaze.model';
+import { VideoDetail } from '../../model/themoviedb.model';
 import { NfSpeakerdownButtonComponent } from '../buttons/nf-speakerdown-button.component';
 import { NfSpeakerupButtonComponent } from '../buttons/nf-speakerup-button.component';
 import { NfThumbUpButtonComponent } from '../buttons/nf-thumb-up-button.component';
@@ -42,7 +52,7 @@ import { PreviewModalDialogData } from '../../model/common-config-dialog.model';
     NgOptimizedImage,
   ],
 })
-export class PreviewModalContainerComponent implements OnInit, OnDestroy {
+export class PreviewModalContainerComponent implements OnInit {
   config = inject(DynamicDialogConfig<PreviewModalDialogData>);
   ref = inject(DynamicDialogRef);
   private tvmazeService = inject(TvMazeService);
@@ -60,12 +70,55 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
   showSpeakerUpIcon = model(true);
   showCheckIcon = model(true);
 
-  seriesTvInfo$: Observable<{ key: number; value: ValueEpisode[] }[]>;
-  seriesTvMainInfoDetail$: Observable<MainInfo>;
+  seriesTvMainInfoResource = resource<MainInfo, undefined>({
+    loader: () =>
+      firstValueFrom(
+        this.tvmazeService.searchMainInfoMovie(
+          this.config.data.indexTvMazeSeries
+        )
+      ),
+  });
+  seriesEpisodesResource = resource<EpisodeDetail[], undefined>({
+    loader: () =>
+      firstValueFrom(
+        this.tvmazeService.searchEpisodesById(
+          this.config.data.indexTvMazeSeries
+        )
+      ),
+  });
+  seriesCastResource = resource<CastDetail[], undefined>({
+    loader: () =>
+      firstValueFrom(
+        this.tvmazeService.searchCastById(this.config.data.indexTvMazeSeries)
+      ),
+  });
+  seriesTvMainInfoDetail = computed(() =>
+    this.seriesTvMainInfoResource.hasValue()
+      ? this.seriesTvMainInfoResource.value()
+      : undefined
+  );
+  seriesTvInfo = computed(() => {
+    if (!this.seriesEpisodesResource.hasValue()) {
+      return undefined;
+    }
+    const episodes = this.seriesEpisodesResource.value();
+
+    const episodesBySeason = this.utilitiesService.groupBy(
+      episodes,
+      (episode) => episode.season
+    );
+    return Array.from(episodesBySeason, ([key, value]) => ({ key, value }));
+  });
+  peopleCastSeries = computed(() => {
+    if (!this.seriesCastResource.hasValue()) {
+      return undefined;
+    }
+    const cast = this.seriesCastResource.value();
+    return [...new Set(cast.map((item) => item.person.name))];
+  });
   numbersOfSeasonsKeepWatching$: Observable<number[][]>;
-  finalArrayTvInfo = signal<{ key: number; value: ValueEpisode[] }[]>([]);
+  finalArrayTvInfo = computed(() => this.seriesTvInfo() ?? []);
   seriesSelectedDropdown = signal(0);
-  peopleCastSeries$: Observable<string[]>;
 
   showWords = [
     'Absurd',
@@ -91,6 +144,12 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
   showVideoPreview = signal(false);
 
   keyYTVideo = signal<string | undefined>(undefined);
+  videoResource = httpResource<VideoDetail>(() =>
+    this.themovieDbService.getVideosUrl(
+      this.config.data.indexTheMovieDb,
+      'tv'
+    )
+  );
 
   playerVars = {
     autoHide: 1,
@@ -108,7 +167,21 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
     frameBorder: 0,
   };
 
-  private destroy$ = new Subject<void>();
+  constructor() {
+    effect(() => {
+      if (!this.videoResource.hasValue()) {
+        return;
+      }
+      const video = this.videoResource.value();
+
+      this.keyYTVideo.set(video.results[0]?.key);
+      setTimeout(() => {
+        this.updatePlayerDimensions();
+        this.showVideoPreview.set(true);
+        this.managePlayerService.initScriptIFrame();
+      }, 3000);
+    });
+  }
 
   ngOnInit() {
     this.numbersOfSeasonsKeepWatching$ =
@@ -119,29 +192,6 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
       this.utilitiesService.getRandomIntBetweenRange(2, 3)
     );
 
-    this.seriesTvInfo$ = this.getAllSeriesTvInfo$(
-      this.config.data.indexTvMazeSeries
-    );
-    this.seriesTvMainInfoDetail$ = this.tvmazeService
-      .searchMainInfoMovie(this.config.data.indexTvMazeSeries)
-      .pipe(shareReplay(1));
-
-    this.peopleCastSeries$ = this.getAllPeopleCastById$(
-      this.config.data.indexTvMazeSeries
-    );
-
-    this.themovieDbService
-      .getVideosById(this.config.data.indexTheMovieDb, 'tv')
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((item) => {
-        this.keyYTVideo.set(item?.['results'][0].key);
-
-        setTimeout(() => {
-          this.updatePlayerDimensions();
-          this.showVideoPreview.set(true);
-          this.managePlayerService.initScriptIFrame();
-        }, 3000);
-      });
   }
 
   @HostListener('window:resize')
@@ -152,11 +202,6 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
     const width = container?.clientWidth || 650;
     this.playerWidth.set(width);
     this.playerHeight.set(Math.round((width * 9) / 16));
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 
   @HostListener('document:click', ['$event'])
@@ -204,53 +249,12 @@ export class PreviewModalContainerComponent implements OnInit, OnDestroy {
       });
   }
 
-  getAllSeriesTvInfo$(
-    coverIndexImg: number
-  ): Observable<{ key: number; value: ValueEpisode[] }[]> {
-    const finalSeriesTvInfo: Map<any, any>[] = [];
-
-    return this.tvmazeService.searchEpisodesById(coverIndexImg).pipe(
-      concatMap((items) => {
-        const mapGroupBySeason: Map<any, any> = this.utilitiesService.groupBy(
-          items,
-          (item: { season: number }) => item.season
-        );
-        finalSeriesTvInfo.push(mapGroupBySeason);
-
-        const finalArrayTvInfo: { key: any; value: any }[] = Array.from(
-          finalSeriesTvInfo[0],
-          ([key, value]) => ({ key, value })
-        );
-
-        this.finalArrayTvInfo.set(
-          finalArrayTvInfo as { key: number; value: ValueEpisode[] }[]
-        );
-
-        return of(finalArrayTvInfo);
-      })
-    );
-  }
-
   definedArrayDropdownSeasons(size: number) {
     const seasonSelector: number[] = [];
     for (let i = 1; i <= size; i++) {
       seasonSelector.push(i);
     }
     return seasonSelector;
-  }
-
-  getAllPeopleCastById$(coverIndexImg: number): Observable<string[]> {
-    return this.tvmazeService.searchCastById(coverIndexImg).pipe(
-      concatMap((items) => {
-        //Used Set to remove duplicate
-        return of([
-          ...new Set(
-            items.map((item: { person: { name: any } }) => item.person.name)
-          ),
-        ] as string[]);
-      }),
-      shareReplay(1)
-    );
   }
 
   getMoreCastPeople(peopleCast: string, index: number) {

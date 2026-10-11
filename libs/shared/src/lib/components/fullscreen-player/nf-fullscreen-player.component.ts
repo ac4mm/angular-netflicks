@@ -1,19 +1,20 @@
-import { signal } from '@angular/core';
-import { DOCUMENT, AsyncPipe } from '@angular/common';
+import { computed, signal } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { Component, HostListener, OnInit, ViewChild, inject } from '@angular/core';
+import { httpResource } from '@angular/common/http';
 import { TheMovieDBService } from '../../services/themoviedb.service';
 import { ManagePlayerService } from '../../services/manage-player.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Observable, map } from 'rxjs';
 import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
 import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.component';
+import { MovieDetail, VideoDetail } from '../../model/themoviedb.model';
 
 @Component({
   selector: 'nf-fullscreen-player',
   templateUrl: 'nf-fullscreen-player.component.html',
   styleUrl: 'nf-fullscreen-player.component.scss',
   standalone: true,
-  imports: [LoadingSpinnerComponent, YouTubePlayerModule, AsyncPipe],
+  imports: [LoadingSpinnerComponent, YouTubePlayerModule],
 })
 export class NfFullscreenPlayerComponent implements OnInit {
   config = inject(DynamicDialogConfig);
@@ -56,20 +57,32 @@ export class NfFullscreenPlayerComponent implements OnInit {
   valuePlayerBar = signal(0);
   maxValueRange = signal<number | undefined>(undefined);
 
-  seriesTvMainTitle$: Observable<string>;
-  seriesTvVideoKey$: Observable<string>;
+  seriesTvDetail = httpResource<MovieDetail>(() =>
+    this.themoviedbService.getTvMovieDetailUrl(
+      this.config.data.indexTheMovieDb,
+      'tv'
+    )
+  );
+  seriesTvVideo = httpResource<VideoDetail>(() =>
+    this.themoviedbService.getVideosUrl(
+      this.config.data.indexTheMovieDb,
+      'tv'
+    )
+  );
+  seriesTvMainTitle = computed(() =>
+    this.seriesTvDetail.hasValue() ? this.seriesTvDetail.value().name : undefined
+  );
+  seriesTvVideoKey = computed(
+    () =>
+      this.seriesTvVideo.hasValue()
+        ? this.seriesTvVideo.value().results[0]?.key
+        : undefined
+  );
   isLoading = signal(true);
 
   ngOnInit() {
     this.updatePlayerDimensions();
     this.rootElem = document.documentElement;
-
-    this.seriesTvMainTitle$ = this.themoviedbService
-      .getTvMovieDetailById(this.config.data.indexTheMovieDb, 'tv')
-      .pipe(map((item) => item?.name));
-    this.seriesTvVideoKey$ = this.themoviedbService
-      .getVideosById(this.config.data.indexTheMovieDb, 'tv')
-      .pipe(map((item) => item?.results[0]?.key));
 
     setTimeout(() => {
       this.managePlayerService.initScriptIFrame();

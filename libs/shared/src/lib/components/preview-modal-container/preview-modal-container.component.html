@@ -1,4 +1,10 @@
 <!-- Close dialog -->
+< @if (seriesTvMainInfoResource.error() || seriesEpisodesResource.error() ||
+seriesCastResource.error() || videoResource.error()) {
+<div class="preview-resource-error" role="alert">
+  Some show details could not be loaded.
+</div>
+}
 <div class="previewModal-container-close">
   <div class="previewModal-player-wrapper previewModal-close">
     <nf-close-button
@@ -158,8 +164,8 @@
         </div>
 
         <div class="preview-modal-synopsis">
-          <div [innerHTML]="(this.seriesTvMainInfoDetail$ | async)?.summary">
-            {{ (this.seriesTvMainInfoDetail$ | async)?.summary }}
+          <div [innerHTML]="seriesTvMainInfoDetail()?.summary">
+            {{ seriesTvMainInfoDetail()?.summary }}
           </div>
         </div>
       </div>
@@ -168,7 +174,7 @@
         <div class="about-container">
           <div class="previewModal-tags">
             <span class="previewModal-tags-label">Cast:</span>
-            @for(personCast of peopleCastSeries$ | async; track $index){
+            @for(personCast of peopleCastSeries(); track $index){
             <a class="tag-item">{{ getMoreCastPeople(personCast, $index) }}</a>
             }@empty {
             <a class="tag-item">There are no person</a>
@@ -179,13 +185,13 @@
 
           <div class="previewModal-tags">
             <span class="previewModal-tags-label">Genres:</span>
-            @for(genre of (this.seriesTvMainInfoDetail$ | async)?.genres; track
+            @for(genre of seriesTvMainInfoDetail()?.genres; track
             $index){
             <a class="tag-item"
               >{{ genre
               }}{{
                 $index ===
-                ((this.seriesTvMainInfoDetail$ | async)?.genres?.length ?? 0) -
+                (seriesTvMainInfoDetail()?.genres?.length ?? 0) -
                 1
                   ? ''
                   : ','
@@ -263,7 +269,7 @@
 
       <!-- Container Episode selector -->
       <div class="episode-selector-container">
-        @for(series of (seriesTvInfo$ | async)?.[
+        @for(series of seriesTvInfo()?.[
         seriesSelectedDropdown()]?.value; track $index){
         <div class="titleCardList-container">
           <div class="titleCard-title-index">{{ series.number }}</div>
@@ -318,7 +324,7 @@
       <div class="about-header">
         <h3 class="previewModal-section-header">
           <span class="previewModal-section-about">About</span>
-          {{ (this.seriesTvMainInfoDetail$ | async)?.name }}
+          {{ seriesTvMainInfoDetail()?.name }}
         </h3>
       </div>
 
@@ -326,16 +332,16 @@
         <div class="previewModal-tags">
           <span class="previewModal-tags-label">Creators:</span
           ><a class="tag-item">{{
-            (this.seriesTvMainInfoDetail$ | async)?.network?.name
+            seriesTvMainInfoDetail()?.network?.name
           }}</a>
         </div>
         <div class="previewModal-tags">
           <span class="previewModal-tags-label" id="more">Cast:</span>
-          @for(personCast of peopleCastSeries$ | async; track $index){
+          @for(personCast of peopleCastSeries(); track $index){
           <a class="tag-item"
             >{{ personCast
             }}{{
-              $index === ((peopleCastSeries$ | async)?.length ?? 0) - 1
+              $index === ((peopleCastSeries()?.length ?? 0) - 1)
                 ? ''
                 : ',&nbsp;'
             }}</a
@@ -347,7 +353,7 @@
         <div class="previewModal-tags">
           <span class="previewModal-tags-label">Genres:</span
           ><a class="tag-item">{{
-            (this.seriesTvMainInfoDetail$ | async)?.genres
+            seriesTvMainInfoDetail()?.genres
           }}</a>
         </div>
         <div class="previewModal-tags">
