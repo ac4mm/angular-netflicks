@@ -1,3 +1,9 @@
+@if (isValidUser() && homeLoading()) {
+<nf-home-skeleton></nf-home-skeleton>
+} @else {
+@if (homeLoadingError(); as loadingError) {
+<div class="home-loading-error" role="alert">{{ loadingError }}</div>
+}
 <div
   class="cover-image-wrapper"
   [class.home-video-hero]="showVideoPreview()"
@@ -209,4 +215,5 @@
 }@else {
 <!--Choose your profile-->
 <nf-profile-gate></nf-profile-gate>
+}
 }

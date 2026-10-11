@@ -14,6 +14,7 @@ import {
   from,
   map,
   Observable,
+  forkJoin,
   shareReplay,
   Subject,
   takeUntil,
@@ -29,16 +30,15 @@ import {
   RatingNumberObject,
   CoverImage,
   INIT_RATING_NUMBER,
-} from '@shared/netflicks';
-import { AuthService } from '@core/auth';
-import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
-import { FooterComponent } from './footer/footer.component';
-import {
   SwiperContainerComponent,
   NfSpeakerdownButtonComponent,
   NfSpeakerupButtonComponent,
 } from '@shared/netflicks';
+import { AuthService } from '@core/auth';
+import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
+import { FooterComponent } from './footer/footer.component';
 import { ProfileGateComponent } from './profile-gate/profile-gate.component';
+import { HomeSkeletonComponent } from './home-skeleton/home-skeleton.component';
 import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 
 @Component({
@@ -49,6 +49,7 @@ import { AsyncPipe, NgOptimizedImage } from '@angular/common';
   standalone: true,
   imports: [
     ProfileGateComponent,
+    HomeSkeletonComponent,
     YouTubePlayerModule,
     NfSpeakerupButtonComponent,
     NfSpeakerdownButtonComponent,
@@ -67,6 +68,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   private managePlayerService = inject(ManagePlayerService);
   private renderer = inject(Renderer2);
   public isValidUser = this.selectUser.isSelected;
+  homeLoading = signal(true);
+  homeLoadingError = signal<string | null>(null);
 
   indexSelectedItem: number;
   coverImagePreviewModal: string;
@@ -252,6 +255,22 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.numbersOfSeasonsTvShows$ = this.getAllNumbersOfSeasonsById$(
       this.coverIndexTvShows
     );
+
+    forkJoin([
+      this.coverMainImageAndTypography$,
+      this.logoImagesKeepWatching$,
+    ])
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: () => this.homeLoading.set(false),
+        error: (error: unknown) => {
+          console.error('Failed to load the home hero content', error);
+          this.homeLoadingError.set(
+            'Some home content could not be loaded. Please refresh and try again.'
+          );
+          this.homeLoading.set(false);
+        },
+      });
   }
 
   @HostListener('window:resize')

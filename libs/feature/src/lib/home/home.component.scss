@@ -1,1 +1,9 @@
 @use 'libs/styles/src/lib/global';
+
+.home-loading-error {
+  position: relative;
+  z-index: 1;
+  padding: 0.75rem 4%;
+  background: #7a1b1b;
+  color: #fff;
+}
