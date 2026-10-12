@@ -1,19 +1,24 @@
 {
   "name": "netflicks",
-  "root": "apps/netflicks",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/netflicks/src",
   "projectType": "application",
+  "prefix": "nf",
   "generators": {
     "@schematics/angular:component": {
       "style": "scss"
     }
   },
-  "prefix": "nf",
   "targets": {
     "build": {
       "executor": "@angular/build:application",
+      "defaultConfiguration": "",
+      "outputs": ["{options.outputPath.base}"],
       "options": {
-        "outputPath": { "base": "dist/apps/netflicks", "browser": "" },
+        "outputPath": {
+          "base": "dist/apps/netflicks",
+          "browser": ""
+        },
         "index": {
           "input": "apps/netflicks/src/index.html",
           "output": "index.html"
@@ -31,7 +36,9 @@
           "node_modules/swiper/swiper.scss",
           "node_modules/primeicons/primeicons.css"
         ],
-        "stylePreprocessorOptions": { "includePaths": ["."] },
+        "stylePreprocessorOptions": {
+          "includePaths": ["."]
+        },
         "scripts": [
           "./node_modules/jquery/dist/jquery.min.js",
           "./node_modules/popper.js/dist/umd/popper.min.js",
@@ -68,9 +75,7 @@
             }
           ]
         }
-      },
-      "defaultConfiguration": "",
-      "outputs": ["{options.outputPath.base}"]
+      }
     },
     "serve": {
       "executor": "@angular/build:dev-server",
@@ -91,6 +96,8 @@
     },
     "server": {
       "executor": "@angular-devkit/build-angular:server",
+      "defaultConfiguration": "",
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/netflicks/server",
         "main": "server.ts",
@@ -110,9 +117,7 @@
           "sourceMap": false,
           "optimization": true
         }
-      },
-      "defaultConfiguration": "",
-      "outputs": ["{options.outputPath}"]
+      }
     },
     "serve-ssr": {
       "executor": "@nguniversal/builders:ssr-dev-server",
@@ -140,21 +145,21 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
           "apps/netflicks/src/**/*.ts",
           "apps/netflicks/src/**/*.html"
         ]
-      },
-      "outputs": ["{options.outputFile}"]
+      }
     },
     "test": {
       "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/netflicks"],
       "options": {
         "jestConfig": "apps/netflicks/jest.config.ts",
         "passWithNoTests": true
-      },
-      "outputs": ["{workspaceRoot}/coverage/apps/netflicks"]
+      }
     }
   }
 }
