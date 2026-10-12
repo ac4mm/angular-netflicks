@@ -63,8 +63,11 @@ export class UtilitiesService {
    *
    * @returns Map of the array grouped by the grouping function.
    */
-  groupBy(list: EpisodeDetail[], keyGetter: (arg0: any) => number) {
-    const map = new Map();
+  groupBy(
+    list: EpisodeDetail[],
+    keyGetter: (episode: EpisodeDetail) => number
+  ) {
+    const map = new Map<number, EpisodeDetail[]>();
     list.forEach((item) => {
       const key = keyGetter(item);
       const collection = map.get(key);

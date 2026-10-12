@@ -9,6 +9,18 @@ import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
 import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.component';
 import { MovieDetail, VideoDetail } from '../../model/themoviedb.model';
 
+type FullscreenElement = HTMLElement & {
+  mozRequestFullScreen?: () => void;
+  webkitRequestFullscreen?: () => void;
+  msRequestFullscreen?: () => void;
+};
+
+type FullscreenDocument = Document & {
+  mozCancelFullScreen?: () => void;
+  webkitExitFullscreen?: () => void;
+  msExitFullscreen?: () => void;
+};
+
 @Component({
   selector: 'nf-fullscreen-player',
   templateUrl: 'nf-fullscreen-player.component.html',
@@ -20,7 +32,7 @@ export class NfFullscreenPlayerComponent implements OnInit {
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
   themoviedbService = inject(TheMovieDBService);
-  private document: any = inject(DOCUMENT);
+  private document: FullscreenDocument = inject(DOCUMENT);
   private managePlayerService = inject(ManagePlayerService);
 
   @ViewChild('player') player: YouTubePlayer;
@@ -49,8 +61,7 @@ export class NfFullscreenPlayerComponent implements OnInit {
 
   episodeTitle = 'Official Trailer';
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  rootElem: HTMLElement | any;
+  rootElem: FullscreenElement;
   isMaximixe = signal(false);
   showSpeakerUpIcon = signal(true);
   showPlayIcon = signal(true);

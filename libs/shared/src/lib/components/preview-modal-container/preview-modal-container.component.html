@@ -108,7 +108,11 @@ seriesCastResource.error() || videoResource.error()) {
   <!-- Audio preview dialog -->
   <div
     class="previewModal-player-wrapper preview-audio-toggle"
+    role="button"
+    tabindex="0"
     (click)="onClickSpeakerIcon()"
+    (keydown.enter)="onSpeakerToggleKeydown($event)"
+    (keydown.space)="onSpeakerToggleKeydown($event)"
   >
     @if(showSpeakerUpIcon()){
     <!-- Speaker up -->
@@ -180,7 +184,13 @@ seriesCastResource.error() || videoResource.error()) {
             <a class="tag-item">There are no person</a>
             }
 
-            <a class="tag-more" (click)="onClickScrollToMore()"> more </a>
+            <button
+              type="button"
+              class="tag-more"
+              (click)="onClickScrollToMore()"
+            >
+              more
+            </button>
           </div>
 
           <div class="previewModal-tags">
@@ -251,16 +261,19 @@ seriesCastResource.error() || videoResource.error()) {
             >
               @for(item of this.definedArrayDropdownSeasons(
               this.finalArrayTvInfo().length ); track $index){
-              <a class="dropdown-item" (click)="onSelectSeason(item)"
-                >Seasons {{ item }}
-                <span class="episodes-dd"
-                  >(
-                  {{this.finalArrayTvInfo()[item - 1]?.value?.length}}
-                  Episodes)</span
-                >
-              </a>
-              }@empty {
-              <a class="dropdown-item">There are no episodes</a>
+                <button
+                  type="button"
+                  class="dropdown-item"
+                  (click)="onSelectSeason(item)"
+                  >Seasons {{ item }}
+                  <span class="episodes-dd"
+                    >(
+                    {{this.finalArrayTvInfo()[item - 1]?.value?.length}}
+                    Episodes)</span
+                  >
+                </button>
+                }@empty {
+                <span class="dropdown-item">There are no episodes</span>
               }
             </div>
           </div>

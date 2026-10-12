@@ -10,6 +10,10 @@ import {
   PreviewModalDialogData,
 } from '../model/common-config-dialog.model';
 
+interface FullscreenPlayerDialogData {
+  indexTheMovieDb: number;
+}
+
 @Injectable()
 export class ManagePlayerService {
   dialogService = inject(DialogService);
@@ -38,7 +42,7 @@ export class ManagePlayerService {
     }) as DynamicDialogRef;
   }
 
-  openFullScreenPlayer(data: any): DynamicDialogRef {
+  openFullScreenPlayer(data: FullscreenPlayerDialogData): DynamicDialogRef {
     return this.dialogService.open(NfFullscreenPlayerComponent, {
       ...COMMON_CONFIG_DIALOG,
       ...COMMON_CONFIG_FULLSCREEN,

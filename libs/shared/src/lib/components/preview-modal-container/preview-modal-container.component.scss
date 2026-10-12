@@ -310,7 +310,13 @@
   }
 
   .tag-more {
+    background: none;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
     font-style: italic;
+    padding: 0;
   }
 }
 
@@ -346,6 +352,13 @@
 
 .dropdown-item:hover {
   background-color: #424242 !important;
+}
+
+.dropdown-menu button.dropdown-item {
+  border: 0;
+  font: inherit;
+  text-align: left;
+  width: 100%;
 }
 
 ::ng-deep .p-dropdown,

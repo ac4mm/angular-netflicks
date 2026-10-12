@@ -232,6 +232,15 @@ export class PreviewModalContainerComponent implements OnInit {
     }
   }
 
+  onSpeakerToggleKeydown(event: KeyboardEvent) {
+    if (event.target !== event.currentTarget) {
+      return;
+    }
+
+    event.preventDefault();
+    this.onClickSpeakerIcon();
+  }
+
   onClickShowCheckIcon(event?: Event) {
     event?.preventDefault();
     event?.stopPropagation();
@@ -243,10 +252,9 @@ export class PreviewModalContainerComponent implements OnInit {
       this.player.pauseVideo();
     }
 
-    const dialogFullScreenPlayer: DynamicDialogRef =
-      this.managePlayerService.openFullScreenPlayer({
-        indexTheMovieDb: this.config.data.indexTheMovieDb,
-      });
+    this.managePlayerService.openFullScreenPlayer({
+      indexTheMovieDb: this.config.data.indexTheMovieDb,
+    });
   }
 
   definedArrayDropdownSeasons(size: number) {

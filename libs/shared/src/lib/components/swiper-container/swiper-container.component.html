@@ -9,7 +9,13 @@
     <!-- Slides -->
     @for(coverImage of coverImages; track $index){
     <div class="swiper-slide" #swiperSlides>
-      <div (click)="playVideo(coverIndexImagesTMDB[$index], $event)">
+      <div
+        role="button"
+        tabindex="0"
+        (click)="playVideo(coverIndexImagesTMDB[$index], $event)"
+        (keydown.enter)="playVideo(coverIndexImagesTMDB[$index], $event)"
+        (keydown.space)="playVideo(coverIndexImagesTMDB[$index], $event); $event.preventDefault()"
+      >
         <img
           class="card-img"
           alt="Card image"
@@ -40,8 +46,17 @@
             $index,
             coverIndexImages[$index],
             coverIndexImagesTMDB[$index],
-            logo
+            logo,
+            $event
           )
+        "
+        role="button"
+        tabindex="0"
+        (keydown.enter)="
+          onCardDetailsKeydown($event, coverImage, $index, logo)
+        "
+        (keydown.space)="
+          onCardDetailsKeydown($event, coverImage, $index, logo)
         "
       >
         <div class="card-icons">

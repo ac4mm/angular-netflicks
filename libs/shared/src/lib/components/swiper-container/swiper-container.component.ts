@@ -1,5 +1,3 @@
-/// <reference path="../../../types/swiper.d.ts" />
-
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild, inject, signal } from '@angular/core';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subject, of, takeUntil } from 'rxjs';
@@ -116,6 +114,27 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
     event.preventDefault();
     event.stopPropagation();
     this.showCheckIcon.update((show) => !show);
+  }
+
+  onCardDetailsKeydown(
+    event: KeyboardEvent,
+    coverImage: string,
+    index: number,
+    logoImage: string
+  ) {
+    if (event.target !== event.currentTarget) {
+      return;
+    }
+
+    event.preventDefault();
+    this.openDialogCoverImage(
+      coverImage,
+      index,
+      this.coverIndexImages[index],
+      this.coverIndexImagesTMDB[index],
+      logoImage,
+      event
+    );
   }
 
   openDialogCoverImage(
