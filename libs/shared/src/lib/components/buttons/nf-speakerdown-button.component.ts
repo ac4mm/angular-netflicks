@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
@@ -6,6 +6,9 @@ import { NgClass } from '@angular/common';
   template: `<button
     class="btn-circle btn-icon-cover"
     [ngClass]="mediumSize ? 'btn-circle-medium' : ''"
+    type="button"
+    aria-label="Mute video"
+    (click)="toggle.emit()"
   >
     <svg
       width="24"
@@ -28,4 +31,5 @@ import { NgClass } from '@angular/common';
 })
 export class NfSpeakerdownButtonComponent {
   @Input() mediumSize = false;
+  @Output() toggle = new EventEmitter<void>();
 }

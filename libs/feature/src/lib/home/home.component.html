@@ -126,10 +126,7 @@
     <!-- Other actions buttons-->
     <div class="col-3">
       <div class="info-meta-layer-other-actions">
-        <span
-          class="previewModal-player-wrapper preview-audio-toggle"
-          (click)="onClickSpeakerIcon()"
-        >
+        <span class="previewModal-player-wrapper preview-audio-toggle">
           @if (showRefreshIcon()){
           <!-- Refresh -->
           <button class="btn-circle svg-container" (click)="onReplayVideo()">
@@ -142,10 +139,16 @@
           </button>
           }@else { @if(showSpeakerUpIcon()){
           <!-- Speaker up -->
-          <nf-speakerup-button [mediumSize]="true"></nf-speakerup-button>
+          <nf-speakerup-button
+            [mediumSize]="true"
+            (toggle)="onClickSpeakerIcon()"
+          ></nf-speakerup-button>
           }@else {
           <!-- Speaker down -->
-          <nf-speakerdown-button [mediumSize]="true"></nf-speakerdown-button>
+          <nf-speakerdown-button
+            [mediumSize]="true"
+            (toggle)="onClickSpeakerIcon()"
+          ></nf-speakerdown-button>
           } }
         </span>
 

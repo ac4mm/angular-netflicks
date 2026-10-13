@@ -19,7 +19,11 @@
         @for(i of [1,2,3,4,5]; track $index){
         <li class="profile">
           <div>
-            <a class="profile-link" (click)="onChangeUser(i)">
+            <button
+              class="profile-link"
+              type="button"
+              (click)="onChangeUser(i)"
+            >
               <div class="avatar-wrapper">
                 <div
                   [ngClass]="
@@ -53,7 +57,7 @@
                 }
               </div>
               <span class="profile-name">User{{ i }}</span>
-            </a>
+            </button>
           </div>
         </li>
         }

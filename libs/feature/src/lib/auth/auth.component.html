@@ -56,12 +56,13 @@
               aria-label="password"
             />
             <span class="placeholder-text">Password</span>
-            <span
+            <button
+              type="button"
               class="show-password"
               (click)="onShowPassword()"
-              type="button"
-            >{{ showPassword() ? "HIDE" : "SHOW" }}</span
             >
+              {{ showPassword() ? "HIDE" : "SHOW" }}
+            </button>
           </div>
 
           <!-- Submit Button -->
@@ -75,13 +76,19 @@
 
           <!-- Remember Me and Help -->
           <div class="form-check mb-3">
-            <input type="checkbox" class="form-check-input" id="checkboxRememberMe"/>
-            <label class="form-check-label">
-              <label class="check-text" for="checkboxRememberMe">Remember me</label>
-              <a class="help" type="button">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="checkboxRememberMe"
+            />
+            <div class="form-check-label">
+              <label class="check-text" for="checkboxRememberMe">
+                Remember me
+              </label>
+              <span class="help">
                 Need help?
-              </a>
-            </label>
+              </span>
+            </div>
           </div>
         </form>
       }
@@ -92,9 +99,9 @@
     <div class="login-form-other">
       <p class="text-form-other">
         New to Netflicks?
-        <a class="signup" (click)="onSwitchMode()" type="button">
+        <button class="signup" (click)="onSwitchMode()" type="button">
           Sign up now
-        </a>
+        </button>
       </p>
     </div>
   </div>

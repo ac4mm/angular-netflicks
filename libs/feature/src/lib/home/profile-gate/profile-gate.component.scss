@@ -58,7 +58,11 @@ a {
 }
 
 .profile-link {
+  background: transparent;
+  border: 0;
   cursor: pointer;
+  padding: 0;
+  font: inherit;
 }
 
 .list-profiles .avatar-wrapper {
@@ -115,13 +119,13 @@ a {
 }
  */
 
-.profile-gate-container li a:focus .profile-name,
-.profile-gate-container li a:hover .profile-name {
+.profile-gate-container li .profile-link:focus .profile-name,
+.profile-gate-container li .profile-link:hover .profile-name {
   color: #e5e5e5;
 }
 
-.profile-gate-container li a:focus .profile-icon,
-.profile-gate-container li a:hover .profile-icon {
+.profile-gate-container li .profile-link:focus .profile-icon,
+.profile-gate-container li .profile-link:hover .profile-icon {
   border-color: #e5e5e5;
 }
 
