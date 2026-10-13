@@ -232,7 +232,7 @@ export class PreviewModalContainerComponent implements OnInit {
     }
   }
 
-  onSpeakerToggleKeydown(event: KeyboardEvent) {
+  onSpeakerToggleKeydown(event: Event) {
     if (event.target !== event.currentTarget) {
       return;
     }

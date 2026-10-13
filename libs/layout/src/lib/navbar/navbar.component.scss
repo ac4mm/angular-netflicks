@@ -60,6 +60,9 @@
 }
 
 .search-box .search-box_input {
+  position: absolute;
+  top: 50%;
+  right: 0;
   outline: none;
   background: rgba(0, 0, 0, 0.85);
   border: solid 1px rgba(255, 255, 255, 0.85);
@@ -69,7 +72,7 @@
   font-size: 13px;
   color: #fff;
   opacity: 0;
-  float: right;
+  transform: translateY(-50%);
   transition: ease transform 0.1s;
   transition-delay: 500ms;
 }
@@ -108,11 +111,18 @@
   position: absolute;
   z-index: 10;
   cursor: pointer;
+  top: 50%;
   right: 5px;
   transition: ease transform 0.4s;
   /* transition-delay: 50ms; */
-  margin-top: 3px;
+  transform: translateY(-50%);
   margin-right: 3px;
+}
+
+.search-box .search-box_toggle {
+  background: none;
+  border: 0;
+  padding: 0;
 }
 
 .search-box.active {
@@ -120,7 +130,7 @@
 }
 
 .search-box.active .search-box_icon {
-  transform: translateX(-208px);
+  transform: translate(-208px, -50%);
 }
 .search-box.active .search-box_input {
   opacity: 1;

@@ -64,7 +64,12 @@
       <ul class="navbar-nav ms-auto" id="rightNavbar">
         <!-- Searchbar -->
         <li class="nav-item search-box space-item">
-          <a class="nav-link">
+          <button
+            type="button"
+            class="nav-link search-box_toggle"
+            aria-label="Search"
+            (click)="activateSearchbar()"
+          >
             <svg
               class="bi bi-search search-box_icon"
               width="1.4em"
@@ -72,7 +77,6 @@
               viewBox="0 0 16 16"
               fill="currentColor"
               xmlns="http://www.w3.org/2000/svg"
-              (click)="activateSearchbar()"
             >
               <path
                 fill-rule="evenodd"
@@ -84,11 +88,11 @@
                 d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
               />
             </svg>
-
+          </button>
             <input
               class="search-box_input"
               placeholder="Titles, people, genres"
-          /></a>
+          />
         </li>
 
         <!--        Kids-->
@@ -165,9 +169,12 @@
 
           <ul class="dropdown-menu end-0 start-auto mt-3n-dropdown">
             @for(indexUser of [1,2,3,4,5]; track $index){
-            <li (click)="onChangeUser(indexUser)">
+            <li>
               @if(indexUser !== idUserMaster()) {
-              <a class="dropdown-item" href="/browse"
+              <a
+                class="dropdown-item"
+                href="/browse"
+                (click)="onChangeUser(indexUser)"
                 ><img
                   class="dropdown-img-item"
                   alt="user{{ indexUser }}"

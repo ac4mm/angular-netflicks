@@ -117,7 +117,7 @@ export class SwiperContainerComponent implements OnInit, AfterViewInit {
   }
 
   onCardDetailsKeydown(
-    event: KeyboardEvent,
+    event: Event,
     coverImage: string,
     index: number,
     logoImage: string
