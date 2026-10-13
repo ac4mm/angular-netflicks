@@ -32,8 +32,8 @@
         ],
         "styles": [
           "apps/netflicks/src/styles.scss",
-          "node_modules/bootstrap/scss/bootstrap.scss",
-          "node_modules/swiper/swiper.scss",
+          "node_modules/bootstrap/dist/css/bootstrap.min.css",
+          "node_modules/swiper/swiper.min.css",
           "node_modules/primeicons/primeicons.css"
         ],
         "stylePreprocessorOptions": {
