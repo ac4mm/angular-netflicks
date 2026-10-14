@@ -8,7 +8,7 @@ import { NgClass } from '@angular/common';
     [ngClass]="mediumSize ? 'btn-circle-medium' : ''"
     type="button"
     aria-label="Unmute video"
-    (click)="toggle.emit()"
+    (click)="toggleRequested.emit()"
   >
     <svg
       width="24"
@@ -31,5 +31,5 @@ import { NgClass } from '@angular/common';
 })
 export class NfSpeakerupButtonComponent {
   @Input() mediumSize = false;
-  @Output() toggle = new EventEmitter<void>();
+  @Output() toggleRequested = new EventEmitter<void>();
 }
